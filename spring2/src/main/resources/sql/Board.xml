@@ -9,9 +9,8 @@
 		insert into myboard values(myboard_seq.nextval,#{writer},
 			#{passwd},#{subject},#{content},0,sysdate)
 	</insert>
-	<!-- 글갯수 -->
-	<!-- 글갯수 -->
 	
+	<!-- 글갯수 -->
 	<select id="count" resultType="int">
 		select count(*) from myboard
 	</select>
