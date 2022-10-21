@@ -27,7 +27,7 @@
 	</select>
 	
 	<!-- 조회수 1증가 -->
-	<update id="hit" parameterType="int">
+	 <update id="hit" parameterType="int">
 		update myboard set readcount=readcount+1 where no=#{no}
 	</update>
 	
