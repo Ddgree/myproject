@@ -4,8 +4,8 @@
 
 <configuration>
 
-	<typeAliases>
+	<!-- <typeAliases>
 		<typeAlias alias="board" type="myspring.model.Board" />
-	</typeAliases>	
+	</typeAliases>	 -->
 	
 </configuration>
