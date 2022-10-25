@@ -17,7 +17,7 @@ public class partycontroller {
 	// 메인페이지
 	@RequestMapping("start.do")
 	public String boardform() {
-		return "board/boardlist";
+		return "party/partycreate";
 	}
 
 }
