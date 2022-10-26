@@ -19,7 +19,7 @@ public class partycontroller
 	@Autowired
 	partyservice partyservice;
 	
-	@RequestMapping("list.do")
+	@RequestMapping("partyband.do")
 	public String boardform(HttpServletRequest request, Model model) throws Exception
 	{
 		List<partybean> partylist = new ArrayList<partybean>();
@@ -52,8 +52,14 @@ public class partycontroller
 		return "party/partymain";
 	}
 	
+	/*
+	 * @RequestMapping("party_create.do") public String party_create(String
+	 * member_id, Model model) {
+	 * 
+	 }*/
+	
 	/* 파티방 상세보기 */
-	@RequestMapping("party_cont.do")
+	@RequestMapping("party_detail.do")
 	public String party_cont(
 			//@RequestParam("party_id") 
 	String party_id, Model model) throws Exception 
@@ -63,6 +69,6 @@ public class partycontroller
 
 		model.addAttribute("party", party);
 
-		return "party/partymain";
+		return "party/partydetail";
 	}
 }
