@@ -2,6 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="party">
+<mapper namespace="partyns">
 
+	<!-- 게시판 내용보기 -->
+		<select id="party_cont" resultType="party" parameterType="String">
+			select * from party where party_id = #{party_id}
+		</select>
+	
+	<!-- 파티방 목록 -->
+		<select id="party_list" parameterType="int" resultType="party">
+	    	<![CDATA[
+				select * from 
+				(select rownum rnum, party.* from 
+				 (select * from party order by party_no desc) party) 
+			   	where rnum >= ((#{page} - 1) * 8 + 1)  and rnum <= (#{page} * 8)
+			]]>
+	</select>
+	
+	<!-- 파티방 총 개수 -->
+		<select id="party_count" resultType="int">
+			select count(*) from party
+		</select>
 </mapper>
