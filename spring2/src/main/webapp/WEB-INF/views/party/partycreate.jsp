@@ -10,9 +10,6 @@
 	href="<%=request.getContextPath() %>/resources/css/party.css" /> 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath() %>/resources/js/party.js"></script>
-<script>
-
-</script>
 
 </head>
 
