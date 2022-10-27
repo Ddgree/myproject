@@ -15,7 +15,7 @@ public class partycontroller {
 	@Autowired
 
 	// 메인페이지
-	@RequestMapping("start.do")
+	@RequestMapping("partyband.do")
 	public String boardform() {
 		return "party/partycreate";
 	}
