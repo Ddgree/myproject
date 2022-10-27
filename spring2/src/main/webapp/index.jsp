@@ -8,7 +8,12 @@
 </head>
 <body>
 	<script>
+<<<<<<< HEAD
 	location.href = "party_create.do";
+=======
+	location.href = "partyband.do";
+
+>>>>>>> origin/user1
 	</script>
 </body>
 </html>

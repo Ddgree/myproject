@@ -11,10 +11,13 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <!--  
 <script src="<%=request.getContextPath() %>/resources/js/party.js"></script>
+<<<<<<< HEAD
 -->
 <script>
 
 </script>
+=======
+>>>>>>> origin/user1
 
 </head>
 
