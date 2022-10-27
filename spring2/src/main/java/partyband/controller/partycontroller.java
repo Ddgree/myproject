@@ -17,16 +17,9 @@ import partyband.service.partyservice;
 public class partycontroller
 {
 	@Autowired
-<<<<<<< HEAD
-
-	// 메인페이지
-	@RequestMapping("partyband.do")
-	public String boardform() {
-		return "party/partycreate";
-=======
 	partyservice partyservice;
 	
-	@RequestMapping("list.do")
+	@RequestMapping("partyband.do")
 	public String boardform(HttpServletRequest request, Model model) throws Exception
 	{
 		List<partybean> partylist = new ArrayList<partybean>();
@@ -57,7 +50,6 @@ public class partycontroller
 		model.addAttribute("maxpage", maxpage);
 		
 		return "party/partymain";
->>>>>>> origin/kyungmin1025
 	}
 	
 	/* 파티방 상세보기 */
@@ -71,6 +63,6 @@ public class partycontroller
 
 		model.addAttribute("party", party);
 
-		return "party/partymain";
+		return "party/partydetail";
 	}
 }
