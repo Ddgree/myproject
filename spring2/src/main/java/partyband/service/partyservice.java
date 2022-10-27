@@ -32,4 +32,9 @@ public class partyservice
 		return partydao.getListCount();
 	}
 
+	public void insert(partybean party) 
+	{
+		partydao.partyinsert(party);
+	}
+
 }

@@ -21,6 +21,15 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 인터셉터 설정 -->	
+	<!-- <beans:bean id="sessionChk" class="partyband.controller.partysessioncheck"/>	
+	 <interceptors>
+		<interceptor>
+			<mapping path="/party_create.do"/>
+			<beans:ref bean="sessionChk"/>
+		</interceptor>
+	</interceptors>	  -->
+	
 	<context:component-scan base-package="partyband" />
 	
 	

@@ -9,7 +9,9 @@
  <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath() %>/resources/css/party.css" /> 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<!--  
 <script src="<%=request.getContextPath() %>/resources/js/party.js"></script>
+-->
 <script>
 
 </script>
@@ -19,9 +21,7 @@
 <body>
 	<div id="bbswrite_wrap">
 		<h2 class="bbswrite_title">파티 생성</h2>
-		<form method="post"
-			action="<%=request.getContextPath() %>/party_ok.do"
-			onSubmit="return party_check()">
+		<form method="post" action="<%=request.getContextPath() %>/party_create_ok.do" onSubmit="return party_check()">
 			<table id="bbswrite_t">
 				<tr>
 					<th>지역</th>

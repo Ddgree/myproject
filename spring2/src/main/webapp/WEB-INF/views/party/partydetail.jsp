@@ -27,7 +27,7 @@
 					<td colspan="5"><input name="party_subject" id="party_subject" size="40"
 						type="text" /></td>
 						<th>작성자</th>
-						<td>${party_id }</td>
+						<td>${id}</td>
 						<th>활동일</th>
 						<td>${party.party_enddate }</td>
 						<th>인원</th>

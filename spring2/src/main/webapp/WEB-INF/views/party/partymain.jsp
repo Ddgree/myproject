@@ -14,7 +14,7 @@
 	<c:forEach var="p" items="${partylist}">
 	<c:out value="${p.party_subject}" />
 		<div>
-			[${p.party_no}] ${p.party_count} <br>
+			[${id}] ${p.party_count} <br>
 			${p.party_enddate}"<br>
 			${p.party_count} / ${p.party_max_count} <br>
 		</div>

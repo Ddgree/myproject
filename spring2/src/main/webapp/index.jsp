@@ -8,7 +8,7 @@
 </head>
 <body>
 	<script>
-	location.href = "list.do";
+	location.href = "party_create.do";
 	</script>
 </body>
 </html>
