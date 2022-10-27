@@ -8,7 +8,11 @@
 </head>
 <body>
 	<script>
+<<<<<<< HEAD
 	location.href = "partyband.do";
+=======
+	location.href = "list.do";
+>>>>>>> origin/kyungmin1025
 	</script>
 </body>
 </html>
