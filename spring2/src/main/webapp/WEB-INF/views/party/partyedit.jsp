@@ -9,16 +9,18 @@
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/party.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="<%=request.getContextPath()%>/resources/js/party.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/party_check.js"></script>
 
 </head>
 
 <body>
 	<div id="bbswrite_wrap">
-		<h2 class="bbswrite_title">파티 생성</h2>
+		<h2 class="bbswrite_title">파티 수정</h2>
 		<form method="post"
-			action="<%=request.getContextPath()%>/party_ok.do"
+			action="<%=request.getContextPath()%>/party_edit_ok.do"
 			onSubmit="return party_check()">
+			<input type="hidden" name=no value=${party.party_no }> <input
+				type="hidden" name=page value=${page }>
 			<table id="bbswrite_t">
 				<tr>
 					<th>지역</th>
@@ -34,13 +36,14 @@
 					<td><%@ include file="../../../resources/include/gender.jsp"%>
 						<select name="party_gender">
 							<c:forEach var="g" items="${gen}" begin="0" end="2">
-								<option value="${g}"<c:if test="${party_gender == g}">${'selected'}
+								<option value="${g}"
+									<c:if test="${party_gender == g}">${'selected'}
           </c:if>>${g}</option>
 							</c:forEach>
 					</select></td>
 					<th>나이</th>
 					<td>만 <input name="party_age" id="party_age" size="2"
-						class="input_box" placeholder="00" value="${party_age }"/>세
+						class="input_box" placeholder="00" value="${party_age }" />세
 				</tr>
 
 				<tr>
@@ -48,26 +51,28 @@
 					<%@ include file="../../../resources/include/month.jsp"%>
 					<%@ include file="../../../resources/include/day.jsp"%>
 					<td colspan=3"><input name="party_enddate1"
-						id="party_enddate1" size="4" class="input_box" placeholder="0000" value="${party_enddate1 }"/>년
-						<select name="party_enddate2">
+						id="party_enddate1" size="4" class="input_box" placeholder="0000"
+						value="${party_enddate1 }" />년 <select name="party_enddate2">
 							<c:forEach var="m" items="${mon}" begin="0" end="11">
-								<option value="${m}"<c:if test="${party_enddate2 == m}">${'selected'}
+								<option value="${m}"
+									<c:if test="${party_enddate2 == m}">${'selected'}
           </c:if>>${m}</option>
 							</c:forEach>
 					</select>월 <select name="party_enddate3">
 							<c:forEach var="d" items="${day}" begin="0" end="30">
-								<option value="${d}"<c:if test="${party_enddate3 == d}">${'selected'}
+								<option value="${d}"
+									<c:if test="${party_enddate3 == d}">${'selected'}
           </c:if>>${d}</option>
 							</c:forEach>
 					</select>일</td>
 					<th>인원</th>
 					<td><input name="party_max_count" id="party_max_count"
-						size="2" type="text" placeholder="00" value="${party_max_count }"/>명</td>
+						size="2" type="text" placeholder="00" value="${party_max_count }" />명</td>
 				</tr>
 				<tr>
 					<th>제목</th>
 					<td colspan="5"><input name="party_subject" id="party_subject"
-						size="40" type="text" value="${party_subject }"/></td>
+						size="40" type="text" value="${party_subject }" /></td>
 				</tr>
 
 				<tr>

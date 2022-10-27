@@ -49,6 +49,7 @@
 			
 		<c:if test="${page != maxpage }">
 			<a href="list.do?page=${maxpage}">[맨끝]</a>&nbsp;
-		</c:if>				
+		</c:if>		
+		</div>		
 </body>
 </html>

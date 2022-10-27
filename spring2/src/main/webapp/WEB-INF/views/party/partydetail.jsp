@@ -16,7 +16,8 @@
 <body>
 	<div id="bbscont_wrap">
 		<h2 class="bbscont_title">게시글 상세정보</h2>
-		<table border=1 id="bbscont_t">
+		<input type="hidden" name=page value=${page }>
+		<table id="bbscont_t">
 			<tr>
 				<th>제목</th>
 				<td>${party_subject}</td>
@@ -42,8 +43,7 @@
 				<td class=con><pre>${party.party_content }</pre></td>
 			</tr>
 			<tr id="bbswrite_menu">
-				<td colspan=2 align="center">
-					<c:choose>
+				<td colspan=2 align="center"><c:choose>
 						<c:when test="${sessionScope.party_id eq party_id}">
 							<input type="button" value="수정" class="input_button"
 								onclick="location.href='partyedit.do'" />
@@ -58,8 +58,7 @@
 							<input type="button" value="참가" class="input_button"
 								onclick="location.href='partyjoin.do'" />
 						</c:otherwise>
-					</c:choose>
-				</td>
+					</c:choose></td>
 			</tr>
 		</table>
 	</div>
