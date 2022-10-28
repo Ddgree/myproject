@@ -11,7 +11,6 @@
 	href="<%=request.getContextPath()%>/resources/css/partymain.css" />
 </head>
 <body>
-<<<<<<< HEAD
 	<input type="button" value="파티만들기" class="input_button"
 		onclick="location='party_create.do?party_no=${p.party_no}&page=${page}'" />
 	<div id=partyroom_wrap>
@@ -25,22 +24,7 @@
 		</c:forEach>
 	</div>
 	<div id="parytslist_paging">
-=======
-		<input type="button" value="파티만들기" class="input_button"
-			onclick="location='party_create.do?party_no=${p.party_no}&page=${page}'" />
 
-	<br>
-	<c:forEach var="p" items="${partylist}">
-	<c:out value="${p.party_subject}" />
-		<div>
-			[${num}] ${p.party_count} <br>
-			${p.party_enddate}"<br>
-			${p.party_count} / ${p.party_max_count} <br>
-		</div>
-	</c:forEach>
-	
-	<div id="parytslist_paging">			
->>>>>>> origin/kyungmin1025
 		<c:if test="${page == 1 }"> [처음]&nbsp; </c:if>
 
 		<c:if test="${page != 1 }">

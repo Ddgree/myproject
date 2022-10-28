@@ -9,13 +9,8 @@
  <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath() %>/resources/css/party.css" /> 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<<<<<<< HEAD
+
 <script src="<%=request.getContextPath() %>/resources/js/party_check.js"></script>
-=======
-<!--  
-<script src="<%=request.getContextPath() %>/resources/js/party.js"></script>
--->
->>>>>>> origin/kyungmin1025
 
 </head>
 
