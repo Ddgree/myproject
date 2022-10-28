@@ -1,0 +1,100 @@
+@charset "UTF-8";
+
+.err {
+	color: red;
+	font-size: 20px;
+}
+
+.button {
+	background-color: black;
+	color: white;
+	text-align: center;
+	font-size: 20px;
+	width: 400px;
+	height: 50px;
+	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.button:hover {
+	background: skyblue;
+	color: black;
+	border: 0;
+}
+
+.login_title {
+	margin-left: auto;
+	margin-right: auto;
+	width: 150px;
+	text-align: center;
+	font-size: 40px;
+	border-radius: 10px;
+}
+
+.login_wrap {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.login_box {
+	font-size: 20px;
+	text-align: center;
+	border-radius: 8px;
+}
+
+.table_code {
+	border-spacing: 0 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.table_code2 {
+	width: 400px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.w-btn-outline {
+	position: relative;
+	padding: 15px 30px;
+	border-radius: 15px;
+	font-family: "paybooc-Light", sans-serif;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+	text-decoration: none;
+	font-weight: 600;
+	transition: 0.25s;
+}
+
+.w-btn-outline:hover {
+	letter-spacing: 2px;
+	transform: scale(1.2);
+	cursor: pointer;
+}
+
+.w-btn-gray-outline:hover {
+	background-color: #a3a1a1;
+	color: #e3dede;
+}
+
+.w-btn-gray-outline {
+	border: 3px solid #a3a1a1;
+	color: #6e6e6e;
+}
+
+.w-btn-gra1 {
+	background: linear-gradient(-45deg, #33ccff 0%, #ff99cc 100%);
+	color: white;
+}
+
+.w-btn-gra-anim {
+	background-size: 400% 400%;
+	animation: gradient1 5s ease infinite;
+}
+
+.login_button {
+	position: relative;
+}
+.input_box{
+	padding: 5px;
+	border-radius: 3px;
+}

@@ -7,6 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>메인 페이지</title>
+<c:if test="${sessionScope.member.member_id == null }">
+<%@ include file="../member/header.jsp" %>
+</c:if>
+<c:if test="${sessionScope.member.member_id != null }">
+<%@ include file="../member/header_login.jsp" %>
+</c:if>
 </head>
 <body>
 	<input type="button" value="파티만들기" class="input_button"
@@ -51,4 +57,5 @@
 			<a href="list.do?page=${maxpage}">[맨끝]</a>&nbsp;
 		</c:if>				
 </body>
+<%@ include file="../member/footer.jsp" %>
 </html>
