@@ -7,26 +7,26 @@
 <head>
 <meta charset="UTF-8">
 <title>메인 페이지</title>
-<<<<<<< HEAD
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/partymain.css" />
-=======
+
 <c:if test="${sessionScope.member.member_id == null }">
 <%@ include file="../member/header.jsp" %>
 </c:if>
 <c:if test="${sessionScope.member.member_id != null }">
 <%@ include file="../member/header_login.jsp" %>
 </c:if>
->>>>>>> origin/sun
+
 </head>
 <body>
+<br><br><br><br>
 	sessionid = ${sessionId}<br>
 	<input type="button" value="로그인" class="input_button"
 		onclick="location='dlatl.do?page=${page}'" /><br>
 	<input type="button" value="파티만들기" class="input_button"
 		onclick="location='party_create.do?party_no=${p.party_no}&page=${page}'" />
 		<!-- partyroom_wrap -->
-	<div id=""><br>[${p.party_no }]
+	<div id=""><br>
 		<c:forEach var="p" items="${partylist}">
 			<table border="1">
 				<tr>
