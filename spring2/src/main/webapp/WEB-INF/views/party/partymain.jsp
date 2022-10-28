@@ -7,8 +7,17 @@
 <head>
 <meta charset="UTF-8">
 <title>메인 페이지</title>
+<<<<<<< HEAD
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/partymain.css" />
+=======
+<c:if test="${sessionScope.member.member_id == null }">
+<%@ include file="../member/header.jsp" %>
+</c:if>
+<c:if test="${sessionScope.member.member_id != null }">
+<%@ include file="../member/header_login.jsp" %>
+</c:if>
+>>>>>>> origin/sun
 </head>
 <body>
 	sessionid = ${sessionId}<br>
@@ -66,4 +75,5 @@
 		</c:if>
 	</div>
 </body>
+<%@ include file="../member/footer.jsp" %>
 </html>

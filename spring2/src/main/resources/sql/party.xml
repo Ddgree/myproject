@@ -5,12 +5,13 @@
 <mapper namespace="partyns">
 
 	<!-- 게시판 내용보기 -->
-		<select id="party_cont" resultType="party" parameterType="String">
-			select * from party where party_id = #{party_id}
-		</select>
-	
+	<select id="party_cont" resultType="party"
+		parameterType="String">
+		select * from party where party_id = #{party_id}
+	</select>
+
 	<!-- 파티방 목록 -->
-		<select id="party_list" parameterType="int" resultType="party">
+	<select id="party_list" parameterType="int" resultType="party">
 	    	<![CDATA[
 				select * from 
 				(select rownum rnum, party.* from 
@@ -18,6 +19,7 @@
 			   	where rnum >= ((#{page} - 1) * 8 + 1)  and rnum <= (#{page} * 8)
 			]]>
 	</select>
+<<<<<<< HEAD
 	
 	<!-- 파티방 저장-->
 		<insert id="party_insert" parameterType="party">
@@ -26,8 +28,12 @@
 			0, #{party_max_count},#{party_id})
 		</insert>
 	
+=======
+
+>>>>>>> origin/sun
 	<!-- 파티방 총 개수 -->
-		<select id="party_count" resultType="int">
-			select count(*) from party
-		</select>
+	<select id="party_count" resultType="int">
+		select count(*) from party
+	</select>
+	
 </mapper>
