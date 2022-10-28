@@ -19,6 +19,13 @@
 			]]>
 	</select>
 	
+	<!-- 파티방 저장-->
+		<insert id="party_insert">
+			insert into party values(party_no_seq.nextval,#{party_sbject},#{party_address}
+			,#{party_content},#{party_gender}, #{party_age}, sysdate,#{party_enddate},
+			#{party_count}, #{party_max_count},id)
+		</insert>
+	
 	<!-- 파티방 총 개수 -->
 		<select id="party_count" resultType="int">
 			select count(*) from party
