@@ -21,6 +21,7 @@
 <body>
 <br><br><br><br>
 	sessionid = ${sessionId}<br>
+	<!-- 로그인버튼 지우지 말아주세요!!!  -->
 	<input type="button" value="로그인" class="input_button"
 		onclick="location='dlatl.do?page=${page}'" /><br>
 	<input type="button" value="파티만들기" class="input_button"
