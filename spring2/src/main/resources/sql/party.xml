@@ -21,7 +21,7 @@
 	
 	<!-- 파티방 저장-->
 		<insert id="party_insert">
-			insert into party values(party_no_seq.nextval,#{party_sbject},#{party_address}
+			insert into party values(party_no_seq.nextval,#{party_subject},#{party_address}
 			,#{party_content},#{party_gender}, #{party_age}, sysdate,#{party_enddate},
 			#{party_count}, #{party_max_count},id)
 		</insert>

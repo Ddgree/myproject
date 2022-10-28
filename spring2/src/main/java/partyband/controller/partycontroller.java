@@ -20,7 +20,13 @@ import partyband.service.partyservice;
 public class partycontroller
 {
 	@Autowired
-	partyservice partyservice;
+	private partyservice partyservice;
+	
+	@RequestMapping("getout.do")
+	public String getout()
+	{
+		return "party/getout";
+	}
 	
 	@RequestMapping("partyband.do")
 	public String boardform(HttpServletRequest request, Model model) throws Exception
@@ -29,7 +35,7 @@ public class partycontroller
 		
 		int page = 1;
 		int limit = 8;
-		
+
 		if(request.getParameter("page") != null)
 		{
 			page = Integer.parseInt(request.getParameter("page"));

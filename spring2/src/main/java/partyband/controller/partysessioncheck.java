@@ -16,7 +16,7 @@ public class partysessioncheck extends HandlerInterceptorAdapter
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		if (id == null || id.equals(""))  {		
-			response.sendRedirect(" ");	
+			response.sendRedirect("getout.do");	
 			return false;
 		}
 		return true;

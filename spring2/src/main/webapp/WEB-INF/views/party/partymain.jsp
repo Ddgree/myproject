@@ -9,12 +9,14 @@
 <title>메인 페이지</title>
 </head>
 <body>
-	<input type="button" value="파티만들기" class="input_button"
-				onclick="location='party_create.do?party_no=${p.party_no}&page=${page}'" />
+		<input type="button" value="파티만들기" class="input_button"
+			onclick="location='party_create.do?party_no=${p.party_no}&page=${page}'" />
+
+	<br>
 	<c:forEach var="p" items="${partylist}">
 	<c:out value="${p.party_subject}" />
 		<div>
-			[${id}] ${p.party_count} <br>
+			[${num}] ${p.party_count} <br>
 			${p.party_enddate}"<br>
 			${p.party_count} / ${p.party_max_count} <br>
 		</div>
