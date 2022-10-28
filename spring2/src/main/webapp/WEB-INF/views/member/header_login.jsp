@@ -107,7 +107,7 @@ a {
 				<input type="hidden" name="member_id" value="${sessionScope.member.member_id}" />
 			
 			    <div class="hello">${sessionScope.member.member_nickname}님! 환영합니다!</div>
-				<input type="submit" value="로그아웃" class="mypage" style="margin-right:-180px;" onclick="location='member_logout.do'"/>
+				<input type="submit" value="로그아웃" class="mypage" style="margin-right:-170px;" onclick="location='member_logout.do'"/>
 				<input type="button" value="마이페이지" class="mypage" style="margin-right:-90px;" onclick="edit_pwcheck()" /> 
 			
 		</div>
