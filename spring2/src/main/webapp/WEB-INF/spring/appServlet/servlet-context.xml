@@ -20,10 +20,18 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
+
+	<!-- 인터셉터 설정 -->	
+	<beans:bean id="partySessionChk" class="partyband.controller.partysessioncheck"/>	
+	 <interceptors>
+		<interceptor>
+			<mapping path="/party_create.do"/> 
+			<beans:ref bean="partySessionChk"/>
+		</interceptor>
+	</interceptors>
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10000000"/>	
-	</beans:bean>	
+	</beans:bean>
 	
 	<context:component-scan base-package="partyband" />
 	

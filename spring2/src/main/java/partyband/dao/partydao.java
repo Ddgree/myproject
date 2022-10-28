@@ -34,4 +34,9 @@ public class partydao
 		return count;
 	}
 
+	public void partyinsert(partybean party)
+	{
+		sqlSession.insert("partyns.party_insert", party);
+	}
+
 }
