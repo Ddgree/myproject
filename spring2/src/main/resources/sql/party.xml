@@ -19,7 +19,6 @@
 			   	where rnum >= ((#{page} - 1) * 8 + 1)  and rnum <= (#{page} * 8)
 			]]>
 	</select>
-<<<<<<< HEAD
 	
 	<!-- 파티방 저장-->
 		<insert id="party_insert" parameterType="party">
@@ -27,10 +26,7 @@
 			#{party_content},#{party_gender},#{party_age},sysdate,#{party_enddate},
 			0, #{party_max_count},#{party_id})
 		</insert>
-	
-=======
 
->>>>>>> origin/sun
 	<!-- 파티방 총 개수 -->
 	<select id="party_count" resultType="int">
 		select count(*) from party
