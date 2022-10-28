@@ -20,10 +20,10 @@
 	</select>
 	
 	<!-- 파티방 저장-->
-		<insert id="party_insert">
-			insert into party values(party_no_seq.nextval,#{party_subject},#{party_address}
-			,#{party_content},#{party_gender}, #{party_age}, sysdate,#{party_enddate},
-			#{party_count}, #{party_max_count},id)
+		<insert id="party_insert" parameterType="party">
+			insert into party values(party_no_seq.nextval,#{party_subject},#{party_address},
+			#{party_content},#{party_gender},#{party_age},sysdate,#{party_enddate},
+			0, #{party_max_count},#{party_id})
 		</insert>
 	
 	<!-- 파티방 총 개수 -->

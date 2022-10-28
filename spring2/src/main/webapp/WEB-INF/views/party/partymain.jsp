@@ -11,16 +11,26 @@
 	href="<%=request.getContextPath()%>/resources/css/partymain.css" />
 </head>
 <body>
+	sessionid = ${sessionId}<br>
+	<input type="button" value="로그인" class="input_button"
+		onclick="location='dlatl.do?page=${page}'" /><br>
 	<input type="button" value="파티만들기" class="input_button"
 		onclick="location='party_create.do?party_no=${p.party_no}&page=${page}'" />
-	<div id=partyroom_wrap>
+		<!-- partyroom_wrap -->
+	<div id=""><br>[${p.party_no }]
 		<c:forEach var="p" items="${partylist}">
-			<c:out value="${p.party_subject}" />
-			<div id=partyslist_paging>
-			[${p.party_no }]<br>
-				[${p.party_id}] ${p.party_count} <br> ${p.party_enddate}"<br>
-				${p.party_count} / ${p.party_max_count} <br>
-			</div>
+			<table border="1">
+				<tr>
+					<td>[${p.party_no}]</td>
+					<td>${p.party_subject}</td>
+				</tr>
+				<tr>
+					<td colspan=2>${p.party_enddate}</td>
+				</tr>
+				<tr>
+					<td colspan=2>${p.party_count} / ${p.party_max_count}</td>
+				</tr>
+			</table>
 		</c:forEach>
 	</div>
 	<div id="parytslist_paging">
