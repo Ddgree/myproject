@@ -4,8 +4,10 @@
 
 <configuration>
 
-	<!-- <typeAliases>
-		<typeAlias alias="board" type="myspring.model.Board" />
-	</typeAliases>	 -->
+	<typeAliases>
+		<typeAlias alias="party" type="partyband.model.party" />
+		<typeAlias alias="notice" type="partyband.model.Notice" />
+		
+	</typeAliases>
 	
 </configuration>

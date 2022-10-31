@@ -8,8 +8,8 @@
 </head>
 <body>
 	<script>
-//	location.href = "test.do";
-	location.href = "start.do";
+	location.href = "notice_list.do";
+//	location.href = "start.do";
 	</script>
 </body>
 </html>
