@@ -26,6 +26,7 @@
 	 <interceptors>
 		<interceptor>
 			<mapping path="/party_create.do"/> 
+			<mapping path="/party_detail.do"/> 
 			<beans:ref bean="partySessionChk"/>
 		</interceptor>
 	</interceptors>

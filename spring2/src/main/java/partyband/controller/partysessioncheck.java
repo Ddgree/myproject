@@ -13,16 +13,16 @@ public class partysessioncheck extends HandlerInterceptorAdapter
 	public boolean preHandle(HttpServletRequest request, 
 			HttpServletResponse response, Object handler) throws Exception 
 	{
-		/*
+		
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("sessionId");
 		
 		if (id == null || id.equals(""))  
 		{		
 			response.sendRedirect("getout.do");	
 			return false;
 		}
-		*/
+		
 		return true;
 	}
 }

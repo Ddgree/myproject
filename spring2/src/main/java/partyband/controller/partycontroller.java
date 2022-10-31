@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import partyband.model.MemberBean;
 import partyband.model.partybean;
+import partyband.service.MemberServiceImpl;
 import partyband.service.partyservice;
 
 @Controller
@@ -22,11 +24,17 @@ public class partycontroller {
 	private partyservice partyservice;
 	@Autowired
 	private HttpSession session;
+	@Autowired
+	private MemberServiceImpl memberservice;
 
 	@RequestMapping("dlatl.do")
-	public String dlatl(HttpServletRequest request) {
-		System.out.println("임시 컨트롤러 도착");
+	public String dlatl(HttpServletRequest request) throws Exception 
+	{
 		session = request.getSession();
+		/*
+		MemberBean test_member = memberservice.userCheck("test");
+		session.setAttribute("sessionId", test_member);
+		*/
 		String id = "admin";
 		session.setAttribute("sessionId", id);
 		return "redirect:partyband.do";
@@ -38,9 +46,9 @@ public class partycontroller {
 	}
 
 	@RequestMapping("partyband.do")
-	public String boardform(HttpServletRequest request, Model model) throws Exception {
+	public String boardform(HttpServletRequest request, Model model) throws Exception 
+	{
 		List<partybean> partylist = new ArrayList<partybean>();
-		System.out.println("partyband 컨트롤러 도착");
 
 		int page = 1;
 		int limit = 8;
@@ -78,22 +86,23 @@ public class partycontroller {
 	/* 파티방 내용 저장 */
 	
 	@RequestMapping("party_create_ok.do") 
-	public String party_create_ok(@ModelAttribute partybean party, HttpServletRequest request) throws Exception 
+	public String party_create_ok(@ModelAttribute partybean party,HttpServletRequest request) throws Exception 
 	{ 
 		session = request.getSession(); 
 		party.setParty_id((String)session.getAttribute("sessionId")); 
 		partyservice.insert(party); 
-		System.out.println("저장 성공!");
-		return "party/partymain"; 
+		
+		return "redirect:partyband.do"; 
 	}
 	
 
 	/* 파티방 상세보기 */
 	@RequestMapping("party_detail.do")
-	public String party_cont(
-			// @RequestParam("party_id")
-			String party_id, Model model) throws Exception {
-		System.out.println("id = " + party_id);
+	public String party_cont(HttpServletRequest request, Model model) throws Exception
+	{
+		session = request.getSession();
+		String party_id = (String) session.getAttribute("sessionId");
+		System.out.println("service로 넘어가기전 id = " + party_id);
 		partybean party = partyservice.party_cont(party_id);
 
 		model.addAttribute("party", party);

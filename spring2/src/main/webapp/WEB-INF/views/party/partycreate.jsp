@@ -10,26 +10,21 @@
 	href="<%=request.getContextPath() %>/resources/css/party.css" /> 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
-<<<<<<< HEAD
 <script src="<%=request.getContextPath() %>/resources/js/party_check.js"></script>
 
-=======
-</script>
 <c:if test="${sessionScope.member.member_id == null }">
 <%@ include file="../member/header.jsp" %>
 </c:if>
 <c:if test="${sessionScope.member.member_id != null }">
 <%@ include file="../member/header_login.jsp" %>
 </c:if>
->>>>>>> origin/sun
 </head>
 
 <body>
 	<div id="bbswrite_wrap">
 		<h2 class="bbswrite_title">파티 생성</h2>
 		<form method="post"
-			action="<%=request.getContextPath() %>/party_create_ok.do"
-			onSubmit="return party_check()">
+			action="<%=request.getContextPath() %>/party_create_ok.do" onSubmit="return party_check()">
 			<table id="bbswrite_t">
 				<tr>
 					<th>지역</th>

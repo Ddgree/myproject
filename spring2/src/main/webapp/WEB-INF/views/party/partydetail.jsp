@@ -11,8 +11,6 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 
-
-
 <body>
 	<div id="bbscont_wrap">
 		<h2 class="bbscont_title">게시글 상세정보</h2>

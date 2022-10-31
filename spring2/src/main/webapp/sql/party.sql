@@ -28,3 +28,5 @@ delete from party where party_content = '파티방 내용'
 
 insert into party values(party_no_seq.nextval,'파티방 연습','지역', '파티방 내용', '성별', '나이', sysdate,
 '20221227',9, 9, '홍길동')
+
+select * from member;
