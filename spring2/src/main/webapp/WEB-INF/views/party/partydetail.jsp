@@ -10,7 +10,12 @@
 	href="<%=request.getContextPath()%>/resources/css/party.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
-
+<c:if test="${sessionScope.member.member_id == null }">
+	<%@ include file="../member/header.jsp"%>
+</c:if>
+<c:if test="${sessionScope.member.member_id != null }">
+	<%@ include file="../member/header_login.jsp"%>
+</c:if>
 <body>
 세션 = ${sessionId }${sessionMember.member_id }<br>
 작성자 = ${party.party_id }<br>
@@ -60,4 +65,5 @@
 		</table>
 	</div>
 </body>
+<%@ include file="../member/footer.jsp"%>
 </html>

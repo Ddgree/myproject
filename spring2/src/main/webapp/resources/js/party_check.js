@@ -1,5 +1,6 @@
 function party_check() {
-	if ($.trim($("#party_age").val())=="") {
+	//나이
+	if ($.trim($("#party_age").val()) == "") {
 		alert("나이를 입력하세요!");
 		$("#party_age").val("").focus();
 		return false;
@@ -14,7 +15,9 @@ function party_check() {
 		$("#party_age").val("").focus();
 		return false;
 	}
-	if ($.trim($("#party_enddate").val())=="") {
+	
+	//활동일
+	if ($.trim($("#party_enddate").val()) == "") {
 		alert("활동일을 입력하세요!");
 		$("#party_enddate").val("").focus();
 		return false;
@@ -29,11 +32,27 @@ function party_check() {
 		$("#party_enddate").val("").focus();
 		return false;
 	}
+	
+	//인원
+	if (isNaN($.trim($("#party_max_count").val()))) {
+		alert("인원수는 숫자로 입력하세요!");
+		$("#party_max_count").val("").focus();
+		return false;
+	}
+	if ($.trim($("#party_max_count").val()) > 6) {
+		alert("최대 인원은 6명 이하입니다.");
+		$("#party_max_count").val("").focus();
+		return false;
+	}
+	
+	//제목
 	if ($.trim($("#party_subject").val()) == "") {
 		alert("제목을 입력하세요!");
 		$("#board_subject").val("").focus();
 		return false;
 	}
+	
+	//내용
 	if ($.trim($("#party_content").val()) == "") {
 		alert("내용을 입력하세요!");
 		$("#board_content").val("").focus();
