@@ -8,8 +8,12 @@
 </head>
 <body>
 	<script>
-	location.href = "notice_list.do";
+
+//	location.href = "notice_list.do";
 //	location.href = "start.do";
+
+	location.href = "partyband.do";
+
 	</script>
 </body>
 </html>

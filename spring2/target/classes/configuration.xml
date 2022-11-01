@@ -5,9 +5,9 @@
 <configuration>
 
 	<typeAliases>
-		<typeAlias alias="party" type="partyband.model.party" />
+		<typeAlias alias="party" type="partyband.model.partybean" />
 		<typeAlias alias="notice" type="partyband.model.Notice" />
-		
+		<typeAlias alias="member" type="partyband.model.MemberBean"/>
 	</typeAliases>
 	
 </configuration>

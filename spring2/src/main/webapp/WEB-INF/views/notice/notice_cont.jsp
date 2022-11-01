@@ -1,58 +1,64 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 
 <!doctype html>
 <html lang="ko">
 <head>
-	<meta charset="UTF-8">
-	<title>공지사항 내용보기</title>
+<meta charset="UTF-8">
+<title>공지사항 내용보기</title>
+
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/notice.css" type="text/css">
+
+<c:if test="${sessionScope.member.member_id == null }">
+	<%@ include file="../member/header.jsp"%>
+</c:if>
+<c:if test="${sessionScope.member.member_id != null }">
+	<%@ include file="../member/header_login.jsp"%>
+</c:if>
 </head>
 
 <body>
 	<div id="noticecont_wrap">
 		<h2 class="noticecont_title">공지사항 내용보기</h2>
-		<table id="noticecont_t">
+		<table id="noticecont_t" width="70%" align="center">
 			<tr>
 				<th>제목</th>
 				<td>${ncont.notice_subject}</td>
-			</tr>
-
-			<tr>
-				<th>글내용</th>
-				<td>
-					<%--  ${board_cont} --%> 
-					<pre>${ncont.notice_content}</pre>
-				</td>
-			</tr>
-
-			<tr>
+				<td align="right">작성일</td>
+				<td align="center">${ncont.notice_date}</td>
 				<th>조회수</th>
 				<td>${ncont.notice_readcount}</td>
 			</tr>
-			
 			<tr>
-				<th>파일첨부</th>
+				<th>글내용</th>
 				<td>
-				<c:if test="${ncont.notice_file != null}">
-			<a href="filedown.do?notice_file=${ncont.notice_file}">					
-					${ncont.notice_file}
-			</a>
-			</c:if>
+					<%--  ${board_cont} --%> <pre>${ncont.notice_content}</pre>
 				</td>
 			</tr>
+			<tr>
+				<th>파일첨부</th>
+				<td><c:if test="${ncont.notice_file != null}">
+						<a href="filedown.do?notice_file=${ncont.notice_file}">
+							${ncont.notice_file} </a>
+					</c:if></td>
+			</tr>
 		</table>
+		
 
-		<div id="noticecont_menu">
+		<div id="noticecont_menu" width="70" align="center">
 			<c:if test="${id eq 'admin'}">
-			<input type="button" value="수정" class="input_button"
-				onclick="location='notice_cont.do?notice_no=${ncont.notice_no}&page=${page}&state=edit'" />
-			<input type="button" value="삭제" class="input_button"
-				onclick="location='notice_cont.do?notice_no=${ncont.notice_no}&page=${page}&state=del'" />
+				<input type="button" value="수정" class="input_button"
+					onclick="location='notice_cont.do?notice_no=${ncont.notice_no}&page=${page}&state=edit'" />
+				<input type="button" value="삭제" class="input_button"
+					onclick="location='notice_cont.do?notice_no=${ncont.notice_no}&page=${page}&state=del'" />
 			</c:if>
 			<input type="button" value="목록" class="input_button"
 				onclick="location='notice_list.do?page=${page}'" />
 		</div>
 	</div>
 </body>
+<%@ include file="../member/footer.jsp" %>
 </html>
