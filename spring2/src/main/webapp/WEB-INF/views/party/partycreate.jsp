@@ -48,9 +48,9 @@
 						<td colspan=3>
 						<input name="party_enddate" id="party_enddate" size="8"
 						class="input_box" placeholder="20220101"/></td>
-					<th>인원</th>
+					<th>모집인원</th>
 					<td><input name="party_max_count" id="party_max_count" size="3"
-						class="input_box" placeholder="최대 6"/>명</td>
+						class="input_box" placeholder="최대 5"/>명</td>
 				</tr>
 				
 				 <tr>

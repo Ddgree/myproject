@@ -37,7 +37,7 @@
 		<table id="bbscont_t">
 			<tr>
 				<th>제목</th>
-				<td>${party.party_subject}</td>
+				<td>[${party.party_address}] ${party.party_subject}</td>
 			</tr>
 			<tr>
 				<th>작성자</th>
@@ -51,13 +51,18 @@
 			</tr>
 			<tr>
 				<th>인원</th>
-				<td><c:forEach begin="1" end="${party.party_count}">
-					<c:if test="${party.party_count!=0}"><i class="fa-solid fa-user"></i></c:if>
-        			</c:forEach>
+				<td><i class="fa-solid fa-crown"></i>
+					<c:forEach begin="1" end="${party.party_count}">
+						<c:if test="${party.party_count!=0}">
+							<i class="fa-solid fa-user"></i>
+						</c:if>
+					</c:forEach>
 					<c:forEach begin="1" end="${party.party_max_count-party.party_count}">
-					<c:if test="${party.party_max_count-party.party_count!=0}"><i class="fa-regular fa-user"></i></c:if>
-        			</c:forEach>
-					${party.party_count} / ${party.party_max_count}명</td>
+						<c:if test="${party.party_max_count-party.party_count!=0}">
+							<i class="fa-regular fa-user"></i>
+						</c:if>
+					</c:forEach>
+					${party.party_count+1} / ${party.party_max_count+1}</td>
 			</tr>
 			<tr>
 				<th>내용</th>
@@ -83,8 +88,11 @@
 						<c:otherwise>
 							<input type="button" value="목록" class="input_button"
 								onclick="location='partyband.do?page=${page}'" />
+						<c:if test="${party.party_max_count-party.party_count==0}"></c:if>
+						<c:if test="${party.party_max_count-party.party_count!=0}">
 							<input type="button" value="참가" class="input_button"
 								onclick="location='partyjoin.do?page=${page}&party_no=${party.party_no}'" />
+								</c:if>
 						</c:otherwise>
 					</c:choose></td>
 			</tr>

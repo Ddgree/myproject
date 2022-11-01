@@ -60,6 +60,7 @@
 					</c:if>
 				</div>
 				<div class=count>
+					<i class="fa-solid fa-crown"></i>
 					<c:forEach begin="1" end="${p.party_count}">
 						<c:if test="${p.party_count!=0}">
 							<i class="fa-solid fa-user"></i>
@@ -70,7 +71,7 @@
 							<i class="fa-regular fa-user"></i>
 						</c:if>
 					</c:forEach>
-					${p.party_count} / ${p.party_max_count}
+					${p.party_count+1} / ${p.party_max_count+1}
 				</div>
 			</button>
 		</c:forEach>

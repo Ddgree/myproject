@@ -35,17 +35,17 @@ function party_check() {
 	
 	//인원
 	if ($.trim($("#party_max_count").val()) == "") {
-		alert("인원수를 입력하세요!");
+		alert("모집인원 수를 입력하세요!");
 		$("#party_max_count").val("").focus();
 		return false;
 	}
 	if (isNaN($.trim($("#party_max_count").val()))) {
-		alert("인원수는 숫자로 입력하세요!");
+		alert("모집인원 수는 숫자로 입력하세요!");
 		$("#party_max_count").val("").focus();
 		return false;
 	}
-	if ($.trim($("#party_max_count").val()) > 6) {
-		alert("최대 인원은 6명 이하입니다.");
+	if ($.trim($("#party_max_count").val()) > 5) {
+		alert("최대 모집인원은 5명 이하입니다.");
 		$("#party_max_count").val("").focus();
 		return false;
 	}
