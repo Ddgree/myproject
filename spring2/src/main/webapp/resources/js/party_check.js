@@ -34,6 +34,11 @@ function party_check() {
 	}
 	
 	//인원
+	if ($.trim($("#party_max_count").val()) == "") {
+		alert("인원수를 입력하세요!");
+		$("#party_max_count").val("").focus();
+		return false;
+	}
 	if (isNaN($.trim($("#party_max_count").val()))) {
 		alert("인원수는 숫자로 입력하세요!");
 		$("#party_max_count").val("").focus();

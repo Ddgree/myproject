@@ -53,7 +53,7 @@
 						class="input_box" placeholder="20220101"/></td>
 					<th>인원</th>
 					<td><input name="party_max_count" id="party_max_count" size="3"
-						type="text" placeholder="최대 6"/>명</td>
+						class="input_box" placeholder="최대 6"/>명</td>
 				</tr>
 				 <tr>
 					<th>제목</th>
