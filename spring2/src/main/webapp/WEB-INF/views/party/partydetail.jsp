@@ -12,8 +12,9 @@
 </head>
 
 <body>
-세션 = ${sessionId }${sessionMember.member_id }<br>
+세션 = ${sessionId}${sessionMember.member_id}<br>
 작성자 = ${party.party_id }<br>
+파티방 번호 = ${party.party_no }<br>
 	<div id="bbscont_wrap">
 		<h2 class="bbscont_title">파티방 상세정보</h2>
 		<input type="hidden" name=page value=${page }>
@@ -45,7 +46,7 @@
 							<input type="button" value="목록" class="input_button"
 								onclick="location='partyband.do?page=${page}'" />
 							<input type="button" value="수정" class="input_button"
-								onclick="location.href='partyedit.do'" />
+								onclick="location='partyeditform.do?party_no=${party.party_no}&page=${page}&member_id=${sessionMember.member_id}'" />
 							<input type="button" value="삭제" class="input_button"
 								onclick="location ='partydelete.do'" />
 						</c:when>

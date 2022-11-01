@@ -129,7 +129,7 @@ public class MemberAction {
 	}
 	
 	/*비번체크 완료*/
-	@RequestMapping(value = "/edit_pwcheck_ok.do")
+	@RequestMapping(value = "edit_pwcheck_ok.do")
 	public String edit_pwcheck_ok(
 								  @RequestParam("editpw") String editpw,
 								  HttpSession session, 

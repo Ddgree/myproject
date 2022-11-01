@@ -42,4 +42,13 @@ public class partyservice
 		partydao.partyjoin(party_no);
 	}
 
+	public String pwcheck(String member_id)
+	{
+		return partydao.pwcheck(member_id);
+	}
+
+	public void partyedit(partybean update_party)
+	{
+		partydao.partyedit(update_party);
+	}
 }

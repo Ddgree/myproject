@@ -1,9 +1,12 @@
 package partyband.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import partyband.model.MemberBean;
 import partyband.model.partybean;
@@ -27,7 +31,7 @@ public class partycontroller
 	private HttpSession session;
 	@Autowired
 	private MemberServiceImpl memberservice;
-
+	
 	@RequestMapping("nomal_login.do")
 	public String nomal_login(HttpServletRequest request) throws Exception 
 	{
@@ -137,5 +141,81 @@ public class partycontroller
 		model.addAttribute("page",page);
 		model.addAttribute("party_no",party_no);
 		return "redirect:partyband.do";
+	}
+	
+	/*비밀 번호 확인 폼 이동*/
+	@RequestMapping("partyeditform.do")
+	public String partyeditform(int page, String member_id, int party_no, Model model)
+	{
+		model.addAttribute("page", page);
+		model.addAttribute("member_id", member_id);
+		model.addAttribute("party_no", party_no);
+		
+		return "party/partyeditpwcheck";
+	}
+	
+	/*수정을 위한 비밀 번호 확인*/
+	@RequestMapping("partypwcheck.do")
+	public String partyedit(int page, String member_id, String input_member_passwd,int party_no, Model model) throws Exception
+	{
+		String orign_member_passwd = partyservice.pwcheck(member_id);
+		
+		if(!input_member_passwd.equals(orign_member_passwd))
+		{
+			return "redirect:noaccess.do";
+		}
+		model.addAttribute("page", page);
+		model.addAttribute("member_id", member_id);
+		model.addAttribute("party_no", party_no);		
+		
+		return "party/partyedit";
+	}
+	
+	/*비밀번호 확인시 틀릴 때*/
+	@RequestMapping("noaccess.do")
+	public boolean noaccess(HttpServletResponse response) throws Exception
+	{
+		response.setContentType("text/html; charset=utf-8");
+        PrintWriter w = response.getWriter();
+
+        String msg = "비밀번호가 일치하지 않습니다.";
+        w.write("<script>alert('"+msg+"');history.back();</script>");
+        w.flush();
+        w.close();
+        
+        return false;
+	}
+	
+	/*파티방 수정*/
+	@RequestMapping("partyedit.do")
+	@ResponseBody
+	public boolean partyedit(partybean party, int party_no, HttpServletResponse response) throws Exception
+	{
+		System.out.println("xml넘어가기전 party_no = " + party_no);
+		partybean update_party = partyservice.party_cont(party_no);
+		System.out.println("원래 파티방 제목 = " + update_party.getParty_subject());
+		System.out.println("바꿀 파티방 제목 = " + party.getParty_subject());
+		
+		update_party.setParty_subject(party.getParty_subject());
+		System.out.println("바뀐 파티방 제목 = " + update_party.getParty_subject());
+		update_party.setParty_address(party.getParty_address());
+		update_party.setParty_gender(party.getParty_gender());
+		update_party.setParty_enddate(party.getParty_enddate());
+		update_party.setParty_max_count(party.getParty_max_count());
+		update_party.setParty_content(party.getParty_content());
+		update_party.setParty_age(party.getParty_age());
+		
+		partyservice.partyedit(update_party);
+		
+		response.setContentType("text/html; charset=utf-8");
+        PrintWriter w = response.getWriter();
+
+        String msg = "글 수정 성공";
+        String url = "partyband.do";
+        w.write("<script>alert('"+msg+"');location='"+url+"';</script>");
+        w.flush();
+        w.close();
+        
+        return true;
 	}
 }

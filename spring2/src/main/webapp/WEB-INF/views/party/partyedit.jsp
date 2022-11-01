@@ -9,18 +9,19 @@
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/party.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<!-- 	js파일 수정필요
 <script src="<%=request.getContextPath()%>/resources/js/party_check.js"></script>
+ -->
 
 </head>
 
 <body>
+party_no=${party_no}
 	<div id="bbswrite_wrap">
 		<h2 class="bbswrite_title">파티 수정</h2>
-		<form method="post"
-			action="<%=request.getContextPath()%>/party_edit_ok.do"
-			onSubmit="return party_check()">
-			<input type="hidden" name=no value=${party.party_no }> <input
-				type="hidden" name=page value=${page }>
+		<form method="post" action="<%=request.getContextPath()%>/partyedit.do" onSubmit="return party_check()">
+			<input type="hidden" name=party_no value=${party_no}> 
+			<input type="hidden" name=page value=${page}>
 			<table id="bbswrite_t">
 				<tr>
 					<th>지역</th>
@@ -48,26 +49,9 @@
 
 				<tr>
 					<th>활동일</th>
-					<%@ include file="../../../resources/include/month.jsp"%>
-					<%@ include file="../../../resources/include/day.jsp"%>
-					<td colspan=3><input name="party_enddate1"
-						id="party_enddate1" size="4" class="input_box" placeholder="0000"
-						value="${party_enddate1 }" />년 <select name="party_enddate2">
-							<c:forEach var="m" items="${mon}" begin="0" end="11">
-								<option value="${m}"
-									<c:if test="${party_enddate2 == m}">${'selected'}
-          </c:if>>${m}</option>
-							</c:forEach>
-					</select>월 <select name="party_enddate3">
-							<c:forEach var="d" items="${day}" begin="0" end="30">
-								<option value="${d}"
-									<c:if test="${party_enddate3 == d}">${'selected'}
-          </c:if>>${d}</option>
-							</c:forEach>
-					</select>일</td>
-					<th>인원</th>
-					<td><input name="party_max_count" id="party_max_count"
-						size="2" type="text" placeholder="00" value="${party_max_count }" />명</td>
+						<td colspan=3">
+						<input name="party_enddate" id="party_enddate" size="8"
+						class="input_box" placeholder="20220101"/></td>
 				</tr>
 				<tr>
 					<th>제목</th>
@@ -83,9 +67,8 @@
 
 
 				<tr id="bbswrite_menu">
-					<td colspan=6 align="center"><input type="submit" value="수정"
-						class="input_button" /> <input type="reset" value="목록"
-						class="input_button" onclick="location.href='partyband.do'" /></td>
+					<td colspan=6 align="center"><input type="submit" value="수정" class="input_button" /> 
+					<input type="button" value="목록" class="input_button" onclick="location='partyband.do?page=${page}'" /></td>
 				</tr>
 			</table>
 		</form>

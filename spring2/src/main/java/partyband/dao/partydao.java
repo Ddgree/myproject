@@ -44,4 +44,14 @@ public class partydao
 		sqlSession.update("partyns.party_join",party_no);
 	}
 
+	public String pwcheck(String member_id)
+	{
+		return sqlSession.selectOne("partyns.pw_checek", member_id);
+	}
+
+	public void partyedit(partybean update_party) 
+	{
+		sqlSession.update("partyns.party_edit",update_party)
+	}
+
 }
