@@ -18,11 +18,11 @@
 		<table id="bbscont_t">
 			<tr>
 				<th>제목</th>
-				<td>${party_subject}</td>
+				<td>${party.party_subject}</td>
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td>${party_id }</td>
+				<td>${party.party_id }</td>
 			</tr>
 			<tr>
 				<th>활동일</th>
@@ -41,7 +41,8 @@
 				<td class=con><pre>${party.party_content }</pre></td>
 			</tr>
 			<tr id="bbswrite_menu">
-				<td colspan=2 align="center"><c:choose>
+				<td colspan=2 align="center">
+					<c:choose>
 						<c:when test="${sessionScope.party_id eq party_id}">
 							<input type="button" value="수정" class="input_button"
 								onclick="location.href='partyedit.do'" />
