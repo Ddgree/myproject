@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -9,6 +10,8 @@
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/party.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://kit.fontawesome.com/f82eca20b8.js" crossorigin="anonymous"></script>
+
 </head>
 <c:if test="${sessionScope.member.member_id == null }">
 	<%@ include file="../member/header.jsp"%>
@@ -19,6 +22,15 @@
 <body>
 세션 = ${sessionId }${sessionMember.member_id }<br>
 작성자 = ${party.party_id }<br>
+<!-- 오늘 날짜 -->
+<jsp:useBean id="today" class="java.util.Date" />
+<fmt:parseNumber value="${today.time / (1000*60*60*24)}" integerOnly="true" var="now" scope="request"/>
+<!-- Dday -->
+<fmt:parseDate var="enddate" value="${party.party_enddate}" pattern="yyyyMMdd" />
+<fmt:parseNumber var="day" value="${enddate.time / (1000*60*60*24)}" integerOnly="true" />
+<!-- 날짜포멧출력 -->
+<fmt:formatDate var="dday" value="${enddate }" pattern="yyyy년 MM월 dd일"/>
+
 	<div id="bbscont_wrap">
 		<h2 class="bbscont_title">파티방 상세정보</h2>
 		<input type="hidden" name=page value=${page }>
@@ -33,11 +45,19 @@
 			</tr>
 			<tr>
 				<th>활동일</th>
-				<td>${party.party_enddate }</td>
+				<c:if test="${now==day }"><td>${dday} [D-day]</td></c:if>
+				<c:if test="${now>day }"><td>${dday} [종료]</td></c:if>
+				<c:if test="${now<day }"><td>${dday} [D${now-day }]</td></c:if>
 			</tr>
 			<tr>
 				<th>인원</th>
-				<td>${party.party_count }/${party.party_max_count }명</td>
+				<td><c:forEach begin="1" end="${party.party_count}">
+					<c:if test="${party.party_count!=0}"><i class="fa-solid fa-user"></i></c:if>
+        			</c:forEach>
+					<c:forEach begin="1" end="${party.party_max_count-party.party_count}">
+					<c:if test="${party.party_max_count-party.party_count!=0}"><i class="fa-regular fa-user"></i></c:if>
+        			</c:forEach>
+					${party.party_count} / ${party.party_max_count}명</td>
 			</tr>
 			<tr>
 				<th>내용</th>
