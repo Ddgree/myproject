@@ -7,14 +7,17 @@
 <head>
 <meta charset="UTF-8">
 <title>메인 페이지</title>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/pm.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/pm.css" />
 
 
 </head>
 <body id="item">
+<<<<<<< HEAD
 	sessionid = ${sessionMember.member_id}${sessionId}
 	<br>
+=======
+	sessionid = ${sessionMember.member_id}${sessionId}<br>
+>>>>>>> origin/kyungmin1025
 	<!-- 로그인버튼 지우지 말아주세요!!!  -->
 	<input type="button" value="관리자 로그인" class="input_button"
 		onclick="location='admin_login.do?page=${page}'" />
@@ -25,6 +28,7 @@
 		onclick="location='test_logout.do?page=${page}'" />
 	<br>
 	<input type="button" value="파티만들기" class="input_button"
+<<<<<<< HEAD
 		onclick="location='party_create.do?party_no=${p.party_no}&page=${page}'" />
 	<!-- partyroom_wrap -->
 	<div id="party-list" align="center">
@@ -44,6 +48,17 @@
 					${p.party_count} / ${p.party_max_count}
 				</div>
 			</button>
+=======
+		onclick="location='party_create.do?page=${page}&party_id=${sessionMember.member_id}'" />
+		
+	<div id="party-list" align="center"><br>
+		<c:forEach var="p" items="${partylist}">
+			<button type="button" class = "party-list-button" onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page}'">
+				<div class=type>[${p.party_address}] ${p.party_subject}</div>
+				<div id="item-date">${p.party_enddate}</div>
+				<div id="item-price">${p.party_count} / ${p.party_max_count}</div>		
+			</button>	
+>>>>>>> origin/kyungmin1025
 		</c:forEach>
 	</div>
 	<div id="parytslist_paging" align="center">

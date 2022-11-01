@@ -10,25 +10,25 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import partyband.model.MemberBean;
 
-public class SessionCheckInter extends HandlerInterceptorAdapter {
-	
-	// preHandle(request,response,handler)메소드
-	// 1.Controller에서 요청(*.do)을 받기 전에  preHandle()가 호출되어 가로채는 역할로 사용
-	// 2.로그인 하지않고(세션이 없으면) 요청하면 로그인 폼으로 이동 하도록 해주는 역할
+public class SessionCheckInter extends HandlerInterceptorAdapter 
+{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception 
 	{
 		HttpSession session = request.getSession();
 		
 		MemberBean member = (MemberBean)session.getAttribute("sessionMember");
 		String id = (String)session.getAttribute("sessionId");
+		
 		if(id == "admin")
 		{
 			return true;
 		}
+		
 		if (member == null)  {		
-			response.sendRedirect("member_login.do");	// 세션이 없으면 로그인 폼으로 이동
+			response.sendRedirect("member_login.do");	
 			return false;
 		}
+		
 		return true;
 	}
 }

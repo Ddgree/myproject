@@ -37,4 +37,9 @@ public class partyservice
 		partydao.partyinsert(party);
 	}
 
+	public void partyjoin(int party_no) 
+	{
+		partydao.partyjoin(party_no);
+	}
+
 }

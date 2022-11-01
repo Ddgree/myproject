@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>파티 상세보기</title>
+<title>파티방 상세보기</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/party.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -20,7 +20,7 @@
 세션 = ${sessionId }${sessionMember.member_id }<br>
 작성자 = ${party.party_id }<br>
 	<div id="bbscont_wrap">
-		<h2 class="bbscont_title">게시글 상세정보</h2>
+		<h2 class="bbscont_title">파티방 상세정보</h2>
 		<input type="hidden" name=page value=${page }>
 		<table id="bbscont_t">
 			<tr>
@@ -44,21 +44,27 @@
 				<td class=con>${party.party_content}</td>
 			</tr>
 			<tr id="bbswrite_menu">
-				<td colspan=2 align="center">
-					<c:choose>
-						<c:when test="${sessionScope.party_id eq party_id}">
+
+				<td colspan=2 align="center"><c:choose>
+						<c:when test="${sessionMember.member_id eq party.party_id}">
+							<input type="button" value="목록" class="input_button"
+								onclick="location='partyband.do?page=${page}'" />
 							<input type="button" value="수정" class="input_button"
 								onclick="location.href='partyedit.do'" />
 							<input type="button" value="삭제" class="input_button"
-								onclick="location.href='partydelete.do'" />
+								onclick="location ='partydelete.do'" />
 						</c:when>
-						<c:when test="${sessionScope.admin_id eq 'admin'}">
+						<c:when test="${sessionId eq 'admin'}">
+							<input type="button" value="목록" class="input_button"
+								onclick="location='partyband.do?page=${page}'" />
 							<input type="button" value="삭제" class="input_button"
 								onclick="location.href='partydelete.do'" />
 						</c:when>
 						<c:otherwise>
+							<input type="button" value="목록" class="input_button"
+								onclick="location='partyband.do?page=${page}'" />
 							<input type="button" value="참가" class="input_button"
-								onclick="location.href='partyjoin.do'" />
+								onclick="location='partyjoin.do?page=${page}&party_no=${party.party_no}'" />
 						</c:otherwise>
 					</c:choose></td>
 			</tr>

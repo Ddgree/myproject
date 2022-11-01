@@ -12,6 +12,11 @@
   overflow: hidden;
 }
 
+#item .type
+{
+	font-size: 20px;
+}
+
 .party-list-button:hover 
 {
   border: 1px solid #a89cf4;

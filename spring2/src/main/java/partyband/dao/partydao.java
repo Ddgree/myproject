@@ -39,4 +39,9 @@ public class partydao
 		sqlSession.insert("partyns.party_insert", party);
 	}
 
+	public void partyjoin(int party_no)
+	{
+		sqlSession.update("partyns.party_join",party_no);
+	}
+
 }
