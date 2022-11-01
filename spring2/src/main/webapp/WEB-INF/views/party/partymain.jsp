@@ -26,11 +26,7 @@
 		<!-- partyroom_wrap -->
 	<div id="party-list" align="center"><br>
 		<c:forEach var="p" items="${partylist}">
-<<<<<<< HEAD
-			<button type="button" class = "party-list-button" onclick="location.href='party_detail.do'">
-=======
 			<button type="button" class = "party-list-button" onclick="location.href='party_detail.do?party_no=${p.party_no}'">
->>>>>>> origin/kyungmin1025
 				<div id="item-type">[${p.party_address}] ${p.party_subject}</div>
 				<div id="item-date">${p.party_enddate}</div>
 				<div id="item-price">${p.party_count} / ${p.party_max_count}</div>
