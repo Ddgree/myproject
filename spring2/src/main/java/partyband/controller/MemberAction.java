@@ -109,7 +109,7 @@ public class MemberAction {
 
 
 	/* 로그인 폼 뷰 */
-	@RequestMapping(value = "/member_login.do")
+	@RequestMapping("member_login.do")
 	public String member_login() {
 		return "member/member_login";
 	}
