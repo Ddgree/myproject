@@ -7,12 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>메인 페이지</title>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/pm.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/pm.css" />
 
 
 </head>
-<body>
+<body id="item">
 	sessionid = ${sessionMember.member_id}${sessionId}<br>
 	<!-- 로그인버튼 지우지 말아주세요!!!  -->
 	<input type="button" value="관리자 로그인" class="input_button"
@@ -27,9 +26,9 @@
 	<div id="party-list" align="center"><br>
 		<c:forEach var="p" items="${partylist}">
 			<button type="button" class = "party-list-button" onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page}'">
-				<div id="item-type">[${p.party_address}] ${p.party_subject}</div>
+				<div class=type>[${p.party_address}] ${p.party_subject}</div>
 				<div id="item-date">${p.party_enddate}</div>
-				<div id="item-price">${p.party_count} / ${p.party_max_count}</div>
+				<div id="item-price">${p.party_count} / ${p.party_max_count}</div>		
 			</button>	
 		</c:forEach>
 	</div>

@@ -35,10 +35,6 @@ public class partycontroller
 		
 		MemberBean test_member = memberservice.userCheck("test");
 		session.setAttribute("sessionMember", test_member);
-		/*
-		String id = "admin";
-		session.setAttribute("sessionId", id);
-		*/
 		return "redirect:partyband.do";
 	}
 	
@@ -110,7 +106,7 @@ public class partycontroller
 
 	/* 파티방 내용 저장 */	
 	@RequestMapping("party_create_ok.do") 
-	public String party_create_ok(@ModelAttribute partybean party, @RequestParam String party_id) throws Exception 
+	public String party_create_ok(partybean party, String party_id) throws Exception 
 	{  
 		party.setParty_id(party_id); 
 		partyservice.insert(party); 
@@ -120,14 +116,26 @@ public class partycontroller
 	
 	/* 파티방 상세보기 */
 	@RequestMapping("party_detail.do")
-	public String party_cont(@RequestParam int party_no, Model model) throws Exception
+	public String party_cont(int party_no, int page, Model model) throws Exception
 	{
 		partybean party = partyservice.party_cont(party_no);
 		String party_new_content = party.getParty_content().replace("\n", "<br>");
 		party.setParty_content(party_new_content);
 
 		model.addAttribute("party", party);
+		model.addAttribute("page", page);
 
 		return "party/partydetail";
+	}
+	
+	/*파티방 참가 신청*/
+	@RequestMapping("partyjoin.do")
+	public String partyjoin(int party_no, int page, Model model) throws Exception
+	{
+		partyservice.partyjoin(party_no);
+		
+		model.addAttribute("page",page);
+		model.addAttribute("party_no",party_no);
+		return "redirect:partyband.do";
 	}
 }
