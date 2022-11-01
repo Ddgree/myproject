@@ -50,7 +50,7 @@
 					<th>활동일</th>
 					<%@ include file="../../../resources/include/month.jsp"%>
 					<%@ include file="../../../resources/include/day.jsp"%>
-					<td colspan=3"><input name="party_enddate1"
+					<td colspan=3><input name="party_enddate1"
 						id="party_enddate1" size="4" class="input_box" placeholder="0000"
 						value="${party_enddate1 }" />년 <select name="party_enddate2">
 							<c:forEach var="m" items="${mon}" begin="0" end="11">
