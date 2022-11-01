@@ -12,8 +12,8 @@
 </head>
 
 <body>
-sessionScope.party_id = ${sessionMember.member_id}${sessionId}<br>
-party_id = ${party.party_id}<br>
+세션 = ${sessionId }${sessionMember.member_id }<br>
+작성자 = ${party.party_id }<br>
 	<div id="bbscont_wrap">
 		<h2 class="bbscont_title">게시글 상세정보</h2>
 		<input type="hidden" name=page value=${page }>
@@ -36,9 +36,10 @@ party_id = ${party.party_id}<br>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td class=con><pre>${party.party_content}</pre></td>
+				<td class=con>${party.party_content}</td>
 			</tr>
 			<tr id="bbswrite_menu">
+
 				<td colspan=2 align="center"><c:choose>
 						<c:when test="${sessionMember.member_id eq party.party_id}">
 							<input type="button" value="수정" class="input_button"

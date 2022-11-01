@@ -55,12 +55,13 @@
 }
 
 #bbscont_t{
-	width: 300px;
+	width: 350px;
 	margin:15px 0 0 30px;
 }
 #bbscont_t th{background:#9a6c5c; border-radius:15px; width:80px;}
+
 #bbscont_t .con{
-	height: 280px;
+	height: 280px; word-break: break-all;
 }
 #bbscont_menu{
 	margin:15px 0 0 90px;
