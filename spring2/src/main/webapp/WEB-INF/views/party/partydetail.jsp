@@ -12,6 +12,8 @@
 </head>
 
 <body>
+sessionScope.party_id = ${sessionScope.party_id}<br>
+party_id = ${party_id}<br>
 	<div id="bbscont_wrap">
 		<h2 class="bbscont_title">게시글 상세정보</h2>
 		<input type="hidden" name=page value=${page }>
@@ -33,12 +35,8 @@
 				<td>${party.party_count }/${party.party_max_count }명</td>
 			</tr>
 			<tr>
-				<th>이메일</th>
-				<td>${board.email}</td>
-			</tr>
-			<tr>
 				<th>내용</th>
-				<td class=con><pre>${party.party_content }</pre></td>
+				<td class=con><pre>${party.party_content}</pre></td>
 			</tr>
 			<tr id="bbswrite_menu">
 				<td colspan=2 align="center">

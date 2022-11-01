@@ -6,8 +6,8 @@
 
 	<!-- 게시판 내용보기 -->
 	<select id="party_cont" resultType="party"
-		parameterType="String">
-		select * from party where party_id = #{party_id}
+		parameterType="int">
+		select * from party where party_no = #{party_no}
 	</select>
 
 	<!-- 파티방 목록 -->

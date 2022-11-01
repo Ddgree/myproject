@@ -13,16 +13,24 @@
 
 </head>
 <body>
-	sessionid = ${sessionId}<br>
+	sessionid = ${sessionMember.member_id}${sessionId}<br>
 	<!-- 로그인버튼 지우지 말아주세요!!!  -->
-	<input type="button" value="로그인 test" class="input_button"
-		onclick="location='dlatl.do?page=${page}'" /><br>
+	<input type="button" value="관리자 로그인" class="input_button"
+		onclick="location='admin_login.do?page=${page}'" /><br>
+	<input type="button" value="ID가 test인 일반회원 로그인" class="input_button"
+		onclick="location='nomal_login.do?page=${page}'" />
+	<input type="button" value="로그아웃" class="input_button"
+		onclick="location='test_logout.do?page=${page}'" /><br>
 	<input type="button" value="파티만들기" class="input_button"
 		onclick="location='party_create.do?party_no=${p.party_no}&page=${page}'" />
 		<!-- partyroom_wrap -->
 	<div id="party-list" align="center"><br>
 		<c:forEach var="p" items="${partylist}">
+<<<<<<< HEAD
 			<button type="button" class = "party-list-button" onclick="location.href='party_detail.do'">
+=======
+			<button type="button" class = "party-list-button" onclick="location.href='party_detail.do?party_no=${p.party_no}'">
+>>>>>>> origin/kyungmin1025
 				<div id="item-type">[${p.party_address}] ${p.party_subject}</div>
 				<div id="item-date">${p.party_enddate}</div>
 				<div id="item-price">${p.party_count} / ${p.party_max_count}</div>

@@ -27,16 +27,38 @@ public class partycontroller {
 	@Autowired
 	private MemberServiceImpl memberservice;
 
-	@RequestMapping("dlatl.do")
-	public String dlatl(HttpServletRequest request) throws Exception 
+	@RequestMapping("nomal_login.do")
+	public String nomal_login(HttpServletRequest request) throws Exception 
 	{
 		session = request.getSession();
-		/*
+		
 		MemberBean test_member = memberservice.userCheck("test");
-		session.setAttribute("sessionId", test_member);
-		*/
+		session.setAttribute("sessionMember", test_member);
+		/*
 		String id = "admin";
 		session.setAttribute("sessionId", id);
+		*/
+		return "redirect:partyband.do";
+	}
+	
+	@RequestMapping("admin_login.do")
+	public String admin_login(HttpServletRequest request) throws Exception 
+	{
+		session = request.getSession();
+		
+		String id = "admin";
+		session.setAttribute("sessionId", id);
+		
+		return "redirect:partyband.do";
+	}
+	
+	@RequestMapping("test_logout.do")
+	public String test_logout(HttpServletRequest request) throws Exception
+	{
+		session = request.getSession();
+		
+		session.invalidate();
+		
 		return "redirect:partyband.do";
 	}
 
@@ -98,12 +120,11 @@ public class partycontroller {
 
 	/* 파티방 상세보기 */
 	@RequestMapping("party_detail.do")
-	public String party_cont(HttpServletRequest request, Model model) throws Exception
+	public String party_cont(@RequestParam int party_no, Model model) throws Exception
 	{
-		session = request.getSession();
-		String party_id = (String) session.getAttribute("sessionId");
-		System.out.println("service로 넘어가기전 id = " + party_id);
-		partybean party = partyservice.party_cont(party_id);
+		partybean party = partyservice.party_cont(party_no);
+		String party_new_content = party.getParty_content().replace("\n", "<br>");
+		party.setParty_content(party_new_content);
 
 		model.addAttribute("party", party);
 
