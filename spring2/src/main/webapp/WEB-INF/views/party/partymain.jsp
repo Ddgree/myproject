@@ -22,11 +22,11 @@
 	<input type="button" value="로그아웃" class="input_button"
 		onclick="location='test_logout.do?page=${page}'" /><br>
 	<input type="button" value="파티만들기" class="input_button"
-		onclick="location='party_create.do?party_no=${p.party_no}&page=${page}'" />
-		<!-- partyroom_wrap -->
+		onclick="location='party_create.do?page=${page}&party_id=${sessionMember.member_id}'" />
+		
 	<div id="party-list" align="center"><br>
 		<c:forEach var="p" items="${partylist}">
-			<button type="button" class = "party-list-button" onclick="location.href='party_detail.do?party_no=${p.party_no}'">
+			<button type="button" class = "party-list-button" onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page}'">
 				<div id="item-type">[${p.party_address}] ${p.party_subject}</div>
 				<div id="item-date">${p.party_enddate}</div>
 				<div id="item-price">${p.party_count} / ${p.party_max_count}</div>

@@ -19,7 +19,8 @@ import partyband.service.MemberServiceImpl;
 import partyband.service.partyservice;
 
 @Controller
-public class partycontroller {
+public class partycontroller
+{
 	@Autowired
 	private partyservice partyservice;
 	@Autowired
@@ -63,7 +64,8 @@ public class partycontroller {
 	}
 
 	@RequestMapping("getout.do")
-	public String getout() {
+	public String getout() 
+	{
 		return "party/getout";
 	}
 
@@ -101,23 +103,21 @@ public class partycontroller {
 
 	/* 파티방 생성폼으로 이동 */
 	@RequestMapping("party_create.do")
-	public String party_create() {
+	public String party_create() 
+	{
 		return "party/partycreate";
 	}
 
-	/* 파티방 내용 저장 */
-	
+	/* 파티방 내용 저장 */	
 	@RequestMapping("party_create_ok.do") 
-	public String party_create_ok(@ModelAttribute partybean party,HttpServletRequest request) throws Exception 
-	{ 
-		session = request.getSession(); 
-		party.setParty_id((String)session.getAttribute("sessionId")); 
+	public String party_create_ok(@ModelAttribute partybean party, @RequestParam String party_id) throws Exception 
+	{  
+		party.setParty_id(party_id); 
 		partyservice.insert(party); 
 		
 		return "redirect:partyband.do"; 
 	}
 	
-
 	/* 파티방 상세보기 */
 	@RequestMapping("party_detail.do")
 	public String party_cont(@RequestParam int party_no, Model model) throws Exception
