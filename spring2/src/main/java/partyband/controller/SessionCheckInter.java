@@ -17,7 +17,7 @@ public class SessionCheckInter extends HandlerInterceptorAdapter
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception 
 	{
 		HttpSession session = request.getSession();
-		MemberBean member = (MemberBean)session.getAttribute("sessionMember");
+		MemberBean member = (MemberBean)session.getAttribute("member");
 		String id = (String)session.getAttribute("sessionId");
 		
 		if(id == "admin")

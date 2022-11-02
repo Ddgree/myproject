@@ -13,8 +13,8 @@
 	crossorigin="anonymous"></script>
 
 </head>
-<body id="item">
-	sessionid = ${sessionMember.member_id}${sessionId}
+<body>
+	sessionid = ${member.member_id}${sessionId}
 	<br>
 	<!-- 로그인버튼 지우지 말아주세요!!!  -->
 	<input type="button" value="관리자 로그인" class="input_button"
@@ -28,8 +28,8 @@
 	<input type="button" value="파티만들기" class="input_button"
 		onclick="location='party_create.do?party_no=${p.party_no}&page=${page}'" />
 	<!-- partyroom_wrap -->
-	<div id="party-list" align="center">
-		<br>
+	<div id="item" align="center">
+	<div class=party-list-wrap>
 		<c:forEach var="p" items="${partylist}">
 		
 			<!-- 오늘 날짜 -->
@@ -48,7 +48,7 @@
 			<button type="button" class="party-list-button"
 				onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page }'">
 				<div class=type>[${p.party_address}] ${p.party_subject}</div>
-				<div class=date>
+				<div>
 					<c:if test="${now==day }">
 						<td>${dday}[D-day]</td>
 					</c:if>
@@ -59,7 +59,7 @@
 						<td>${dday}[D${now-day }]</td>
 					</c:if>
 				</div>
-				<div class=count>
+				<div>
 					<i class="fa-solid fa-crown"></i>
 					<c:forEach begin="1" end="${p.party_count}">
 						<c:if test="${p.party_count!=0}">
@@ -75,6 +75,7 @@
 				</div>
 			</button>
 		</c:forEach>
+		</div>
 	</div>
 	<div id="parytslist_paging" align="center">
 

@@ -38,7 +38,7 @@ public class partycontroller
 		session = request.getSession();
 		
 		MemberBean test_member = memberservice.userCheck("test");
-		session.setAttribute("sessionMember", test_member);
+		session.setAttribute("member", test_member);
 		return "redirect:partyband.do";
 	}
 	

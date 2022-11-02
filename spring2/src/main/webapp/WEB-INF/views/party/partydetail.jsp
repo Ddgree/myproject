@@ -22,7 +22,7 @@
 <body>
 세션 = ${sessionId}${sessionMember.member_id}<br>
 작성자 = ${party.party_id }<br>
-<<<<<<< HEAD
+파티방 번호 = ${party.party_no }<br>
 <!-- 오늘 날짜 -->
 <jsp:useBean id="today" class="java.util.Date" />
 <fmt:parseNumber value="${today.time / (1000*60*60*24)}" integerOnly="true" var="now" scope="request"/>
@@ -31,10 +31,6 @@
 <fmt:parseNumber var="day" value="${enddate.time / (1000*60*60*24)}" integerOnly="true" />
 <!-- 날짜포멧출력 -->
 <fmt:formatDate var="dday" value="${enddate }" pattern="yyyy년 MM월 dd일"/>
-
-=======
-파티방 번호 = ${party.party_no }<br>
->>>>>>> origin/kyungmin1025
 	<div id="bbscont_wrap">
 		<h2 class="bbscont_title">파티방 상세정보</h2>
 		<input type="hidden" name=page value=${page }>
@@ -75,13 +71,15 @@
 			<tr id="bbswrite_menu">
 
 				<td colspan=2 align="center"><c:choose>
-						<c:when test="${sessionMember.member_id eq party.party_id}">
+						<c:when test="${member.member_id eq party.party_id}">
 							<input type="button" value="목록" class="input_button"
 								onclick="location='partyband.do?page=${page}'" />
+								<c:if test="${party.party_count!=0}"></c:if>
+								<c:if test="${party.party_count==0}">
 							<input type="button" value="수정" class="input_button"
-								onclick="location='partyeditform.do?party_no=${party.party_no}&page=${page}&member_id=${sessionMember.member_id}'" />
+								onclick="location='partyeditform.do?party_no=${party.party_no}&page=${page}&member_id=${member.member_id}'" />
 							<input type="button" value="삭제" class="input_button"
-								onclick="location ='partydelete.do'" />
+								onclick="location ='partydelete.do'" /></c:if>
 						</c:when>
 						<c:when test="${sessionId eq 'admin'}">
 							<input type="button" value="목록" class="input_button"

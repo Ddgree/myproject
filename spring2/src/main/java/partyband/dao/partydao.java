@@ -51,7 +51,7 @@ public class partydao
 
 	public void partyedit(partybean update_party) 
 	{
-		sqlSession.update("partyns.party_edit",update_party)
+		sqlSession.update("partyns.party_edit",update_party);
 	}
 
 }

@@ -62,7 +62,10 @@
 				<tr>
 					<th>글내용</th>
 					<td colspan=6><textarea name="party_content" id="party_content" rows="8"
-							cols="50" class="input_box"></textarea></td>
+							cols="50" class="input_box" placeholder="
+							참여신청 인원이 한 명이라도 있으면
+							수정 및 삭제가 힘듭니다!
+							등록 전 내용을 꼼꼼히 살펴주세요!"></textarea></td>
 				</tr>
 
 			<tr id="bbswrite_menu">
