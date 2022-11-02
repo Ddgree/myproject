@@ -1,21 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <style>
 .category {
 	list-style: none;
-	background-color: #f3d49e;
-	text-align: center;
-	color: white;
+	background-color: black;
+	color: #f3d49e;
 	height: 60px;
+	position: relative;
 }
 
-.menu {
+.menu {	
+	position: relative;
+	margin-left: 200px;
 	display: inline-block;
 	font-size: 30px;
 	transition: color 0.5s ease-in-out;
 	cursor: pointer;
-	margin-top: 8px;
+	margin-top: 0.7%;
 	color: black;
 }
 
@@ -54,20 +57,49 @@ a {
 }
 
 .img {
-	display: inline-block;
-	float: left;
-	margin-left: 20px;
+	margin-left: -110px;
+	margin-top: -10px;
 	cursor: pointer;
 	width: 60px;
 	height: 60px;
 }
+.navi{
+	position:relative;
+	background:#f3d49e;
+	margin-top:-15px;
+	width:1550px;
+	height:60px;
+}
+
+.navi ul{
+	list-style: none; 
+	height:40px;
+	padding-top:10px;
+	padding-bottom:5px;
+}
+.navi ul li {
+	display:inline;
+	float: left;
+	font-size:25px;
+}
+.navi a, .navi a:visited {
+	transition: color 0.5s ease-in-out;
+	display: block;
+	color:black;
+	width: 150px; 
+	text-decoration: none;
+
+}
+.navi a:hover, .navi a:active, .navi a:focus {
+		text-shadow:0px 2px 2px #000;
+		color:white;
+}
 
 .hello {
-	float: right;
 	color: black;
 	font-family: "paybooc-Light", sans-serif;
 	font-weight: 600;
-	margin-right: 30px;
+	font-size:20px;
 }
 .mypage{
 	border: 3px solid #9a6c5c;
@@ -81,7 +113,8 @@ a {
 	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 	background-color: white;
 	color: black;
-	margin-top: 22px;
+	margin-top: 9px;
+	margin-left: 5px;
 }
 .mypage:hover{
 	background: #9a6c5c;
@@ -95,20 +128,24 @@ a {
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="screen">
+<div class="screen">
 		<div class="category">
-			<div>
-				<a href="partyband.do"><img src="././resources/images/logo.jpg"
-					class="img"></a>
-			</div>
-			<div onClick='location="https://www.naver.com"' class="menu" style="margin-left: 120px;">종료파티방</div>
-			<div onClick='location="https://www.naver.com"' class="menu" style="margin-left: 200px;">커뮤니티</div>
-			<div onClick='location="https://www.naver.com"' class="menu" style="margin-left: 200px;">공지사항</div>
-				<input type="hidden" name="member_id" value="${sessionScope.member.member_id}" />
+		<input type="hidden" name="member_id" value="${sessionScope.member.member_id}" />
+    <nav class="navi">
+      <ul>
+     	<li><a href="partyband.do"><img src="././resources/images/logo.jpg" class="img" style="margin-left:50px;"></a></li>
+        <li><a href="#" style="margin-left:100px;">종료파티방</a></li>
+        <li><a href="#" style="margin-left:100px;">커뮤니티</a></li>
+        <li><a href="#" style="margin-left:100px;">공지사항</a></li>
+		<li><div class="hello" style="margin-left: 130px; margin-top: 9px;">${sessionScope.member.member_nickname}님! 환영합니다!</div></li>
+		<li><input type="button" value="마이페이지" class="mypage" style=" cursor: pointer;" onclick="location='member_mypage.do'" /> </li>
+		<li><input type="submit" value="로그아웃" class="mypage" style=" cursor: pointer; " onclick="location='member_logout.do'"/></li>
+       
+      </ul>
+    </nav>  
+		</div>
+	</div>
 			
-			    <div class="hello">${sessionScope.member.member_nickname}님! 환영합니다!</div>
-				<input type="submit" value="로그아웃" class="mypage" style="margin-right:-170px;" onclick="location='member_logout.do'"/>
-				<input type="button" value="마이페이지" class="mypage" style="margin-right:-90px;" onclick="edit_pwcheck()" /> 
 			
 		</div>
 	</div>

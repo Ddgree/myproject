@@ -6,18 +6,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호 찾기</title>
+<title>아이디 찾기</title>
 
 <script>
 function check(){
-	 if($.trim($("#member_id").val())==""){
-		 alert("비밀번호를 찾고자 하는 아이디를 입력해 주세요.");
-		 $("#member_id").val("").focus();
+	 if($.trim($("#member_name").val())==""){
+		 alert("아이디를 찾고자 하는 이름을 입력해 주세요.");
+		 $("#member_name").val("").focus();
 		 return false;
 	 }
-	 if($.trim($("#member_name").val())==""){
-		 alert("회원정보에 등록한 이름을 입력하세요.");
-		 $("#member_name").val("").focus();
+	 if($.trim($("#member_email").val())==""){
+		 alert("회원정보에 등록한 이메일을 입력하세요.");
+		 $("#member_email").val("").focus();
 		 return false;
 	 }
 }
@@ -33,38 +33,39 @@ function parentMove() {
 <body>
 <div id="pwd_wrap">
  
- <c:if test="${empty pwdok}"> 
-  <h2 class="pwd_title">등록된 회원정보로 비밀번호 찾기</h2>
-  <form method="post" action="PwdFindok.do" onsubmit="return check()">  
+ <c:if test="${empty idok}"> 
+  <h2 class="pwd_title">등록된 회원정보로 아이디 찾기</h2>
+  <form method="post" action="id_find_ok.do" onsubmit="return check()">  
    <table id="pwd_t" border="1">
 
-    <tr>
-     <th>아이디</th>
-     <td><input name="member_id" id="member_id" size="14" class="input_box" /></td>
-    </tr>
-    
     <tr>
      <th>이름</th>
      <td><input name="member_name" id="member_name" size="14" class="input_box" /></td>
     </tr>
+    
+     <tr>
+     <th>Email</th>
+     <td><input name="member_email" id="member_email" size="14" class="input_box" /></td>
+    </tr>
+    
    </table>
    
    <div id="pwd_menu"><br>
-    <input type="submit" value="비밀번호 찾기" class="input_button" />
+    <input type="submit" value="아이디 찾기" class="input_button" />
     <input type="reset" value="취소" class="input_button" onclick="window.close()" />
    </div>
   </form>
   </c:if>
   
   
-  <c:if test="${!empty pwdok}">
-    <h2 class="pwd_title2">비밀번호 찾기 결과</h2>
+  <c:if test="${!empty idok}">
+    <h2 class="pwd_title2">아이디 찾기 결과</h2>
     <table id="pwd_t2" >
      <tr>
       <td><b>PARTY BAND의 회원이시군요!</b></td>
       </tr>
       <tr>
-      <td>${pwdok}</td>
+      <td>${idok}</td>
      </tr>
     </table>
     <div id="pwd_close2">

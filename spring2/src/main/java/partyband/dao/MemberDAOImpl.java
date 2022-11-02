@@ -16,10 +16,15 @@ public class MemberDAOImpl {
 	/***** 아이디 중복 체크 *****/
 //	@Transactional
 	public int checkMemberId(String id) throws Exception {
-		int re = -1;	// 사용 가능한 ID
-		MemberBean mb = sqlSession.selectOne("login_check", id);
-		if (mb != null)
+		int re=0;	// 사용 가능한 ID
+		MemberBean mb = sqlSession.selectOne("login_check2", id);
+		if (mb != null) {
 			re = 1; 	// 중복id
+		}else if(id.equals("admin")) {
+			re = 3;
+		}else if(mb == null){
+			re = -1;	// 사용 가능한 ID	
+		}
 		return re;
 	}
 	
@@ -32,7 +37,12 @@ public class MemberDAOImpl {
 		return re;
 	}
 	
-
+	/* 아이디 검색 */
+//	@Transactional
+	public MemberBean findid(MemberBean pm) throws Exception {
+		return sqlSession.selectOne("id_find", pm);
+	}
+	
 	/* 비번 검색 */
 //	@Transactional
 	public MemberBean findpwd(MemberBean pm) throws Exception {
@@ -64,8 +74,8 @@ public class MemberDAOImpl {
 
 	/* 회원삭제 */
 //	@Transactional
-	public void deleteMember(MemberBean delm) throws Exception {
-		sqlSession.update("member_delete", delm);
+	public void deleteMember(MemberBean deletemember) throws Exception {
+		sqlSession.update("member_delete", deletemember);
 	}
 }
 

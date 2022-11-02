@@ -9,7 +9,7 @@
 <body>
 
 <form name="f" method="post" action="edit_pwcheck_ok.do">
-<input type="hidden" name="member_id" value="${id}">
+<input type="hidden" name="member_id" value="${sessionScop.member.member_id}">
 <table>
 
 	 <tr>
@@ -23,9 +23,9 @@
 </table>
 
    <div id="edit_menu">
-    <input type="submit" value="확인" class="input_button" />
+    <input type="submit" value="확인" class="input_button"/>
     <input type="button" value="취소" class="input_button"
-    	onclick="location='main'" />
+    	onclick="window.close()" />
    </div>
 </form>
 

@@ -2,26 +2,11 @@
 	pageEncoding="UTF-8"%>
 <style>
 .category {
-	margin-left: auto;
-	margin-right: auto;
 	list-style: none;
-	background-color: #f3d49e;
-	text-align: center;
-	color: white;
+	background-color: black;
+	color: #f3d49e;
 	height: 60px;
-}
-
-.menu {
-	display: inline-block;
-	font-size: 30px;
-	transition: color 0.5s ease-in-out;
-	cursor: pointer;
-	margin-top: 8px;
-	color: black;
-}
-
-.menu:hover {
-	color: white;
+	position: relative;
 }
 
 a {
@@ -36,7 +21,6 @@ a {
 	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 	text-decoration: none;
 	font-weight: 600;
-	float: right;
 	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 	background-color: white;
 	color: black;
@@ -55,12 +39,42 @@ a {
 }
 
 .img {
-	display: inline-block;
-	float: left;
-	margin-left: 20px;
+	margin-left: -110px;
+	margin-top: -10px;
 	cursor: pointer;
 	width: 60px;
 	height: 60px;
+}
+.navi{
+	position:relative;
+	background:#f3d49e;
+	margin-top:-15px;
+	width:1550px;
+	height:60px;
+}
+
+.navi ul{
+	list-style: none; 
+	height:40px;
+	padding-top:10px;
+	padding-bottom:5px;
+}
+.navi ul li {
+	display:inline;
+	float: left;
+	font-size:25px;
+}
+.navi a, .navi a:visited {
+	transition: color 0.5s ease-in-out;
+	display: block;
+	color:black;
+	width: 150px; 
+	text-decoration: none;
+
+}
+.navi a:hover, .navi a:active, .navi a:focus {
+		text-shadow:0px 2px 2px #000;
+		color:white;
 }
 </style>
 
@@ -72,16 +86,21 @@ a {
 <body>
 	<div class="screen">
 		<div class="category">
-			<div>
-				<a href="partyband.do"><img src="././resources/images/logo.jpg"
-					class="img"></a>
-			</div>
-			<div onClick='location="https://www.naver.com"' class="menu" style="margin-left: 47px;">종료파티방</div>
-			<div onClick='location="https://www.naver.com"' class="menu" style="margin-left: 200px;">커뮤니티</div>
-			<div onClick='location="https://www.naver.com"' class="menu" style="margin-left: 200px;">공지사항</div>
-			<input type="button" value="로그인" class="w-btn"
-				style="cursor: pointer; margin-right: 20px; margin-top: 8px;"
-				onclick='location="member_login.do"' />
+    <nav class="navi">
+      <ul>
+     	<li><a href="partyband.do"><img src="././resources/images/logo.jpg" class="img"  style="margin-left:50px;"></a></li>
+        <li><a href="#" style="margin-left:100px;">종료파티방</a></li>
+        <li><a href="#" style="margin-left:100px;">커뮤니티</a></li>
+        <li><a href="#" style="margin-left:100px;">공지사항</a></li>
+        <li><input type="button" value="로그인" class="w-btn"
+				style="cursor: pointer; margin-left: 370px;"
+				onclick='location="member_login.do"' /></li>
+       
+      </ul>
+    </nav>  
+
+				
+			
 		</div>
 	</div>
 </body>
