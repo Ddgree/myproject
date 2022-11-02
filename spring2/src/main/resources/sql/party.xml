@@ -6,8 +6,8 @@
 
 	<!-- 게시판 내용보기 -->
 	<select id="party_cont" resultType="party"
-		parameterType="String">
-		select * from party where party_id = #{party_id}
+		parameterType="int">
+		select * from party where party_no = #{party_no}
 	</select>
 
 	<!-- 파티방 목록 -->
@@ -21,15 +21,30 @@
 	</select>
 	
 	<!-- 파티방 저장-->
-		<insert id="party_insert" parameterType="party">
-			insert into party values(party_no_seq.nextval,#{party_subject},#{party_address},
-			#{party_content},#{party_gender},#{party_age},sysdate,#{party_enddate},
-			0, #{party_max_count},#{party_id})
-		</insert>
+	<insert id="party_insert" parameterType="party">
+		insert into party values(party_no_seq.nextval,#{party_subject},#{party_address},
+		#{party_content},#{party_gender},#{party_age},sysdate,#{party_enddate},
+		0, #{party_max_count},#{party_id})
+	</insert>
 
 	<!-- 파티방 총 개수 -->
 	<select id="party_count" resultType="int">
 		select count(*) from party
 	</select>
 	
+	<!-- 파티방 참가 신청 -->
+	<update id="party_join" parameterType="int">
+		update party set party_count = party_count + 1 where party_no = #{party_no}
+	</update>
+	
+	<!-- member에 가입된 비밀번호 확인 -->
+	<select id="pw_checek" parameterType="String" resultType="String">
+		select member_passwd from member where member_id = #{member_id}
+	</select>
+	
+	<!-- 파티방 수정 -->
+	<update id="party_edit" parameterType="party">
+		update party set Party_address=Party_address,party.setParty_gender(party.getParty_gender,Party_enddate(party.getParty_enddate,
+		Party_max_count(party.getParty_max_count,Party_content(party.getParty_contentParty_age(party.getParty_age());
+	</update>
 </mapper>

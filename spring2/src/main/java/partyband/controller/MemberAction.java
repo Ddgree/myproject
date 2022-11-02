@@ -164,7 +164,7 @@ public class MemberAction {
 			}	
 
 	/* 로그인 폼 뷰 */
-	@RequestMapping(value = "/member_login.do")
+	@RequestMapping("member_login.do")
 	public String member_login() {
 		return "member/member_login";
 	}
@@ -182,10 +182,36 @@ public class MemberAction {
 		return "member/edit_pwcheck";
 	}
 	
+<<<<<<< HEAD
 	/* 아이디찾기 폼 */
 	@RequestMapping(value = "/id_find.do")
 	public String id_find() {
 		return "member/id_find";
+=======
+	/*비번체크 완료*/
+	@RequestMapping(value = "edit_pwcheck_ok.do")
+	public String edit_pwcheck_ok(
+								  @RequestParam("editpw") String editpw,
+								  HttpSession session, 
+								  Model model)throws Exception{
+		
+		System.out.println("비번 체크완료");
+		int result=0;		
+		String id = (String) session.getAttribute("id");
+		MemberBean m = memberService.pwCheck(id);
+
+		if (m.getMember_passwd().equals(editpw)) {	// 비번이 같을때
+				
+			return "redirect:/member_edit.do";
+				
+		} else {// 비번이 다를때
+			result = 2;
+			model.addAttribute("result", result);
+			
+		}
+		
+		return null;
+>>>>>>> origin/user1
 	}
 	
 	/* 비번찾기 폼 */
