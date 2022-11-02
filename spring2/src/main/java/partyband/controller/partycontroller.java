@@ -140,7 +140,7 @@ public class partycontroller
 		
 		model.addAttribute("page",page);
 		model.addAttribute("party_no",party_no);
-		return "redirect:partyband.do";
+		return "redirect:party_detail.do";
 	}
 	
 	/*비밀 번호 확인 폼 이동*/
