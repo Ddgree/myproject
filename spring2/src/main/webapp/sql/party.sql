@@ -31,3 +31,5 @@ insert into party values(party_no_seq.nextval,'파티방 연습','지역', '파�
 
 select * from member;
 select * from admin;
+
+delete from party where party_enddate = '20222022';
