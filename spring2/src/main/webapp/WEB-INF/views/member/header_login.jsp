@@ -102,7 +102,7 @@ a {
 					class="img"></a>
 			</div>
 			<div onClick='location="https://www.naver.com"' class="menu" style="margin-left: 120px;">종료파티방</div>
-			<div onClick='location="https://www.naver.com"' class="menu" style="margin-left: 200px;">커뮤니티</div>
+			<div onClick='location="board_list.do"' class="menu" style="margin-left: 200px;">커뮤니티</div>
 			<div onClick='location="https://www.naver.com"' class="menu" style="margin-left: 200px;">공지사항</div>
 				<input type="hidden" name="member_id" value="${sessionId}" />
 			

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+	<resultMap id="boardResult" type="board">
+		<result property="board_no" column="board_no" />
+		<result property="board_subject" column="board_subject" />
+		<result property="board_content" column="board_content" />
+		<result property="board_date" column="board_date" />
+		<result property="board_readcount" column="board_readcount" />
+		<result property="board_file" column="board_file" />
+		<result property="board_ref" column="board_ref" />
+		<result property="board_passwd" column="board_passwd" />
+		<result property="board_division" column="board_division" />
+	</resultMap>
+	<insert id="insert" parameterType="board">
+		<!-- 게시판 글 작성 -->
+		insert into board (board_no,
+		board_subject,
+		board_content,
+		board_date,
+		board_readcount,
+		board_file,
+		board_ref,
+		board_passwd,
+		board_division)
+		values (board_no_seq.nextval,
+		#{board_subject},
+		#{board_content},
+		sysdate,
+		#{board_readcount},
+		#{board_file, jdbcType=VARCHAR},
+		board_no_seq.nextval,
+		#{board_passwd},
+		#{board_division})
+	</insert>
+
+	<!-- 게시판 총게시물 수 -->
+	<select id="count" parameterType="board" resultType="int">
+		select count(*) from board
+		<where>
+			<if test="keyword != null and search !='subcon'">
+				${search} like '%'||#{keyword}||'%'
+			</if>
+			<if test="keyword != null and search=='subcon'">
+				board_subject like '%'||#{keyword}||'%' or
+				board_content
+				like '%'||#{keyword}||'%'
+			</if>
+		</where>
+	</select>
+
+	<!-- <select id="list" parameterType="hashMap" resultMap="boardResult"> -->
+	<select id="list" parameterType="board" resultMap="boardResult">
+		select * from (select a.*,rowNum rn from (
+		select * from board
+		<where>
+			<if test="keyword != null and search!='subcon'">
+				${search} like '%'||#{keyword}||'%'
+			</if>
+			<if test="keyword != null and search=='subcon'">
+				board_subject like '%'||#{keyword}||'%' or
+				board_content
+				like '%'||#{keyword}||'%'
+			</if>
+		</where>
+		order by board_ref desc) a )
+		where rn between #{startRow} and #{endRow}
+	</select>
+
+	<!-- 게시판 내용보기 -->
+	<select id="read" resultType="board" parameterType="int">
+		select * from
+		board where board_no=#{board_no}
+	</select>
+
+	<!-- 게시판 조회수 증가 -->
+	<update id="hit" parameterType="int">
+		update board set
+		board_readcount=board_readcount+1
+		where board_no=#{board_no}
+	</update>
+	<!-- 게시물 수정 -->
+	<update id="edit" parameterType="board">
+		update board set
+		board_subject=#{board_subject},
+		board_content=#{board_content}
+		where
+		board_no=#{board_no}
+	</update>
+
+	<!-- 게시물 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from board where
+		board_no=#{board_no}
+	</delete>
+
+	<!-- 첨부파일 조회 -->
+	<select id="filelist" parameterType="int"
+		resultType="hashMap">
+		SELECT FILE_NO,
+		ORG_FILE_NAME,
+		ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
+		FROM MP_FILE
+		WHERE BNO = #{BNO}
+		AND DEL_GB = 'N'
+	</select>
+
+</mapper>

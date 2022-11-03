@@ -1,3 +1,5 @@
+delete from member where member_delok='n';
+select * from member;
 select * from tab;
 
 select * from party;
