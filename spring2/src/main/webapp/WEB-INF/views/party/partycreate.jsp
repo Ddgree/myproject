@@ -38,9 +38,8 @@
 								<option value="${g}">${g}</option>
 							</c:forEach>
 						</select></td>
-					<th>나이</th>
-					<td>만 <input name="party_age" id="party_age" size="2"
-						class="input_box" placeholder="00"/>세
+					<th>성인 제한</th>
+					<td>미성년자 가입불가<input type="checkbox" name="party_age" id="party_age"/>
 				</tr>
 
 				<tr>

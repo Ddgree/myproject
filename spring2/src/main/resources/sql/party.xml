@@ -50,7 +50,8 @@
 		party_gender=#{party_gender},
 		party_enddate=#{party_enddate},
 		party_subject=#{party_subject},
-		party_content=#{party_content}
+		party_content=#{party_content},
+		party_max_count=#{party_max_count}
 		where party_no=#{party_no}
 	</update>
 	
