@@ -27,8 +27,10 @@
 		onclick="location='admin_login.do?page=${page}'" /><br>
 	<input type="button" value="관리자 로그아웃" class="input_button"
 		onclick="location='test_logout.do'" /><br>
+	<input type="button" value="test 로그인" class="input_button"
+		onclick="location='nomal_login.do?page=${page}'" /><br>
 	<input type="button" value="파티만들기" class="input_button"
-		onclick="location='party_create.do?party_no=${p.party_no}&page=${page}'" />
+		onclick="location='party_create.do?page=${page}&party_id=${member.member_id}'" />
 		</div>
 <script src="<%=request.getContextPath()%>/resources/js/moveoptions.js"></script>
 	

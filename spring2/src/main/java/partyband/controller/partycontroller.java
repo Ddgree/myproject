@@ -144,19 +144,20 @@ public class partycontroller
 	}
 	
 	/*비밀 번호 확인 폼 이동*/
-	@RequestMapping("partyeditform.do")
-	public String partyeditform(int page, String member_id, int party_no, Model model)
+	@RequestMapping("pwcheckform.do")
+	public String partyeditform(int page, String member_id, int party_no,String stat, Model model)
 	{
 		model.addAttribute("page", page);
 		model.addAttribute("member_id", member_id);
 		model.addAttribute("party_no", party_no);
-		
-		return "party/partyeditpwcheck";
+		model.addAttribute("stat", stat);
+	
+		return "party/partypwcheck";
 	}
 	
-	/*수정을 위한 비밀 번호 확인*/
+	/*비밀 번호 확인*/
 	@RequestMapping("partypwcheck.do")
-	public String partyedit(int page, String member_id, String input_member_passwd,int party_no, Model model) throws Exception
+	public String partyedit(int page, String member_id, String input_member_passwd,int party_no,String stat, Model model) throws Exception
 	{
 		String orign_member_passwd = partyservice.pwcheck(member_id);
 		
@@ -164,11 +165,22 @@ public class partycontroller
 		{
 			return "redirect:noaccess.do";
 		}
-		model.addAttribute("page", page);
-		model.addAttribute("member_id", member_id);
-		model.addAttribute("party_no", party_no);		
+		else if(stat.equals("edit"))
+		{
+			model.addAttribute("page", page);
+			model.addAttribute("member_id", member_id);
+			model.addAttribute("party_no", party_no);		
+			
+			return "party/partyedit";
+		}
+		else if(stat.equals("del"))
+		{
+			partyservice.partydel(party_no);
+			
+			return "redirect:partyband.do";
+		}
 		
-		return "party/partyedit";
+		return null;
 	}
 	
 	/*비밀번호 확인시 틀릴 때*/
@@ -188,34 +200,11 @@ public class partycontroller
 	
 	/*파티방 수정*/
 	@RequestMapping("partyedit.do")
-	@ResponseBody
-	public boolean partyedit(partybean party, int party_no, HttpServletResponse response) throws Exception
+	public String partyedit(partybean p,int page, HttpServletResponse response) throws Exception
 	{
-		System.out.println("xml넘어가기전 party_no = " + party_no);
-		partybean update_party = partyservice.party_cont(party_no);
-		System.out.println("원래 파티방 제목 = " + update_party.getParty_subject());
-		System.out.println("바꿀 파티방 제목 = " + party.getParty_subject());
+		partybean party = partyservice.party_cont(p.getParty_no());
 		
-		update_party.setParty_subject(party.getParty_subject());
-		System.out.println("바뀐 파티방 제목 = " + update_party.getParty_subject());
-		update_party.setParty_address(party.getParty_address());
-		update_party.setParty_gender(party.getParty_gender());
-		update_party.setParty_enddate(party.getParty_enddate());
-		update_party.setParty_max_count(party.getParty_max_count());
-		update_party.setParty_content(party.getParty_content());
-		update_party.setParty_age(party.getParty_age());
-		
-		partyservice.partyedit(update_party);
-		
-		response.setContentType("text/html; charset=utf-8");
-        PrintWriter w = response.getWriter();
-
-        String msg = "글 수정 성공";
-        String url = "partyband.do";
-        w.write("<script>alert('"+msg+"');location='"+url+"';</script>");
-        w.flush();
-        w.close();
-        
-        return true;
+		partyservice.partyedit(p);
+		return "redirect:party_detail.do?party_no=" + p.getParty_no() + "&page=" + page;
 	}
 }

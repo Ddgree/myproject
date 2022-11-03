@@ -21,7 +21,7 @@
 		<h2 class="bbswrite_title">파티 생성</h2>
 		<form method="post"
 			action="<%=request.getContextPath() %>/party_create_ok.do" onSubmit="return party_check()">
-			<input type="hidden" name="party_id" value="${sessionMember.member_id}">
+			<input type="hidden" name="party_id" value="${member.member_id}">
 			<table id="bbswrite_t">
 				<tr>
 					<th>지역</th>
@@ -70,7 +70,7 @@
 
 			<tr id="bbswrite_menu">
 				<td colspan=6 align="center"><input type="submit" value="등록" class="input_button" /> 
-					<input type="reset" value="취소" class="input_button" onclick="location.href='partyband.do'" />
+					<input type="reset" value="취소" class="input_button" onclick="location='history.back()'" />
 				</td>
 			</tr>
 			</table>

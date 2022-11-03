@@ -7,11 +7,11 @@
 <title>비번확인</title>
 </head>
 <body>
-party_no = ${party_no }
 <form name="f" method="post" action="partypwcheck.do">
 	<input type="hidden" name="member_id" value="${member_id}">
 	<input type="hidden" name="page" value="${page}">
 	<input type="hidden" name="party_no" value="${party_no}">
+	<input type="hidden" name="stat" value="${stat}">
 
 	<table>
 		<tr>
