@@ -67,7 +67,7 @@ a {
 	position:relative;
 	background:#f3d49e;
 	margin-top:-15px;
-	width:1550px;
+	width:auto;
 	height:60px;
 }
 

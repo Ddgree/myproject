@@ -157,13 +157,19 @@ public class partycontroller
 	
 	/*비밀 번호 확인*/
 	@RequestMapping("partypwcheck.do")
-	public String partyedit(int page, String member_id, String input_member_passwd,int party_no,String stat, Model model) throws Exception
+	public String partyedit(HttpServletResponse response, int page, String member_id, String input_member_passwd,int party_no,String stat, Model model) throws Exception
 	{
 		String orign_member_passwd = partyservice.pwcheck(member_id);
 		
 		if(!input_member_passwd.equals(orign_member_passwd))
 		{
-			return "redirect:noaccess.do";
+			response.setContentType("text/html; charset=utf-8");
+	        PrintWriter w = response.getWriter();
+
+	        String msg = "비밀번호가 일치하지 않습니다.";
+	        w.write("<script>alert('"+msg+"');history.back();</script>");
+	        w.flush();
+	        w.close();
 		}
 		else if(stat.equals("edit"))
 		{
@@ -183,28 +189,12 @@ public class partycontroller
 		return null;
 	}
 	
-	/*비밀번호 확인시 틀릴 때*/
-	@RequestMapping("noaccess.do")
-	public boolean noaccess(HttpServletResponse response) throws Exception
-	{
-		response.setContentType("text/html; charset=utf-8");
-        PrintWriter w = response.getWriter();
-
-        String msg = "비밀번호가 일치하지 않습니다.";
-        w.write("<script>alert('"+msg+"');history.back();</script>");
-        w.flush();
-        w.close();
-        
-        return false;
-	}
-	
 	/*파티방 수정*/
 	@RequestMapping("partyedit.do")
 	public String partyedit(partybean p,int page, HttpServletResponse response) throws Exception
 	{
-		partybean party = partyservice.party_cont(p.getParty_no());
-		
 		partyservice.partyedit(p);
+		
 		return "redirect:party_detail.do?party_no=" + p.getParty_no() + "&page=" + page;
 	}
 }

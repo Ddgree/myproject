@@ -20,10 +20,6 @@
 	<%@ include file="../member/header_login.jsp"%>
 </c:if>
 <body>
-<br><br><br><br>
-세션 = ${sessionId}${member.member_id}<br>
-작성자 = ${party.party_id }<br>
-파티방 번호 = ${party.party_no }<br>
 <!-- 오늘 날짜 -->
 <jsp:useBean id="today" class="java.util.Date" />
 <fmt:parseNumber value="${today.time / (1000*60*60*24)}" integerOnly="true" var="now" scope="request"/>
