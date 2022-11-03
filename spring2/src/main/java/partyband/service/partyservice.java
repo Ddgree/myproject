@@ -15,9 +15,9 @@ public class partyservice
 	private partydao partydao;
 	
 	/* 상세정보 */
-	public partybean party_cont(String party_id) throws Exception 
+	public partybean party_cont(int party_no) throws Exception 
 	{
-		partybean party = partydao.getPartyCont(party_id);
+		partybean party = partydao.getPartyCont(party_no);
 
 		return party;
 	}
@@ -32,4 +32,28 @@ public class partyservice
 		return partydao.getListCount();
 	}
 
+	public void insert(partybean party) 
+	{
+		partydao.partyinsert(party);
+	}
+
+	public void partyjoin(int party_no) 
+	{
+		partydao.partyjoin(party_no);
+	}
+
+	public String pwcheck(String member_id)
+	{
+		return partydao.pwcheck(member_id);
+	}
+
+	public void partyedit(partybean party)
+	{
+		partydao.partyedit(party);
+	}
+
+	public void partydel(int party_no) 
+	{
+		partydao.partydel(party_no);
+	}
 }

@@ -15,9 +15,9 @@ public class partydao
 	private SqlSession sqlSession;
 	
 	/* 작성된 파티방 보기  */
-	public partybean getPartyCont(String party_id) throws Exception 
+	public partybean getPartyCont(int party_no) throws Exception 
 	{
-		return (partybean) sqlSession.selectOne("partyns.party_cont",party_id);
+		return (partybean) sqlSession.selectOne("partyns.party_cont",party_no);
 	}
 	
 	/* 파티방 목록  */
@@ -34,4 +34,28 @@ public class partydao
 		return count;
 	}
 
+	public void partyinsert(partybean party)
+	{
+		sqlSession.insert("partyns.party_insert", party);
+	}
+
+	public void partyjoin(int party_no)
+	{
+		sqlSession.update("partyns.party_join",party_no);
+	}
+
+	public String pwcheck(String member_id)
+	{
+		return sqlSession.selectOne("partyns.pw_checek", member_id);
+	}
+
+	public void partyedit(partybean party) 
+	{
+		sqlSession.update("partyns.party_edit",party);
+	}
+
+	public void partydel(int party_no) 
+	{
+		sqlSession.delete("partyns.party_delete",party_no);
+	}
 }
