@@ -8,7 +8,7 @@
 <!-- <script src="./js/jquery.js"></script> -->
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/button.css" />
+	href="<%=request.getContextPath()%>/resources/css/button.css" />
 <script>
 	function check() {
 		if ($.trim($("#id").val()) == "") {
@@ -25,11 +25,16 @@
 
 	/*비번찾기 공지창*/
 	function pwd_find() {
-		window.open("pwd_find.do", "비번찾기", "width=450,height=500");
+		window.open("pwd_find.do", "비번찾기", "width=500,height=500");
 		//자바 스크립트에서 window객체의 open("공지창경로와 파일명","공지창이름","공지창속성")
-		//메서드로 새로운 공지창을 만듬.폭이 400,높이가 400인 새로운 공지창을 만듬.단위는 픽셀
+	}
+	/*아이디찾기 공지창*/
+	function id_find() {
+		window.open("id_find.do", "비번찾기", "width=450,height=500");
+		//자바 스크립트에서 window객체의 open("공지창경로와 파일명","공지창이름","공지창속성")
 	}
 </script>
+<%@ include file="../member/header.jsp"%>
 </head>
 <body>
 	<div class="login_wrap" style="margin-top: 100px;">
@@ -59,9 +64,9 @@
 						class="w-btn-outline w-btn-gray-outline"
 						onclick="location='member_join.do'" /></td>
 					<td><input type="button" value="ID찾기"
-						class="w-btn-outline w-btn-gray-outline" onclick=" " /></td>
+						class="w-btn-outline w-btn-gray-outline" onclick="id_find()" /></td>
 					<td><input type="button" value="비번찾기"
-						class="w-btn-outline w-btn-gray-outline" onclick="pwd_find()" />
+						class="w-btn-outline w-btn-gray-outline" onclick="pwd_find()"  />
 					</td>
 				</tr>
 			</table>

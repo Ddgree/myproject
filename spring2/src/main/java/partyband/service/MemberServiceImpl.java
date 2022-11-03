@@ -21,6 +21,10 @@ public class MemberServiceImpl {
 		return memberDao.checkMembernickname(nick);
 	}
 	
+	public MemberBean findid(MemberBean m)throws Exception {
+		return memberDao.findid(m);
+	}
+	
 	public MemberBean findpwd(MemberBean m)throws Exception {
 		return memberDao.findpwd(m);
 	}
@@ -42,7 +46,7 @@ public class MemberServiceImpl {
 		memberDao.updateMember(member);
 	}
 	
-	public void deleteMember(MemberBean member) throws Exception{
-		memberDao.deleteMember(member);
+	public void deleteMember(MemberBean deletemember) throws Exception{
+		memberDao.deleteMember(deletemember);
 	}
 }
