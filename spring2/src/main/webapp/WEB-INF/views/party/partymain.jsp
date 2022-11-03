@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>메인 페이지</title>
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/pm.css" />
+	href="<%=request.getContextPath()%>/resources/css/partymain.css" />
 <script src="https://kit.fontawesome.com/f82eca20b8.js"
 	crossorigin="anonymous"></script>
 

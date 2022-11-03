@@ -106,7 +106,7 @@ a {
 			<div onClick='location="https://www.naver.com"' class="menu" style="margin-left: 200px;">공지사항</div>
 				<input type="hidden" name="member_id" value="${sessionId}" />
 			
-			    <div class="hello">${sessionId}님! 환영합니다!</div>
+			    <div class="hello">${sessionId}${member.member_id}님! 환영합니다!</div>
 				<input type="submit" value="로그아웃" class="mypage" style="margin-right:-180px;" onclick="location='member_logout.do'"/>
 				<input type="button" value="마이페이지" class="mypage" style="margin-right:-90px;" onclick="edit_pwcheck()" /> 
 			
