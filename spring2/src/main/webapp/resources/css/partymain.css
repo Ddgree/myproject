@@ -4,19 +4,26 @@ body{
 button{
 	position: static;
 	width: 400px;
-	margin: 13px;
+	margin: 3px;
 	padding: 22px 30px;
 	font-size: 13px;
 	color: #61443a;
 	border-radius: 20px;
-	border: solid 1px #dddddd;
-	background-color: #c7aaa0;
+	border: solid 5px #61443a;
+	background-color: #eadfdb;
 	overflow: hidden;
 	}
 .push:hover{ 
 	animation: pulse 0.3s linear 1;
 	background-color: #c0a096;
-	border: 1px ssolid #61443a;
+	border: 5px solid #61443a;
+	}
+.push-child{ 
+	color: #b1b1b1;
+	animation: pulse 0.3s linear 1;
+	background-color: #e3e3e3;
+	border: 5px solid #c0c0c0;
+	pointer-events : none;
 	}
 @keyframes pulse{
 	25%  {transform: scale(0.98);}
