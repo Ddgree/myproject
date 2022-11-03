@@ -23,7 +23,7 @@ import partyband.service.MemberServiceImpl;
 import partyband.service.partyservice;
 
 @Controller
-public class partycontroller
+public class PartyController
 {
 	@Autowired
 	private partyservice partyservice;
