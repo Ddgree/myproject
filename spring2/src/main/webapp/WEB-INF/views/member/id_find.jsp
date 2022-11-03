@@ -29,30 +29,39 @@ function parentMove() {
 }
   </script>
 <script src="./././js/jquery.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/find.css" />
 </head>
 <body>
 <div id="pwd_wrap">
  
  <c:if test="${empty idok}"> 
-  <h2 class="pwd_title">등록된 회원정보로 아이디 찾기</h2>
+  <h2 class="pwd_title" style="background: #9a6c5c;">아이디 찾기</h2>
   <form method="post" action="id_find_ok.do" onsubmit="return check()">  
-   <table id="pwd_t" border="1">
-
-    <tr>
-     <th>이름</th>
-     <td><input name="member_name" id="member_name" size="14" class="input_box" /></td>
-    </tr>
-    
-     <tr>
-     <th>Email</th>
-     <td><input name="member_email" id="member_email" size="14" class="input_box" /></td>
-    </tr>
-    
-   </table>
-   
+	<ul style="margin-top:50px;">
+		<li>
+			<span>
+				<label for="name">이름</label>
+			</span>
+			<div>
+				<input name="member_name" id="member_name" class="input_box" />
+			</div>
+		</li>
+	</ul>	
+	<ul>
+		<li>
+			<span>
+				<label for="name">Email</label>
+			</span>
+			<div>
+				<input name="member_email" id="member_email"class="input_box" />
+			</div>
+		</li>
+	</ul>	
+	
    <div id="pwd_menu"><br>
-    <input type="submit" value="아이디 찾기" class="input_button" />
-    <input type="reset" value="취소" class="input_button" onclick="window.close()" />
+    <input type="submit" value="아이디 찾기" class="button"style="margin-left:100px;" />
+    <input type="reset" value="취소" class="button" onclick="window.close()" />
    </div>
   </form>
   </c:if>
@@ -70,7 +79,7 @@ function parentMove() {
     </table>
     <div id="pwd_close2">
     <br>
-    <input type="button" value="확인" class="input_button" onclick="parentMove()" />
+    <input type="button" value="확인" class="button" onclick="parentMove()" />
     </div>
   </c:if> 
   

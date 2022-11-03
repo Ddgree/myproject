@@ -16,8 +16,8 @@
 }
 
 .button:hover {
-	background: skyblue;
-	color: black;
+	background: #61443a;
+	color: white;
 	border: 0;
 }
 
