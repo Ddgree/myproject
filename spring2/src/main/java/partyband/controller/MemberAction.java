@@ -103,7 +103,7 @@ public class MemberAction {
 				System.out.println(e);
 			}
 
-			model.addAttribute("pwdok", "등록된 이메일로 인증번호를 전송하였습니다. 이메일을 확인 하세요.");
+			model.addAttribute("pwdok", "등록된 이메일로 인증번호를 전송하였습니다. <br>이메일을 확인 하세요.");
 			return "member/pwd_find";
 
 			}	
@@ -159,7 +159,8 @@ public class MemberAction {
 				System.out.println(e);
 			}
 
-			model.addAttribute("idok", "등록된 이메일로 아이디를 전송하였습니다. 이메일을 확인하세요.");
+			model.addAttribute("idok", "등록된 이메일로 아이디를 전송하였습니다."
+					+ "이메일을 확인하세요.");
 			return "member/id_find";
 			}	
 
@@ -338,7 +339,7 @@ public class MemberAction {
 
 		if (check.getMember_passwd().equals(editpw)) {	// 비번이 같을때
 				
-			return "redirect:/member_edit.do";
+			return "member/edit_pwcheck_ok";
 				
 		} else {// 비번이 다를때
 			result = 1;
@@ -502,7 +503,7 @@ public class MemberAction {
 
 			session.invalidate();	// 세션만료
 
-			return "redirect:member_login.do";
+			return "member/member_del_ok";
 		}
 	}
 
@@ -511,7 +512,7 @@ public class MemberAction {
 	public String logout(HttpSession session) {
 		session.invalidate();
 
-		return "redirect:partyband.do"; 
+		return "member/member_logout"; 
 	}
 
 // }

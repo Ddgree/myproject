@@ -25,12 +25,12 @@
 
 	/*비번찾기 공지창*/
 	function pwd_find() {
-		window.open("pwd_find.do", "비번찾기", "width=500,height=500");
+		window.open("pwd_find.do", "비번찾기", "width=600,height=400");
 		//자바 스크립트에서 window객체의 open("공지창경로와 파일명","공지창이름","공지창속성")
 	}
 	/*아이디찾기 공지창*/
 	function id_find() {
-		window.open("id_find.do", "비번찾기", "width=450,height=500");
+		window.open("id_find.do", "비번찾기", "width=600,height=400");
 		//자바 스크립트에서 window객체의 open("공지창경로와 파일명","공지창이름","공지창속성")
 	}
 </script>
