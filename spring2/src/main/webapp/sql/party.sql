@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+delete from member where member_delok='n';
+select * from member;
+=======
 select * from reboard;
 
 select*from notice;
@@ -106,6 +110,7 @@ create sequence notice_no_seq
                 increment by 1 start with 1 nocache;
                 
 
+>>>>>>> origin/kyungmin
 select * from tab;
 
 select * from party;
