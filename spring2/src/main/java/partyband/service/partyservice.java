@@ -47,8 +47,13 @@ public class partyservice
 		return partydao.pwcheck(member_id);
 	}
 
-	public void partyedit(partybean update_party)
+	public void partyedit(partybean party)
 	{
-		partydao.partyedit(update_party);
+		partydao.partyedit(party);
+	}
+
+	public void partydel(int party_no) 
+	{
+		partydao.partydel(party_no);
 	}
 }

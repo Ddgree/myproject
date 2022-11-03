@@ -49,9 +49,13 @@ public class partydao
 		return sqlSession.selectOne("partyns.pw_checek", member_id);
 	}
 
-	public void partyedit(partybean update_party) 
+	public void partyedit(partybean party) 
 	{
-		sqlSession.update("partyns.party_edit",update_party);
+		sqlSession.update("partyns.party_edit",party);
 	}
 
+	public void partydel(int party_no) 
+	{
+		sqlSession.delete("partyns.party_delete",party_no);
+	}
 }

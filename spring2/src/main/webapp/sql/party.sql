@@ -1,6 +1,7 @@
 select * from tab;
 
 select * from party;
+select * from party where party_subject='안녕하세요';
 select count(*) from party;
 
 select * from seq;
@@ -32,6 +33,6 @@ insert into party values(party_no_seq.nextval,'파티방 연습','지역', '파�
 select * from member;
 select * from admin;
 UPDATE party SET party_count = 0 WHERE party_count>0;
-delete from party where party_subject = '작성자test()';
+delete from party where party_subject = '안녕하세요';
 delete from party where party_max_count > 5;
 delete from party where party_count > 5;
