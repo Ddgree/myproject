@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  
-<script>
-  alert("로그아웃 되었습니다!");
-  location="partyband.do";
-</script>
+
+    
+test.jsp 출력 성공  
