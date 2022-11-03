@@ -9,6 +9,7 @@
 <body>
 	<script>
 	location.href = "partyband.do";
+	
 	//location.href = "member_login.do";
 	</script>
 </body>
