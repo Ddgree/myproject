@@ -88,11 +88,13 @@ a {
 	color:black;
 	width: 150px; 
 	text-decoration: none;
+	font-family: "paybooc-Light", sans-serif;
+	font-weight: 600;
 
 }
 .navi a:hover, .navi a:active, .navi a:focus {
-		text-shadow:0px 2px 2px #000;
 		color:white;
+		
 }
 
 .hello {
@@ -130,7 +132,6 @@ a {
 <body>
 <div class="screen">
 		<div class="category">
-<<<<<<< HEAD
 		<input type="hidden" name="member_id" value="${sessionScope.member.member_id}" />
     <nav class="navi">
       <ul>
@@ -147,22 +148,5 @@ a {
 		</div>
 	</div>
 			
-=======
-			<div>
-				<a href="partyband.do"><img src="././resources/images/logo.jpg"
-					class="img"></a>
-			</div>
-			<div onClick='location="https://www.naver.com"' class="menu" style="margin-left: 120px;">종료파티방</div>
-			<div onClick='location="https://www.naver.com"' class="menu" style="margin-left: 200px;">커뮤니티</div>
-			<div onClick='location="https://www.naver.com"' class="menu" style="margin-left: 200px;">공지사항</div>
-				<input type="hidden" name="member_id" value="${sessionId}" />
-			
-			    <div class="hello">${sessionId}님! 환영합니다!</div>
-				<input type="submit" value="로그아웃" class="mypage" style="margin-right:-180px;" onclick="location='member_logout.do'"/>
-				<input type="button" value="마이페이지" class="mypage" style="margin-right:-90px;" onclick="edit_pwcheck()" /> 
->>>>>>> origin/user1
-			
-		</div>
-	</div>
 </body>
 </html>

@@ -71,10 +71,11 @@ a {
 	color:black;
 	width: 150px; 
 	text-decoration: none;
+	font-family: "paybooc-Light", sans-serif;
+	font-weight: 600;
 
 }
 .navi a:hover, .navi a:active, .navi a:focus {
-		text-shadow:0px 2px 2px #000;
 		color:white;
 }
 </style>
