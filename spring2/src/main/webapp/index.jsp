@@ -8,7 +8,7 @@
 </head>
 <body>
 	<script>
-	location.hr ef = "partyband.do";
+	location.href = "partyband.do";
 	//location.href = "member_login.do";
 	</script>
 </body>
