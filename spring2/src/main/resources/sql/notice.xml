@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Test">
+
+	<resultMap id="noticeResult" type="notice">
+		<result property="notice_no" column="notice_no" />
+		<result property="notice_subject" column="notice_subject" />
+		<result property="notice_content" column="notice_content" />
+		<result property="notice_date" column="notice_date" />
+		<result property="notice_readcount" column="notice_readcount" />
+		<result property="notice_file" column="notice_file" />
+		<result property="notice_admin_id" column="notice_admin_id" />
+	</resultMap>
+
+	<!-- 게시판 저장 -->
+	<insert id="notice_insert" parameterType="notice">
+		insert into notice
+		values
+		(notice_no_seq.nextval,#{notice_subject},#{notice_content},sysdate,
+		0,#{notice_file, jdbcType=VARCHAR},#{notice_admin_id})
+	</insert>
+
+	<!-- 게시판 총게시물 수 -->
+	<select id="notice_count" resultType="int">
+		select count(*) from notice
+	</select>
+
+	<!-- 게시판 목록 (page번호를 전달받아서 startRow와 endRow를 구함) -->
+<!-- 	<select id="notice_list" parameterType="int" resultType="notice">
+	    <![CDATA[
+		select * from 
+		 (select rownum rnum,notice_no,notice_subject,notice_content,
+		  notice_date,notice_readcount,notice_file,notice_admin_id from notice order by notice_no desc) 
+	   		 where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10)
+		]]>
+	</select> -->
+
+	<!-- 게시판 내용보기 -->
+	<select id="notice_cont" resultType="notice" parameterType="int">
+		select * from notice where notice_no=#{notice_no}
+	</select>
+
+	<!-- 게시판 조회수 증가 -->
+	<update id="notice_hit" parameterType="int">
+		update notice set
+		notice_readcount=notice_readcount+1
+		where notice_no=#{notice_no}
+	</update>
+
+	<!-- 게시물 수정 -->
+	<update id="notice_edit" parameterType="notice">
+		update notice set
+		notice_no=#{notice_no},
+		notice_subject=#{notice_subject},
+		notice_content=#{notice_content}
+		where notice_no=#{notice_no}
+	</update>
+
+	<!-- 게시물 삭제 -->
+	<delete id="notice_del" parameterType="int">
+		delete from notice where
+		notice_no=#{notice_no}
+	</delete>
+
+	<select id="getTotal" parameterType="notice" resultType="int">
+		select count(*) from notice
+		<where>
+			<if test="keyword != null and search !='subcon'">
+				${search} like '%'||#{keyword}||'%'
+			</if>
+			<if test="keyword != null and search=='subcon'">
+				notice_subject like '%'||#{keyword}||'%' or
+				notice_content like
+				'%'||#{keyword}||'%'
+			</if>
+		</where>
+	</select>
+
+	<!-- <select id="list" parameterType="hashMap" resultMap="boardResult"> -->
+	<select id="list" parameterType="notice"
+		resultMap="noticeResult">
+		select * from (select a.*,rowNum rn from (
+		select * from notice
+		<where>
+			<if test="keyword != null and search!='subcon'">
+				${search} like '%'||#{keyword}||'%'
+			</if>
+			<if test="keyword != null and search=='subcon'">
+				notice_subject like '%'||#{keyword}||'%' or
+				notice_content like
+				'%'||#{keyword}||'%'
+			</if>
+		</where>
+		order by notice_no desc) a )
+		where rn between #{startRow} and #{endRow}
+	</select>
+
+</mapper>

@@ -1,19 +1,9 @@
 function party_check() {
 	//나이
-	if ($.trim($("#party_age").val()) == "") {
-		alert("나이를 입력하세요!");
-		$("#party_age").val("").focus();
-		return false;
-	}
-	if (isNaN($.trim($("#party_age").val()))) {
-		alert("나이는 숫자만 입력!");
-		$("#party_age").val("").focus();
-		return false;
-	}
-	if ($.trim($("#party_age").val()).length > 2) {
-		alert("나이를 다시 확인하세요!");
-		$("#party_age").val("").focus();
-		return false;
+	if ($("input:checkbox").is(":checked") == true) {
+		return $("#party_age").val("20");
+	}else{
+		return $("#party_age").val("19");
 	}
 	
 	//활동일
