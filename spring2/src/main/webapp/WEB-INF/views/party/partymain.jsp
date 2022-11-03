@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>메인 페이지</title>
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/pm.css" />
+	href="<%=request.getContextPath()%>/resources/css/partymain.css" />
 <script src="https://kit.fontawesome.com/f82eca20b8.js"
 	crossorigin="anonymous"></script>
 
@@ -27,8 +27,10 @@
 		onclick="location='admin_login.do?page=${page}'" /><br>
 	<input type="button" value="관리자 로그아웃" class="input_button"
 		onclick="location='test_logout.do'" /><br>
+	<input type="button" value="test 로그인" class="input_button"
+		onclick="location='nomal_login.do?page=${page}'" /><br>
 	<input type="button" value="파티만들기" class="input_button"
-		onclick="location='party_create.do?party_no=${p.party_no}&page=${page}'" />
+		onclick="location='party_create.do?page=${page}&party_id=${member.member_id}'" />
 		</div>
 <script src="<%=request.getContextPath()%>/resources/js/moveoptions.js"></script>
 	
@@ -49,9 +51,15 @@
 			<!-- 날짜포멧출력 -->
 			<fmt:formatDate var="dday" value="${enddate }"
 				pattern="yyyy년 MM월 dd일" />
-				
-			<button type="button" class=push
-				onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page }'">
+				<c:if test="${p.party_age lt 20 and member.member_age lt 20 }">
+				<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page }'">
+				</c:if>
+				<c:if test="${p.party_age ge 20 and member.member_age lt 20 }">
+				<button type="button" disabled class=push-child onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page }'">
+				</c:if>
+				<c:if test="${sessionId eq 'admin' or member.member_id eq null or member.member_age ge 20 }">
+				<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page }'">
+				</c:if>
 				<div class=type>[${p.party_address}] ${p.party_subject}</div>
 				<div>
 					<c:if test="${now==day }">

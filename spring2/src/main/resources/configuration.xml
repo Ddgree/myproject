@@ -5,7 +5,8 @@
 <configuration>
 
 	<typeAliases>
-		<typeAlias alias="party" type="partyband.model.partybean"/>
+		<typeAlias alias="party" type="partyband.model.partybean" />
+		<typeAlias alias="notice" type="partyband.model.Notice" />
 		<typeAlias alias="member" type="partyband.model.MemberBean"/>
 		<typeAlias alias="board" type="partyband.model.BoardBean"/>
 	</typeAliases>

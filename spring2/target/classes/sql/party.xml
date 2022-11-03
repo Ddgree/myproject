@@ -44,7 +44,19 @@
 	
 	<!-- 파티방 수정 -->
 	<update id="party_edit" parameterType="party">
-		update party set Party_address=Party_address,party.setParty_gender(party.getParty_gender,Party_enddate(party.getParty_enddate,
-		Party_max_count(party.getParty_max_count,Party_content(party.getParty_contentParty_age(party.getParty_age());
+		update party set
+		party_address=#{party_address},
+		party_age=#{party_age},
+		party_gender=#{party_gender},
+		party_enddate=#{party_enddate},
+		party_subject=#{party_subject},
+		party_content=#{party_content},
+		party_max_count=#{party_max_count}
+		where party_no=#{party_no}
 	</update>
+	
+	<!-- 파티방 삭제 -->
+	<delete id="party_delete" parameterType="String">
+		delete from party where party_no=#{party_no}
+	</delete>
 </mapper>

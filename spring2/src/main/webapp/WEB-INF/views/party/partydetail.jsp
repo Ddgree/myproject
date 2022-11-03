@@ -20,9 +20,6 @@
 	<%@ include file="../member/header_login.jsp"%>
 </c:if>
 <body>
-세션 = ${sessionId}${sessionMember.member_id}<br>
-작성자 = ${party.party_id }<br>
-파티방 번호 = ${party.party_no }<br>
 <!-- 오늘 날짜 -->
 <jsp:useBean id="today" class="java.util.Date" />
 <fmt:parseNumber value="${today.time / (1000*60*60*24)}" integerOnly="true" var="now" scope="request"/>
@@ -77,9 +74,10 @@
 								<c:if test="${party.party_count!=0}"></c:if>
 								<c:if test="${party.party_count==0}">
 							<input type="button" value="수정" class="input_button"
-								onclick="location='partyeditform.do?party_no=${party.party_no}&page=${page}&member_id=${member.member_id}'" />
-							<input type="button" value="삭제" class="input_button"
-								onclick="location ='partydelete.do'" /></c:if>
+								onclick="location='pwcheckform.do?party_no=${party.party_no}&page=${page}&member_id=${member.member_id}&stat=edit'" />
+							<input type="button" value="삭제 " class="input_button"
+								onclick="location='pwcheckform.do?party_no=${party.party_no}&page=${page}&member_id=${member.member_id}&stat=del'" />
+							</c:if>
 						</c:when>
 						<c:when test="${sessionId eq 'admin'}">
 							<input type="button" value="목록" class="input_button"

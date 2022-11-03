@@ -47,11 +47,4 @@
 		<beans:property name="maxUploadSize" value="10000000" />
 	</beans:bean>
 	<context:component-scan base-package="partyband" />
-
-	<!-- <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
-              <property name="order" value="0"/>
-    </bean>
-    <bean id="download" class="partyband/util/FileDownload"/> -->
-    
-
 </beans:beans>
