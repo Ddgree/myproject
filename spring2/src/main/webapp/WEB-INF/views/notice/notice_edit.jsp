@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>공지사항 수정폼</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="<%=request.getContextPath()%> /js/notice.js"></script>
+<script src="<%=request.getContextPath()%> /resources/js/notice.js"></script>
 <c:if test="${sessionScope.member.member_id == null }">
 	<%@ include file="../member/header.jsp"%>
 </c:if>
@@ -23,7 +23,7 @@
 		<form method="post" action="notice_edit_ok.do"
 			onSubmit="return notice_check()">
 			<input type="hidden" name="notice_no" value="${ncont.notice_no}" />
-			<input type="hidden" name="page" value="${page}" />
+			<input type="hidden" name="pageNum" value="${pageNum}" />
 
 			<table id="noticewrite_t">
 				<tr>
@@ -50,7 +50,7 @@
 			<div id="noticewrite_menu">
 				<input type="submit" value="수정" class="input_button" /> <input
 					type="button" value="취소" class="input_button"
-					onclick="location='notice_list.do?page=${page}'" />
+					onclick="location='notice_list.do?pageNum=${pageNum}'" />
 			</div>
 		</form>
 	</div>

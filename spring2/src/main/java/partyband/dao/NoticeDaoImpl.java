@@ -21,11 +21,11 @@ public class NoticeDaoImpl implements NoticeDao {
 
 	
 	/* 게시물 목록  */
-	public List<Notice> getNoticeList(int page) throws Exception {
-		List<Notice> list = sqlSession.selectList("Test.notice_list", page);
-
-		return list;
-	}
+//	public List<Notice> getNoticeList(int page) throws Exception {
+//		List<Notice> list = sqlSession.selectList("Test.notice_list", page);
+//
+//		return list;
+//	}
 
 	
 	/* 게시판 총 갯수  */
@@ -58,6 +58,18 @@ public class NoticeDaoImpl implements NoticeDao {
 	/* 게시물 삭제  */
 	public void noticeDelete(int notice_no) throws Exception {
 		sqlSession.delete("Test.notice_del", notice_no);				
+	}
+	
+//	public List<Board> list(int startRow, int endRow) {
+	public List<Notice> list(Notice notice) {
+/*		HashMap<String, Integer> hm=new HashMap<String, Integer>();
+		hm.put("startRow",startRow);
+		hm.put("endRow",endRow);*/
+		return sqlSession.selectList("Test.list",notice);
+	}
+	
+	public int getTotal(Notice notice) {
+		return sqlSession.selectOne("Test.getTotal",notice);
 	}
 	
 }

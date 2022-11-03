@@ -15,9 +15,9 @@ public class partydao
 	private SqlSession sqlSession;
 	
 	/* 작성된 파티방 보기  */
-	public partybean getPartyCont(String party_id) throws Exception 
+	public partybean getPartyCont(int party_no) throws Exception 
 	{
-		return (partybean) sqlSession.selectOne("partyns.party_cont",party_id);
+		return (partybean) sqlSession.selectOne("partyns.party_cont",party_no);
 	}
 	
 	/* 파티방 목록  */

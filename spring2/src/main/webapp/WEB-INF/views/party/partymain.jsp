@@ -8,42 +8,34 @@
 <meta charset="UTF-8">
 <title>메인 페이지</title>
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/partymain.css" />
+	href="<%=request.getContextPath()%>/resources/css/pm.css" />
 
-<c:if test="${sessionScope.member.member_id == null }">
-<%@ include file="../member/header.jsp" %>
-</c:if>
-<c:if test="${sessionScope.member.member_id != null }">
-<%@ include file="../member/header_login.jsp" %>
-</c:if>
 
 </head>
 <body>
-<br><br><br><br>
-	sessionid = ${sessionId}<br>
+	sessionid = ${sessionMember.member_id}${sessionId}<br>
 	<!-- 로그인버튼 지우지 말아주세요!!!  -->
-	<input type="button" value="로그인" class="input_button"
-		onclick="location='dlatl.do?page=${page}'" /><br>
+	<input type="button" value="관리자 로그인" class="input_button"
+		onclick="location='admin_login.do?page=${page}'" /><br>
+	<input type="button" value="ID가 test인 일반회원 로그인" class="input_button"
+		onclick="location='nomal_login.do?page=${page}'" />
+	<input type="button" value="로그아웃" class="input_button"
+		onclick="location='test_logout.do?page=${page}'" /><br>
 	<input type="button" value="파티만들기" class="input_button"
-		onclick="location='party_create.do?party_no=${p.party_no}&page=${page}'" />
-		<!-- partyroom_wrap -->
-	<div id=""><br>
+		onclick="location='party_create.do?page=${page}&party_id=${sessionMember.member_id}'" />
+	<input type="button" value="공지사항" class="input_button"
+		onclick="location='notice_list.do?page=${page}'" />
+		
+	<div id="party-list" align="center"><br>
 		<c:forEach var="p" items="${partylist}">
-			<table border="1">
-				<tr>
-					<td>[${p.party_no}]</td>
-					<td>${p.party_subject}</td>
-				</tr>
-				<tr>
-					<td colspan=2>${p.party_enddate}</td>
-				</tr>
-				<tr>
-					<td colspan=2>${p.party_count} / ${p.party_max_count}</td>
-				</tr>
-			</table>
+			<button type="button" class = "party-list-button" onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page}'">
+				<div id="item-type">[${p.party_address}] ${p.party_subject}</div>
+				<div id="item-date">${p.party_enddate}</div>
+				<div id="item-price">${p.party_count} / ${p.party_max_count}</div>
+			</button>	
 		</c:forEach>
 	</div>
-	<div id="parytslist_paging">
+	<div id="parytslist_paging" align="center">
 
 		<c:if test="${page == 1 }"> [처음]&nbsp; </c:if>
 
@@ -76,5 +68,4 @@
 		</c:if>
 	</div>
 </body>
-<%@ include file="../member/footer.jsp" %>
 </html>

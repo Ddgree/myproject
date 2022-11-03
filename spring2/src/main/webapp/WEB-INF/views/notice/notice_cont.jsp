@@ -10,7 +10,6 @@
 <meta charset="UTF-8">
 <title>공지사항 내용보기</title>
 
-<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/notice.css" type="text/css">
 
 <c:if test="${sessionScope.member.member_id == null }">
 	<%@ include file="../member/header.jsp"%>
@@ -22,25 +21,25 @@
 
 <body>
 	<div id="noticecont_wrap">
-		<h2 class="noticecont_title">공지사항 내용보기</h2>
-		<table id="noticecont_t" width="70%" align="center">
+		<h2 style=padding-top:90px align=center>공지사항 내용보기</h2>
+		<table  border=1 id="noticecont_t" width=60% align="center" style=margin-top:50px>
 			<tr>
-				<th>제목</th>
-				<td>${ncont.notice_subject}</td>
-				<td align="right">작성일</td>
-				<td align="center">${ncont.notice_date}</td>
+				<th height=50>제목</th>
+				<td width=60%>${ncont.notice_subject}</td>
+				<th>작성일</th>
+				<td align=center>${ncont.notice_date}</td>
 				<th>조회수</th>
-				<td>${ncont.notice_readcount}</td>
+				<td width=50 align=center>${ncont.notice_readcount}</td>
 			</tr>
 			<tr>
 				<th>글내용</th>
-				<td>
+				<td colspan=5 height=300 style=vertical-align:top>
 					<%--  ${board_cont} --%> <pre>${ncont.notice_content}</pre>
 				</td>
 			</tr>
 			<tr>
 				<th>파일첨부</th>
-				<td><c:if test="${ncont.notice_file != null}">
+				<td colspan=5 height=40><c:if test="${ncont.notice_file != null}">
 						<a href="filedown.do?notice_file=${ncont.notice_file}">
 							${ncont.notice_file} </a>
 					</c:if></td>
@@ -48,15 +47,15 @@
 		</table>
 		
 
-		<div id="noticecont_menu" width="70" align="center">
-			<c:if test="${id eq 'admin'}">
+		<div id="noticecont_menu" width="70" align="center" style=margin-top:20px >
+			<c:if test="${sessionId eq 'admin'}">
 				<input type="button" value="수정" class="input_button"
-					onclick="location='notice_cont.do?notice_no=${ncont.notice_no}&page=${page}&state=edit'" />
+					onclick="location='notice_edit.do?notice_no=${ncont.notice_no}&pageNum=${pageNum}'" />
 				<input type="button" value="삭제" class="input_button"
-					onclick="location='notice_cont.do?notice_no=${ncont.notice_no}&page=${page}&state=del'" />
+					onclick="location='notice_del.do?notice_no=${ncont.notice_no}&pageNum=${pageNum}'" />
 			</c:if>
 			<input type="button" value="목록" class="input_button"
-				onclick="location='notice_list.do?page=${page}'" />
+				onclick="location='notice_list.do?pageNum=${pageNum}'" />
 		</div>
 	</div>
 </body>

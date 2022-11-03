@@ -15,9 +15,9 @@ public class partyservice
 	private partydao partydao;
 	
 	/* 상세정보 */
-	public partybean party_cont(String party_id) throws Exception 
+	public partybean party_cont(int party_no) throws Exception 
 	{
-		partybean party = partydao.getPartyCont(party_id);
+		partybean party = partydao.getPartyCont(party_no);
 
 		return party;
 	}

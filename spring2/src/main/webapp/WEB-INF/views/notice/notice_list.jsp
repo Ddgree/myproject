@@ -10,8 +10,6 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 목록</title>
-<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/notice.css" type="text/css">
-
 <c:if test="${sessionScope.member.member_id == null }">
 	<%@ include file="../member/header.jsp"%>
 </c:if>
@@ -21,91 +19,77 @@
 </head>
 
 <body>
-	<!-- 게시판 리스트 -->
-	<div id="noticelist_wrap">
-		<h2 class="noticelist_title">공지사항 목록</h2>
-		<c:if test="${id eq 'admin'}">
-			<div id="noticelist_w">
-				<input type="button" value="글쓰기" class="input_button"
-					onclick="location='notice_write.do?page=${page}'">
-			</div>
-		</c:if>
-		<div id="noticelist_c">글 개수 : ${listcount}</div>
-
-		<table id="noticelist_t" width="70%">
-			<tr align="center" valign="middle">
-				<td>
-					<div align="center">번호</div>
-				</td>
-				<td>
-					<div align="center">제목</div>
-				</td>
-				<td>
-					<div align="center">날짜</div>
-				</td>
-				<td>
-					<div align="center">조회수</div>
-				</td>
+	<div class="container" align="center">
+		<h2 style=padding-top:90px align=center>공지사항 목록</h2>
+		<table border=1 width=60% align="center">
+		<div style="margin-left:56%; margin-bottom:20px;">
+			<c:if test="${sessionId eq 'admin'}">
+			<input type="button" style="width:70px; height:35px; font-size:15px;" value="글 쓰기"
+					onclick="location='notice_write.do'" />
+			</c:if>
+		</div>
+			<tr height=50>
+				<td width=55 align=center>번호</td>
+				<td width=300 align=center>제목</td>
+				<td width=100 align=center>작성일</td>
+				<td width=70 align=center>조회수</td>
 			</tr>
-
-			<!-- 화면 출력 번호  변수 정의 -->
-			<c:set var="num" value="${listcount-(page-1)*10}" />
-
-			<!-- 반복문 시작 -->
-			<c:forEach var="n" items="${noticelist}">
-
-				<tr align="center" valign="middle">
-					<td>
-						<!-- 번호 출력 부분 --> <c:out value="${num}" /> <c:set var="num"
-							value="${num-1}" />
-					</td>
-
-					<td>
-						<div align="center">
-							<!-- 제목 출력 부분 -->
-							<a
-								href="notice_cont.do?notice_no=${n.notice_no}&page=${page}&state=cont">
-								${n.notice_subject} </a>
-						</div>
-					</td>
-					<td>
-						<div align="center">${n.notice_date}</div>
-					</td>
-					<td>
-						<div align="center">${n.notice_readcount}</div>
-					</td>
-				</tr>
-
-			</c:forEach>
-			<!-- 반복문 끝 -->
+			
+			<c:if test="${not empty list}">
+				<c:set var="no1" value="${no }"></c:set>
+				<c:forEach var="notice" items="${list }">
+					<tr height=30>
+						<td align=center>${no1}</td>
+							<td align=center><a href="notice_cont.do?notice_no=${notice.notice_no}&pageNum=${pp.currentPage}"
+							       class="btn btn-default"> 
+								${notice.notice_subject} </a></td>
+							<td align=center>${notice.notice_date}</td>
+							<td align=center>${notice.notice_readcount}</td>
+					</tr>
+					<c:set var="no1" value="${no1 - 1}"/>
+				</c:forEach>
+			</c:if>
 		</table>
-
-
-		<div id="noticelist_paging">
-			<c:if test="${page <=1 }">
-				[이전]&nbsp;
-			</c:if>
-
-			<c:if test="${page > 1 }">
-				<a href="notice_list.do?page=${page-1}">[이전]</a>&nbsp;
-			</c:if>
-
-			<c:forEach var="a" begin="${startpage}" end="${endpage}">
-				<c:if test="${a == page }">
-					[${a}]
+		
+		<form action="notice_list.do" style=margin-top:20px>
+			<input type="hidden" name="pageNum" value="1"> 
+			<select	name="search">
+				<option value="notice_subject"	<c:if test="${search=='notice_subject'}">selected="selected" </c:if>>제목</option>
+				<option value="notice_content"	<c:if test="${search=='notice_content'}">selected="selected" </c:if>>내용</option>
+				<option value="subcon"	<c:if test="${search=='subcon'}">selected="selected" </c:if>>제목+내용</option>
+			</select> 
+			<input type="text" name="keyword" style="width:350px;"> 
+			<input type="submit" value="확인">
+		</form>
+		
+		<div class="pagination" align="center" style=margin-top:20px>
+			<!-- 검색 했을 경우의 페이징 처리 -->
+			<c:if test="${not empty keyword}">
+				<c:if test="${pp.startPage > pp.pagePerBlk }">
+					<a
+						href="notice_list.do?pageNum=${pp.startPage - 1}&search=${search}&keyword=${keyword}">이전</a>
 				</c:if>
-				<c:if test="${a != page }">
-					<a href="notice_list.do?page=${a}">[${a}]</a>&nbsp;
+				<c:forEach var="i" begin="${pp.startPage}" end="${pp.endPage}">
+					 <a href="notice_list.do?pageNum=${i}&search=${search}&keyword=${keyword}">${i}</a>
+				</c:forEach>
+				<c:if test="${pp.endPage < pp.totalPage}">
+					<a
+						href="notice_list.do?pageNum=${pp.endPage + 1}&search=${search}&keyword=${keyword}">다음</a>
 				</c:if>
-			</c:forEach>
-
-			<c:if test="${page >= maxpage }">
-				[다음] 
 			</c:if>
-			<c:if test="${page < maxpage }">
-				<a href="notice_list.do?page=${page+1}">[다음]</a>
+			
+			<!-- 전체 목록의 페이징 처리 -->
+			<c:if test="${empty keyword}">
+				<c:if test="${pp.startPage > pp.pagePerBlk }">
+					<a href="notice_list.do?pageNum=${pp.startPage - 1}">이전</a>
+				</c:if>
+				<c:forEach var="i" begin="${pp.startPage}" end="${pp.endPage}">
+						<a href="notice_list.do?pageNum=${i}">${i}</a>
+				</c:forEach>
+				<c:if test="${pp.endPage < pp.totalPage}">
+					<a href="notice_list.do?pageNum=${pp.endPage + 1}">다음</a>
+				</c:if>
 			</c:if>
-
 		</div>
 	</div>
 </body>

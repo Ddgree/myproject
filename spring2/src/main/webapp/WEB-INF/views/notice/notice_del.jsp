@@ -33,7 +33,7 @@
 		<form method="post" action="notice_del_ok.do"
 			onsubmit="return del_check()">
 			<input type="hidden" name="notice_no" value="${ncont.notice_no}" />
-			<input type="hidden" name="page" value="${page}" />
+			<input type="hidden" name="pageNum" value="${pageNum}" />
 			<table id="noticedel_t">
 				<tr>
 					<th>삭제 비밀번호</th>
@@ -42,9 +42,9 @@
 				</tr>
 			</table>
 			<div id="noticedel_menu">
-				<input type="submit" value="삭제" class="input_button" /> <input
-					type="button" value="취소" class="input_button"
-					onclick="location='notice_list.do?page=${page}'" />
+				<input type="submit" value="삭제" class="input_button" /> 
+				<input type="button" value="취소" class="input_button"
+					onclick="location='notice_list.do?pageNum=${pageNum}'" />
 			</div>
 		</form>
 	</div>

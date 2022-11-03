@@ -18,5 +18,9 @@ public void insert(Notice notice) throws Exception;
 
 	public int getListCount() throws Exception;
 	
-	public List getNoticeList(int page) throws Exception;
+//	public List getNoticeList(int page) throws Exception;
+	
+	int getTotal(Notice notice);
+	
+	List<Notice> list(Notice notice);
 }

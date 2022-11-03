@@ -21,10 +21,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import partyband.model.Notice;
+import partyband.service.NoticeService;
 import partyband.service.NoticeServiceImpl;
+import partyband.service.PagingPgm;
 
 @Controller
 public class NoticeController {
+	
+	@Autowired
+	private NoticeService ns;
 	
 	@Autowired
 //	@Inject
@@ -37,63 +42,105 @@ public class NoticeController {
 		return "notice/test";
 	}
 	
-	/* 공지사항 목록 */
-	@RequestMapping(value = "/notice_list.do")
-	public String notice_list(HttpServletRequest request, Model model) throws Exception {
-		
-		System.out.println("리스트 들어옴");
-		
+	@RequestMapping("notice_list.do")	// 전체 목록, 검색 목록
+	public String list(HttpServletRequest request, String pageNum, Notice notice, Model model) {
+
 		HttpSession session = request.getSession();
 		String id = "admin";
 		String passwd = "1234";
 		
 		session.setAttribute("id", id);
 		session.setAttribute("passwd", passwd);
-
-		List<Notice> noticelist = new ArrayList<Notice>();
-
-		int page = 1;
-		int limit = 10; // 한 화면에 출력할 레코드수
-
-		System.out.println("page="+page);
-
-		if (request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
-		}
 		
-		// 총 리스트 수를 받아옴.
-		int listcount = noticeService.getListCount();
-
-		// 페이지 번호(page)를 DAO클래스에게 전달한다.
-		noticelist = noticeService.getNoticeList(page); // 리스트를 받아옴.
-
-		// 총 페이지 수.
-		int maxpage = (int) ((double) listcount / limit + 0.95); // 0.95를 더해서 올림
-																	// 처리.
-		// 현재 페이지에 보여줄 시작 페이지 수(1, 11, 21 등...)
-		int startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
-		// 현재 페이지에 보여줄 마지막 페이지 수.(10, 20, 30 등...)
-		int endpage = maxpage;
-
-		if (endpage > startpage + 10 - 1)
-			endpage = startpage + 10 - 1;
-
-		model.addAttribute("page", page);
-		model.addAttribute("startpage", startpage);
-		model.addAttribute("endpage", endpage);
-		model.addAttribute("maxpage", maxpage);
-		model.addAttribute("listcount", listcount);
-		model.addAttribute("noticelist", noticelist);
+		System.out.println("리스트 들어옴");
+		
+		final int rowPerPage = 10;	// 화면에 출력할 데이터 갯수
+		
+		if (pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		int currentPage = Integer.parseInt(pageNum); // 현재 페이지 번호
+		
+		// int total = bs.getTotal();
+		int total = ns.getTotal(notice); // 검색 (데이터 갯수)
+		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		
+		PagingPgm pp = new PagingPgm(total, rowPerPage, currentPage);
+		notice.setStartRow(startRow);
+		notice.setEndRow(endRow);
+		// List<Board> list = bs.list(startRow, endRow);
+		int no = total - startRow + 1;		// 화면 출력 번호
+		List<Notice> list = ns.list(notice);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("no", no);
+		model.addAttribute("pp", pp);
+		// 검색
+		model.addAttribute("search", notice.getSearch());
+		model.addAttribute("keyword", notice.getKeyword());
 		
 		return "notice/notice_list";
 	}
 	
+//	/* 공지사항 목록 */
+//	@RequestMapping(value = "/notice_list.do")
+//	public String notice_list(HttpServletRequest request, Model model) throws Exception {
+//		
+//		System.out.println("리스트 들어옴");
+//		
+//		HttpSession session = request.getSession();
+//		String id = "admin";
+//		String passwd = "1234";
+//		
+//		session.setAttribute("id", id);
+//		session.setAttribute("passwd", passwd);
+//
+//		List<Notice> noticelist = new ArrayList<Notice>();
+//
+//		int page = 1;
+//		int limit = 10; // 한 화면에 출력할 레코드수
+//
+//		System.out.println("page="+page);
+//
+//		if (request.getParameter("page") != null) {
+//			page = Integer.parseInt(request.getParameter("page"));
+//		}
+//		
+//		// 총 리스트 수를 받아옴.
+//		int listcount = noticeService.getListCount();
+//
+//		// 페이지 번호(page)를 DAO클래스에게 전달한다.
+//		noticelist = noticeService.getNoticeList(page); // 리스트를 받아옴.
+//
+//		// 총 페이지 수.
+//		int maxpage = (int) ((double) listcount / limit + 0.95); // 0.95를 더해서 올림
+//																	// 처리.
+//		// 현재 페이지에 보여줄 시작 페이지 수(1, 11, 21 등...)
+//		int startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
+//		// 현재 페이지에 보여줄 마지막 페이지 수.(10, 20, 30 등...)
+//		int endpage = maxpage;
+//
+//		if (endpage > startpage + 10 - 1)
+//			endpage = startpage + 10 - 1;
+//
+//		model.addAttribute("page", page);
+//		model.addAttribute("startpage", startpage);
+//		model.addAttribute("endpage", endpage);
+//		model.addAttribute("maxpage", maxpage);
+//		model.addAttribute("listcount", listcount);
+//		model.addAttribute("noticelist", noticelist);
+//		
+//		return "notice/notice_list";
+//	}
+	
 	/* 공지사항 글쓰기 폼 */
 	@RequestMapping(value = "/notice_write.do")
-	public String notice_write(@RequestParam("page") String page, Model model) {
+	public String notice_write() {
 		System.out.println("공지사항 글쓰기 폼");
 		
-		model.addAttribute("page", page);
+//		model.addAttribute("page", page);
 		
 		return "notice/notice_write";
 	}
@@ -178,33 +225,35 @@ public class NoticeController {
 	/* 게시판 내용보기,삭제폼,수정폼,답변글폼 */
 	@RequestMapping(value = "/notice_cont.do")
 	public String notice_cont(@RequestParam("notice_no") int notice_no,
-			@RequestParam("page") String page,
-			@RequestParam("state") String state, 
+			@RequestParam("pageNum") String pageNum, 
 			Model model) throws Exception {
 
 		System.out.println("상세정보 들어옴");
 		
-		if (state.equals("cont")) { // 내용보기일때만
-			noticeService.hit(notice_no); // 조회수 증가
-		}
+		noticeService.hit(notice_no); // 조회수 증가
+		
 
 		Notice notice = noticeService.notice_cont(notice_no);
 
 		model.addAttribute("ncont", notice);
-		model.addAttribute("page", page);
+		model.addAttribute("pageNum", pageNum);
 
-		if (state.equals("cont")) {// 내용보기일때
-			return "notice/notice_cont";// 내용보기 페이지 설정
-			// String board_cont = board.getBoard_content().replace("\n",
-			// "<br/>");
-			// 글내용중 엔터키 친부분을 웹상에 보이게 할때 다음줄로 개행
-			// contM.addObject("board_cont", board_cont);
-		} else if (state.equals("edit")) {// 수정폼
-			return "notice/notice_edit";
-		} else if (state.equals("del")) {// 삭제폼
-			return "notice/notice_del";
-		} 
-		return null;
+		return "notice/notice_cont";// 내용보기 페이지 설정
+
+	}
+	
+	// 공지사항 수정 폼
+	@RequestMapping(value = "/notice_edit.do")
+	public String notice_edit(@RequestParam("notice_no") int notice_no,
+			@RequestParam("pageNum") String pageNum, Model model) throws Exception {
+		System.out.println("공지사항 수정 폼");
+		
+		Notice notice = noticeService.notice_cont(notice_no);
+		
+		model.addAttribute("ncont", notice);
+		model.addAttribute("pageNum", pageNum);
+		
+		return "notice/notice_edit";
 	}
 	
 	//파일다운
@@ -217,10 +266,10 @@ public class NoticeController {
 	/* 게시판 수정 */
 	@RequestMapping(value = "/notice_edit_ok.do", method = RequestMethod.POST)
 	public String notice_edit_ok(@ModelAttribute Notice n,
-								@RequestParam("page") String page,
+								@RequestParam("pageNum") String pageNum,
 								Model model) throws Exception {
 		
-		System.out.println("공지사항 수정");
+		System.out.println("공지사항 수정 저장");
 
 		// 수정 메서드 호출
 		Notice notice = noticeService.notice_cont(n.getNotice_no());
@@ -240,14 +289,28 @@ public class NoticeController {
 		noticeService.edit(n);
 		
 		return "redirect:/notice_cont.do?notice_no=" + n.getNotice_no()
-					+ "&page=" + page + "&state=cont";
+					+ "&pageNum=" + pageNum;
+	}
+	
+	/* 공지사항 삭제 폼 */
+	@RequestMapping(value = "/notice_del.do")
+	public String notice_del(@RequestParam("notice_no") int notice_no,
+			@RequestParam("pageNum") String pageNum, Model model) throws Exception {
+		System.out.println("공지사항 삭제 폼");
+		
+		Notice notice = noticeService.notice_cont(notice_no);
+		
+		model.addAttribute("ncont", notice);
+		model.addAttribute("pageNum", pageNum);
+		
+		return "notice/notice_del";
 	}
 
 	
 	/* 게시판 삭제 */
 	@RequestMapping(value = "/notice_del_ok.do", method = RequestMethod.POST)
 	public String notice_del_ok(@RequestParam("notice_no") int notice_no,
-			@RequestParam("page") String page,
+			@RequestParam("pageNum") String pageNum,
 			@RequestParam("pwd") String passwd,
 			HttpServletRequest request, HttpSession session,
 			Model model) throws Exception {
@@ -268,7 +331,7 @@ public class NoticeController {
 			noticeService.del_ok(notice_no);		
 		}
 		
-		return "redirect:/notice_list.do?page=" + page;
+		return "redirect:/notice_list.do?pageNum=" + pageNum;
 	}
 	
 	

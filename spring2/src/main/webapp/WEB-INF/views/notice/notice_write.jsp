@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>공지사항 작성 폼</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="<%=request.getContextPath()%>/js/notice.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/notice.js"></script>
 
 <c:if test="${sessionScope.member.member_id == null }">
 	<%@ include file="../member/header.jsp"%>
@@ -20,16 +20,17 @@
 
 <body>
 	<div id="noticewrite_wrap">
-		<h2 class="noticewrite_title">공지사항 작성</h2>
+		<h2 style=padding-top:90px align=center>공지사항 작성</h2>
 		<form method="post"
 			action="<%=request.getContextPath()%>/notice_write_ok.do"
 			onSubmit="return notice_check()" enctype="multipart/form-data">
 			<input type="hidden" name="page" value="${page}" />
-			<table id="noticewrite_t">
+			<div style=margin-top:30px>
+			<table border=1 width=60% height=500px align="center">
 				<tr>
-					<th>관리자</th>
+					<th height=50px>관리자</th>
 					<td><input name="notice_admin_id" id="notice_admin_id"
-						size="14" class="input_box" value="관리자" readonly /></td>
+						 style="width:400px; height:35px; font-size:30px" value="관리자" readonly /></td>
 				</tr>
 
 				<tr>
@@ -45,13 +46,14 @@
 				</tr>
 
 				<tr>
-					<td>파일첨부</td>
+					<th>파일첨부</th>
 					<td><input name="notice_file1" id="notice_file1" type="file" /></td>
 				</tr>
-				<tr>
+			
 			</table>
-
-			<div id="noticewrite_menu">
+			</div>
+			
+			<div align=center style=padding-top:20px>
 				<input type="submit" value="등록" class="input_button"> <input
 					type="button" value="취소" class="input_button"
 					onclick="location='notice_list.do?page=${page}'" />

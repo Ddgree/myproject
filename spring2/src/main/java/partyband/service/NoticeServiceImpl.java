@@ -27,10 +27,10 @@ public class NoticeServiceImpl implements NoticeService {
 
 	// 게시판 목록
 	@Override
-	public List getNoticeList(int page) throws Exception {
-		// TODO Auto-generated method stub
-		return nd.getNoticeList(page);
-	}
+//	public List getNoticeList(int page) throws Exception {
+//		// TODO Auto-generated method stub
+//		return nd.getNoticeList(page);
+//	}
 
 	/* 조회수 증가 */
 	public void hit(int notice_no) throws Exception {
@@ -57,5 +57,15 @@ public class NoticeServiceImpl implements NoticeService {
 	public void del_ok(int notice_no) throws Exception{			
 		nd.noticeDelete(notice_no);		
 	}
+	
+	// public List<Board> list(int startRow, int endRow) {
+			public List<Notice> list(Notice notice) {
+				return nd.list(notice);
+			//	return bd.list(startRow, endRow);
+			}
+			
+			public int getTotal(Notice notice) {
+				return nd.getTotal(notice);
+			}
 	
 }

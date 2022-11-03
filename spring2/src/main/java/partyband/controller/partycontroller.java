@@ -13,34 +13,66 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import partyband.model.MemberBean;
 import partyband.model.partybean;
+import partyband.service.MemberServiceImpl;
 import partyband.service.partyservice;
 
 @Controller
-public class partycontroller {
+public class partycontroller
+{
 	@Autowired
 	private partyservice partyservice;
 	@Autowired
 	private HttpSession session;
+	@Autowired
+	private MemberServiceImpl memberservice;
 
-	@RequestMapping("dlatl.do")
-	public String dlatl(HttpServletRequest request) {
-		System.out.println("임시 컨트롤러 도착");
+	@RequestMapping("nomal_login.do")
+	public String nomal_login(HttpServletRequest request) throws Exception 
+	{
 		session = request.getSession();
+		
+		MemberBean test_member = memberservice.userCheck("test");
+		session.setAttribute("sessionMember", test_member);
+		/*
 		String id = "admin";
 		session.setAttribute("sessionId", id);
+		*/
+		return "redirect:partyband.do";
+	}
+	
+	@RequestMapping("admin_login.do")
+	public String admin_login(HttpServletRequest request) throws Exception 
+	{
+		session = request.getSession();
+		
+		String id = "admin";
+		session.setAttribute("sessionId", id);
+		
+		return "redirect:partyband.do";
+	}
+	
+	@RequestMapping("test_logout.do")
+	public String test_logout(HttpServletRequest request) throws Exception
+	{
+		session = request.getSession();
+		
+		session.invalidate();
+		
 		return "redirect:partyband.do";
 	}
 
 	@RequestMapping("getout.do")
-	public String getout() {
+	public String getout() 
+	{
 		return "party/getout";
 	}
 
 	@RequestMapping("partyband.do")
-	public String boardform(HttpServletRequest request, Model model) throws Exception {
+	public String boardform(HttpServletRequest request, Model model) throws Exception 
+	{
 		List<partybean> partylist = new ArrayList<partybean>();
-		System.out.println("partyband 컨트롤러 도착");
 
 		int page = 1;
 		int limit = 8;
@@ -71,30 +103,28 @@ public class partycontroller {
 
 	/* 파티방 생성폼으로 이동 */
 	@RequestMapping("party_create.do")
-	public String party_create() {
+	public String party_create() 
+	{
 		return "party/partycreate";
 	}
 
-	/* 파티방 내용 저장 */
-	
+	/* 파티방 내용 저장 */	
 	@RequestMapping("party_create_ok.do") 
-	public String party_create_ok(@ModelAttribute partybean party, HttpServletRequest request) throws Exception 
-	{ 
-		session = request.getSession(); 
-		party.setParty_id((String)session.getAttribute("sessionId")); 
+	public String party_create_ok(@ModelAttribute partybean party, @RequestParam String party_id) throws Exception 
+	{  
+		party.setParty_id(party_id); 
 		partyservice.insert(party); 
-		System.out.println("저장 성공!");
-		return "party/partymain"; 
+		
+		return "redirect:partyband.do"; 
 	}
 	
-
 	/* 파티방 상세보기 */
 	@RequestMapping("party_detail.do")
-	public String party_cont(
-			// @RequestParam("party_id")
-			String party_id, Model model) throws Exception {
-		System.out.println("id = " + party_id);
-		partybean party = partyservice.party_cont(party_id);
+	public String party_cont(@RequestParam int party_no, Model model) throws Exception
+	{
+		partybean party = partyservice.party_cont(party_no);
+		String party_new_content = party.getParty_content().replace("\n", "<br>");
+		party.setParty_content(party_new_content);
 
 		model.addAttribute("party", party);
 

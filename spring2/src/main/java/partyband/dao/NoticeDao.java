@@ -8,7 +8,7 @@ public interface NoticeDao {
 	
 	public void insertNotice(Notice notice) throws Exception;
 
-	public List<Notice> getNoticeList(int page) throws Exception;
+	//public List<Notice> getNoticeList(int page) throws Exception;
 
 	public int getListCount() throws Exception;
 
@@ -19,5 +19,9 @@ public interface NoticeDao {
 	public void noticeEdit(Notice notice) throws Exception;
 
 	public void noticeDelete(int notice_num) throws Exception;
+	
+	int getTotal(Notice notice);
+	
+	List<Notice> list(Notice notice);
 
 }

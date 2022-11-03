@@ -13,7 +13,6 @@
 //	location.href = "start.do";
 
 	location.href = "partyband.do";
-
 	</script>
 </body>
 </html>
