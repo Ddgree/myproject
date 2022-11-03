@@ -25,7 +25,7 @@
     <tr>
      <th>글쓴이</th>
      <td>
-		작성자
+		${sessionScope.member.member_nickname}
      </td>
     </tr>
     
