@@ -3,6 +3,12 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="partyns">
+	<!-- 날짜 지난 파티방 종료 시킴 -->
+	<update id="party_refresh">
+		<![CDATA[
+			update party set party.delok = 'y' where party.delok = 'n' and party.party_enddate < TO_CHAR(SYSDATE, 'YYYYMMDD')
+		]]>
+	</update>
 
 	<!-- 게시판 내용보기 -->
 	<select id="party_cont" resultType="party"
@@ -15,26 +21,41 @@
 	    	<![CDATA[
 				select * from 
 				(select rownum rnum, party.* from 
-				 (select * from party order by party_no desc) party) 
+				 (select * from party where delok='n' order by party_no desc) party) 
 			   	where rnum >= ((#{page} - 1) * 8 + 1)  and rnum <= (#{page} * 8)
 			]]>
+	</select>
+	
+	<!-- 종료된 파티방 목록 -->
+	<select id="party_endlist" parameterType="int" resultType="party">
+		<![CDATA[
+				select * from 
+				(select rownum rnum, party.* from 
+				 (select * from party where delok='y' order by party_no desc) party) 
+			   	where rnum >= ((#{page} - 1) * 8 + 1)  and rnum <= (#{page} * 8)
+			]]>
+	</select>
+	
+	<!-- 파티방 총 개수 -->
+	<select id="party_end_count" resultType="int">
+		select count(*) from party where delok = 'y'
 	</select>
 	
 	<!-- 파티방 저장-->
 	<insert id="party_insert" parameterType="party">
 		insert into party values(party_no_seq.nextval,#{party_subject},#{party_address},
 		#{party_content},#{party_gender},#{party_age},sysdate,#{party_enddate},
-		0, #{party_max_count},#{party_id})
+		0, #{party_max_count},#{party_id},'n')
 	</insert>
 
 	<!-- 파티방 총 개수 -->
 	<select id="party_count" resultType="int">
-		select count(*) from party
+		select count(*) from party where delok = 'n'
 	</select>
 	
 	<!-- 파티방 참가 신청 -->
 	<update id="party_join" parameterType="int">
-		update party set party_count = party_count + 1 where party_no = #{party_no}
+		update party set party_count = party_count + 1 where party_no = #{party_no} 
 	</update>
 	
 	<!-- member에 가입된 비밀번호 확인 -->
