@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+body{
+	font-family: 'Gowun Dodum', sans-serif;
+}
 .category {
 	list-style: none;
 	background-color: black;
@@ -24,6 +28,8 @@ a {
 	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 	background-color: white;
 	color: black;
+	margin-left:1200px;
+	position:absolute;
 }
 
 .w-btn:hover {
@@ -71,9 +77,9 @@ a {
 	color:black;
 	width: 150px; 
 	text-decoration: none;
-	font-family: "paybooc-Light", sans-serif;
+	font-family: 'Gowun Dodum', sans-serif;
 	font-weight: 600;
-
+	
 }
 .navi a:hover, .navi a:active, .navi a:focus {
 		color:white;
@@ -91,12 +97,12 @@ a {
     <nav class="navi">
       <ul>
      	<li><a href="partyband.do"><img src="././resources/images/logo.jpg" class="img"  style="margin-left:50px;"></a></li>
-        <li><a href="#" style="margin-left:100px;">종료파티방</a></li>
-        <li><a href="#" style="margin-left:100px;">커뮤니티</a></li>
-        <li><a href="notice_list.do" style="margin-left:100px;">공지사항</a></li>
+        <li><a href="#" style="margin-left:200px; position:absolute;">종료파티방</a></li>
+        <li><a href="#" style="margin-left:500px;position:absolute;">커뮤니티</a></li>
+        <li><a href="notice_list.do" style="margin-left:800px; position:absolute;">공지사항</a></li>
+      	<li><input type="button" value="로그인" class="w-btn" style="cursor: pointer; float:right;" onclick="location='member_login.do'"></li>
       </ul>
     </nav>  
-      	<input type="button" value="로그인" class="w-btn" style="cursor: pointer;float:right;">
 		</div>
 	</div>
 </body>

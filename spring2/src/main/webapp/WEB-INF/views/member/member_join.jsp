@@ -17,7 +17,9 @@
 	font-size: 20px;
 	width: 150px;
 	height: 50px;
+	cursor: pointer;
 	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	font-family: 'Gowun Dodum', sans-serif;
 }
 
 .button:hover {
@@ -228,8 +230,8 @@ input[type=file]::file-selector-button {
 
 			<div>
 				<input type="submit" value="회원가입" class="button"
-					style="margin-left: 600px; cursor: pointer;" /> 
-					<input type="reset" value="가입취소" class="button" style="cursor: pointer;"
+					style="margin-left: 600px;" /> 
+					<input type="reset" value="가입취소" class="button" 
 					onclick='location="partyband.do"' />
 			</div>
 		</form>

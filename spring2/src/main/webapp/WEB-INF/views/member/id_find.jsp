@@ -7,7 +7,22 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+h2{
+	font-family: 'Gowun Dodum', sans-serif;
+}
+ul{
+	font-family: 'Gowun Dodum', sans-serif;
+}
+li{
+	font-family: 'Gowun Dodum', sans-serif;
+}
+input{
+	font-family: 'Gowun Dodum', sans-serif;
+}
 
+</style>
 <script>
 function check(){
 	 if($.trim($("#member_name").val())==""){

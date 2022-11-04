@@ -3,6 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+body{
+	font-family: 'Gowun Dodum', sans-serif;
+}
 .category {
 	list-style: none;
 	background-color: black;
@@ -69,6 +73,7 @@ a {
 	margin-top:-15px;
 	width:auto;
 	height:60px;
+	font-family: 'Gowun Dodum', sans-serif;
 }
 
 .navi ul{
@@ -76,11 +81,13 @@ a {
 	height:40px;
 	padding-top:10px;
 	padding-bottom:5px;
+	font-family: 'Gowun Dodum', sans-serif;
 }
 .navi ul li {
 	display:inline;
 	float: left;
 	font-size:25px;
+	font-family: 'Gowun Dodum', sans-serif;
 }
 .navi a, .navi a:visited {
 	transition: color 0.5s ease-in-out;
@@ -88,7 +95,7 @@ a {
 	color:black;
 	width: 150px; 
 	text-decoration: none;
-	font-family: "paybooc-Light", sans-serif;
+	font-family: 'Gowun Dodum', sans-serif;
 	font-weight: 600;
 
 }
@@ -99,7 +106,7 @@ a {
 
 .hello {
 	color: black;
-	font-family: "paybooc-Light", sans-serif;
+	font-family: 'Gowun Dodum', sans-serif;
 	font-weight: 600;
 	font-size:20px;
 }
@@ -136,13 +143,12 @@ a {
     <nav class="navi">
       <ul>
      	<li><a href="partyband.do"><img src="././resources/images/logo.jpg" class="img" style="margin-left:50px;"></a></li>
-        <li><a href="#" style="margin-left:100px;">종료파티방</a></li>
-        <li><a href="#" style="margin-left:100px;">커뮤니티</a></li>
-        <li><a href="notice_list.do" style="margin-left:100px;">공지사항</a></li>
-		<li><div class="hello" style="margin-left: 130px; margin-top: 9px;">${sessionScope.member.member_nickname}님! 환영합니다!</div></li>
-		<li><input type="button" value="마이페이지" class="mypage" style=" cursor: pointer;" onclick="location='member_mypage.do'" /> </li>
-		<li><input type="submit" value="로그아웃" class="mypage" style=" cursor: pointer; " onclick="location='member_logout.do'"/></li>
-       
+        <li><a href="#" style="margin-left:200px; position:absolute;">종료파티방</a></li>
+        <li><a href="#" style="margin-left:500px; position:absolute;">커뮤니티</a></li>
+        <li><a href="notice_list.do" style="margin-left:800px; position:absolute;">공지사항</a></li>
+		<li><div class="hello" style="margin-left: 1085px; margin-top: 9px;  position:absolute;">${sessionScope.member.member_nickname}님! 환영합니다!</div></li>
+		<li><input type="button" value="마이페이지" class="mypage" style=" cursor: pointer;  position:absolute; margin-left: 1350px;" onclick="location='member_mypage.do'" /> </li>
+		<li><input type="submit" value="로그아웃" class="mypage" style=" cursor: pointer;  position:absolute; margin-left: 1450px;" onclick="location='member_logout.do'"/></li>
       </ul>
     </nav>  
 		</div>

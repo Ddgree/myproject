@@ -5,13 +5,26 @@
 <!DOCTYPE html>
 <html>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+body{
+	font-family: 'Gowun Dodum', sans-serif;
+}
+
 .join {
-	margin-left: 150px;
-	border-spacing: 0 25px;
+	margin-left: 680px;
+	border-spacing: 40px 25px;
+	font-size:20px;
 }
 td{
 	text-align: center;
+	border-radius: 10px;
 }
+th{
+	border-radius: 10px;
+}
+tr:nth-child(odd) { background-color: #f3d49e; }
+tr:nth-child(even) { background-color: #eb934b; }
+
 .button {
 	background-color: black;
 	color: white;
@@ -21,27 +34,13 @@ td{
 	height: 50px;	
 	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 	cursor: pointer;
+	font-family: 'Gowun Dodum', sans-serif;
 }
 
 .button:hover {
 	background: #61443a;
 	color: white;
 	border: 0;
-}
-.sidebar {
-	float: right;
-	width: 200px;
-	height:550px;
-	background-color:#DFD;
-	padding-top:20px;
-	padding-left:10px;
-	padding-right:10px;
-}
-
-.sidebar img {
-	margin-bottom: 5px;
-	border: 1px solid #ccc;
-	text-align:center;
 }
 </style>
 
@@ -57,11 +56,11 @@ td{
 </c:if>
 <script>
 function edit_pwcheck() {
-	window.open("edit_pwcheck.do", "비번인증", "width=600,height=400");
+	window.open("edit_pwcheck.do", "비번인증", "width=450,height=200");
 	//자바 스크립트에서 window객체의 open("공지창경로와 파일명","공지창이름","공지창속성")
 }
 function member_delete() {
-	window.open("member_del.do", "회원탈퇴", "width=600,height=400");
+	window.open("member_del.do", "회원탈퇴", "width=450,height=300");
 	//자바 스크립트에서 window객체의 open("공지창경로와 파일명","공지창이름","공지창속성")
 }
 </script>
@@ -73,8 +72,8 @@ function member_delete() {
  <div id="mem_mypage">
   <form name="f" method="post" action="member_logout.do" 
    enctype="multipart/form-data">
-   <table class="join">
    <br><br><br><br><br>
+   <table class="join">
     <tr>
     <th>회원아이디</th>
      	<td>
@@ -138,7 +137,7 @@ function member_delete() {
    </table>
    
    <div id="mymem_menu">
-   <input type="button" value="정보수정" class="button" style="margin-left: 120px;"
+   <input type="button" value="정보수정" class="button" style="margin-left: 750px;"
     		onclick="edit_pwcheck()" />
    <input type="button" value="회원탈퇴" class="button"
      		onclick="member_delete()" />	

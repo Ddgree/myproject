@@ -1,15 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-
 <!DOCTYPE html>
 <html>
 <head>
 <style>
 .join {
-	margin-left: auto;
-	margin-right: auto;
-	border-spacing: 0 15px;
+	margin-left: 650px;
+	border-spacing: 0 20px;
 }
 
 .button {
@@ -21,6 +19,7 @@
 	height: 50px;
 	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 	cursor: pointer;
+	font-family: 'Gowun Dodum', sans-serif;
 }
 
 .button:hover {
@@ -119,7 +118,7 @@ input[type=file]::file-selector-button {
 </head>
 <body>
  <div id="join_wrap">
-  <h2 class="join_title">회원정보 수정</h2>
+ <br><br><br>
   <form name="f" method="post" action="member_edit_ok.do"
   		onsubmit="return edit_check()" enctype="multipart/form-data">
    <!-- 이진파일을 업로드 할려면 enctype 속성을 지정 -->
@@ -250,7 +249,7 @@ input[type=file]::file-selector-button {
    </table>
    
    <div id="join_menu">
-    <input type="submit" value="회원수정" class="button" />
+    <input type="submit" value="회원수정" class="button" style="margin-left: 680px;"/>
     <input type="button" value="취소" class="button"
     	onclick="location='member_mypage.do'" />
    </div>
