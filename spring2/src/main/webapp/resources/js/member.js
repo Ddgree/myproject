@@ -1,7 +1,6 @@
 ﻿var idcheck = 0;
 var nickcheck =0;
 
-
 function check(){
 	 if($.trim($("#member_id").val())==""){
 		 alert("회원아이디를 입력하세요!");
@@ -142,6 +141,14 @@ function id_check(){
           		$("#member_id").val('').focus();
           		return false;
 	     
+      	  }else if(data==3){
+          	var newtext='<font color="red">사용할 수 없는 아이디 입니다.</font>';
+          		$("#idcheck").text('');
+          		$("#idcheck").show();
+            	$("#idcheck").append(newtext);
+              	$("#member_id").val('').focus();
+              	return false;
+              	
       	  }else{	//사용 가능한 ID
       		var newtext='<font color="blue">사용가능한 아이디입니다.</font>';
       		$("#idcheck").text('');

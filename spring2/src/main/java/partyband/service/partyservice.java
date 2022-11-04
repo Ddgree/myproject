@@ -37,4 +37,23 @@ public class partyservice
 		partydao.partyinsert(party);
 	}
 
+	public void partyjoin(int party_no) 
+	{
+		partydao.partyjoin(party_no);
+	}
+
+	public String pwcheck(String member_id)
+	{
+		return partydao.pwcheck(member_id);
+	}
+
+	public void partyedit(partybean party)
+	{
+		partydao.partyedit(party);
+	}
+
+	public void partydel(int party_no) 
+	{
+		partydao.partydel(party_no);
+	}
 }

@@ -39,4 +39,23 @@ public class partydao
 		sqlSession.insert("partyns.party_insert", party);
 	}
 
+	public void partyjoin(int party_no)
+	{
+		sqlSession.update("partyns.party_join",party_no);
+	}
+
+	public String pwcheck(String member_id)
+	{
+		return sqlSession.selectOne("partyns.pw_checek", member_id);
+	}
+
+	public void partyedit(partybean party) 
+	{
+		sqlSession.update("partyns.party_edit",party);
+	}
+
+	public void partydel(int party_no) 
+	{
+		sqlSession.delete("partyns.party_delete",party_no);
+	}
 }

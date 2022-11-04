@@ -1,9 +1,12 @@
 package partyband.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import partyband.model.MemberBean;
 import partyband.model.partybean;
@@ -19,7 +23,7 @@ import partyband.service.MemberServiceImpl;
 import partyband.service.partyservice;
 
 @Controller
-public class partycontroller
+public class PartyController
 {
 	@Autowired
 	private partyservice partyservice;
@@ -27,18 +31,14 @@ public class partycontroller
 	private HttpSession session;
 	@Autowired
 	private MemberServiceImpl memberservice;
-
+	
 	@RequestMapping("nomal_login.do")
 	public String nomal_login(HttpServletRequest request) throws Exception 
 	{
 		session = request.getSession();
 		
 		MemberBean test_member = memberservice.userCheck("test");
-		session.setAttribute("sessionMember", test_member);
-		/*
-		String id = "admin";
-		session.setAttribute("sessionId", id);
-		*/
+		session.setAttribute("member", test_member);
 		return "redirect:partyband.do";
 	}
 	
@@ -110,7 +110,7 @@ public class partycontroller
 
 	/* 파티방 내용 저장 */	
 	@RequestMapping("party_create_ok.do") 
-	public String party_create_ok(@ModelAttribute partybean party, @RequestParam String party_id) throws Exception 
+	public String party_create_ok(partybean party, String party_id) throws Exception 
 	{  
 		party.setParty_id(party_id); 
 		partyservice.insert(party); 
@@ -120,14 +120,81 @@ public class partycontroller
 	
 	/* 파티방 상세보기 */
 	@RequestMapping("party_detail.do")
-	public String party_cont(@RequestParam int party_no, Model model) throws Exception
+	public String party_cont(int party_no, int page, Model model) throws Exception
 	{
 		partybean party = partyservice.party_cont(party_no);
 		String party_new_content = party.getParty_content().replace("\n", "<br>");
 		party.setParty_content(party_new_content);
 
 		model.addAttribute("party", party);
+		model.addAttribute("page", page);
 
 		return "party/partydetail";
+	}
+	
+	/*파티방 참가 신청*/
+	@RequestMapping("partyjoin.do")
+	public String partyjoin(int party_no, int page, Model model) throws Exception
+	{
+		partyservice.partyjoin(party_no);
+		
+		model.addAttribute("page",page);
+		model.addAttribute("party_no",party_no);
+		return "redirect:party_detail.do";
+	}
+	
+	/*비밀 번호 확인 폼 이동*/
+	@RequestMapping("pwcheckform.do")
+	public String partyeditform(int page, String member_id, int party_no,String stat, Model model)
+	{
+		model.addAttribute("page", page);
+		model.addAttribute("member_id", member_id);
+		model.addAttribute("party_no", party_no);
+		model.addAttribute("stat", stat);
+	
+		return "party/partypwcheck";
+	}
+	
+	/*비밀 번호 확인*/
+	@RequestMapping("partypwcheck.do")
+	public String partyedit(HttpServletResponse response, int page, String member_id, String input_member_passwd,int party_no,String stat, Model model) throws Exception
+	{
+		String orign_member_passwd = partyservice.pwcheck(member_id);
+		
+		if(!input_member_passwd.equals(orign_member_passwd))
+		{
+			response.setContentType("text/html; charset=utf-8");
+	        PrintWriter w = response.getWriter();
+
+	        String msg = "비밀번호가 일치하지 않습니다.";
+	        w.write("<script>alert('"+msg+"');history.back();</script>");
+	        w.flush();
+	        w.close();
+		}
+		else if(stat.equals("edit"))
+		{
+			model.addAttribute("page", page);
+			model.addAttribute("member_id", member_id);
+			model.addAttribute("party_no", party_no);		
+			
+			return "party/partyedit";
+		}
+		else if(stat.equals("del"))
+		{
+			partyservice.partydel(party_no);
+			
+			return "redirect:partyband.do";
+		}
+		
+		return null;
+	}
+	
+	/*파티방 수정*/
+	@RequestMapping("partyedit.do")
+	public String partyedit(partybean p,int page, HttpServletResponse response) throws Exception
+	{
+		partyservice.partyedit(p);
+		
+		return "redirect:party_detail.do?party_no=" + p.getParty_no() + "&page=" + page;
 	}
 }

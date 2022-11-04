@@ -21,7 +21,7 @@
 		<h2 class="bbswrite_title">파티 생성</h2>
 		<form method="post"
 			action="<%=request.getContextPath() %>/party_create_ok.do" onSubmit="return party_check()">
-			<input type="hidden" name="party_id" value="${sessionMember.member_id}">
+			<input type="hidden" name="party_id" value="${member.member_id}">
 			<table id="bbswrite_t">
 				<tr>
 					<th>지역</th>
@@ -38,19 +38,18 @@
 								<option value="${g}">${g}</option>
 							</c:forEach>
 						</select></td>
-					<th>나이</th>
-					<td>만 <input name="party_age" id="party_age" size="2"
-						class="input_box" placeholder="00"/>세
+					<th>성인 제한</th>
+					<td>미성년자 가입불가<input type="checkbox" name="party_age" id="party_age"/>
 				</tr>
 
 				<tr>
 					<th>활동일</th>
-						<td colspan=3">
+						<td colspan=3>
 						<input name="party_enddate" id="party_enddate" size="8"
 						class="input_box" placeholder="20220101"/></td>
-					<th>인원</th>
-					<td><input name="party_max_count" id="party_max_count" size="2"
-						type="text" placeholder="00"/>명</td>
+					<th>모집인원</th>
+					<td><input name="party_max_count" id="party_max_count" size="3"
+						class="input_box" placeholder="최대 5"/>명</td>
 				</tr>
 				
 				 <tr>
@@ -62,12 +61,15 @@
 				<tr>
 					<th>글내용</th>
 					<td colspan=6><textarea name="party_content" id="party_content" rows="8"
-							cols="50" class="input_box"></textarea></td>
+							cols="50" class="input_box" placeholder="
+							참여신청 인원이 한 명이라도 있으면
+							수정 및 삭제가 힘듭니다!
+							등록 전 내용을 꼼꼼히 살펴주세요!"></textarea></td>
 				</tr>
 
 			<tr id="bbswrite_menu">
 				<td colspan=6 align="center"><input type="submit" value="등록" class="input_button" /> 
-					<input type="reset" value="취소" class="input_button" onclick="$('#party_sudject').focus();" />
+					<input type="reset" value="취소" class="input_button" onclick="location='history.back()'" />
 				</td>
 			</tr>
 			</table>
