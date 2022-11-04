@@ -24,7 +24,7 @@ import partyband.model.MemberBean;
 import partyband.service.MemberServiceImpl;
 
 @Controller
-public class MemberAction {
+public class MemberController {
 
 	@Autowired
 	private MemberServiceImpl memberService;

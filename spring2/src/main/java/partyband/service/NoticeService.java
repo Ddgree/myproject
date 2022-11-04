@@ -4,9 +4,9 @@ import java.util.List;
 
 import partyband.model.Notice;
 
-public interface NoticeService {
-
-public void insert(Notice notice) throws Exception;
+public interface NoticeService 
+{
+	public void insert(Notice notice) throws Exception;
 	
 	public void hit(int notice_no) throws Exception;
 

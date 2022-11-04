@@ -4,8 +4,8 @@ import java.util.List;
 
 import partyband.model.BoardBean;
 
-public interface BoardService {
-
+public interface BoardService 
+{
 	// 게시글 작성
 	public void write(BoardBean board) throws Exception;
 
@@ -26,6 +26,4 @@ public interface BoardService {
 
 	// 게시글 삭제
 	public void delete(int board_no) throws Exception;
-	
-	
 }

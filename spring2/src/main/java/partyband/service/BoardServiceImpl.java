@@ -9,8 +9,8 @@ import partyband.dao.BoardDAO;
 import partyband.model.BoardBean;
 
 @Service
-public class BoardServiceImpl implements BoardService{
-
+public class BoardServiceImpl implements BoardService
+{
 	@Autowired
 	private BoardDAO dao;
 	
@@ -50,6 +50,4 @@ public class BoardServiceImpl implements BoardService{
 	public void delete(int board_no) throws Exception {
 		dao.delete(board_no);
 	}
-
-
 }
