@@ -36,7 +36,7 @@ public class BoardController {
 		String filename = mf.getOriginalFilename();
 		int size = (int)mf.getSize(); //첨부파일 크기 (단위:Byte)
 		
-		String path = request.getRealPath("board_upload");
+		String path = request.getRealPath("upload");
 		System.out.println("mf=" + mf);
 		System.out.println("filename=" + filename);
 		System.out.println("size=" + size);

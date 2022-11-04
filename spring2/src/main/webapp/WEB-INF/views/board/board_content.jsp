@@ -30,7 +30,7 @@ td {
 		<table id="board_content_table" border=1 enctype="multipart/form-data">
 			<tr>
 				<th>작성자</th>
-				<td>${sessionScope.member.member_nickname}</td>
+				<td></td>
 			</tr>
 
 			<tr>
