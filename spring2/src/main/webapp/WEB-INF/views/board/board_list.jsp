@@ -38,14 +38,9 @@
 						<tr align="center">
 							<td><c:out value="${list.board_no}" /></td>
 							<td><c:out value="${list.board_division}" /></td>
-<<<<<<< HEAD
-							<td><c:out value="" /></td>
-							<td><a href="board_content.do?page=${page}&board_no=${list.board_no}"><c:out
-=======
 							<td><c:out value="${sessionScope.member.member_nickname}" /></td>
 							<td><a
 								href="board_content.do?page=${page}&board_no=${list.board_no}"><c:out
->>>>>>> origin/user1
 										value="${list.board_subject}" /></a></td>
 							<td><fmt:formatDate value="${list.board_date}"
 									pattern="yyyy-MM-dd" /></td>
