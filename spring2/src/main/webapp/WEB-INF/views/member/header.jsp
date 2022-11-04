@@ -95,10 +95,15 @@ a {
         <li><a href="#" style="margin-left:100px;">종료파티방</a></li>
         <li><a href="board_list.do" style="margin-left:100px;">커뮤니티</a></li>
         <li><a href="notice_list.do" style="margin-left:100px;">공지사항</a></li>
+      	<li><input type="button" value="로그인" class="w-btn" onclick="location='member_login.do'"
+      	style="cursor: pointer;float:right;"></li>
       </ul>
     </nav>  
+<<<<<<< HEAD
       	<input type="button" value="로그인" class="w-btn" onclick="location='member_login.do'" 
       	style="cursor: pointer;float:right;">
+=======
+>>>>>>> origin/user1
 		</div>
 	</div>
 </body>

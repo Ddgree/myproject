@@ -93,33 +93,25 @@
 	
 		<hr/>
 	<div align="center">
-
 		<c:if test="${page == 1 }"> <div class=blackbutton-inactive> << </div>&nbsp; </c:if>
-
 		<c:if test="${page != 1 }">
 			<a href="partyband.do?page=1"><div class=blackbutton-active> << </div>&nbsp;</a>
 		</c:if>
-
 		<c:if test="${page <=1 }"> <div class=blackbutton-inactive> < </div>&nbsp; </c:if>
-
 		<c:if test="${page > 1 }">
 			<a href="partyband.do?page=${page-1}"><div class=blackbutton-active> < </div>&nbsp;</a>
 		</c:if>
-
 		<c:forEach var="a" begin="${startpage}" end="${endpage}">
 			<c:if test="${a == page }"> <div class=blackbutton-selected> ${a } </div> </c:if>
 			<c:if test="${a != page }">
 				<a href="partyband.do?page=${a}"><div class=blackbutton-active> ${a } </div></a>
 			</c:if>
 		</c:forEach>
-
 		<c:if test="${page >= maxpage }"> <div class=blackbutton-inactive> > </div>&nbsp; </c:if>
 		<c:if test="${page < maxpage }">
 			<a href="partyband.do?page=${page+1}"><div class=blackbutton-active> > </div>&nbsp;</a>
 		</c:if>
-
 		<c:if test="${page == maxpage }"> <div class=blackbutton-inactive> >> </div>&nbsp; </c:if>
-
 		<c:if test="${page != maxpage }">
 			<a href="partyband.do?page=${maxpage}"><div class=blackbutton-active> >> </div>&nbsp;</a>
 		</c:if>
