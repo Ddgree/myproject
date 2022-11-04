@@ -75,8 +75,11 @@
 				</td>
 			</tr>
 			</c:forEach>
-
 				</table>
+				<div id="drop_menu" align="center">
+				    <input type="button" value="돌아가기" class="input_button"
+    				onclick="location='refresh.do'" />
+    			</div>
 			</form>
 		</div>
 	</div>

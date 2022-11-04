@@ -20,57 +20,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import partyband.model.MemberBean;
 import partyband.model.partybean;
 import partyband.service.MemberServiceImpl;
-import partyband.service.partyservice;
+import partyband.service.PartyServiceImpl;
 
 @Controller
 public class PartyController
 {
 	@Autowired
-	private partyservice partyservice;
+	private PartyServiceImpl partyservice;
 	@Autowired
 	private HttpSession session;
 	@Autowired
 	private MemberServiceImpl memberservice;
 	
-	@RequestMapping("nomal_login.do")
-	public String nomal_login(HttpServletRequest request) throws Exception 
+	@RequestMapping("refresh.do")
+	public String refresh()
 	{
-		session = request.getSession();
-		
-		MemberBean test_member = memberservice.userCheck("test");
-		session.setAttribute("member", test_member);
+		partyservice.refresh();
 		return "redirect:partyband.do";
-	}
-	
-	@RequestMapping("admin_login.do")
-	public String admin_login(HttpServletRequest request) throws Exception 
-	{
-		session = request.getSession();
-		
-		String id = "admin";
-		session.setAttribute("sessionId", id);
-		
-		return "redirect:partyband.do";
-	}
-	
-	@RequestMapping("test_logout.do")
-	public String test_logout(HttpServletRequest request) throws Exception
-	{
-		session = request.getSession();
-		
-		session.invalidate();
-		
-		return "redirect:partyband.do";
-	}
-
-	@RequestMapping("getout.do")
-	public String getout() 
-	{
-		return "party/getout";
 	}
 
 	@RequestMapping("partyband.do")
-	public String boardform(HttpServletRequest request, Model model) throws Exception 
+	public String partyband(HttpServletRequest request, Model model) throws Exception 
 	{
 		List<partybean> partylist = new ArrayList<partybean>();
 
@@ -99,6 +69,38 @@ public class PartyController
 		model.addAttribute("maxpage", maxpage);
 
 		return "party/partymain";
+	}
+	
+	@RequestMapping("end_party_list.do")
+	public String end_party_list(HttpServletRequest request, Model model) throws Exception 
+	{
+		List<partybean> endpartylist = new ArrayList<partybean>();
+
+		int page = 1;
+		int limit = 8;
+
+		if (request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+
+		endpartylist = partyservice.getendPartyList(page); // 화면에 출력될 파티방 목록 저장
+
+		int listcount = partyservice.getListCount();
+
+		int maxpage = (int) ((double) listcount / limit + 0.95); // 총 페이지 수.
+		int startpage = (((int) ((double) page / 8 + 0.9)) - 1) * 8 + 1; // 메인에 보여줄 시작 페이지 수
+		int endpage = maxpage; // 메인에 보여줄 마지막 페이지 수
+
+		if (endpage > startpage + 10 - 1)
+			endpage = startpage + 10 - 1;
+
+		model.addAttribute("page", page);
+		model.addAttribute("endpartylist", endpartylist);
+		model.addAttribute("startpage", startpage);
+		model.addAttribute("endpage", endpage);
+		model.addAttribute("maxpage", maxpage);
+
+		return "party/partyendlist";
 	}
 
 	/* 파티방 생성폼으로 이동 */
@@ -197,4 +199,37 @@ public class PartyController
 		
 		return "redirect:party_detail.do?party_no=" + p.getParty_no() + "&page=" + page;
 	}
+	
+	
+	@RequestMapping("nomal_login.do")
+	public String nomal_login(HttpServletRequest request) throws Exception 
+	{
+		session = request.getSession();
+		
+		MemberBean test_member = memberservice.userCheck("test");
+		session.setAttribute("member", test_member);
+		return "redirect:partyband.do";
+	}
+	
+	@RequestMapping("admin_login.do")
+	public String admin_login(HttpServletRequest request) throws Exception 
+	{
+		session = request.getSession();
+		
+		String id = "admin";
+		session.setAttribute("sessionId", id);
+		
+		return "redirect:partyband.do";
+	}
+	
+	@RequestMapping("test_logout.do")
+	public String test_logout(HttpServletRequest request) throws Exception
+	{
+		session = request.getSession();
+		
+		session.invalidate();
+		
+		return "redirect:partyband.do";
+	}
+
 }
