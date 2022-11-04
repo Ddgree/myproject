@@ -22,7 +22,11 @@ input{
 	font-family: 'Gowun Dodum', sans-serif;
 }
 </style>
-<script>
+<script type="text/javascript">
+function parentMove() {
+	 opener.location.href = "member_login.do";  //팝업창을 띄운.. 즉 팝업창을 호출한 페이지를 이동한다.
+	 window.close();  //팝업창 종료
+}
 function id_find(){
 	 if($.trim($("#member_name").val())==""){
 		 alert("아이디를 찾고자 하는 이름을 입력해 주세요.");
@@ -35,14 +39,7 @@ function id_find(){
 		 return false;
 	 }
 }
-</script>
-<script type="text/javascript">
-function parentMove() {
-	 opener.location.href = "member_login.do";  //팝업창을 띄운.. 즉 팝업창을 호출한 페이지를 이동한다.
-	 window.close();  //팝업창 종료
-}
   </script>
-<script src="./././js/jquery.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/find.css" />
 </head>

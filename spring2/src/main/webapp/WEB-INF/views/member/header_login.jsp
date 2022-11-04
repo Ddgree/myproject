@@ -144,11 +144,11 @@ a {
       <ul>
      	<li><a href="partyband.do"><img src="././resources/images/logo.jpg" class="img" style="margin-left:50px;"></a></li>
         <li><a href="#" style="margin-left:200px; position:absolute;">종료파티방</a></li>
-        <li><a href="#" style="margin-left:500px; position:absolute;">커뮤니티</a></li>
+        <li><a href="board_list.do" style="margin-left:500px; position:absolute;">커뮤니티</a></li>
         <li><a href="notice_list.do" style="margin-left:800px; position:absolute;">공지사항</a></li>
-		<li><div class="hello" style="margin-left: 1085px; margin-top: 9px;  position:absolute;">${sessionScope.member.member_nickname}님! 환영합니다!</div></li>
-		<li><input type="button" value="마이페이지" class="mypage" style=" cursor: pointer;  position:absolute; margin-left: 1350px;" onclick="location='member_mypage.do'" /> </li>
-		<li><input type="submit" value="로그아웃" class="mypage" style=" cursor: pointer;  position:absolute; margin-left: 1450px;" onclick="location='member_logout.do'"/></li>
+		<li><div class="hello" style="margin-left: 1300px; margin-top: -13px;  position:absolute;">${sessionScope.member.member_nickname}님! 환영합니다!</div></li>
+		<li><input type="button" value="마이페이지" class="mypage" style=" cursor: pointer;  position:absolute; margin-left: 1300px; margin-top: 15px;" onclick="location='member_mypage.do'" /> </li>
+		<li><input type="submit" value="로그아웃" class="mypage" style=" cursor: pointer;  position:absolute; margin-left: 1400px; margin-top: 15px;" onclick="location='member_logout.do'"/></li>
       </ul>
     </nav>  
 		</div>
