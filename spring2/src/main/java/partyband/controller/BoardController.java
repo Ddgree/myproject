@@ -32,7 +32,6 @@ public class BoardController {
 	public String board_write_ok(@ModelAttribute BoardBean board,
 			@RequestParam("board_file1") MultipartFile mf,
 			HttpServletRequest request, Model model) throws Exception {
-		System.out.println("controller 게시판 글 저장");
 		String filename = mf.getOriginalFilename();
 		int size = (int)mf.getSize(); //첨부파일 크기 (단위:Byte)
 		
@@ -96,7 +95,6 @@ public class BoardController {
 	// 게시판 목록 조회
 	@RequestMapping("board_list.do")
 	public String list(HttpServletRequest request, Model model, String pageNum, BoardBean board) throws Exception {
-		System.out.println("controller 게시판 목록 조회");
 		final int rowPerPage = 10;	// 화면에 출력할 데이터 갯수
 		if (pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
@@ -129,7 +127,6 @@ public class BoardController {
 	// 파일 다운로드
 	@RequestMapping("file_down.do")
 	public String filedown(String file_name, BoardBean board, Model model) {
-		System.out.println("controller 파일 다운");
 		model.addAttribute("filename", file_name);
 		return "board/file_down";
 	}
@@ -137,7 +134,6 @@ public class BoardController {
 	// 게시판 글 작성
 	@RequestMapping("board_write.do")
 	public String write(BoardBean board) throws Exception {
-		System.out.println("controller 게시판 글 작성");
 
 		return "board/board_write";
 	}
@@ -146,9 +142,9 @@ public class BoardController {
 	@RequestMapping("board_content.do")
 	public String read(@RequestParam("board_no") int board_no, @RequestParam("page") String page, Model model, BoardBean board)
 			throws Exception {
-		System.out.println("controller 게시글 조회수 증가");
+
 		service.hit(board_no);
-		System.out.println("controller 게시글 조회");
+	
 		model.addAttribute("read", service.read(board_no));
 		model.addAttribute("page", page);
 		model.addAttribute("board", board);
@@ -198,7 +194,7 @@ public class BoardController {
 	@RequestMapping(value="/board_delete_ok.do", method = RequestMethod.POST)
 	public String board_del_ok(@RequestParam("board_no") int board_no, @RequestParam("page") String page,
 			@RequestParam("board_passwd") String board_passwd, Model model) throws Exception {
-		System.out.println("controller 게시판 삭제");
+
 		BoardBean board = service.read(board_no);
 		int result = 0;
 
