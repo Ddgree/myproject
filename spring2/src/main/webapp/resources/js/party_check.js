@@ -1,6 +1,6 @@
+
 function party_check()
 {
-
 	//활동일
 	if ($.trim($("#party_enddate").val()) == "") {
 		alert("활동일을 입력하세요!");

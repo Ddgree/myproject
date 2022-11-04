@@ -1,0 +1,62 @@
+body{
+	font-family: 나눔고딕,NanumGothic,돋움,Dotum;
+}
+a{
+	text-decoration-line: none;
+}
+hr{
+	 width:545px;
+	 color:lightgray; 
+}
+.blackbutton-active {
+	background-color: white;
+	color: black;
+	border-radius:8px;
+	border: 2px solid #e7e7e7;
+	padding: 2px 4px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+.blackbutton-selected {
+	background-color: #555555;
+	border: 2px solid #555555;
+	color: white;
+	border-radius:8px;
+	padding: 2px 4px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+.blackbutton-inactive {
+	background-color: white;
+	color: black;
+	border: 2px solid #e7e7e7;
+	border-radius:8px;
+	padding: 2px 4px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none
+}
+.blackbutton-active:hover {
+	background-color: #555555;
+	border: 2px solid #555555;
+	color: white;
+}
+.blackbutton-inactive:hover {
+	background-color: #e7e7e7;
+}

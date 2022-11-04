@@ -38,7 +38,21 @@ public class PartyController
 		partyservice.refresh();
 		return "redirect:partyband.do";
 	}
+	
+	@RequestMapping("warn.do")
+	public String warn(HttpServletResponse response) throws IOException
+	{
+		response.setContentType("text/html; charset=utf-8");
+        PrintWriter w = response.getWriter();
 
+        String msg = "애들은 가라";
+        w.write("<script>alert('"+msg+"');history.back();</script>");
+        w.flush();
+        w.close();
+		
+		return null;
+	}
+	
 	@RequestMapping("partyband.do")
 	public String partyband(HttpServletRequest request, Model model) throws Exception 
 	{
@@ -232,4 +246,9 @@ public class PartyController
 		return "redirect:partyband.do";
 	}
 
+	@RequestMapping("party_color.do")
+	public String party_color() 
+	{
+		return "party/partycolor";
+	}
 }
