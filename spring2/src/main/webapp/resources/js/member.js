@@ -92,7 +92,8 @@ function check(){
 	 }
 	
  }
- 
+// 아이디 찾기 유효성 검사
+
 
 /* 아이디 중복 체크*/
 function id_check(){

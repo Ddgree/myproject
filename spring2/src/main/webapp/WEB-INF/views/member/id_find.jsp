@@ -21,10 +21,9 @@ li{
 input{
 	font-family: 'Gowun Dodum', sans-serif;
 }
-
 </style>
 <script>
-function check(){
+function id_find(){
 	 if($.trim($("#member_name").val())==""){
 		 alert("아이디를 찾고자 하는 이름을 입력해 주세요.");
 		 $("#member_name").val("").focus();
@@ -52,7 +51,7 @@ function parentMove() {
  
  <c:if test="${empty idok}"> 
   <h2 class="pwd_title" style="background: #9a6c5c;">아이디 찾기</h2>
-  <form method="post" action="id_find_ok.do" onsubmit="return check()">  
+  <form method="post" action="id_find_ok.do" onsubmit="return id_find()">  
 	<ul style="margin-top:50px;">
 		<li>
 			<span>

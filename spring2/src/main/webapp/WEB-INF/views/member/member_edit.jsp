@@ -114,7 +114,7 @@ input[type=file]::file-selector-button {
 <%@ include file="../member/header_login.jsp" %>
 </c:if>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="<%=request.getContextPath()%>/js/member.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/member.js"></script>
 </head>
 <body>
  <div id="join_wrap">
@@ -243,6 +243,11 @@ input[type=file]::file-selector-button {
     <tr>
      <th>프로필사진</th>
      <td>
+     <c:if test="${upmem.member_file != null}">
+		<br>
+		${upmem.member_file}
+		<br>
+	</c:if>
       <input type="file" name="file1" />
      </td>
     </tr>
