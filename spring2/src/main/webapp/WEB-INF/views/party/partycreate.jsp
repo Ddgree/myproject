@@ -19,8 +19,7 @@
 <body>
 	<div id="bbswrite_wrap">
 		<h2 class="bbswrite_title">파티 생성</h2>
-		<form method="post"
-			action="<%=request.getContextPath() %>/party_create_ok.do" onSubmit="return party_check()">
+		<form method="post" action="<%=request.getContextPath() %>/party_create_ok.do" onSubmit="return party_check()">
 			<input type="hidden" name="party_id" value="${member.member_id}">
 			<table id="bbswrite_t">
 				<tr>
@@ -39,7 +38,7 @@
 							</c:forEach>
 						</select></td>
 					<th>성인 제한</th>
-					<td>미성년자 가입불가<input type="checkbox" name="party_age" id="party_age"/>
+					<td>성인만 받을래요<input type="checkbox" name="party_age" id="party_age" checked="checked"/>
 				</tr>
 
 				<tr>

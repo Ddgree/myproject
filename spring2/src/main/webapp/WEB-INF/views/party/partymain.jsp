@@ -43,21 +43,17 @@
 		
 			<!-- 오늘 날짜 -->
 			<jsp:useBean id="today" class="java.util.Date" />
-			<fmt:parseNumber value="${today.time / (1000*60*60*24)}"
-				integerOnly="true" var="now" scope="request" />
+			<fmt:parseNumber value="${today.time / (1000*60*60*24)}" integerOnly="true" var="now" scope="request" />
 			<!-- Dday -->
-			<fmt:parseDate var="enddate" value="${p.party_enddate}"
-				pattern="yyyyMMdd" />
-			<fmt:parseNumber var="day" value="${enddate.time / (1000*60*60*24)}"
-				integerOnly="true" />
+			<fmt:parseDate var="enddate" value="${p.party_enddate}" pattern="yyyyMMdd" />
+			<fmt:parseNumber var="day" value="${enddate.time / (1000*60*60*24)}" integerOnly="true" />
 			<!-- 날짜포멧출력 -->
-			<fmt:formatDate var="dday" value="${enddate }"
-				pattern="yyyy년 MM월 dd일" />
+			<fmt:formatDate var="dday" value="${enddate }" pattern="yyyy년 MM월 dd일" />
 				<c:if test="${p.party_age lt 20 and member.member_age lt 20 }">
 				<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page }'">
 				</c:if>
 				<c:if test="${p.party_age ge 20 and member.member_age lt 20 }">
-				<button type="button" disabled class=push-child onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page }'">
+				<button type="button" disabled class=push-child">
 				</c:if>
 				<c:if test="${sessionId eq 'admin' or member.member_id eq null or member.member_age ge 20 }">
 				<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page }'">
