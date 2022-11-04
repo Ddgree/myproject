@@ -23,14 +23,16 @@
 <div id="options">
 <div id="optionsheader">드래그해서이동</div>
 	sessionid <br>${member.member_id}${sessionId}<br>
-	<input type="button" value="관리자 로그인" class="input_button"
-		onclick="location='admin_login.do?page=${page}'" /><br>
-	<input type="button" value="관리자 로그아웃" class="input_button"
+	<input type="button" value="관리자 로그인" id="option-button"
+		onclick="location='admin_login.do?page=${page}'"/><br>
+	<input type="button" value="관리자 로그아웃" id="option-button"
 		onclick="location='test_logout.do'" /><br>
-	<input type="button" value="test 로그인" class="input_button"
+	<input type="button" value="test 로그인" id="option-button"
 		onclick="location='nomal_login.do?page=${page}'" /><br>
-	<input type="button" value="파티만들기" class="input_button"
-		onclick="location='party_create.do?page=${page}&party_id=${member.member_id}'" />
+	<input type="button" value="파티만들기" id="option-button"
+		onclick="location='party_create.do?page=${page}&party_id=${member.member_id}'" /><br>
+	<input type="button" value="colorpallet" id="option-button"
+		onclick="location='party_color.do?'" />
 		</div>
 <script src="<%=request.getContextPath()%>/resources/js/moveoptions.js"></script>
 	

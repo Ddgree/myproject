@@ -1,0 +1,18 @@
+div{
+	padding-top: 2pc; text-align:center; text-shadow:0pc 1pc white; 1px white; border: 1px solid black; border-radius: 5px; margin: 10px;s
+}
+.maincolor{
+	width:80%; height:60px; background-color:#61443A;
+}
+.darkcolor{
+	width:80%; height:60px; background-color:#443029;
+}
+.lightmaincolor{
+	width:80%; height:60px; background-color:#FFECE5;
+}
+.accentcolor{
+	width:80%; height:60px; background-color:#FFD9CC;
+}
+.whitecolor{
+	width:80%; height:60px; background-color:#FFFFFF;
+}

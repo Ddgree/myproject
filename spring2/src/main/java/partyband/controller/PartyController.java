@@ -68,6 +68,12 @@ public class PartyController
 	{
 		return "party/getout";
 	}
+	
+	@RequestMapping("party_color.do")
+	public String party_color() 
+	{
+		return "party/partycolor";
+	}
 
 	@RequestMapping("partyband.do")
 	public String boardform(HttpServletRequest request, Model model) throws Exception 
