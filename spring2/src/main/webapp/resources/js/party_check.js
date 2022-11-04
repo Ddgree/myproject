@@ -1,11 +1,6 @@
-function party_check() {
-	//나이
-	if ($("input:checkbox").is(":checked") == true) {
-		return $("#party_age").val("20");
-	}else{
-		return $("#party_age").val("19");
-	}
-	
+function party_check()
+{
+
 	//활동일
 	if ($.trim($("#party_enddate").val()) == "") {
 		alert("활동일을 입력하세요!");

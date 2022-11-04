@@ -83,9 +83,9 @@ public class PartyController
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 
-		endpartylist = partyservice.getendPartyList(page); // 화면에 출력될 파티방 목록 저장
+		endpartylist = partyservice.getEndPartyList(page); // 화면에 출력될 파티방 목록 저장
 
-		int listcount = partyservice.getListCount();
+		int listcount = partyservice.getEndListCount();
 
 		int maxpage = (int) ((double) listcount / limit + 0.95); // 총 페이지 수.
 		int startpage = (((int) ((double) page / 8 + 0.9)) - 1) * 8 + 1; // 메인에 보여줄 시작 페이지 수
