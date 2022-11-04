@@ -30,7 +30,7 @@ td {
 		<table id="board_content_table" border=1 enctype="multipart/form-data">
 			<tr>
 				<th>작성자</th>
-				<td></td>
+				<td>${read.board_id}</td>
 			</tr>
 
 			<tr>
@@ -58,8 +58,9 @@ td {
 		</table>
 
 		<div id="board_content_menu" style='margin-top: 20px;'>
+			
 			<input type="button" value="수정" class="input_button"
-				onclick="location='board_update.do?board_no=${read.board_no}&page=${page}'" />
+				onclick="location='board_update.do?board_no=${read.board_no}&page=${page}&board_id=${read.board_id}'" />
 			<input type="button" value="삭제" class="input_button"
 				onclick="location='board_delete.do?board_no=${read.board_no}&page=${page}'" />
 			<input type="button" value="목록" class="input_button"

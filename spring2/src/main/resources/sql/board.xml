@@ -17,20 +17,22 @@
 	<insert id="insert" parameterType="board">
 		<!-- 게시판 글 작성 -->
 		insert into board (board_no,
-		board_subject,
-		board_content,
-		board_date,
-		board_readcount,
-		board_file,
-		board_ref,
-		board_passwd,
-		board_division)
+						   board_subject,
+						   board_content,
+						   board_date,
+						   board_readcount,
+						   board_file,
+						   board_id,
+						   board_ref,
+						   board_passwd,
+						   board_division )		 
 		values (board_no_seq.nextval,
 		#{board_subject},
 		#{board_content},
 		sysdate,
-		#{board_readcount},
+		0,
 		#{board_file, jdbcType=VARCHAR},
+		#{board_id},
 		board_no_seq.nextval,
 		#{board_passwd},
 		#{board_division})
@@ -45,8 +47,8 @@
 			</if>
 			<if test="keyword != null and search=='subcon'">
 				board_subject like '%'||#{keyword}||'%' or
-				board_content
-				like '%'||#{keyword}||'%'
+				board_content like '%'||#{keyword}||'%'
+				
 			</if>
 		</where>
 	</select>
@@ -61,8 +63,8 @@
 			</if>
 			<if test="keyword != null and search=='subcon'">
 				board_subject like '%'||#{keyword}||'%' or
-				board_content
-				like '%'||#{keyword}||'%'
+				board_content like '%'||#{keyword}||'%' or 
+				board_id like '%'||#{keyword}||'%'
 			</if>
 		</where>
 		order by board_ref desc) a )
@@ -85,7 +87,8 @@
 	<update id="edit" parameterType="board">
 		update board set
 		board_subject=#{board_subject},
-		board_content=#{board_content}
+		board_content=#{board_content},
+		board_file=#{board_file}
 		where
 		board_no=#{board_no}
 	</update>
@@ -95,16 +98,5 @@
 		delete from board where
 		board_no=#{board_no}
 	</delete>
-
-	<!-- 첨부파일 조회 -->
-	<select id="filelist" parameterType="int"
-		resultType="hashMap">
-		SELECT FILE_NO,
-		ORG_FILE_NAME,
-		ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
-		FROM MP_FILE
-		WHERE BNO = #{BNO}
-		AND DEL_GB = 'N'
-	</select>
 
 </mapper>

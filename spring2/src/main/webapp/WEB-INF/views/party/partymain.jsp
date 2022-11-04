@@ -20,7 +20,7 @@
 	<%@ include file="../member/header_login.jsp"%>
 </c:if>
 <body>
-<div id="options">
+<%-- <div id="options">
 <div id="optionsheader">드래그해서이동</div>
 	sessionid <br>${member.member_id}${sessionId}<br>
 	<input type="button" value="관리자 로그인" class="input_button"
@@ -115,7 +115,7 @@
 		<c:if test="${page != maxpage }">
 			<a href="partyband.do?page=${maxpage}"><div class=blackbutton-active> >> </div>&nbsp;</a>
 		</c:if>
-	</div>
+	</div> --%>
 </body>
 <%@ include file="../member/footer.jsp"%>
 </html>

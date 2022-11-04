@@ -99,11 +99,6 @@ a {
       	style="cursor: pointer;float:right;"></li>
       </ul>
     </nav>  
-<<<<<<< HEAD
-      	<input type="button" value="로그인" class="w-btn" onclick="location='member_login.do'" 
-      	style="cursor: pointer;float:right;">
-=======
->>>>>>> origin/user1
 		</div>
 	</div>
 </body>
