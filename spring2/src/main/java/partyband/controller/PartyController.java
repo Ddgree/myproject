@@ -38,43 +38,6 @@ public class PartyController
 		partyservice.refresh();
 		return "redirect:partyband.do";
 	}
-<<<<<<< HEAD
-	
-	@RequestMapping("admin_login.do")
-	public String admin_login(HttpServletRequest request) throws Exception 
-	{
-		session = request.getSession();
-		
-		String id = "admin";
-		session.setAttribute("sessionId", id);
-		
-		return "redirect:partyband.do";
-	}
-	
-	@RequestMapping("test_logout.do")
-	public String test_logout(HttpServletRequest request) throws Exception
-	{
-		session = request.getSession();
-		
-		session.invalidate();
-		
-		return "redirect:partyband.do";
-	}
-
-	@RequestMapping("getout.do")
-	public String getout() 
-	{
-		return "party/getout";
-	}
-	
-	@RequestMapping("party_color.do")
-	public String party_color() 
-	{
-		return "party/partycolor";
-	}
-=======
->>>>>>> origin/kyungmin
-
 	@RequestMapping("partyband.do")
 	public String partyband(HttpServletRequest request, Model model) throws Exception 
 	{
@@ -268,4 +231,9 @@ public class PartyController
 		return "redirect:partyband.do";
 	}
 
+	@RequestMapping("party_color.do")
+	public String party_color() 
+	{
+		return "party/partycolor";
+	}
 }

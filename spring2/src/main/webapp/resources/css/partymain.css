@@ -45,27 +45,27 @@ button{
 #options {
   position: absolute;
   z-index: 9;
-  background-color: #f1f1f1;
+  background-color: #FFECE5;
   text-align: center;
-  border: 1px solid #d3d3d3;
+  border: 1px solid #FFD9CC;
 }
 #optionsheader {
   padding: 10px;
   cursor: move;
   z-index: 10;
-  background-color: #2196F3;
-  color: #fff;
+  background-color: #FFD9CC;
+  color: #443029;
 }
 
 hr{
 	 width:545px;
-	 color:lightgray; 
+	 color:#FFECE5; 
 }
 .blackbutton-active {
 	background-color: white;
-	color: black;
+	color: #61443A;
 	border-radius:8px;
-	border: 2px solid #e7e7e7;
+	border: 2px solid #FFD9CC;
 	padding: 2px 4px;
 	text-align: center;
 	text-decoration: none;
@@ -76,8 +76,8 @@ hr{
 	cursor: pointer;
 }
 .blackbutton-selected {
-	background-color: #555555;
-	border: 2px solid #555555;
+	background-color: #443029;
+	border: 2px solid #443029;
 	color: white;
 	border-radius:8px;
 	padding: 2px 4px;
@@ -92,7 +92,7 @@ hr{
 .blackbutton-inactive {
 	background-color: white;
 	color: black;
-	border: 2px solid #e7e7e7;
+	border: 2px solid #FFECE5;
 	border-radius:8px;
 	padding: 2px 4px;
 	text-align: center;
@@ -106,10 +106,10 @@ hr{
 	user-select:none
 }
 .blackbutton-active:hover {
-	background-color: #555555;
-	border: 2px solid #555555;
+	background-color: #61443A;
+	border: 2px solid #443029;
 	color: white;
 }
 .blackbutton-inactive:hover {
-	background-color: #e7e7e7;
+	background-color: #FFECE5;
 }

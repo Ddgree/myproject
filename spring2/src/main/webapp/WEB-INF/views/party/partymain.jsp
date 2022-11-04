@@ -46,25 +46,23 @@
 			<fmt:parseDate var="enddate" value="${p.party_enddate}" pattern="yyyyMMdd" />
 			<fmt:parseNumber var="day" value="${enddate.time / (1000*60*60*24)}" integerOnly="true" />
 			<!-- 날짜포멧출력 -->
-<<<<<<< HEAD
 			<fmt:formatDate var="dday" value="${enddate }" pattern="yyyy년 MM월 dd일" />
 				<c:if test="${p.party_age lt 20 and member.member_age lt 20 }">
 				<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page }'">
 				</c:if>
 				<c:if test="${p.party_age ge 20 and member.member_age lt 20 }">
-				<button type="button" disabled class=push-child">
+				<button type="button" class=push-child">
 				</c:if>
 				<c:if test="${sessionId eq 'admin' or member.member_id eq null or member.member_age ge 20 }">
 				<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page }'">
 				</c:if>
-=======
-			<fmt:formatDate var="dday" value="${enddate }"
-				pattern="yyyy년 MM월 dd일" />
-			
-				<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page }'">
-				
->>>>>>> origin/kyungmin
+				<c:if test="${p.party_age ge 20}">
 				<div class=type>[${p.party_address}] ${p.party_subject}</div>
+				</c:if>
+				<c:if test="${p.party_age lt 20}">
+				<div class=type>[${p.party_address}<i class="fa-regular fa-face-smile"></i>] ${p.party_subject}</div>
+				</c:if>
+				
 				<div>
 					<c:if test="${now==day }">
 						<td>${dday}[D-day]</td>
