@@ -1,5 +1,22 @@
-function party_check() 
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+function party_check()
 {
+=======
+function party_check() {
+	//나이
+	/*if ($("input:checkbox").is(":checked") == true) {
+		return $("#party_age").val("20");
+	}else{
+		return $("#party_age").val("19");
+	}*/
+	
+>>>>>>> origin/sungdo
+=======
+function party_check()
+{
+>>>>>>> 71e4b6bf6a6ead671d9bbf6d5889e9fa547802ee
 	//활동일
 	if ($.trim($("#party_enddate").val()) == "") {
 		alert("활동일을 입력하세요!");
