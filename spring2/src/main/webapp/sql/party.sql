@@ -152,8 +152,9 @@ delete from party where party_count > 5;
 
 ALTER TABLE party ADD delok VARCHAR(20);
 select * from party;
+select * from party where party_address = '대전';
 
-delete from party where party_max_count = 6;
+delete from party where party_enddate = '12312';
 
 insert into party values(party_no_seq.nextval,'진행중인 파티방','지역', '파티방 내용', '무관', '20', sysdate,
 '20221227',0, 5, 'test','n')
