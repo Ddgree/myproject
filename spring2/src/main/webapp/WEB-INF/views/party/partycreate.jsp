@@ -10,7 +10,11 @@
 	href="<%=request.getContextPath() %>/resources/css/party.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath() %>/resources/js/party_check.js"></script>
+<<<<<<< HEAD
 <script src="https://kit.fontawesome.com/f82eca20b8.js" crossorigin="anonymous"></script>
+=======
+
+>>>>>>> origin/sungdo
 <c:if test="${sessionScope.member.member_id == null }">
 	<%@ include file="../member/header.jsp"%>
 </c:if>
