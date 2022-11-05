@@ -1,8 +1,11 @@
-<<<<<<< HEAD
-delete from member where member_delok='n';
+delete from member where member_division= ;
+delete from board where board_division='일반';
 select * from member;
-=======
 select * from reboard;
+select * from board;
+delete from board where board_no =136;
+select * from party;
+insert into board values(board_no_seq.nextval, )
 
 select*from notice;
 select * from notice_file;
