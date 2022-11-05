@@ -64,7 +64,7 @@
 				</c:if>
 				
 				<div>
-					<c:if test="${now==day }">
+					<c:if test="${now==day}">
 						<td>${dday}[D-day]</td>
 					</c:if>
 					<c:if test="${now>day }">

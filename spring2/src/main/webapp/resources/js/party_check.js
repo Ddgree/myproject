@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 function party_check()
 {
@@ -12,6 +13,10 @@ function party_check() {
 	}*/
 	
 >>>>>>> origin/sungdo
+=======
+function party_check()
+{
+>>>>>>> 71e4b6bf6a6ead671d9bbf6d5889e9fa547802ee
 	//활동일
 	if ($.trim($("#party_enddate").val()) == "") {
 		alert("활동일을 입력하세요!");

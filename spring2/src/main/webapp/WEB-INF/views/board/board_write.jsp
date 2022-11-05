@@ -11,9 +11,11 @@
 </head>
 
 <body>
+
  <div id="board_write_title" align="center">
   <h2 class="board_write_title">글 작성</h2>
   <form method="post" action="board_write_ok.do" onSubmit="return board_check()" enctype="multipart/form-data">
+   <input type="hidden" name="board_id" value="${board.board_id}">
    <table id="board_write_table" border=1>
     <tr>
      <th>구분</th>
@@ -23,9 +25,9 @@
      </td>
     </tr>
     <tr>
-     <th>글쓴이</th>
+     <th>작성자</th>
      <td>
-		${sessionScope.member.member_nickname}
+		${board.board_id}
      </td>
     </tr>
     
@@ -48,7 +50,7 @@
     <tr>
      <th>글내용</th>
      <td>
-      <textarea name="board_content"  id="board_content" rows="8" cols="50"
+      <textarea name="board_content"  id="board_content" rows="8" cols="50" 
       class="input_box"></textarea>
      </td>
     </tr>
@@ -60,7 +62,6 @@
      </td>
     </tr> 
    </table>
-   
    <div id="board_write_menu" style='margin-top: 20px;'>
     <input type="submit" value="등록" class="input_button" />
     <input type="button" value="취소" class="input_button"

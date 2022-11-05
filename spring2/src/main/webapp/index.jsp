@@ -13,6 +13,7 @@
 //	location.href = "start.do";
 	location.href = "refresh.do";
 //	location.href = "partyband.do";
+
 	</script>
 </body>
 </html>
