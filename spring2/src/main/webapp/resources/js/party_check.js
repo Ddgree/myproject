@@ -1,4 +1,3 @@
-
 function party_check()
 {
 	//활동일
