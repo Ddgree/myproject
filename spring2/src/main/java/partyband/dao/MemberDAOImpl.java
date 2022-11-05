@@ -1,5 +1,7 @@
 package partyband.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -76,6 +78,12 @@ public class MemberDAOImpl {
 //	@Transactional
 	public void deleteMember(MemberBean deletemember) throws Exception {
 		sqlSession.update("member_delete", deletemember);
+	}
+	
+	/* 탈퇴아이디 검색 */
+//	@Transactional
+	public List<MemberBean> dropid() throws Exception {
+		return sqlSession.selectList("id_drop");
 	}
 }
 

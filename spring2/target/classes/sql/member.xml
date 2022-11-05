@@ -59,6 +59,11 @@
       where member_id=#{member_id}
     </update>
     
+     <!-- 탈퇴아이디 검색 -->
+    <select id="id_drop" resultType="member">
+     select * from member where member_delok='n'
+    </select>
+    
 </mapper>
 
 

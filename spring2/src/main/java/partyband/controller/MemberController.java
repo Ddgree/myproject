@@ -3,6 +3,7 @@ package partyband.controller;
 import java.io.File;
 import java.io.PrintWriter;
 import java.lang.reflect.Member;
+import java.util.List;
 import java.util.StringTokenizer;
 import java.util.UUID;
 
@@ -194,6 +195,12 @@ public class MemberController {
 	public String pwd_find() {
 		return "member/pwd_find";
 	}
+	
+//	/* 탈퇴회원 확인 폼 */
+//	@RequestMapping(value = "/drop_id.do")
+//	public String drop_id() {
+//		return "member/drop_id";
+//	}
 	
 	
 	//회원가입 완료
@@ -513,6 +520,18 @@ public class MemberController {
 		session.invalidate();
 
 		return "member/member_logout"; 
+	}
+	
+	/* 탈퇴회원 페이지 */
+	@RequestMapping(value = "/member_drop.do")
+	public String member_drop(HttpSession session, Model m) throws Exception {
+		
+		List<MemberBean> dropmem = memberService.dropid();
+		
+		m.addAttribute("dropmem", dropmem);
+		System.out.println("탈퇴회원 페이지");
+
+		return "member/drop_id";
 	}
 
 // }

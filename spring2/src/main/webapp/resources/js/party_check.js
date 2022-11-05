@@ -38,14 +38,14 @@ function party_check()
 	//제목
 	if ($.trim($("#party_subject").val()) == "") {
 		alert("제목을 입력하세요!");
-		$("#board_subject").val("").focus();
+		$("#party_subject").val("").focus();
 		return false;
 	}
 	
 	//내용
 	if ($.trim($("#party_content").val()) == "") {
 		alert("내용을 입력하세요!");
-		$("#board_content").val("").focus();
+		$("#party_content").val("").focus();
 		return false;
 	}
 }
