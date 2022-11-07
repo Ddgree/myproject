@@ -9,10 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import partyband.model.partybean;
-import partyband.dao.PartyDao;
 
 @Repository
-public class PartyDaoImpl implements PartyDao
+public class PartyDaoImpl
 {
 	@Autowired
 	private SqlSession sqlSession;
