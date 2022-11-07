@@ -167,3 +167,5 @@ select * from party where party_enddate < TO_CHAR(SYSDATE, 'YYYYMMDD');
 
 update party set delok = 'y' where delok = 'n' and party_enddate < TO_CHAR(SYSDATE, 'YYYYMMDD');
 
+insert into member
+     values('admin','1234',null,null,null,null,null,null,null,null,'y')
