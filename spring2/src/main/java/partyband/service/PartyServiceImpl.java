@@ -23,6 +23,11 @@ public class PartyServiceImpl implements PartyService
 		partydao.refresh();
 	}
 	
+	public int getEndListCount()
+	{
+		return partydao.getEndListCount();
+	}
+	
 	/* 상세정보 */
 	public partybean party_cont(int party_no) throws Exception 
 	{
@@ -37,7 +42,7 @@ public class PartyServiceImpl implements PartyService
 	}
 	
 
-	public List<partybean> getendPartyList(int page)
+	public List<partybean> getEndPartyList(int page)
 	{
 		return partydao.getEndPartyList(page);
 	}

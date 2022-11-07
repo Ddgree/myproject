@@ -1,8 +1,11 @@
-<<<<<<< HEAD
-delete from member where member_delok='n';
+delete from member where member_division= ;
+delete from board where board_division='일반';
 select * from member;
-=======
 select * from reboard;
+select * from board;
+delete from board where board_no =136;
+select * from party;
+insert into board values(board_no_seq.nextval, )
 
 select*from notice;
 select * from notice_file;
@@ -152,8 +155,9 @@ delete from party where party_count > 5;
 
 ALTER TABLE party ADD delok VARCHAR(20);
 select * from party;
+select * from party where party_address = '대전';
 
-delete from party where party_max_count = 6;
+delete from party where party_enddate = '12312';
 
 insert into party values(party_no_seq.nextval,'진행중인 파티방','지역', '파티방 내용', '무관', '20', sysdate,
 '20221227',0, 5, 'test','n')
@@ -163,3 +167,5 @@ select * from party where party_enddate < TO_CHAR(SYSDATE, 'YYYYMMDD');
 
 update party set delok = 'y' where delok = 'n' and party_enddate < TO_CHAR(SYSDATE, 'YYYYMMDD');
 
+insert into member
+     values('admin','1234',null,null,null,null,null,null,null,null,'y')

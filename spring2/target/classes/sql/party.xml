@@ -37,7 +37,7 @@
 	</select>
 	
 	<!-- 파티방 총 개수 -->
-	<select id="party_end_count" resultType="int">
+	<select id="party_end_list_count" resultType="int">
 		select count(*) from party where delok = 'y'
 	</select>
 	

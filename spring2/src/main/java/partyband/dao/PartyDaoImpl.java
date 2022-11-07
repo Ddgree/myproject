@@ -19,6 +19,11 @@ public class PartyDaoImpl implements PartyDao
 	{
 		sqlSession.update("partyns.party_refresh");
 	}
+
+	public int getEndListCount() 
+	{
+		return sqlSession.selectOne("partyns.party_end_list_count");
+	}
 	
 	/* 파티방 번호로 파티방 검색  */
 	public partybean getPartyCont(int party_no) throws Exception 
