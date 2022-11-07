@@ -41,6 +41,10 @@ public class PartyServiceImpl implements PartyService
 		return partydao.getPartyList(page);
 	}
 	
+	public List<partybean> getPartyList2(int page, String address) throws Exception {
+		return partydao.getPartyList2(page,address);
+
+	}
 
 	public List<partybean> getEndPartyList(int page)
 	{
@@ -51,7 +55,11 @@ public class PartyServiceImpl implements PartyService
 	{
 		return partydao.getListCount();
 	}
-
+	
+	public int getListCount2(String address) {
+		return partydao.getListCount2(address);
+	}
+	
 	public void insert(partybean party) 
 	{
 		partydao.partyinsert(party);
@@ -77,8 +85,12 @@ public class PartyServiceImpl implements PartyService
 		partydao.partydel(party_no);
 	}
 
+<<<<<<< HEAD
 	public int findpartyno() 
 	{
 		return partydao.findpartyno();
 	}
+=======
+	
+>>>>>>> origin/user1
 }
