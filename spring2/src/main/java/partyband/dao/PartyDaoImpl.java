@@ -1,6 +1,8 @@
 package partyband.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,14 @@ public class PartyDaoImpl implements PartyDao
 		List<partybean> list = sqlSession.selectList("partyns.party_list", page);
 		return list;
 	}
+	public List<partybean> getPartyList2(int page, String address) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("page", page);
+		map.put("address", address);
+		List<partybean> list = sqlSession.selectList("partyns.party_list2", map);
+		
+		return list;
+	}
 	
 	/* 종료된 파티방 목록*/
 	public List<partybean> getEndPartyList(int page) 
@@ -52,6 +62,12 @@ public class PartyDaoImpl implements PartyDao
 		return count;
 	}
 
+	/* 파티방 총 개수 (지역별)*/
+	public int getListCount2(String address) {
+		int count = ((Integer)sqlSession.selectOne("partyns.party_count2",address));
+		return count;
+	}
+	
 	/* 파티방 저장 */
 	public void partyinsert(partybean party)
 	{
@@ -81,4 +97,6 @@ public class PartyDaoImpl implements PartyDao
 	{
 		sqlSession.delete("partyns.party_delete",party_no);
 	}
+
+
 }

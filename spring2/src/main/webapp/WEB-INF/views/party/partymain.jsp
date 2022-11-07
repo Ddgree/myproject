@@ -19,6 +19,7 @@
 <c:if test="${sessionScope.member.member_id != null }">
 	<%@ include file="../member/header_login.jsp"%>
 </c:if>
+	<%@ include file="../../../resources/include/address.jsp"%>
 <body>
 <div id="options">
 <div id="optionsheader">드래그해서이동</div>
@@ -33,6 +34,12 @@
 		onclick="location='party_create.do?page=${page}&party_id=${member.member_id}'" /><br>
 	<input type="button" value="colorpallet" id="option-button"
 		onclick="location='party_color.do?'" />
+	<select name="party_address" onchange="if(this.value) location.href=(this.value);">
+		<c:forEach var="a" items="${add}" begin="0" end="5">
+			<option value="partyband.do?address=${a}"<c:if test ="${address eq a}">selected="selected"</c:if>>${a}</option>
+			
+		</c:forEach>
+	</select>
 		</div>
 <script src="<%=request.getContextPath()%>/resources/js/moveoptions.js"></script>
 	
