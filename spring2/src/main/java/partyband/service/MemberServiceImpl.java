@@ -48,6 +48,10 @@ public class MemberServiceImpl {
 		memberDao.updateMember(member);
 	}
 	
+	public int findparty(String findparty)throws Exception {
+		return memberDao.findparty(findparty);
+	}
+	
 	public void deleteMember(MemberBean deletemember) throws Exception{
 		memberDao.deleteMember(deletemember);
 	}

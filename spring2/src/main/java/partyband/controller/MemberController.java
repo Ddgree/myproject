@@ -483,8 +483,14 @@ public class MemberController {
 	@RequestMapping(value = "/member_del_ok.do", method = RequestMethod.POST)
 	public String member_del_ok(@RequestParam("delete_passwd") String delete_passwd, 
 							    HttpSession session) throws Exception {
-
+		
 		MemberBean member = (MemberBean) session.getAttribute("member");
+		
+		int findparty = memberService.findparty(member.getMember_id());
+			if (findparty != 0) {	// 파티방장이고 사람이 있을때
+			
+			return "member/findPartyResult";
+		}
 		
 		MemberBean delete = this.memberService.userCheck(member.getMember_id());
 
