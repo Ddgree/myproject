@@ -20,17 +20,19 @@
 	<%@ include file="../member/header_login.jsp"%>
 </c:if>
 <body>
-<%-- <div id="options">
+<div id="options">
 <div id="optionsheader">드래그해서이동</div>
 	sessionid <br>${member.member_id}${sessionId}<br>
-	<input type="button" value="관리자 로그인" class="input_button"
-		onclick="location='admin_login.do?page=${page}'" /><br>
-	<input type="button" value="관리자 로그아웃" class="input_button"
+	<input type="button" value="관리자 로그인" id="option-button"
+		onclick="location='admin_login.do?page=${page}'"/><br>
+	<input type="button" value="관리자 로그아웃" id="option-button"
 		onclick="location='test_logout.do'" /><br>
-	<input type="button" value="test 로그인" class="input_button"
+	<input type="button" value="test 로그인" id="option-button"
 		onclick="location='nomal_login.do?page=${page}'" /><br>
-	<input type="button" value="파티만들기" class="input_button"
-		onclick="location='party_create.do?page=${page}&party_id=${member.member_id}'" />
+	<input type="button" value="파티만들기" id="option-button"
+		onclick="location='party_create.do?page=${page}&party_id=${member.member_id}'" /><br>
+	<input type="button" value="colorpallet" id="option-button"
+		onclick="location='party_color.do?'" />
 		</div>
 <script src="<%=request.getContextPath()%>/resources/js/moveoptions.js"></script>
 	
@@ -38,31 +40,31 @@
 	<div id="item" align="center">
 	<div class=party-list-wrap>
 		<c:forEach var="p" items="${partylist}">
-		
-			<!-- 오늘 날짜 -->
 			<jsp:useBean id="today" class="java.util.Date" />
-			<fmt:parseNumber value="${today.time / (1000*60*60*24)}"
-				integerOnly="true" var="now" scope="request" />
+			<fmt:parseNumber value="${today.time / (1000*60*60*24)}" integerOnly="true" var="now" scope="request" />
 			<!-- Dday -->
-			<fmt:parseDate var="enddate" value="${p.party_enddate}"
-				pattern="yyyyMMdd" />
-			<fmt:parseNumber var="day" value="${enddate.time / (1000*60*60*24)}"
-				integerOnly="true" />
+			<fmt:parseDate var="enddate" value="${p.party_enddate}" pattern="yyyyMMdd" />
+			<fmt:parseNumber var="day" value="${enddate.time / (1000*60*60*24)}" integerOnly="true" />
 			<!-- 날짜포멧출력 -->
-			<fmt:formatDate var="dday" value="${enddate }"
-				pattern="yyyy년 MM월 dd일" />
+			<fmt:formatDate var="dday" value="${enddate }" pattern="yyyy년 MM월 dd일" />
 				<c:if test="${p.party_age lt 20 and member.member_age lt 20 }">
 				<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page }'">
 				</c:if>
 				<c:if test="${p.party_age ge 20 and member.member_age lt 20 }">
-				<button type="button" disabled class=push-child onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page }'">
+				<button type="button" class=push-child" onClick="location='warn.do'">
 				</c:if>
 				<c:if test="${sessionId eq 'admin' or member.member_id eq null or member.member_age ge 20 }">
 				<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page }'">
 				</c:if>
+				<c:if test="${p.party_age ge 20}">
 				<div class=type>[${p.party_address}] ${p.party_subject}</div>
+				</c:if>
+				<c:if test="${p.party_age lt 20}">
+				<div class=type>[${p.party_address}<i class="fa-regular fa-face-smile"></i>] ${p.party_subject}</div>
+				</c:if>
+				
 				<div>
-					<c:if test="${now==day }">
+					<c:if test="${now==day}">
 						<td>${dday}[D-day]</td>
 					</c:if>
 					<c:if test="${now>day }">
@@ -115,7 +117,7 @@
 		<c:if test="${page != maxpage }">
 			<a href="partyband.do?page=${maxpage}"><div class=blackbutton-active> >> </div>&nbsp;</a>
 		</c:if>
-	</div> --%>
+	</div>
 </body>
 <%@ include file="../member/footer.jsp"%>
 </html>

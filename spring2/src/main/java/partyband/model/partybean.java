@@ -15,6 +15,7 @@ public class partybean
 	private int party_count;
 	private int party_max_count;
 	private String party_id;
+	private String delok;
 	
 	public int getParty_no() {
 		return party_no;
@@ -81,6 +82,13 @@ public class partybean
 	}
 	public void setParty_id(String party_id) {
 		this.party_id = party_id;
+	}
+	
+	public String getDelok() {
+		return delok;
+	}
+	public void setDelok(String delok) {
+		this.delok = delok;
 	}
 
 	

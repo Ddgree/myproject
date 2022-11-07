@@ -94,7 +94,19 @@
 .login_button {
 	position: relative;
 }
+
 .input_box{
-	padding: 5px;
-	border-radius: 3px;
+	width:100%;
+	border:2px solid #bd9c91;
+	border-radius:3px;
+	margin: 8px 0;
+	outline: none;
+	padding:5px;
+	box-sizing: border-box;
+	transition:.3s;
+}
+
+.input_box:focus{
+	border-color:#61443a;
+	box-shadow:0 0 8px 0 #785447;
 }

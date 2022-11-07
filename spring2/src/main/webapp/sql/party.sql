@@ -113,7 +113,6 @@ create sequence notice_no_seq
                 increment by 1 start with 1 nocache;
                 
 
->>>>>>> origin/kyungmin
 select * from tab;
 
 select * from party;
@@ -146,15 +145,25 @@ delete from party where party_content = '파티방 내용'
 insert into party values(party_no_seq.nextval,'파티방 연습','지역', '파티방 내용', '성별', '나이', sysdate,
 '20221227',9, 9, '홍길동')
 
-<<<<<<< HEAD
-=======
+
 select * from member;
 select * from admin;
-<<<<<<< HEAD
 UPDATE party SET party_count = 0 WHERE party_count>0;
 delete from party where party_subject = '안녕하세요';
 delete from party where party_max_count > 5;
 delete from party where party_count > 5;
-=======
->>>>>>> origin/kyungmin1025
->>>>>>> origin/sungdo
+
+ALTER TABLE party ADD delok VARCHAR(20);
+select * from party;
+select * from party where party_address = '대전';
+
+delete from party where party_enddate = '12312';
+
+insert into party values(party_no_seq.nextval,'진행중인 파티방','지역', '파티방 내용', '무관', '20', sysdate,
+'20221227',0, 5, 'test','n')
+insert into party values(party_no_seq.nextval,'삭제 된 파티방','지역', '파티방 내용', '성별', '20', sysdate,
+'20221101',0, 5, 'test','n')
+select * from party where party_enddate < TO_CHAR(SYSDATE, 'YYYYMMDD');
+
+update party set delok = 'y' where delok = 'n' and party_enddate < TO_CHAR(SYSDATE, 'YYYYMMDD');
+

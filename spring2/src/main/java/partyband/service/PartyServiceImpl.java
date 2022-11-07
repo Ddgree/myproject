@@ -2,17 +2,31 @@ package partyband.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import partyband.model.partybean;
-import partyband.dao.partydao;
+import partyband.dao.PartyDaoImpl;
 
 @Service
-public class partyservice
+public class PartyServiceImpl implements PartyService
 {
 	@Autowired
-	private partydao partydao;
+	private PartyDaoImpl partydao;
+	
+	/* 날짜 지난 파티방 종료 시킴*/
+	public void refresh() 
+	{
+		partydao.refresh();
+	}
+	
+	public int getEndListCount()
+	{
+		return partydao.getEndListCount();
+	}
 	
 	/* 상세정보 */
 	public partybean party_cont(int party_no) throws Exception 
@@ -25,6 +39,12 @@ public class partyservice
 	public List<partybean> getPartyList(int page) throws Exception
 	{
 		return partydao.getPartyList(page);
+	}
+	
+
+	public List<partybean> getEndPartyList(int page)
+	{
+		return partydao.getEndPartyList(page);
 	}
 
 	public int getListCount()
