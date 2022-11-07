@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import partyband.model.MemberBean;
+import partyband.model.PartyManagerBean;
 import partyband.model.partybean;
 import partyband.service.MemberServiceImpl;
+import partyband.service.PartyManagerServiceImpl;
 import partyband.service.PartyServiceImpl;
 
 @Controller
@@ -31,6 +33,8 @@ public class PartyController
 	private HttpSession session;
 	@Autowired
 	private MemberServiceImpl memberservice;
+	@Autowired
+	private PartyManagerServiceImpl partymanager;
 	
 	@RequestMapping("refresh.do")
 	public String refresh()
@@ -129,7 +133,20 @@ public class PartyController
 	public String party_create_ok(partybean party, String party_id) throws Exception 
 	{  
 		party.setParty_id(party_id); 
-		partyservice.insert(party); 
+		partyservice.insert(party);
+		
+		System.out.println("party.getParty_no()"+ party.getParty_no());
+		int party_no = partyservice.findpartyno();
+		
+		PartyManagerBean manager = new PartyManagerBean();
+		manager.setMember_id(party_id);
+		manager.setParty_no(party_no);
+		
+		System.out.println("Controller, member_id : " + manager.getMember_id());
+		System.out.println("Controller, party_no : " + manager.getParty_no());
+		System.out.println("Controller, ishost : " + manager.getIshost());
+		
+		partymanager.create_insert(manager);
 		
 		return "redirect:partyband.do"; 
 	}

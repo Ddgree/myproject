@@ -169,3 +169,36 @@ update party set delok = 'y' where delok = 'n' and party_enddate < TO_CHAR(SYSDA
 
 insert into member
      values('admin','1234',null,null,null,null,null,null,null,null,'y')
+     
+/* 회원탈퇴 */
+CREATE TABLE del_member (
+	del_member_id VARCHAR2(20) Primary key, /* 아이디 */
+	del_member_passwd VARCHAR2(20), /* 비번 */
+	del_member_name VARCHAR2(20), /* 이름 */
+	del_member_nickname VARCHAR2(20), /* 닉네임 */
+	del_member_gender VARCHAR2(20), /* 성별 */
+	del_member_phone VARCHAR2(20), /* 휴대전화 */
+	del_member_age NUMBER, /* 나이 */
+	del_member_email VARCHAR2(20), /* 이메일 */
+	del_member_address VARCHAR2(20), /* 주소(지역) */
+	del_member_file VARCHAR2(100), /* 프로필사진 */
+	del_member_date DATE, /* 탈퇴일자 */
+	del_member_delok VARCHAR2(20) /* 삭제여부 */
+);
+
+create table partymanager
+(
+	member_id varchar2(20),
+	party_no number ,
+	ishost varchar2(20)
+)
+select max(party_no) from party
+select * from PARTYMANAGER;
+insert into partymanager values('test',0,1)
+delete from partymanager where member_id='test'
+select party_no from party where party_subject = 'ㅋㅋㅋ'
+/* 실행 안함 */
+ALTER TABLE partymanager ADD CONSTRAINT member_id_fk
+FOREIGN KEY(member_id) REFERENCES member(member_id);
+
+ALTER TABLE partymanager DROP PRIMARY KEY DROP INDEX;

@@ -80,4 +80,8 @@
 	<delete id="party_delete" parameterType="String">
 		delete from party where party_no=#{party_no}
 	</delete>
+	
+	<select id="findpartyno" resultType="int">
+		select max(party_no) from party
+	</select>
 </mapper>

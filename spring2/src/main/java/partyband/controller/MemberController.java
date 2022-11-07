@@ -291,12 +291,7 @@ public class MemberController {
 			
 			return "member/loginResult";
 			
-		} else if(member.getMember_id().equals("admin")){// 관리자 일떄
-				session.setAttribute("admin", member);
-				
-				return "redirect:partyband.do"; 
-			
-		}else if (member.getMember_passwd().equals(pwd)) {// 비번이 같을때
+		} if (member.getMember_passwd().equals(pwd)) {// 비번이 같을때
 				session.setAttribute("member", member);
 
 				String member_file = member.getMember_file();

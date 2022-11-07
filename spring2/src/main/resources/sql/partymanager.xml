@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="partymanagerns">
+	<insert id="insert" parameterType="partymanager">
+		insert into partymanager(partymanager.member_id, partymanager.party_no,partymanager.ishost) 
+		values(#{member_id},#{party_no},1)
+	</insert>
+</mapper>
