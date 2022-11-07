@@ -3,7 +3,7 @@ delete from board where board_division='일반';
 select * from member;
 select * from reboard;
 select * from board;
-delete from board where board_no =136;
+delete from board where board_no =141;
 select * from party;
 insert into board values(board_no_seq.nextval, )
 

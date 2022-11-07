@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!doctype html>
 <html lang="ko">
@@ -22,7 +23,18 @@ td {
 				+ encodeURI(file);
 	}
 </script>
+
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/boardnotice.css" />
+
 </head>
+
+<c:if test="${sessionScope.member.member_id == null }">
+	<%@ include file="../member/header.jsp"%>
+</c:if>
+<c:if test="${sessionScope.member.member_id != null }">
+	<%@ include file="../member/header_login.jsp"%>
+</c:if>
 
 <body>
 	<div id="board_content_wrap" align="center">
@@ -51,20 +63,26 @@ td {
 			<tr>
 				<th>첨부파일</th>
 
-				<td>
-				 <a href="file_down.do?file_name=${read.board_file}">${read.board_file}</a>
+				<td><a href="file_down.do?file_name=${read.board_file}">${read.board_file}</a>
 				</td>
 			</tr>
 		</table>
 
 		<div id="board_content_menu" style='margin-top: 20px;'>
-			
-			<input type="button" value="수정" class="input_button"
-				onclick="location='board_update.do?board_no=${read.board_no}&page=${page}&board_id=${read.board_id}'" />
-			<input type="button" value="삭제" class="input_button"
-				onclick="location='board_delete.do?board_no=${read.board_no}&page=${page}'" />
-			<input type="button" value="목록" class="input_button"
+
+			<c:if test="${sessionScope.member.member_id == read.board_id}">
+				<input type="button" value="수정" class="input_button"
+					onclick="location='board_update.do?board_no=${read.board_no}&page=${page}&board_id=${read.board_id}'" />
+				<input type="button" value="삭제" class="input_button"
+					onclick="location='board_delete.do?board_no=${read.board_no}&page=${page}'" />
+				<input type="button" value="목록" class="input_button"
 				onclick="location='board_list.do?page=${page}'" />
+			</c:if>
+			<c:if test="${sessionScope.member.member_id != read.board_id}">
+				<input type="button" value="목록" class="input_button"
+				onclick="location='board_list.do?page=${page}'" />
+			</c:if>
+			
 		</div>
 	</div>
 </body>
