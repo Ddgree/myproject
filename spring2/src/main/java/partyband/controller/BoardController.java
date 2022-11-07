@@ -168,6 +168,7 @@ public class BoardController {
 		model.addAttribute("page", page);
 		return "board/board_update";
 	}
+	
 	// 게시판 수정 
 	@RequestMapping(value="/board_update_ok.do", method = RequestMethod.POST)
 	public String board_edit_ok(@RequestParam("page") String page, Model model, @ModelAttribute BoardBean board,
