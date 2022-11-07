@@ -73,6 +73,13 @@ public class MemberDAOImpl {
 	public void updateMember(MemberBean member) throws Exception {
 		sqlSession.update("member_edit", member);
 	}
+	
+	/* 탈퇴 전 파티방 검색 */
+//	@Transactional
+	public int findparty(String findparty) throws Exception {
+		int result = sqlSession.selectOne("find_party", findparty);
+		return result;
+	}
 
 	/* 회원삭제 */
 //	@Transactional
