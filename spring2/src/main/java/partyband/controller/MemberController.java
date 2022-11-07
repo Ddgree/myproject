@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import partyband.model.MemberBean;
+import partyband.model.partybean;
 import partyband.service.MemberServiceImpl;
 
 @Controller
@@ -294,6 +295,7 @@ public class MemberController {
 
 		} else {			// 등록된 회원일때
 			if (member.getMember_passwd().equals(pwd)) {// 비번이 같을때
+
 				session.setAttribute("member", member);
 
 				String member_file = member.getMember_file();
@@ -487,11 +489,14 @@ public class MemberController {
 		
 		MemberBean member = (MemberBean) session.getAttribute("member");
 		
-		int findparty = memberService.findparty(member.getMember_id());
-			if (findparty != 0) {	// 파티방장이고 사람이 있을때
-			
-			return "member/findPartyResult";
-		}
+		partybean findparty = memberService.findparty(member.getMember_id());
+			if (findparty != null) {	// 파티방장이고 사람이 있을때
+				
+				System.out.println("방장 사람있음");
+				return "member/findPartyResult";
+				
+			}else if(findparty == null) {
+				System.out.println("findparty null in");
 		
 		MemberBean delete = this.memberService.userCheck(member.getMember_id());
 
@@ -518,7 +523,9 @@ public class MemberController {
 			session.invalidate();	// 세션만료
 
 			return "member/member_del_ok";
+		  }
 		}
+		return null;
 	}
 
 	// 로그아웃
