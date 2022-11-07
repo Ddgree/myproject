@@ -81,4 +81,9 @@ public class PartyDaoImpl implements PartyDao
 	{
 		sqlSession.delete("partyns.party_delete",party_no);
 	}
+
+	public int findpartyno()
+	{
+		return sqlSession.selectOne("partyns.findpartyno");
+	}
 }

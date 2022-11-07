@@ -41,7 +41,7 @@
 	<div class=party-list-wrap>
 		<c:forEach var="p" items="${partylist}">
 			<jsp:useBean id="today" class="java.util.Date" />
-			<fmt:parseNumber value="${today.time / (1000*60*60*24)}" integerOnly="true" var="now" scope="request" />
+			<fmt:parseNumber value="${today.time / (1000*60*60*24)-1}" integerOnly="true" var="now" scope="request" />
 			<!-- Dday -->
 			<fmt:parseDate var="enddate" value="${p.party_enddate}" pattern="yyyyMMdd" />
 			<fmt:parseNumber var="day" value="${enddate.time / (1000*60*60*24)}" integerOnly="true" />

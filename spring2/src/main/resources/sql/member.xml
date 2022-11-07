@@ -55,10 +55,10 @@
     
     
      <!-- 탈퇴 전 파티방 검색 -->
-    <select id="find_party" parameterType="String">
-	 select * from party where party_no = 
-	 (select party_no from partymanager where ishost = 1 
-	 and member_id =#{member_id}) 
+    <select id="find_party" parameterType="String" resultType="party">
+	 select * from party where party_no = (
+	 select party_no from partymanager where ishost = 1 
+	 and member_id =#{findparty}) 
 	 and party_count != 0
     </select>
     

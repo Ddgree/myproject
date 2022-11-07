@@ -76,4 +76,9 @@ public class PartyServiceImpl implements PartyService
 	{
 		partydao.partydel(party_no);
 	}
+
+	public int findpartyno() 
+	{
+		return partydao.findpartyno();
+	}
 }
