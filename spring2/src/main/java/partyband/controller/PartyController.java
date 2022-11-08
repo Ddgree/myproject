@@ -3,6 +3,7 @@ package partyband.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -161,31 +162,73 @@ public class PartyController {
 
 	/* 파티방 상세보기 */
 	@RequestMapping("party_detail.do")
-	public String party_cont(int page, int party_no, Model model) throws Exception {
+	public String party_cont(int join, String member_id, int party_no, int page, Model model) throws Exception 
+	{
+
 		partybean party = partyservice.party_cont(party_no);
 		String party_new_content = party.getParty_content().replace("\n", "<br>");
-		party.setParty_content(party_new_content);
+		party.setParty_content(party_new_content);	
 
+		
 		model.addAttribute("party", party);
 		model.addAttribute("page", page);
+		model.addAttribute("join",join);
 
 		return "party/partydetail";
 	}
 
 	/* 파티방 참가 신청 */
 	@RequestMapping("partyjoin.do")
-	public String partyjoin(int party_no, int page,String member_id, Model model) throws Exception {
+	public String partyjoin(int party_no, int page,String member_id, Model model) throws Exception 
+	{
 		partyservice.partyjoin(party_no);
-		
+	
 		PartyManagerBean pm = new PartyManagerBean();
 		pm.setMember_id(member_id);
 		pm.setParty_no(party_no);
 		partymanager.join_insert(pm);
+		
 
+		List<PartyManagerBean> joinlist = new ArrayList<PartyManagerBean>();
+		
+		joinlist = partyservice.joinlist(member_id);
+		List<Integer> joinset = new ArrayList<Integer>();
+		
+		for (PartyManagerBean partyManagerBean : joinlist) 
+		{
+			joinset.add(partyManagerBean.getParty_no());
+		}
+		
+		int join = 1;
+		
+		for(int i : joinset)
+		{
+			if(i == party_no)
+			{
+				join = -1;
+			}
+		}
+		
 		model.addAttribute("page", page);
 		model.addAttribute("party_no", party_no);
+		model.addAttribute("join",join);
+
 		return "redirect:party_detail.do";
 	}
+	
+	@RequestMapping("partyjoincancel.do")
+	public String partyjoincancel(int page, String member_id, int party_no, int join,Model model)
+	{
+		partyservice.partyjoincancel(party_no);
+		//partymanager.partyjoincancel();
+		join = 1;
+		
+		model.addAttribute("page", page);
+		model.addAttribute("party_no", party_no);
+		model.addAttribute("join",join);
+		return "redirect:party_detail.do";
+	}
+	
 
 	/* 비밀 번호 확인 폼 이동 */
 	@RequestMapping("pwcheckform.do")
@@ -267,25 +310,19 @@ public class PartyController {
 	public String party_color() {
 		return "party/partycolor";
 	}
-	
-	@RequestMapping("partyjoincancel.do")
-	public String partyjoincancel(HttpServletRequest request)
-	{
-		return "";
-	}
-	
 	@RequestMapping("joinlist.do")
 	public String joinlist(String member_id,HttpServletRequest request)
 	{
 		List<PartyManagerBean> joinlist = new ArrayList<PartyManagerBean>();
 		
 		joinlist = partyservice.joinlist(member_id);
+		HashSet joinset = new HashSet();
 		
 		for (PartyManagerBean partyManagerBean : joinlist) 
 		{
-			System.out.println(partyManagerBean);
+			joinset.add(partyManagerBean.getParty_no());
 		}
-		
+		System.out.println(joinset);
 		return "party/partymain";
 	}
 }

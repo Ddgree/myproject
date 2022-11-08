@@ -85,17 +85,14 @@
 							<input type="button" value="삭제" class="input_button"
 								onclick="location.href='partydelete.do'" />
 						</c:when>
-						<c:otherwise>
-							<input type="button" value="목록" class="input_button"
-								onclick="location='partyband.do?page=${page}'" />
-						<c:if test="${party.party_max_count-party.party_count==0}">
+						<c:when test="${join == -1}">
+							<input type="button" value="목록" class="input_button"onclick="location='partyband.do?page=${page}'"/>
 							<input type="button" value="참가취소" class="input_button"
-								onclick="location='partyjoincancel.do?page=${page}&party_no=${party.party_no}&member_id=${member.member_id}'" />
-						</c:if>
-						<c:if test="${party.party_max_count-party.party_count!=0}">
-							<input type="button" value="참가" class="input_button"
-								onclick="location='partyjoin.do?page=${page}&party_no=${party.party_no}&member_id=${member.member_id}'" />
-								</c:if>
+								onclick="location='partyjoincancel.do?page=${page}&party_no=${party.party_no}&member_id=${member.member_id}&join=${join}'" />
+						</c:when>
+						<c:otherwise>
+							<input type="button" value="목록" class="input_button" onclick="location='partyband.do?page=${page}'"/>
+							<input type="button" value="참가" class="input_button" onclick="location='partyjoin.do?page=${page}&party_no=${party.party_no}&member_id=${member.member_id}'" />
 						</c:otherwise>
 					</c:choose></td>
 			</tr>

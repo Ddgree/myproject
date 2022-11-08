@@ -548,21 +548,14 @@ public class MemberController {
 	
 	/* 참가파티 페이지 */
 	@RequestMapping(value = "/member_party.do")
-	public String member_party(String member_id,Model m,
-			HttpServletRequest request
+	public String member_party(String member_id,Model m
 			) throws Exception {
 		
-		int page = 1;
-
-		if (request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
-		}
-		
+	
 		List<partybean> partymem = memberService.joinparty(member_id);
 		//System.out.println("멤버아이디"+member_id);
 		//System.out.println("파티멤"+partymem);
 		m.addAttribute("partymem", partymem);
-		m.addAttribute("page",page);
 		//System.out.println("참가파티");
 
 		return "member/joinparty";
