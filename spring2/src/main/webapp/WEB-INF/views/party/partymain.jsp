@@ -22,7 +22,7 @@
 <body>
 <div id="options">
 <div id="optionsheader">드래그해서이동</div>
-	sessionid <br>${member.member_id}${sessionId}<br>
+	sessionid <br>${member.member_id}<br>
 	<input type="button" value="관리자 로그인" id="option-button"
 		onclick="location='admin_login.do?page=${page}'"/><br>
 	<input type="button" value="관리자 로그아웃" id="option-button"

@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +16,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import partyband.service.PagingPgm;
+import partyband.service.ReplyService;
 import partyband.model.BoardBean;
+import partyband.model.ReBoardBean;
 import partyband.model.partybean;
 import partyband.service.BoardService;
 
@@ -28,6 +32,9 @@ public class BoardController {
 	@Autowired
 	BoardService service;
 
+	@Autowired
+	private ReplyService replyservice;
+	
 	// 게시판 저장
 	@RequestMapping("board_write_ok.do")
 	public String board_write_ok(@ModelAttribute BoardBean board, String board_id,
@@ -96,12 +103,12 @@ public class BoardController {
 
 	// 게시판 목록 조회
 	@RequestMapping("board_list.do")
-	public String list(HttpServletRequest request, Model model, String pageNum, BoardBean board) throws Exception {
+	public String list(HttpServletRequest request, Model model, String page, BoardBean board) throws Exception {
 		final int rowPerPage = 10;	// 화면에 출력할 데이터 갯수
-		if (pageNum == null || pageNum.equals("")) {
-			pageNum = "1";
+		if (page == null || page.equals("")) {
+			page = "1";
 		}
-		int currentPage = Integer.parseInt(pageNum); // 현재 페이지 번호
+		int currentPage = Integer.parseInt(page); // 현재 페이지 번호
 		
 		// int total = bs.getTotal();
 		int total = service.getListCount(board); // 검색 (데이터 갯수)
@@ -116,6 +123,7 @@ public class BoardController {
 		int no = total - startRow + 1;		// 화면 출력 번호
 		List<BoardBean> list = service.list(board);
 		
+		model.addAttribute("page", page);
 		model.addAttribute("list", list);
 		model.addAttribute("no", no);
 		model.addAttribute("pp", pp);
@@ -154,7 +162,12 @@ public class BoardController {
 		model.addAttribute("read", service.read(board_no));
 		model.addAttribute("page", page);
 		model.addAttribute("board", board);
-
+		
+		// 댓글 조회
+		List<ReBoardBean> reply = null;
+		reply = replyservice.list(board_no);
+		model.addAttribute("reply", reply);
+		
 		return "board/board_content";
 	}
 
@@ -283,6 +296,6 @@ public class BoardController {
 
 		return "redirect:/board_list.do?page=" + page;
 	}
-
+	 
 
 }

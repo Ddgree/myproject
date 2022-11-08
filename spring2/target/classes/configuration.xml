@@ -9,6 +9,7 @@
 		<typeAlias alias="notice" type="partyband.model.Notice" />
 		<typeAlias alias="member" type="partyband.model.MemberBean"/>
 		<typeAlias alias="board" type="partyband.model.BoardBean"/>
+		<typeAlias alias="reboard" type="partyband.model.ReBoardBean"/>
 	</typeAliases>
 	
 </configuration>
