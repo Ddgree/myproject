@@ -21,4 +21,9 @@ public class PartyManagerServiceImpl
 	{
 		partymanager.join_insert(pm);
 	}
+
+	public void partyjoincancel(String member_id, int party_no) 
+	{
+		partymanager.partyjoincancel(member_id,party_no);
+	}
 }

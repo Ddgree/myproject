@@ -162,8 +162,9 @@ public class PartyController {
 
 	/* 파티방 상세보기 */
 	@RequestMapping("party_detail.do")
-	public String party_cont(int join, String member_id, int party_no, int page, Model model) throws Exception 
+	public String party_cont(int join, String member_id, int party_no, int page, Model model,HttpServletRequest request) throws Exception 
 	{
+		session = request.getSession();
 		partybean party = partyservice.party_cont(party_no);
 		String party_new_content = party.getParty_content().replace("\n", "<br>");
 		party.setParty_content(party_new_content);	
@@ -171,7 +172,7 @@ public class PartyController {
 		
 		model.addAttribute("party", party);
 		model.addAttribute("page", page);
-		model.addAttribute("join",join);
+		session.setAttribute("join", join);
 
 		return "party/partydetail";
 	}
@@ -219,7 +220,7 @@ public class PartyController {
 	public String partyjoincancel(int page, String member_id, int party_no, int join,Model model)
 	{
 		partyservice.partyjoincancel(party_no);
-		//partymanager.partyjoincancel();
+		partymanager.partyjoincancel(member_id,party_no);
 		join = 1;
 		
 		model.addAttribute("page", page);
