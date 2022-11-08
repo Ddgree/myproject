@@ -141,7 +141,10 @@ function member_delete() {
    <input type="button" value="정보수정" class="button" style="margin-left: 120px;"
     		onclick="edit_pwcheck()" />
    <input type="button" value="회원탈퇴" class="button"
-     		onclick="member_delete()" />	 		
+     		onclick="member_delete()" />	
+   <input type="button" value="참여 파티방" class="button"
+     		onclick="location='member_party.do?member_id=${member.member_id}'" />	  		
+     				
    </div>
   </form>
  </div> 

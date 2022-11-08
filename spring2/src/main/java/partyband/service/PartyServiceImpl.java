@@ -8,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import partyband.model.PartyManagerBean;
 import partyband.model.partybean;
 import partyband.dao.PartyDaoImpl;
 
 @Service
-public class PartyServiceImpl implements PartyService
+public class PartyServiceImpl 
 {
 	@Autowired
 	private PartyDaoImpl partydao;
@@ -41,6 +42,10 @@ public class PartyServiceImpl implements PartyService
 		return partydao.getPartyList(page);
 	}
 	
+	public List<partybean> getPartyList2(int page, String address) throws Exception {
+		return partydao.getPartyList2(page,address);
+
+	}
 
 	public List<partybean> getEndPartyList(int page)
 	{
@@ -51,7 +56,11 @@ public class PartyServiceImpl implements PartyService
 	{
 		return partydao.getListCount();
 	}
-
+	
+	public int getListCount2(String address) {
+		return partydao.getListCount2(address);
+	}
+	
 	public void insert(partybean party) 
 	{
 		partydao.partyinsert(party);
@@ -81,4 +90,10 @@ public class PartyServiceImpl implements PartyService
 	{
 		return partydao.findpartyno();
 	}
+
+	public List<PartyManagerBean> joinlist(String member_id)
+	{
+		return partydao.joinlist(member_id);
+	}
+
 }

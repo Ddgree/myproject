@@ -79,9 +79,6 @@ public class MemberDAOImpl {
 //	@Transactional
 	public partybean findparty(String findparty) throws Exception {
 		partybean result = sqlSession.selectOne("find_party", findparty);
-//		MemberBean result = (MemberBean) (sqlSession.selectList("find_party", findparty)).get(0);
-		System.out.println("dao:"+result);
-//		System.out.println("party_no:"+result.getParty_no());
 		
 		return result;
 	}
@@ -96,6 +93,12 @@ public class MemberDAOImpl {
 //	@Transactional
 	public List<MemberBean> dropid() throws Exception {
 		return sqlSession.selectList("id_drop");
+	}
+	
+	/* 참가파티방 검색 */
+//	@Transactional
+	public List<partybean> joinparty(String member_id) throws Exception {
+		return sqlSession.selectList("joinparty",member_id);
 	}
 }
 

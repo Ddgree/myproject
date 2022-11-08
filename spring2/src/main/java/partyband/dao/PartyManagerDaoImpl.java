@@ -14,12 +14,11 @@ public class PartyManagerDaoImpl
 
 	public void create_insert(PartyManagerBean manager) 
 	{
-		System.out.println("dao, member_id : " + manager.getMember_id());
-		System.out.println("dao, party_no : " + manager.getParty_no());
-		System.out.println("dao, ishost : " + manager.getIshost());
 		sqlSession.insert("partymanagerns.insert",manager);
-		System.out.println("xml 종료, member_id : " + manager.getMember_id());
-		System.out.println("xml 종료, party_no : " + manager.getParty_no());
-		System.out.println("xml 종료, ishost : " + manager.getIshost());
+	}
+
+	public void join_insert(PartyManagerBean pm) 
+	{
+		sqlSession.insert("partymanagerns.insert2",pm);
 	}
 }

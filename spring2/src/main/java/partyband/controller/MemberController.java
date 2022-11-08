@@ -181,7 +181,7 @@ public class MemberController {
 	/* 정보수정 전 비번체크 폼 */
 	@RequestMapping(value = "/edit_pwcheck.do")
 	public String edit_pwcheck() {
-		System.out.println("수정 전 비번체크 폼");
+		//System.out.println("수정 전 비번체크 폼");
 		return "member/edit_pwcheck";
 	}
 	
@@ -211,7 +211,7 @@ public class MemberController {
 								HttpServletRequest request,
 								Model model)throws Exception{
 		
-		System.out.println("가입맵");
+		//System.out.println("가입맵");
 		
 		String filename = mf.getOriginalFilename();
 		int size = (int) mf.getSize(); 	// 첨부파일의 크기 (단위:Byte) 
@@ -280,8 +280,6 @@ public class MemberController {
 			                      HttpSession session, 
 			                      Model model) throws Exception {
 		
-		System.out.println("로그인 인증");
-		
 		int result=0;		
 		MemberBean member = memberService.userCheck(id);
 
@@ -292,6 +290,7 @@ public class MemberController {
 			
 			return "member/loginResult";
 			
+
 		} else {			// 등록된 회원일때
 			if (member.getMember_passwd().equals(pwd)) {// 비번이 같을때
 
@@ -317,7 +316,7 @@ public class MemberController {
 	@RequestMapping(value = "/member_mypage.do")
 	public String member_mypage(HttpSession session, Model m) throws Exception {
 		
-		System.out.println("회원 마이페이지");
+		//System.out.println("회원 마이페이지");
 		
 		MemberBean member = (MemberBean)session.getAttribute("member");
 
@@ -341,7 +340,7 @@ public class MemberController {
 								  HttpSession session, 
 								  Model model)throws Exception{
 		
-		System.out.println("비번 체크완료");
+		//System.out.println("비번 체크완료");
 		int result=0;		
 		MemberBean member = (MemberBean) session.getAttribute("member");
 		MemberBean check = memberService.pwCheck(member.getMember_id());
@@ -363,7 +362,7 @@ public class MemberController {
 	@RequestMapping(value = "/member_edit.do")
 	public String member_edit(HttpSession session, Model m) throws Exception {
 		
-		System.out.println("회원정보 수정 폼");
+		//System.out.println("회원정보 수정 폼");
 		
 		MemberBean member = (MemberBean)session.getAttribute("member");
 
@@ -390,13 +389,13 @@ public class MemberController {
 								 HttpSession session, 
 								 Model model) throws Exception {
 		
-		System.out.println("회원정보 수정");
+		//System.out.println("회원정보 수정");
 		
 		String filename = mf.getOriginalFilename();
 		int size = (int) mf.getSize();		
 		
 		String path = request.getRealPath("upload");
-		System.out.println("path:"+path);
+		//System.out.println("path:"+path);
 		
 		int result=0;		
 		String file[] = new String[2];
@@ -407,7 +406,7 @@ public class MemberController {
 		
 		// 파일 중복문제 해결
 		String extension = filename.substring(filename.lastIndexOf("."), filename.length());
-		System.out.println("extension:"+extension);
+		//System.out.println("extension:"+extension);
 				
 		UUID uuid = UUID.randomUUID();
 				
@@ -491,11 +490,11 @@ public class MemberController {
 		partybean findparty = memberService.findparty(member.getMember_id());
 			if (findparty != null) {	// 파티방장이고 사람이 있을때
 				
-				System.out.println("방장 사람있음");
+				//System.out.println("방장 사람있음");
 				return "member/findPartyResult";
 				
 			}else if(findparty == null) {
-				System.out.println("findparty null in");
+				//System.out.println("findparty null in");
 		
 		MemberBean delete = this.memberService.userCheck(member.getMember_id());
 
@@ -507,7 +506,7 @@ public class MemberController {
 			
 			String upload = session.getServletContext().getRealPath("upload");
 			String file = member.getMember_file();
-			System.out.println("up:"+upload);
+			//System.out.println("up:"+upload);
 			
 			// 디비에 저장된 기존 이전파일명을 가져옴
 			if (file != null) {// 기존 파일이 존재하면
@@ -542,9 +541,31 @@ public class MemberController {
 		List<MemberBean> dropmem = memberService.dropid();
 		
 		m.addAttribute("dropmem", dropmem);
-		System.out.println("탈퇴회원 페이지");
+		//System.out.println("탈퇴회원 페이지");
 
 		return "member/drop_id";
+	}
+	
+	/* 참가파티 페이지 */
+	@RequestMapping(value = "/member_party.do")
+	public String member_party(String member_id,Model m,
+			HttpServletRequest request
+			) throws Exception {
+		
+		int page = 1;
+
+		if (request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		
+		List<partybean> partymem = memberService.joinparty(member_id);
+		//System.out.println("멤버아이디"+member_id);
+		//System.out.println("파티멤"+partymem);
+		m.addAttribute("partymem", partymem);
+		m.addAttribute("page",page);
+		//System.out.println("참가파티");
+
+		return "member/joinparty";
 	}
 
 // }
