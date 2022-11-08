@@ -21,7 +21,7 @@
         <li><a href="board_list.do" style="margin-left:100px;">커뮤니티</a></li>
         <li><a href="notice_list.do" style="margin-left:100px;">공지사항</a></li>
 		<li><div class="hello" style="margin-left: 130px; margin-top: 9px;">${sessionScope.member.member_nickname}님! 환영합니다!</div></li>
-		<li><input type="button" value="마이페이지" class="mypage" style=" cursor: pointer;" onclick="location='member_mypage.do'" /> </li>
+		<li><input type="button" value="탈퇴회원 목록" class="mypage" style=" cursor: pointer;" onclick="location='member_drop.do'" /> </li>
 		<li><input type="submit" value="로그아웃" class="mypage" style=" cursor: pointer; " onclick="location='member_logout.do'"/></li>
        
       </ul>

@@ -19,6 +19,10 @@
 <c:if test="${sessionScope.member.member_id != null }">
 	<%@ include file="../member/header_login.jsp"%>
 </c:if>
+<c:if test="${sessionScope.member.member_id != null && sessionScope.member.member_id == 'admin' }">
+	<%@ include file="../member/header_login2.jsp"%>
+</c:if>
+
 <body>
 <div id="options">
 <div id="optionsheader">드래그해서이동</div>
