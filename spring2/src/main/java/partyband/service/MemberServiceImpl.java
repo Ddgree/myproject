@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import partyband.dao.MemberDAOImpl;
 import partyband.model.MemberBean;
+import partyband.model.partybean;
 
 
 @Service
@@ -46,6 +47,10 @@ public class MemberServiceImpl {
 	
 	public void updateMember(MemberBean member) throws Exception{
 		memberDao.updateMember(member);
+	}
+	
+	public partybean findparty(String findparty)throws Exception {
+		return memberDao.findparty(findparty);
 	}
 	
 	public void deleteMember(MemberBean deletemember) throws Exception{
