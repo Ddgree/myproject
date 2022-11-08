@@ -551,9 +551,7 @@ public class MemberController {
 	public String member_party(String member_id,Model m
 			) throws Exception {
 		
-	
 		List<partybean> partymem = memberService.joinparty(member_id);
-		//System.out.println("멤버아이디"+member_id);
 		//System.out.println("파티멤"+partymem);
 		m.addAttribute("partymem", partymem);
 		//System.out.println("참가파티");

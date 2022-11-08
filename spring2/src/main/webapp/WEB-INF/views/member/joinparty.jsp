@@ -44,7 +44,7 @@
 				<td style="font-family: Tahoma; font-size: 10pt;">
 					<div align="center">
 					<a href="party_detail.do?party_no=
-					${partymem.party_no}&page=1&join=1">${partymem.party_no}</a>
+					${partymem.party_no}&page=1&join=${join}">${partymem.party_no}</a>
 					</div>
 				</td>
 				<td style="font-family: Tahoma; font-size: 10pt;">
