@@ -26,6 +26,16 @@
 			]]>
 	</select>
 	
+	<!-- 파티방 목록 -->
+	<select id="party_list2" parameterType="hashmap" resultType="party">
+	    	<![CDATA[
+				select * from 
+				(select rownum rnum, party.* from 
+				 (select * from party where delok='n' order by party_no desc) party) 
+			   	where party_address=#{address,jdbcType=VARCHAR} and rnum >= ((#{page} - 1) * 8 + 1)  and rnum <= (#{page} * 8)
+			]]>
+	</select>
+	
 	<!-- 종료된 파티방 목록 -->
 	<select id="party_endlist" parameterType="int" resultType="party">
 		<![CDATA[
@@ -36,10 +46,11 @@
 			]]>
 	</select>
 	
-	<!-- 파티방 총 개수 -->
-	<select id="party_end_count" resultType="int">
+	<!-- 종료된 파티방 총 개수 -->
+	<select id="party_end_list_count" resultType="int">
 		select count(*) from party where delok = 'y'
 	</select>
+	
 	
 	<!-- 파티방 저장-->
 	<insert id="party_insert" parameterType="party">
@@ -53,9 +64,19 @@
 		select count(*) from party where delok = 'n'
 	</select>
 	
+	<!-- 파티방 총 개수(지역별) -->
+	<select id="party_count2" resultType="int">
+		select count(*) from party where party_address=#{address,jdbcType=VARCHAR} and delok = 'n'
+	</select>
+	
 	<!-- 파티방 참가 신청 -->
 	<update id="party_join" parameterType="int">
 		update party set party_count = party_count + 1 where party_no = #{party_no} 
+	</update>
+	
+	<!-- 파티방 참가 신청 취소 -->
+	<update id="partyjoincancel" parameterType="int">
+		update party set party_count = party_count - 1 where party_no = #{party_no} 
 	</update>
 	
 	<!-- member에 가입된 비밀번호 확인 -->
@@ -80,4 +101,8 @@
 	<delete id="party_delete" parameterType="String">
 		delete from party where party_no=#{party_no}
 	</delete>
+	
+	<select id="findpartyno" resultType="int">
+		select max(party_no) from party
+	</select>
 </mapper>

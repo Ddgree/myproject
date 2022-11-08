@@ -24,31 +24,11 @@
 	<div id="item" align="center">
 	<div class=party-list-wrap>
 		<c:forEach var="p" items="${endpartylist}">
-			<jsp:useBean id="today" class="java.util.Date" />
-			<fmt:parseNumber value="${today.time / (1000*60*60*24)}"
-				integerOnly="true" var="now" scope="request" />
-			<!-- Dday -->
-			<fmt:parseDate var="enddate" value="${p.party_enddate}"
-				pattern="yyyyMMdd" />
-			<fmt:parseNumber var="day" value="${enddate.time / (1000*60*60*24)}"
-				integerOnly="true" />
-			<!-- 날짜포멧출력 -->
-			<fmt:formatDate var="dday" value="${enddate }"
-				pattern="yyyy년 MM월 dd일" />
-			
 				<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page }'">
 				
 				<div class=type>[${p.party_address}] ${p.party_subject}</div>
 				<div>
-					<c:if test="${now==day }">
-						<td>${dday}[D-day]</td>
-					</c:if>
-					<c:if test="${now>day }">
-						<td>${dday}[종료]</td>
-					</c:if>
-					<c:if test="${now<day }">
-						<td>${dday}[D${now-day }]</td>
-					</c:if>
+					${dday}[종료]
 				</div>
 				<div>
 					<i class="fa-solid fa-crown"></i>

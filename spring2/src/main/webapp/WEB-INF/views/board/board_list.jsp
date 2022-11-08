@@ -15,16 +15,12 @@
 <c:if test="${sessionScope.member.member_id != null }">
 	<%@ include file="../member/header_login.jsp"%>
 </c:if>
+
 <body>
 	<div id="root">
-		<header align="center">
-			<h1>커뮤니티</h1>
-		</header>
-		<hr/>
-
 		<div id="container">
 			<form role="form" method="post">
-				<table border=1 width=50% align=center>
+				<table border=1 width=50% align=center style='margin-top:10%;'>
 					<tr>
 						<th>번호</th>
 						<th>구분</th>
@@ -38,37 +34,36 @@
 						<tr align="center">
 							<td><c:out value="${list.board_no}" /></td>
 							<td><c:out value="${list.board_division}" /></td>
-							<td><c:out value="${sessionScope.member.member_nickname}" /></td>
+							<td><c:out value="${list.board_id}" /></td>
 							<td><a
-								href="board_content.do?page=${page}&board_no=${list.board_no}"><c:out
+								href="board_content.do?page=${page}&board_no=${list.board_no}&board_id=${member.member_id}"><c:out
 										value="${list.board_subject}" /></a></td>
 							<td><fmt:formatDate value="${list.board_date}"
 									pattern="yyyy-MM-dd" /></td>
 							<td><c:out value="${list.board_readcount}" /></td>
 						</tr>
-						<c:set var="no1" value="${no1 - 1}" />
+						<%-- <c:set var="no1" value="${no1 - 1}" /> --%>
 					</c:forEach>
 				</table>
 			</form>
 		</div>
-		<hr/>
-			<div align="center">
-		<form action="board_list.do" align="center">
-			<input type="hidden" name="pageNum" value="1"> <select
-				name="search">
-				<option value="board_subject"
-					<c:if test="${search=='board_subject'}">selected="selected" </c:if>>제목</option>
-				<option value="board_content"
-					<c:if test="${search=='board_content'}">selected="selected" </c:if>>내용</option>
-				<option value="board_id"
-					<c:if test="${search=='${sessionId}'}">selected="selected" </c:if>>작성자</option>
-				<option value="subcon"
-					<c:if test="${search=='subcon'}">selected="selected" </c:if>>제목+내용</option>
-			</select> 
-			<input type="text" name="keyword"> <input type="submit"
-				value="검색">
-		</form>
-				</div>
+		<hr />
+		<div align="center">
+			<form action="board_list.do" align="center">
+				<input type="hidden" name="pageNum" value="1"> <select
+					name="search">
+					<option value="board_subject"
+						<c:if test="${search=='board_subject'}">selected="selected" </c:if>>제목</option>
+					<option value="board_content"
+						<c:if test="${search=='board_content'}">selected="selected" </c:if>>내용</option>
+					<option value="board_id"
+						<c:if test="${search=='${sessionId}'}">selected="selected" </c:if>>작성자</option>
+					<option value="subcon"
+						<c:if test="${search=='subcon'}">selected="selected" </c:if>>제목+내용</option>
+				</select> <input type="text" name="keyword"> <input type="submit"
+					value="검색">
+			</form>
+		</div>
 
 		<div align="center">
 			<!-- 검색 했을 경우의 페이징 처리 -->
@@ -76,39 +71,44 @@
 				<c:if test="${pp.currentPage == 1 }">
 					<div class=blackbutton-inactive><<</div>&nbsp; </c:if>
 				<c:if test="${pp.currentPage != 1 }">
-					<a href="board_list.do?pageNum=1&search=${search}&keyword=${keyword}"><div class=blackbutton-active>
-							<<</div>&nbsp;</a>
+					<a
+						href="board_list.do?pageNum=1&search=${search}&keyword=${keyword}"><div
+							class=blackbutton-active><<</div>&nbsp;</a>
 				</c:if>
 				<c:if test="${pp.currentPage <=1 }">
 					<div class=blackbutton-inactive><</div>&nbsp; </c:if>
 				<c:if test="${pp.currentPage > 1 }">
-					<a href="board_list.do?pageNum=${pp.startPage - 1}&search=${search}&keyword=${keyword}"><div
+					<a
+						href="board_list.do?pageNum=${pp.startPage - 1}&search=${search}&keyword=${keyword}"><div
 							class=blackbutton-active><</div>&nbsp;</a>
 				</c:if>
-				
+
 				<c:forEach var="a" begin="${pp.startPage}" end="${pp.endPage}">
 					<c:if test="${a == pp.currentPage }">
 						<div class=blackbutton-selected>${a }</div>
 					</c:if>
 					<c:if test="${a != pp.currentPage }">
-						<a href="board_list.do?page=${a}&search=${search}&keyword=${keyword}"><div class=blackbutton-active>
-								${a }</div></a>
+						<a
+							href="board_list.do?page=${a}&search=${search}&keyword=${keyword}"><div
+								class=blackbutton-active>${a }</div></a>
 					</c:if>
 				</c:forEach>
-				
+
 				<c:if test="${pp.currentPage >= pp.totalPage }">
 					<div class=blackbutton-inactive>></div>&nbsp; </c:if>
 				<c:if test="${pp.currentPage < pp.totalPage }">
-					<a href="board_list.do?pageNum=${page+1}&search=${search}&keyword=${keyword}"><div
+					<a
+						href="board_list.do?pageNum=${page+1}&search=${search}&keyword=${keyword}"><div
 							class=blackbutton-active>></div>&nbsp;</a>
 				</c:if>
 				<c:if test="${pp.currentPage == pp.totalPage }">
 					<div class=blackbutton-inactive>>></div>&nbsp; </c:if>
 				<c:if test="${pp.currentPage != pp.totalPage }">
-					<a href="board_list.do?pageNum=${pp.totalPage}&search=${search}&keyword=${keyword}"><div
+					<a
+						href="board_list.do?pageNum=${pp.totalPage}&search=${search}&keyword=${keyword}"><div
 							class=blackbutton-active>>></div>&nbsp;</a>
 				</c:if>
-<%-- 				
+				<%-- 				
 				<c:if test="${pp.startPage > pp.pagePerBlk }">
 					<a
 						href="board_list.do?pageNum=${pp.startPage - 1}&search=${search}&keyword=${keyword}">이전</a>
@@ -125,7 +125,7 @@
 
 			<!-- 전체 목록의 페이징 처리 -->
 			<c:if test="${empty keyword}">
-			<c:if test="${pp.currentPage == 1 }">
+				<c:if test="${pp.currentPage == 1 }">
 					<div class=blackbutton-inactive><<</div>&nbsp; </c:if>
 				<c:if test="${pp.currentPage != 1 }">
 					<a href="board_list.do?pageNum=1"><div class=blackbutton-active>
@@ -137,17 +137,17 @@
 					<a href="board_list.do?pageNum=${pp.currentPage - 1}"><div
 							class=blackbutton-active><</div>&nbsp;</a>
 				</c:if>
-				
+
 				<c:forEach var="a" begin="${pp.startPage}" end="${pp.endPage}">
 					<c:if test="${a == pp.currentPage }">
 						<div class=blackbutton-selected>${a }</div>
 					</c:if>
 					<c:if test="${a != pp.currentPage }">
-						<a href="board_list.do?pageNum=${a}"><div class=blackbutton-active>
-								${a }</div></a>
+						<a href="board_list.do?pageNum=${a}"><div
+								class=blackbutton-active>${a }</div></a>
 					</c:if>
 				</c:forEach>
-				
+
 				<c:if test="${pp.currentPage >= pp.totalPage }">
 					<div class=blackbutton-inactive>></div>&nbsp; </c:if>
 				<c:if test="${pp.currentPage < pp.totalPage }">
@@ -160,7 +160,7 @@
 					<a href="board_list.do?pageNum=${pp.totalPage}"><div
 							class=blackbutton-active>>></div>&nbsp;</a>
 				</c:if>
-<%-- 				
+				<%-- 				
 				<c:if test="${pp.startPage > pp.pagePerBlk }">
 					<a href="board_list.do?pageNum=${pp.startPage - 1}">이전</a>
 				</c:if>
@@ -176,9 +176,7 @@
 		<div align="center" style="margin-top: 20px">
 			<input type="button" id="writebutton" name="button" value="글쓰기"
 				style="width: 50pt; height: 30pt"
-				onClick="location='board_write.do'" /> <input type="button"
-				id="listbutton" name="button" value="목록"
-				style="width: 50pt; height: 30pt" onClick="location='board_list.do'" />
+				onClick="location='board_write.do?page=${page}&board_id=${member.member_id}'" /> 
 		</div>
 	</div>
 </body>

@@ -1,10 +1,13 @@
 package partyband.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import partyband.model.MemberBean;
+import partyband.model.partybean;
 
 @Repository
 public class MemberDAOImpl {
@@ -71,11 +74,28 @@ public class MemberDAOImpl {
 	public void updateMember(MemberBean member) throws Exception {
 		sqlSession.update("member_edit", member);
 	}
+	
+	/* 탈퇴 전 파티방 검색 */
+//	@Transactional
+	public partybean findparty(String findparty) throws Exception {
+		partybean result = sqlSession.selectOne("find_party", findparty);
+//		MemberBean result = (MemberBean) (sqlSession.selectList("find_party", findparty)).get(0);
+		System.out.println("dao:"+result);
+//		System.out.println("party_no:"+result.getParty_no());
+		
+		return result;
+	}
 
 	/* 회원삭제 */
 //	@Transactional
 	public void deleteMember(MemberBean deletemember) throws Exception {
 		sqlSession.update("member_delete", deletemember);
+	}
+	
+	/* 탈퇴아이디 검색 */
+//	@Transactional
+	public List<MemberBean> dropid() throws Exception {
+		return sqlSession.selectList("id_drop");
 	}
 }
 

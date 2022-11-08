@@ -3,6 +3,7 @@ package partyband.controller;
 import java.io.File;
 import java.io.PrintWriter;
 import java.lang.reflect.Member;
+import java.util.List;
 import java.util.StringTokenizer;
 import java.util.UUID;
 
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import partyband.model.MemberBean;
+import partyband.model.partybean;
 import partyband.service.MemberServiceImpl;
 
 @Controller
@@ -195,6 +197,12 @@ public class MemberController {
 		return "member/pwd_find";
 	}
 	
+//	/* 탈퇴회원 확인 폼 */
+//	@RequestMapping(value = "/drop_id.do")
+//	public String drop_id() {
+//		return "member/drop_id";
+//	}
+	
 	
 	//회원가입 완료
 	@RequestMapping(value = "/member_join_ok.do", method = RequestMethod.POST)
@@ -284,8 +292,10 @@ public class MemberController {
 			
 			return "member/loginResult";
 			
+
 		} else {			// 등록된 회원일때
 			if (member.getMember_passwd().equals(pwd)) {// 비번이 같을때
+
 				session.setAttribute("member", member);
 
 				String member_file = member.getMember_file();
@@ -476,8 +486,17 @@ public class MemberController {
 	@RequestMapping(value = "/member_del_ok.do", method = RequestMethod.POST)
 	public String member_del_ok(@RequestParam("delete_passwd") String delete_passwd, 
 							    HttpSession session) throws Exception {
-
+		
 		MemberBean member = (MemberBean) session.getAttribute("member");
+		
+		partybean findparty = memberService.findparty(member.getMember_id());
+			if (findparty != null) {	// 파티방장이고 사람이 있을때
+				
+				System.out.println("방장 사람있음");
+				return "member/findPartyResult";
+				
+			}else if(findparty == null) {
+				System.out.println("findparty null in");
 		
 		MemberBean delete = this.memberService.userCheck(member.getMember_id());
 
@@ -504,7 +523,9 @@ public class MemberController {
 			session.invalidate();	// 세션만료
 
 			return "member/member_del_ok";
+		  }
 		}
+		return null;
 	}
 
 	// 로그아웃
@@ -513,6 +534,18 @@ public class MemberController {
 		session.invalidate();
 
 		return "member/member_logout"; 
+	}
+	
+	/* 탈퇴회원 페이지 */
+	@RequestMapping(value = "/member_drop.do")
+	public String member_drop(HttpSession session, Model m) throws Exception {
+		
+		List<MemberBean> dropmem = memberService.dropid();
+		
+		m.addAttribute("dropmem", dropmem);
+		System.out.println("탈퇴회원 페이지");
+
+		return "member/drop_id";
 	}
 
 // }

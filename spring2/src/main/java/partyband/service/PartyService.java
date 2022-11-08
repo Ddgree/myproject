@@ -16,8 +16,14 @@ public interface PartyService
 	/* 파티방 상세정보 */
 	public partybean party_cont(int party_no) throws Exception;
 	
+	/* 메인 페이지에 나오는 파티방 리스트 (지역별)*/
+	public List<partybean> getPartyList2(int page,String address) throws Exception;
+	
 	/* 저장된 파티방 총 개수 */
 	public int getListCount();
+	
+	/* 저장된 파티방 총 개수(지역별) */
+	public int getListCount2(String address);
 
 	/* 파티방 저장 */
 	public void insert(partybean party);

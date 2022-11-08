@@ -1,8 +1,11 @@
-<<<<<<< HEAD
-delete from member where member_delok='n';
+delete from member where member_division= ;
+delete from board where board_division='일반';
 select * from member;
-=======
 select * from reboard;
+select * from board;
+delete from board where board_no =136;
+select * from party;
+insert into board values(board_no_seq.nextval, )
 
 select*from tab;
 select * from notice_file;
@@ -122,8 +125,8 @@ select * from USER_CONSTRAINTS where table_name = 'PARTY';
 alter table PARTY DISABLE CONSTRAINT SYS_C007053;
 alter table PARTY ENABLE CONSTRAINT SYS_C007053;
 
-insert into party values(party_no_seq.nextval, '조기풋살 파티 모집합니다', '대전', '조기풋살 파티 모집합니다', '무관',
-'33', sysdate, '20221119', 0, 5, 'test');
+insert into party values(800, '조기풋살 파티 모집합니다', '대전', '조기풋살 파티 모집합니다', '무관',
+'33', sysdate, '20221119', 0, 5, 'test','n');
 insert into party values(party_no_seq.nextval, '농구ㄱ', '부산', '용두산공원 밤농하실분', '남자',
 '25', sysdate, '20221123', 0, 4, 'test2');
 insert into party values(party_no_seq.nextval, '영화 같이 보실분', '대구', '티켓 한장 남아요 스윗남 대기중', '여자',
@@ -138,6 +141,7 @@ insert into party values(party_no_seq.nextval, '양주서 골프 라운딩 하�
 '40', sysdate, '20221112', 0, 2, 'paul');
 
 delete from party where party_content = '파티방 내용'
+select * from PARTY.SYS_C007052
 
 insert into party values(party_no_seq.nextval,'파티방 연습','지역', '파티방 내용', '성별', '나이', sysdate,
 '20221227',9, 9, '홍길동')
@@ -152,8 +156,9 @@ delete from party where party_count > 5;
 
 ALTER TABLE party ADD delok VARCHAR(20);
 select * from party;
+select * from party where party_address = '대전';
 
-delete from party where party_max_count = 6;
+delete from party where party_enddate = '12312';
 
 insert into party values(party_no_seq.nextval,'진행중인 파티방','지역', '파티방 내용', '무관', '20', sysdate,
 '20221227',0, 5, 'test','n')
@@ -163,3 +168,51 @@ select * from party where party_enddate < TO_CHAR(SYSDATE, 'YYYYMMDD');
 
 update party set delok = 'y' where delok = 'n' and party_enddate < TO_CHAR(SYSDATE, 'YYYYMMDD');
 
+insert into member
+     values('admin','1234',null,null,null,null,null,null,null,null,'y')
+     
+/* 회원탈퇴 */
+CREATE TABLE del_member (
+	del_member_id VARCHAR2(20) Primary key, /* 아이디 */
+	del_member_passwd VARCHAR2(20), /* 비번 */
+	del_member_name VARCHAR2(20), /* 이름 */
+	del_member_nickname VARCHAR2(20), /* 닉네임 */
+	del_member_gender VARCHAR2(20), /* 성별 */
+	del_member_phone VARCHAR2(20), /* 휴대전화 */
+	del_member_age NUMBER, /* 나이 */
+	del_member_email VARCHAR2(20), /* 이메일 */
+	del_member_address VARCHAR2(20), /* 주소(지역) */
+	del_member_file VARCHAR2(100), /* 프로필사진 */
+	del_member_date DATE, /* 탈퇴일자 */
+	del_member_delok VARCHAR2(20) /* 삭제여부 */
+);
+
+create table partymanager
+(
+	member_id varchar2(20),
+	party_no number ,
+	ishost varchar2(20)
+)
+select * from party
+select max(party_no) from party
+select * from PARTYMANAGER;
+insert into partymanager values('test',0,1)
+delete from partymanager where member_id='test'
+select party_no from party where party_subject = 'ㅋㅋㅋ'
+/* 실행 안함 */
+ALTER TABLE partymanager ADD CONSTRAINT member_id_fk
+FOREIGN KEY(member_id) REFERENCES member(member_id);
+
+select * from party
+
+ALTER TABLE partymanager ADD CONSTRAINT party_no_fk
+FOREIGN KEY(party_no) REFERENCES party(party_no);
+
+ALTER TABLE partymanager DROP PRIMARY KEY DROP INDEX;
+
+ALTER TABLE party DROP PRIMARY KEY;
+select party_no from partymanager where member_id = "test"
+select  from party where party_no = ()
+
+delete from party where party_count > 5
+select party_count from party where party_no = 792

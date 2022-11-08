@@ -1,11 +1,14 @@
 package partyband.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import partyband.dao.MemberDAOImpl;
 import partyband.model.MemberBean;
+import partyband.model.partybean;
 
 
 @Service
@@ -46,7 +49,15 @@ public class MemberServiceImpl {
 		memberDao.updateMember(member);
 	}
 	
+	public partybean findparty(String findparty)throws Exception {
+		return memberDao.findparty(findparty);
+	}
+	
 	public void deleteMember(MemberBean deletemember) throws Exception{
 		memberDao.deleteMember(deletemember);
+	}
+	
+	public List<MemberBean> dropid()throws Exception {
+		return memberDao.dropid();
 	}
 }
