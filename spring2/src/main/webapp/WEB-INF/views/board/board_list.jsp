@@ -7,6 +7,8 @@
 <title>커뮤니티</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/boardnotice.css" />
+<script src="https://kit.fontawesome.com/f82eca20b8.js"
+	crossorigin="anonymous"></script>
 
 </head>
 <c:if test="${sessionScope.member.member_id == null }">
@@ -31,16 +33,19 @@
 					</tr>
 					<c:set var="no1" value="${no}"></c:set>
 					<c:forEach items="${list}" var="list">
-						<tr align="center">
-							<td><c:out value="${list.board_no}" /></td>
-							<td><c:out value="${list.board_division}" /></td>
-							<td><c:out value="${list.board_id}" /></td>
-							<td><a
-								href="board_content.do?page=${page}&board_no=${list.board_no}&board_id=${member.member_id}"><c:out
-										value="${list.board_subject}" /></a></td>
-							<td><fmt:formatDate value="${list.board_date}"
+						<tr>
+							<td style="text-align:center;"><c:out value="${list.board_no}" /></td>
+							<td style="text-align:center;"><c:out value="${list.board_division}" /></td>
+							<td style="text-align:center;"><c:out value="${list.board_id}" /></td>
+							<td style="text-align:left;"> 
+							&nbsp
+							<a href="board_content.do?page=${page}&board_no=${list.board_no}&board_id=${member.member_id}"><c:out
+										value=" ${list.board_subject}" /></a>
+										<c:if test="${list.board_file != null}"><i class="fa-solid fa-image"></i></c:if>
+										<c:if test="${list.board_file == null}"></c:if></td>
+							<td style="text-align:center;"><fmt:formatDate value="${list.board_date}"
 									pattern="yyyy-MM-dd" /></td>
-							<td><c:out value="${list.board_readcount}" /></td>
+							<td style="text-align:center;"><c:out value="${list.board_readcount}" /></td>
 						</tr>
 						<%-- <c:set var="no1" value="${no1 - 1}" /> --%>
 					</c:forEach>

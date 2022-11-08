@@ -65,7 +65,6 @@ td {
 				</td>
 			</tr>
 		</table>
-		<br> <br>
 
 		<div id="board_content_menu" style='margin-top: 20px;'>
 
@@ -73,11 +72,7 @@ td {
 				<input type="button" value="수정" class="input_button"
 					onclick="location='board_update.do?board_no=${read.board_no}&page=${page}&board_id=${read.board_id}'" />
 				<input type="button" value="삭제" class="input_button"
-					onclick="location='board_delete.do?board_no=${read.board_no}&page=${page}'" />
-				<input type="button" value="목록" class="input_button"
-					onclick="location='board_list.do?page=${page}'" />
-			</c:if>
-			<c:if test="${sessionScope.member.member_id != read.board_id}">
+					onclick="location='board_delete.do?board_no=${read.board_no}&page=${page}&board_id=${read.board_id}'" />
 				<input type="button" value="목록" class="input_button"
 					onclick="location='board_list.do?page=${page}'" />
 			</c:if>
@@ -86,6 +81,8 @@ td {
 					onclick="location='board_update.do?board_no=${read.board_no}&page=${page}&board_id=${read.board_id}'" />
 				<input type="button" value="삭제" class="input_button"
 					onclick="location='board_delete.do?board_no=${read.board_no}&page=${page}'" />
+			</c:if>
+			<c:if test="${sessionScope.member.member_id != read.board_id || 'admin'}">
 				<input type="button" value="목록" class="input_button"
 					onclick="location='board_list.do?page=${page}'" />
 			</c:if>

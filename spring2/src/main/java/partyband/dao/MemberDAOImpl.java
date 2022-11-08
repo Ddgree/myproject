@@ -97,6 +97,10 @@ public class MemberDAOImpl {
 	public List<MemberBean> dropid() throws Exception {
 		return sqlSession.selectList("id_drop");
 	}
+
+	public String deleteboard(String member_id) {
+		return sqlSession.selectOne("memberns.findpasswd", member_id);
+	}
 }
 
 

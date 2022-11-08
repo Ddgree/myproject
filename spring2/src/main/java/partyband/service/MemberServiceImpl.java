@@ -60,4 +60,8 @@ public class MemberServiceImpl {
 	public List<MemberBean> dropid()throws Exception {
 		return memberDao.dropid();
 	}
+
+	public String deleteboard(String member_id) {
+		return memberDao.deleteboard(member_id);
+	}
 }

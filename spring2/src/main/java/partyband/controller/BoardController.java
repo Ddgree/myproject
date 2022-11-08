@@ -19,12 +19,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ibatis.sqlmap.engine.scope.SessionScope;
+
 import partyband.service.PagingPgm;
 import partyband.service.ReplyService;
 import partyband.model.BoardBean;
 import partyband.model.ReBoardBean;
 import partyband.model.partybean;
 import partyband.service.BoardService;
+import partyband.service.MemberServiceImpl;
 
 @Controller
 public class BoardController {
@@ -34,6 +37,9 @@ public class BoardController {
 
 	@Autowired
 	private ReplyService replyservice;
+	
+	@Autowired
+	private MemberServiceImpl memberservice;
 	
 	// 게시판 저장
 	@RequestMapping("board_write_ok.do")
@@ -270,8 +276,10 @@ public class BoardController {
 
 	// 게시판 삭제 폼 이동
 	@RequestMapping("board_delete.do")
-	public String board_delete(@RequestParam("board_no") int board_no, Model model, @RequestParam("page") String page) throws Exception{
+	public String board_delete(@RequestParam("board_no") int board_no, Model model, @RequestParam("page") String page
+			) throws Exception{
 		System.out.println("controller 게시판 삭제 폼 이동");
+		
 		model.addAttribute("read", service.read(board_no));
 		model.addAttribute("page", page);
 		return "board/board_delete";
@@ -279,12 +287,13 @@ public class BoardController {
 	// 게시판 삭제
 	@RequestMapping(value="/board_delete_ok.do", method = RequestMethod.POST)
 	public String board_del_ok(@RequestParam("board_no") int board_no, @RequestParam("page") String page,
-			@RequestParam("board_passwd") String board_passwd, Model model) throws Exception {
-
-		BoardBean board = service.read(board_no);
+			String member_id, @RequestParam("board_passwd") String board_passwd, Model model) throws Exception {
+		
+		String passwd = memberservice.deleteboard(member_id);
+		
 		int result = 0;
 
-		if (!board.getBoard_passwd().equals(board_passwd)) {
+		if (!board_passwd.equals(passwd)) {
 			result = 1;
 			model.addAttribute("result", result);
 

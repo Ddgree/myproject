@@ -20,11 +20,7 @@ public class ReplyDaoImpl implements ReplyDao {
 
 	@Override
 	public void write(ReBoardBean reboard) throws Exception {
-		System.out.println("reboard:"+reboard.getReboard_bno());
-		System.out.println("reboard:"+reboard.getReboard_content());
-		System.out.println("reboard:"+reboard.getReboard_id());
 		session.insert("reply.write", reboard);
-		System.out.println("XML 갔다옴");
 	}
 
 	@Override
