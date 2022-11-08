@@ -125,8 +125,8 @@ select * from USER_CONSTRAINTS where table_name = 'PARTY';
 alter table PARTY DISABLE CONSTRAINT SYS_C007053;
 alter table PARTY ENABLE CONSTRAINT SYS_C007053;
 
-insert into party values(party_no_seq.nextval, '조기풋살 파티 모집합니다', '대전', '조기풋살 파티 모집합니다', '무관',
-'33', sysdate, '20221119', 0, 5, 'test');
+insert into party values(800, '조기풋살 파티 모집합니다', '대전', '조기풋살 파티 모집합니다', '무관',
+'33', sysdate, '20221119', 0, 5, 'test','n');
 insert into party values(party_no_seq.nextval, '농구ㄱ', '부산', '용두산공원 밤농하실분', '남자',
 '25', sysdate, '20221123', 0, 4, 'test2');
 insert into party values(party_no_seq.nextval, '영화 같이 보실분', '대구', '티켓 한장 남아요 스윗남 대기중', '여자',
@@ -141,6 +141,7 @@ insert into party values(party_no_seq.nextval, '양주서 골프 라운딩 하�
 '40', sysdate, '20221112', 0, 2, 'paul');
 
 delete from party where party_content = '파티방 내용'
+select * from PARTY.SYS_C007052
 
 insert into party values(party_no_seq.nextval,'파티방 연습','지역', '파티방 내용', '성별', '나이', sysdate,
 '20221227',9, 9, '홍길동')
@@ -192,6 +193,7 @@ create table partymanager
 	party_no number ,
 	ishost varchar2(20)
 )
+select * from party
 select max(party_no) from party
 select * from PARTYMANAGER;
 insert into partymanager values('test',0,1)
@@ -201,4 +203,12 @@ select party_no from party where party_subject = 'ㅋㅋㅋ'
 ALTER TABLE partymanager ADD CONSTRAINT member_id_fk
 FOREIGN KEY(member_id) REFERENCES member(member_id);
 
+
+ALTER TABLE partymanager ADD CONSTRAINT party_no_fk
+FOREIGN KEY(party_no) REFERENCES party(party_no);
+
 ALTER TABLE partymanager DROP PRIMARY KEY DROP INDEX;
+
+ALTER TABLE party DROP PRIMARY KEY;
+select party_no from partymanager where member_id = "test"
+select  from party where party_no = ()

@@ -14,9 +14,11 @@ public class PartyManagerServiceImpl
 
 	public void create_insert(PartyManagerBean manager) 
 	{
-		System.out.println("Service, member_id : " + manager.getMember_id());
-		System.out.println("Service, party_no : " + manager.getParty_no());
-		System.out.println("Service, ishost : " + manager.getIshost());
 		partymanager.create_insert(manager);
+	}
+
+	public void join_insert(PartyManagerBean pm)
+	{
+		partymanager.join_insert(pm);
 	}
 }

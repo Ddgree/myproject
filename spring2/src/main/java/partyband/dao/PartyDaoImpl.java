@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import partyband.model.PartyManagerBean;
 import partyband.model.partybean;
 
 @Repository
@@ -101,5 +102,11 @@ public class PartyDaoImpl
 	public int findpartyno()
 	{
 		return sqlSession.selectOne("partyns.findpartyno");
+	}
+
+	public List<PartyManagerBean> joinlist(String member_id) 
+	{
+		List<PartyManagerBean> list = sqlSession.selectList("partymanagerns.joinlist",member_id);
+		return list;
 	}
 }

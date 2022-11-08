@@ -90,11 +90,11 @@
 								onclick="location='partyband.do?page=${page}'" />
 						<c:if test="${party.party_max_count-party.party_count==0}">
 							<input type="button" value="참가취소" class="input_button"
-								onclick="location='partyjoincancel.do?page=${page}&party_no=${party.party_no}'" />
+								onclick="location='partyjoincancel.do?page=${page}&party_no=${party.party_no}&member_id=${member.member_id}'" />
 						</c:if>
 						<c:if test="${party.party_max_count-party.party_count!=0}">
 							<input type="button" value="참가" class="input_button"
-								onclick="location='partyjoin.do?page=${page}&party_no=${party.party_no}'" />
+								onclick="location='partyjoin.do?page=${page}&party_no=${party.party_no}&member_id=${member.member_id}'" />
 								</c:if>
 						</c:otherwise>
 					</c:choose></td>

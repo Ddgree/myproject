@@ -148,16 +148,11 @@ public class PartyController {
 		party.setParty_id(party_id); 
 		partyservice.insert(party);
 		
-		System.out.println("party.getParty_no()"+ party.getParty_no());
 		int party_no = partyservice.findpartyno();
 		
 		PartyManagerBean manager = new PartyManagerBean();
 		manager.setMember_id(party_id);
 		manager.setParty_no(party_no);
-		
-		System.out.println("Controller, member_id : " + manager.getMember_id());
-		System.out.println("Controller, party_no : " + manager.getParty_no());
-		System.out.println("Controller, ishost : " + manager.getIshost());
 		
 		partymanager.create_insert(manager);
 		
@@ -179,8 +174,13 @@ public class PartyController {
 
 	/* 파티방 참가 신청 */
 	@RequestMapping("partyjoin.do")
-	public String partyjoin(int party_no, int page, Model model) throws Exception {
+	public String partyjoin(int party_no, int page,String member_id, Model model) throws Exception {
 		partyservice.partyjoin(party_no);
+		
+		PartyManagerBean pm = new PartyManagerBean();
+		pm.setMember_id(member_id);
+		pm.setParty_no(party_no);
+		partymanager.join_insert(pm);
 
 		model.addAttribute("page", page);
 		model.addAttribute("party_no", party_no);
@@ -266,5 +266,26 @@ public class PartyController {
 	@RequestMapping("party_color.do")
 	public String party_color() {
 		return "party/partycolor";
+	}
+	
+	@RequestMapping("partyjoincancel.do")
+	public String partyjoincancel(HttpServletRequest request)
+	{
+		return "";
+	}
+	
+	@RequestMapping("joinlist.do")
+	public String joinlist(String member_id,HttpServletRequest request)
+	{
+		List<PartyManagerBean> joinlist = new ArrayList<PartyManagerBean>();
+		
+		joinlist = partyservice.joinlist(member_id);
+		
+		for (PartyManagerBean partyManagerBean : joinlist) 
+		{
+			System.out.println(partyManagerBean);
+		}
+		
+		return "party/partymain";
 	}
 }

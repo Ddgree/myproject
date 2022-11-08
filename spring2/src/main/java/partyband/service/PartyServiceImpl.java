@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import partyband.model.PartyManagerBean;
 import partyband.model.partybean;
 import partyband.dao.PartyDaoImpl;
 
@@ -88,6 +89,11 @@ public class PartyServiceImpl
 	public int findpartyno() 
 	{
 		return partydao.findpartyno();
+	}
+
+	public List<PartyManagerBean> joinlist(String member_id)
+	{
+		return partydao.joinlist(member_id);
 	}
 
 }
