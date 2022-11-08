@@ -74,6 +74,11 @@
 		update party set party_count = party_count + 1 where party_no = #{party_no} 
 	</update>
 	
+	<!-- 파티방 참가 신청 취소 -->
+	<update id="partyjoincancel" parameterType="int">
+		update party set party_count = party_count - 1 where party_no = #{party_no} 
+	</update>
+	
 	<!-- member에 가입된 비밀번호 확인 -->
 	<select id="pw_checek" parameterType="String" resultType="String">
 		select member_passwd from member where member_id = #{member_id}

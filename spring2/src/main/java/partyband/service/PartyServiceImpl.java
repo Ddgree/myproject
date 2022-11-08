@@ -96,4 +96,9 @@ public class PartyServiceImpl
 		return partydao.joinlist(member_id);
 	}
 
+	public void partyjoincancel(int party_no) 
+	{
+		partydao.partyjoincancel(party_no);
+	}
+
 }

@@ -203,6 +203,7 @@ select party_no from party where party_subject = 'ㅋㅋㅋ'
 ALTER TABLE partymanager ADD CONSTRAINT member_id_fk
 FOREIGN KEY(member_id) REFERENCES member(member_id);
 
+select * from party
 
 ALTER TABLE partymanager ADD CONSTRAINT party_no_fk
 FOREIGN KEY(party_no) REFERENCES party(party_no);
@@ -212,3 +213,6 @@ ALTER TABLE partymanager DROP PRIMARY KEY DROP INDEX;
 ALTER TABLE party DROP PRIMARY KEY;
 select party_no from partymanager where member_id = "test"
 select  from party where party_no = ()
+
+delete from party where party_count > 5
+select party_count from party where party_no = 792

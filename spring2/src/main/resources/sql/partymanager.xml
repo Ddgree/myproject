@@ -15,7 +15,7 @@
 	</insert>
 	
 	<select id="joinlist" parameterType="String" resultType="partymanager">
-		select * from partymanager where member_id='test'
+		select * from partymanager where member_id=#{member_id}
 		<!-- select * from partymanager where member_id=#{member_id} -->
 	</select>
 </mapper>

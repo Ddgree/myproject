@@ -109,4 +109,9 @@ public class PartyDaoImpl
 		List<PartyManagerBean> list = sqlSession.selectList("partymanagerns.joinlist",member_id);
 		return list;
 	}
+
+	public void partyjoincancel(int party_no)
+	{
+		sqlSession.update("partyns.partyjoincancel",party_no);
+	}
 }
