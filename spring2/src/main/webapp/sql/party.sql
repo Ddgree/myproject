@@ -8,7 +8,7 @@ select * from party;
 insert into board values(board_no_seq.nextval, )
 
 select*from tab;
-select * from notice_file;
+select * from partymanager;
 select * from notice_subject;
 
 insert into admin values('admin','1234');
