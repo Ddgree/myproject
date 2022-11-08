@@ -4,7 +4,7 @@ select * from member;
 =======
 select * from reboard;
 
-select*from notice;
+select*from tab;
 select * from notice_file;
 select * from notice_subject;
 

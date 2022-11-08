@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 작성 폼</title>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/notice.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/notice.js"></script>
 
@@ -20,17 +21,17 @@
 
 <body>
 	<div id="noticewrite_wrap">
-		<h2 style=padding-top:90px align=center>공지사항 작성</h2>
+		<h2 class="noticewrite_title" align="center">공지사항 작성</h2>
 		<form method="post"
 			action="<%=request.getContextPath()%>/notice_write_ok.do"
 			onSubmit="return notice_check()" enctype="multipart/form-data">
 			<input type="hidden" name="page" value="${page}" />
-			<div style=margin-top:30px>
-			<table border=1 width=60% height=500px align="center">
+			<div>
+			<table id="noticewrite_t">
 				<tr>
-					<th height=50px>관리자</th>
+					<th>관리자</th>
 					<td><input name="notice_admin_id" id="notice_admin_id"
-						 style="width:400px; height:35px; font-size:30px" value="관리자" readonly /></td>
+						  value="관리자" readonly /></td>
 				</tr>
 
 				<tr>
