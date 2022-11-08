@@ -9,7 +9,7 @@ import partyband.model.partybean;
 import partyband.dao.partydao;
 
 @Service
-public class partyservice
+public class PartyService
 {
 	@Autowired
 	private partydao partydao;

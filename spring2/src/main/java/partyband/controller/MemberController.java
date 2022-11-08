@@ -116,13 +116,13 @@ public class MemberController {
 			PrintWriter out = response.getWriter();
 //			System.out.println("아이디 더블체크");
 			MemberBean mb = memberService.findid(im);
-
+			
 			if (mb == null) {// 값이 없는 경우
 
 				return "member/idResult";
 
 			} else {
-
+				
 			}
 			
 		// Mail Server 설정

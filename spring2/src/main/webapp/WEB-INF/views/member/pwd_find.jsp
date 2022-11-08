@@ -24,16 +24,17 @@ input{
 </style>
 <script>
 function check(){
-	 if($.trim($("#member_id").val())==""){
-		 alert("비밀번호를 찾고자 하는 아이디를 입력해 주세요.");
-		 $("#member_id").val("").focus();
-		 return false;
-	 }
-	 if($.trim($("#member_name").val())==""){
-		 alert("회원정보에 등록한 이름을 입력하세요.");
-		 $("#member_name").val("").focus();
-		 return false;
-	 }
+	var member_id=document.getElementById("member_id").value;
+	var member_name = document.getElementById("member_name").value;
+	if(member_id=="" || member_id.length==0){
+		alert("아이디를 입력해주세요");
+		return false;
+	}
+	if(member_name=="" || member_name.length==0){
+		alert("이름을 입력해주세요");
+		return false;
+	}
+	return true;
 }
 </script>
 <script type="text/javascript">

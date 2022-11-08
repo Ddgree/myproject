@@ -27,7 +27,7 @@ function parentMove() {
 	 opener.location.href = "member_login.do";  //팝업창을 띄운.. 즉 팝업창을 호출한 페이지를 이동한다.
 	 window.close();  //팝업창 종료
 }
-function id_find(){
+/* function id_find(){
 	 if($.trim($("#member_name").val())==""){
 		 alert("아이디를 찾고자 하는 이름을 입력해 주세요.");
 		 $("#member_name").val("").focus();
@@ -38,8 +38,22 @@ function id_find(){
 		 $("#member_email").val("").focus();
 		 return false;
 	 }
+} */
+function id_find(){
+	var member_name = document.getElementById("member_name").value;
+	var member_email=document.getElementById("member_email").value;
+	if(member_name=="" || member_name.length==0){
+		alert("이름을 입력해주세요");
+		return false;
+	}
+
+	if(member_email=="" || member_email.length==0){
+		alert("이메일을 입력해주세요");
+		return false;
+	}
+	return true;
 }
-  </script>
+</script>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/find.css" />
 </head>

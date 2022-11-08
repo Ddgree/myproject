@@ -20,13 +20,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import partyband.model.MemberBean;
 import partyband.model.partybean;
 import partyband.service.MemberServiceImpl;
-import partyband.service.partyservice;
+import partyband.service.PartyService;
 
 @Controller
 public class PartyController
 {
 	@Autowired
-	private partyservice partyservice;
+	private PartyService partyservice;
 	@Autowired
 	private HttpSession session;
 	@Autowired

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import partyband.model.partybean;
 
 @Repository
-public class PartyDaoImpl implements PartyDao
+public class PartyDaoImpl
 {
 	@Autowired
 	private SqlSession sqlSession;

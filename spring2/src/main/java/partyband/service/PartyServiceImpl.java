@@ -12,7 +12,7 @@ import partyband.model.partybean;
 import partyband.dao.PartyDaoImpl;
 
 @Service
-public class PartyServiceImpl implements PartyService
+public class PartyServiceImpl
 {
 	@Autowired
 	private PartyDaoImpl partydao;
