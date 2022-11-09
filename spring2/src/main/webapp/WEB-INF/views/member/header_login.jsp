@@ -46,6 +46,7 @@ a {
 	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 	background-color: white;
 	color: black;
+	
 }
 
 .w-btn:hover {
