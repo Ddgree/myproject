@@ -93,13 +93,16 @@ public class PartyController {
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		System.out.println(address);
+		System.out.println("address:"+address);
 		if (address == null) {
 			partylist = partyservice.getPartyList(page); // 화면에 출력될 파티방 목록 저장
 			int listcount = partyservice.getListCount();
 			int maxpage = (int) ((double) listcount / limit + 0.95); // 총 페이지 수.
 			int startpage = (((int) ((double) page / 8 + 0.9)) - 1) * 8 + 1; // 메인에 보여줄 시작 페이지 수
 			int endpage = maxpage; // 메인에 보여줄 마지막 페이지 수
+			System.out.println("endpage:"+endpage);
+			System.out.println("listcount:"+listcount);
+			System.out.println("partylist: "+partylist);
 
 			if (endpage > startpage + 10 - 1)
 				endpage = startpage + 10 - 1;
@@ -117,7 +120,9 @@ public class PartyController {
 			int maxpage = (int) ((double) listcount / limit + 0.95); // 총 페이지 수.
 			int startpage = (((int) ((double) page / 8 + 0.9)) - 1) * 8 + 1; // 메인에 보여줄 시작 페이지 수
 			int endpage = maxpage; // 메인에 보여줄 마지막 페이지 수
-
+			System.out.println("endpage:"+endpage);
+			System.out.println("listcount:"+listcount);
+			System.out.println("partylist: "+partylist);
 			if (endpage > startpage + 10 - 1)
 				endpage = startpage + 10 - 1;
 			
