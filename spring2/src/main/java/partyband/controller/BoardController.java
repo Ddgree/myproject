@@ -173,8 +173,7 @@ public class BoardController {
 		model.addAttribute("page", page);
 		
 		// 댓글 조회
-		List<ReBoardBean> reply = null;
-		reply = replyservice.list(board_no);
+		List<ReBoardBean> reply = replyservice.list(board_no);
 		model.addAttribute("reply", reply);
 		
 		return "board/board_content";
