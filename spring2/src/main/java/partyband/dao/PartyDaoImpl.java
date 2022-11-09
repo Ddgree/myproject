@@ -115,4 +115,10 @@ public class PartyDaoImpl
 	{
 		sqlSession.update("partyns.partyjoincancel",party_no);
 	}
+
+	public List<partybean> partylist() 
+	{
+		List<partybean> list = sqlSession.selectList("partyns.list");
+		return list;
+	}
 }

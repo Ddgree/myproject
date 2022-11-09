@@ -15,7 +15,11 @@
 		parameterType="int">
 		select * from party where party_no = #{party_no}
 	</select>
-
+	
+	<select id="list" resultType="party">
+		select * from party where delok='n' order by party_no desc
+	</select>
+	
 	<!-- 파티방 목록 -->
 	<select id="party_list" parameterType="int" resultType="party">
 	    	<![CDATA[

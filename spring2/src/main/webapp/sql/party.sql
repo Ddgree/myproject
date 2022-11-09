@@ -2,13 +2,15 @@ delete from member where member_division= ;
 delete from board where board_division='일반';
 select * from member;
 select * from reboard;
+select * from seq;
 select * from board;
-delete from board where board_no =136;
+delete from board; where reboard_bno =145 and reboard_rno=1;
 select * from party;
-insert into board values(board_no_seq.nextval, )
+insert into reboard values('테스트',145,reboard_no_seq.nextval,'ㅋㅋㅋㅋ재밌네요',sysdate );
+insert into board values(board_no_seq.nextval,'zz','zz',sysdate,0,null,null,board_no_seq.nextval,'1234','일반');
 
-select*from notice;
-select * from notice_file;
+select*from tab;
+select * from partymanager;
 select * from notice_subject;
 
 insert into admin values('admin','1234');
@@ -212,10 +214,12 @@ ALTER TABLE partymanager ADD CONSTRAINT party_no_fk
 FOREIGN KEY(party_no) REFERENCES party(party_no);
 
 ALTER TABLE partymanager DROP PRIMARY KEY DROP INDEX;
-
 ALTER TABLE party DROP PRIMARY KEY;
 select party_no from partymanager where member_id = "test"
 select  from party where party_no = ()
-
+delete from party where party_count = 5
 delete from party where party_count > 5
 select party_count from party where party_no = 792
+select * from party
+select * from partymanager where member_id='test2'
+select * from party order by party_no desc

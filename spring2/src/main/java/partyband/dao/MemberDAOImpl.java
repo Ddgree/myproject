@@ -97,8 +97,14 @@ public class MemberDAOImpl {
 	
 	/* 참가파티방 검색 */
 //	@Transactional
-	public List<partybean> joinparty(String member_id) throws Exception {
+	public List<partybean> joinparty(String member_id) throws Exception 
+	{
 		return sqlSession.selectList("joinparty",member_id);
+	}
+
+	public String deleteboard(String member_id) 
+	{
+		return sqlSession.selectOne("memberns.findpasswd", member_id);
 	}
 }
 

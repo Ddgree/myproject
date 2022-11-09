@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 수정폼</title>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/notice.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath()%> /resources/js/notice.js"></script>
 <c:if test="${sessionScope.member.member_id == null }">
@@ -19,8 +20,8 @@
 
 <body>
 	<div id="noticewrite_wrap">
-		<h2 class="noticewrite_title">공지사항 수정폼</h2>
-		<form method="post" action="notice_edit_ok.do"
+		<h2 class="noticewrite_title" align="center">공지사항 수정폼</h2>
+		<form method="post" action="notice_edit_ok.do"  
 			onSubmit="return notice_check()">
 			<input type="hidden" name="notice_no" value="${ncont.notice_no}" />
 			<input type="hidden" name="pageNum" value="${pageNum}" />

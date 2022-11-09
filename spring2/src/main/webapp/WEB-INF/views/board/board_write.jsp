@@ -24,20 +24,20 @@
      <input type="radio" name="board_division" id="board_division_review" value="후기" />후기 
      </td>
     </tr>
-    <tr>
+    <!-- <tr>
      <th>작성자</th>
      <td>
 		${board.board_id}
      </td>
     </tr>
     
-    <tr>
+     <tr>
      <th>비밀번호</th>
      <td>
       <input type="password" name="board_passwd" id="board_passwd" size="14"
       class="input_box" />
      </td>
-    </tr>
+    </tr> -->
     
     <tr>
      <th>글제목</th>

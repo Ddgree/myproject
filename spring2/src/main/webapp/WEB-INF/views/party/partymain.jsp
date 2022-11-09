@@ -62,13 +62,13 @@
 			<fmt:formatDate var="dday" value="${enddate }" pattern="yyyy년 MM월 dd일" />
 			
 				<c:if test="${p.party_age lt 20 and member.member_age lt 20 }">
-				<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page }member_id=${member.member_id}&join=1'">
+				<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page }&member_id=${member.member_id}&join=${join}'">
 				</c:if>
 				<c:if test="${p.party_age ge 20 and member.member_age lt 20 }">
 				<button type="button" class=push-child" onClick="location='warn.do'">
 				</c:if>
 				<c:if test="${sessionId eq 'admin' or member.member_id eq null or member.member_age ge 20 }">
-				<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page}&member_id=${member.member_id}&join=1'">
+				<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page}&member_id=${member.member_id}&join=${join}'">
 				</c:if>
 				<c:if test="${p.party_age ge 20}">
 				<div class=type>[${p.party_address}] ${p.party_subject}</div>

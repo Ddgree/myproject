@@ -23,6 +23,7 @@
   <h2 class="boarddel_title">게시물 삭제</h2>
   <form method="post" action="board_delete_ok.do" 
   onsubmit="return delete_check()">
+  <input type="hidden" name="member_id" value="${member.member_id}" />
   <input type="hidden" name="board_no" value="${read.board_no}" />
   <input type="hidden" name="page" value="${page}" />
    <table id="board_delete_table">

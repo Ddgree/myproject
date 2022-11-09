@@ -61,7 +61,13 @@ public class MemberServiceImpl {
 		return memberDao.dropid();
 	}
 	
-	public List<partybean> joinparty(String member_id)throws Exception{
+	public List<partybean> joinparty(String member_id)throws Exception
+	{
 		return memberDao.joinparty(member_id);
+	}
+
+	public String deleteboard(String member_id) 
+	{
+		return memberDao.deleteboard(member_id);
 	}
 }

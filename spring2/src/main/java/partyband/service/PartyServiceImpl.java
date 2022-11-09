@@ -101,4 +101,9 @@ public class PartyServiceImpl
 		partydao.partyjoincancel(party_no);
 	}
 
+	public List<partybean> partylist()
+	{
+		return partydao.partylist();
+	}
+
 }

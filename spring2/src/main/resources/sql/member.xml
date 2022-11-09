@@ -80,8 +80,10 @@
      any(select party_no from partymanager where member_id =#{member_id}) 
     </select>
     
-    
-    
+    <!-- 게시글 삭제 비밀번호 구하기 -->
+    <select id="findpasswd" parameterType="String" resultType="String">
+    select member_passwd from member where member_id=#{member_id}
+    </select>
 </mapper>
 
 
