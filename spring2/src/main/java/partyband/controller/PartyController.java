@@ -71,7 +71,8 @@ public class PartyController {
 	}
 
 	@RequestMapping("warn.do")
-	public String warn(HttpServletResponse response) throws IOException {
+	public String warn(HttpServletResponse response) throws IOException
+	{
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter w = response.getWriter();
 

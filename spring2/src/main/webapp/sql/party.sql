@@ -205,6 +205,7 @@ FOREIGN KEY(member_id) REFERENCES member(member_id);
 
 delete from party
 delete from PARTYMANAGER
+select * from member where member_id = 'admin'
 
 select * from partymanager
 

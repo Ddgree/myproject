@@ -35,8 +35,8 @@
 	    	<![CDATA[
 				select * from 
 				(select rownum rnum, party.* from 
-				 (select * from party where delok='n' order by party_no desc) party) 
-			   	where party_address=#{address,jdbcType=VARCHAR} and rnum >= ((#{page} - 1) * 8 + 1)  and rnum <= (#{page} * 8)
+				 (select * from party where party_address=#{address,jdbcType=VARCHAR} and delok='n' order by party_no desc) party) 
+			   	where rnum >= ((#{page} - 1) * 8 + 1)  and rnum <= (#{page} * 8)
 			]]>
 	</select>
 	
