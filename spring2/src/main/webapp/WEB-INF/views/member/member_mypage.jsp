@@ -60,7 +60,7 @@ function edit_pwcheck() {
 	//자바 스크립트에서 window객체의 open("공지창경로와 파일명","공지창이름","공지창속성")
 }
 function member_delete() {
-	window.open("member_del.do", "회원탈퇴", "width=450,height=300");
+	window.open("member_del.do", "회원탈퇴", "width=450,height=350");
 	//자바 스크립트에서 window객체의 open("공지창경로와 파일명","공지창이름","공지창속성")
 }
 </script>

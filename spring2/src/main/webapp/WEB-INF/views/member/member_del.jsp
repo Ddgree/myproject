@@ -9,15 +9,6 @@
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/find.css" />
 <script src="./js/jquery.js"></script>
-<script>
- function delcheck(){
-	 if($.trim($("#delete_passwd").val())==""){
-		 alert("비밀번호를 입력하세요!");
-		 $("#delete_passwd").val("").focus();
-		 return false;
-	 }
- }
-</script>
 </head>
 <body>
  <div id="del_wrap">

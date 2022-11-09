@@ -333,7 +333,6 @@ public class MemberController {
 								  Model model)throws Exception{
 		
 		System.out.println("비번 체크완료");
-		int result=0;		
 		MemberBean member = (MemberBean) session.getAttribute("member");
 		MemberBean check = memberService.pwCheck(member.getMember_id());
 
@@ -342,8 +341,6 @@ public class MemberController {
 			return "member/edit_pwcheck_ok";
 				
 		} else {// 비번이 다를때
-			result = 1;
-			model.addAttribute("result", result);
 			
 			return "member/editCheckResult";
 		}

@@ -7,7 +7,7 @@
 .join {
 	margin-left: auto;
 	margin-right: auto;
-	border-spacing: 0 15px;
+	border-spacing: 0 18px;
 }
 
 .button {
@@ -230,7 +230,7 @@ input[type=file]::file-selector-button {
 
 			<div>
 				<input type="submit" value="회원가입" class="button"
-					style="margin-left: 600px;" /> 
+					style="margin-left: 650px;" /> 
 					<input type="reset" value="가입취소" class="button" 
 					onclick='location="partyband.do"' />
 			</div>
