@@ -162,10 +162,8 @@ select * from party where party_address = '대전';
 
 delete from party where party_enddate = '12312';
 
-insert into party values(party_no_seq.nextval,'진행중인 파티방','지역', '파티방 내용', '무관', '20', sysdate,
+insert into party values(party_no_seq.nextval,'삭제 된 파티방','광주', '파티방 내용', '성별', '20', sysdate,
 '20221227',0, 5, 'test','n')
-insert into party values(party_no_seq.nextval,'삭제 된 파티방','지역', '파티방 내용', '성별', '20', sysdate,
-'20221101',0, 5, 'test','n')
 select * from party where party_enddate < TO_CHAR(SYSDATE, 'YYYYMMDD');
 
 update party set delok = 'y' where delok = 'n' and party_enddate < TO_CHAR(SYSDATE, 'YYYYMMDD');
