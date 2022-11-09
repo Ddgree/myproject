@@ -41,6 +41,14 @@ public class BoardController {
 	@Autowired
 	private MemberServiceImpl memberservice;
 	
+	// 게시판 글 작성
+	@RequestMapping("board_write.do")
+	public String write(BoardBean board, Model model, String board_id) throws Exception {
+		System.out.println("controller 게시판 글 작성");
+		board.setBoard_id(board_id);
+		model.addAttribute("board", board);
+		return "board/board_write";
+	}
 	// 게시판 저장
 	@RequestMapping("board_write_ok.do")
 	public String board_write_ok(@ModelAttribute BoardBean board, String board_id,
@@ -148,26 +156,21 @@ public class BoardController {
 		return "board/file_down";
 	}
 		
-	// 게시판 글 작성
-	@RequestMapping("board_write.do")
-	public String write(BoardBean board, Model model, String board_id) throws Exception {
-		System.out.println("controller 게시판 글 작성");
-		board.setBoard_id(board_id);
-		model.addAttribute("board", board);
-		return "board/board_write";
-	}
 
 	// 게시글 조회
 	@RequestMapping("board_content.do")
 	public String read(@RequestParam("board_no") int board_no, @RequestParam("page") String page, Model model, 
-			BoardBean board, String board_id)
+			String board_id)
 			throws Exception {
 
 		service.hit(board_no);
-	
-		model.addAttribute("read", service.read(board_no));
+		
+		BoardBean board = service.read(board_no);
+		String b_content = board.getBoard_content().replace("\n", "<br/>");
+		
+		model.addAttribute("b_content", b_content);
+		model.addAttribute("read", board);
 		model.addAttribute("page", page);
-		model.addAttribute("board", board);
 		
 		// 댓글 조회
 		List<ReBoardBean> reply = null;

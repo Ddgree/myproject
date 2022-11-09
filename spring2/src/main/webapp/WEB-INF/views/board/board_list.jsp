@@ -38,9 +38,9 @@
 							<td style="text-align:center;"><c:out value="${list.board_division}" /></td>
 							<td style="text-align:center;"><c:out value="${list.board_id}" /></td>
 							<td style="text-align:left;"> 
-							&nbsp
-							<a href="board_content.do?page=${page}&board_no=${list.board_no}&board_id=${member.member_id}"><c:out
-										value=" ${list.board_subject}" /></a>
+							&nbsp;
+							<a href="board_content.do?page=${page}&board_no=${list.board_no}&board_id=${member.member_id}">
+							<c:out value=" ${list.board_subject}" /></a>
 										<c:if test="${list.board_file != null}"><i class="fa-solid fa-image"></i></c:if>
 										<c:if test="${list.board_file == null}"></c:if></td>
 							<td style="text-align:center;"><fmt:formatDate value="${list.board_date}"

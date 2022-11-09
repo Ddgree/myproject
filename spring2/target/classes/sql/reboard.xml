@@ -8,7 +8,8 @@
     select
         reboard_rno, reboard_bno, reboard_id, reboard_content, reboard_date
     from reboard
-        where reboard_bno = #{reboard_bno}        
+        where reboard_bno = #{reboard_bno} 
+        order by reboard_date desc
 </select>
 
 <!-- 댓글 작성 -->
