@@ -7,7 +7,7 @@
 .join {
 	margin-left: auto;
 	margin-right: auto;
-	border-spacing: 0 15px;
+	border-spacing: 0 18px;
 }
 
 .button {

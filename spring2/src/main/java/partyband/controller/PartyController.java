@@ -25,6 +25,7 @@ import partyband.service.MemberServiceImpl;
 import partyband.service.PartyManagerServiceImpl;
 import partyband.service.PartyServiceImpl;
 
+
 @Controller
 public class PartyController {
 	@Autowired

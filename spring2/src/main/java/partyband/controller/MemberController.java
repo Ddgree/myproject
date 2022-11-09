@@ -123,13 +123,13 @@ public class MemberController {
 			PrintWriter out = response.getWriter();
 //			System.out.println("아이디 더블체크");
 			MemberBean mb = memberService.findid(im);
-
+			
 			if (mb == null) {// 값이 없는 경우
 
 				return "member/idResult";
 
 			} else {
-
+				
 			}
 			
 		// Mail Server 설정
@@ -359,6 +359,7 @@ public class MemberController {
 		
 		//System.out.println("비번 체크완료");
 		int result=0;		
+
 		MemberBean member = (MemberBean) session.getAttribute("member");
 		MemberBean check = memberService.pwCheck(member.getMember_id());
 
@@ -367,8 +368,6 @@ public class MemberController {
 			return "member/edit_pwcheck_ok";
 				
 		} else {// 비번이 다를때
-			result = 1;
-			model.addAttribute("result", result);
 			
 			return "member/editCheckResult";
 		}
