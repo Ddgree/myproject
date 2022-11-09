@@ -19,7 +19,6 @@ public class ReplyController {
 	// 댓글 작성
 	@RequestMapping("reply_write.do")
 	public String write(ReBoardBean reboard, int board_no, int page) throws Exception {
-		
 		reboard.setReboard_bno(board_no);
 		service.write(reboard);
 	    

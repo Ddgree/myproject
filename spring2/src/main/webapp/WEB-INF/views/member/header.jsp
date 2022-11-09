@@ -29,7 +29,7 @@ a {
 	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 	background-color: white;
 	color: black;
-	margin-left:1200px;
+	margin-left:800px;
 	position:absolute;
 }
 

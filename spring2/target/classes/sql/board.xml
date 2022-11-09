@@ -24,7 +24,6 @@
 						   board_file,
 						   board_id,
 						   board_ref,
-						   board_passwd,
 						   board_division )		 
 		values (board_no_seq.nextval,
 		#{board_subject},
@@ -34,7 +33,6 @@
 		#{board_file, jdbcType=VARCHAR},
 		#{board_id},
 		board_no_seq.nextval,
-		#{board_passwd},
 		#{board_division})
 	</insert>
 
