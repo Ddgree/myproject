@@ -3,6 +3,7 @@ package partyband.controller;
 import java.io.File;
 import java.io.PrintWriter;
 import java.lang.reflect.Member;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.UUID;
@@ -22,14 +23,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import partyband.model.MemberBean;
+import partyband.model.PartyManagerBean;
 import partyband.model.partybean;
 import partyband.service.MemberServiceImpl;
+import partyband.service.PartyServiceImpl;
 
 @Controller
 public class MemberController {
 
 	@Autowired
 	private MemberServiceImpl memberService;
+	@Autowired
+	private PartyServiceImpl partyservice;
 
 	// ID중복검사 ajax함수로 처리부분
 	@RequestMapping(value = "/member_idcheck.do", method = RequestMethod.POST)
@@ -294,6 +299,18 @@ public class MemberController {
 		} else {			// 등록된 회원일때
 			if (member.getMember_passwd().equals(pwd)) {// 비번이 같을때
 
+				List<PartyManagerBean> join = new ArrayList<PartyManagerBean>();
+				
+				join = partyservice.joinlist(id);
+				
+				List<PartyManagerBean> joinlist = new ArrayList<PartyManagerBean>();
+				
+				for (PartyManagerBean p: join) 
+				{
+					joinlist.add(p);
+				}
+				
+				session.setAttribute("joinlist", joinlist);
 				session.setAttribute("member", member);
 
 				String member_file = member.getMember_file();
@@ -548,9 +565,8 @@ public class MemberController {
 	
 	/* 참가파티 페이지 */
 	@RequestMapping(value = "/member_party.do")
-	public String member_party(String member_id,Model m
-			) throws Exception {
-		
+	public String member_party(String member_id,Model m) throws Exception 
+	{
 		List<partybean> partymem = memberService.joinparty(member_id);
 		//System.out.println("파티멤"+partymem);
 		m.addAttribute("partymem", partymem);

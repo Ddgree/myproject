@@ -7,6 +7,8 @@
 <title>커뮤니티</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/boardnotice.css" />
+<script src="https://kit.fontawesome.com/f82eca20b8.js"
+	crossorigin="anonymous"></script>
 
 </head>
 <c:if test="${sessionScope.member.member_id == null }">
@@ -31,16 +33,19 @@
 					</tr>
 					<c:set var="no1" value="${no}"></c:set>
 					<c:forEach items="${list}" var="list">
-						<tr align="center">
-							<td><c:out value="${list.board_no}" /></td>
-							<td><c:out value="${list.board_division}" /></td>
-							<td><c:out value="${list.board_id}" /></td>
-							<td><a
-								href="board_content.do?page=${page}&board_no=${list.board_no}&board_id=${member.member_id}"><c:out
-										value="${list.board_subject}" /></a></td>
-							<td><fmt:formatDate value="${list.board_date}"
+						<tr>
+							<td style="text-align:center;"><c:out value="${list.board_no}" /></td>
+							<td style="text-align:center;"><c:out value="${list.board_division}" /></td>
+							<td style="text-align:center;"><c:out value="${list.board_id}" /></td>
+							<td style="text-align:left;"> 
+							&nbsp
+							<a href="board_content.do?page=${page}&board_no=${list.board_no}&board_id=${member.member_id}"><c:out
+										value=" ${list.board_subject}" /></a>
+										<c:if test="${list.board_file != null}"><i class="fa-solid fa-image"></i></c:if>
+										<c:if test="${list.board_file == null}"></c:if></td>
+							<td style="text-align:center;"><fmt:formatDate value="${list.board_date}"
 									pattern="yyyy-MM-dd" /></td>
-							<td><c:out value="${list.board_readcount}" /></td>
+							<td style="text-align:center;"><c:out value="${list.board_readcount}" /></td>
 						</tr>
 						<%-- <c:set var="no1" value="${no1 - 1}" /> --%>
 					</c:forEach>
@@ -50,7 +55,7 @@
 		<hr />
 		<div align="center">
 			<form action="board_list.do" align="center">
-				<input type="hidden" name="pageNum" value="1"> <select
+				<input type="hidden" name="page" value="1"> <select
 					name="search">
 					<option value="board_subject"
 						<c:if test="${search=='board_subject'}">selected="selected" </c:if>>제목</option>
@@ -72,14 +77,14 @@
 					<div class=blackbutton-inactive><<</div>&nbsp; </c:if>
 				<c:if test="${pp.currentPage != 1 }">
 					<a
-						href="board_list.do?pageNum=1&search=${search}&keyword=${keyword}"><div
+						href="board_list.do?page=${page}&search=${search}&keyword=${keyword}"><div
 							class=blackbutton-active><<</div>&nbsp;</a>
 				</c:if>
 				<c:if test="${pp.currentPage <=1 }">
 					<div class=blackbutton-inactive><</div>&nbsp; </c:if>
 				<c:if test="${pp.currentPage > 1 }">
 					<a
-						href="board_list.do?pageNum=${pp.startPage - 1}&search=${search}&keyword=${keyword}"><div
+						href="board_list.do?page=${pp.startPage - 1}&search=${search}&keyword=${keyword}"><div
 							class=blackbutton-active><</div>&nbsp;</a>
 				</c:if>
 
@@ -98,14 +103,14 @@
 					<div class=blackbutton-inactive>></div>&nbsp; </c:if>
 				<c:if test="${pp.currentPage < pp.totalPage }">
 					<a
-						href="board_list.do?pageNum=${page+1}&search=${search}&keyword=${keyword}"><div
+						href="board_list.do?page=${page+1}&search=${search}&keyword=${keyword}"><div
 							class=blackbutton-active>></div>&nbsp;</a>
 				</c:if>
 				<c:if test="${pp.currentPage == pp.totalPage }">
 					<div class=blackbutton-inactive>>></div>&nbsp; </c:if>
 				<c:if test="${pp.currentPage != pp.totalPage }">
 					<a
-						href="board_list.do?pageNum=${pp.totalPage}&search=${search}&keyword=${keyword}"><div
+						href="board_list.do?page=${pp.totalPage}&search=${search}&keyword=${keyword}"><div
 							class=blackbutton-active>>></div>&nbsp;</a>
 				</c:if>
 				<%-- 				
@@ -128,13 +133,13 @@
 				<c:if test="${pp.currentPage == 1 }">
 					<div class=blackbutton-inactive><<</div>&nbsp; </c:if>
 				<c:if test="${pp.currentPage != 1 }">
-					<a href="board_list.do?pageNum=1"><div class=blackbutton-active>
+					<a href="board_list.do?page=${page}"><div class=blackbutton-active>
 							<<</div>&nbsp;</a>
 				</c:if>
 				<c:if test="${pp.currentPage <=1 }">
 					<div class=blackbutton-inactive><</div>&nbsp; </c:if>
 				<c:if test="${pp.currentPage > 1 }">
-					<a href="board_list.do?pageNum=${pp.currentPage - 1}"><div
+					<a href="board_list.do?page=${pp.currentPage - 1}"><div
 							class=blackbutton-active><</div>&nbsp;</a>
 				</c:if>
 
@@ -143,7 +148,7 @@
 						<div class=blackbutton-selected>${a }</div>
 					</c:if>
 					<c:if test="${a != pp.currentPage }">
-						<a href="board_list.do?pageNum=${a}"><div
+						<a href="board_list.do?page=${a}"><div
 								class=blackbutton-active>${a }</div></a>
 					</c:if>
 				</c:forEach>
@@ -151,13 +156,13 @@
 				<c:if test="${pp.currentPage >= pp.totalPage }">
 					<div class=blackbutton-inactive>></div>&nbsp; </c:if>
 				<c:if test="${pp.currentPage < pp.totalPage }">
-					<a href="board_list.do?pageNum=${pp.currentPage + 1}"><div
+					<a href="board_list.do?page=${pp.currentPage + 1}"><div
 							class=blackbutton-active>></div>&nbsp;</a>
 				</c:if>
 				<c:if test="${pp.currentPage == pp.totalPage }">
 					<div class=blackbutton-inactive>>></div>&nbsp; </c:if>
 				<c:if test="${pp.currentPage != pp.totalPage }">
-					<a href="board_list.do?pageNum=${pp.totalPage}"><div
+					<a href="board_list.do?page=${pp.totalPage}"><div
 							class=blackbutton-active>>></div>&nbsp;</a>
 				</c:if>
 				<%-- 				

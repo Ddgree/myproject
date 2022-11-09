@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reply">
+
+<!-- 댓글 조회 -->
+<select id="list" parameterType="int" resultType="reboard">
+    select
+        reboard_rno, reboard_bno, reboard_id, reboard_content, reboard_date
+    from reboard
+        where reboard_bno = #{reboard_bno}        
+</select>
+
+<!-- 댓글 작성 -->
+<insert id="write" parameterType="reboard">
+    insert into reboard(reboard_bno, reboard_id, reboard_content, reboard_date)
+        values (#{reboard_bno}, #{reboard_id}, #{reboard_content}, sysdate)
+</insert>
+    
+<!-- 댓글 수정 
+<update id="modify" parameterType="reboard">
+    update reboard set
+        reboard_id = #{reboard_id},
+        reboard_content = #{reboard_content}
+    where reboard_rno = #{reboard_rno}
+        and reboard_bno = #{reboard_bno}    
+</update>
+
+ 댓글 삭제 
+<delete id="delete" parameterType="reboard">
+    delete from reboard
+    where reboard_rno = #{reboard_rno}
+        and reboard_bno = ${reboard_bno}    
+</delete>-->
+</mapper>

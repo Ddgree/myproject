@@ -21,6 +21,14 @@
 </c:if>
 
 <body>
+
+<c:set var="join" value="1" scope="session"/>
+<c:forEach var="j" items="#{joinlist}">
+	<c:if test="${j.party_no eq party.party_no}">
+		<c:set var="join" value="-1" scope="session"></c:set>
+	</c:if>
+</c:forEach>
+
 <!-- 오늘 날짜 -->
 <jsp:useBean id="today" class="java.util.Date" />
 <fmt:parseNumber value="${today.time / (1000*60*60*24)}" integerOnly="true" var="now" scope="request"/>
@@ -68,7 +76,8 @@
 			</tr>
 			<tr id="bbswrite_menu">
 
-				<td colspan=2 align="center"><c:choose>
+				<td colspan=2 align="center">
+				<c:choose>
 						<c:when test="${member.member_id eq party.party_id}">
 							<input type="button" value="목록" class="input_button"
 								onclick="location='partyband.do?page=${page}'" />
@@ -86,10 +95,10 @@
 							<input type="button" value="삭제" class="input_button"
 								onclick="location.href='partydelete.do'" />
 						</c:when>
-						<c:when test="${join == -1}">
+						<c:when test="${join eq -1}">
 							<input type="button" value="목록" class="input_button"onclick="location='partyband.do?page=${page}'"/>
 							<input type="button" value="참가취소" class="input_button"
-								onclick="location='partyjoincancel.do?page=${page}&party_no=${party.party_no}&member_id=${member.member_id}&join=${join}'" />
+								onclick="location='partyjoincancel.do?page=${page}&party_no=${party.party_no}&member_id=${member.member_id}'" />
 						</c:when>
 						<c:otherwise>
 							<input type="button" value="목록" class="input_button" onclick="location='partyband.do?page=${page}'"/>

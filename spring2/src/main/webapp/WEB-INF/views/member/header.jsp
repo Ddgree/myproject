@@ -99,7 +99,7 @@ a {
 		<div class="category">
 
     <nav class="navi">
-      <ul>s
+      <ul>
      	<li><a href="partyband.do"><img src="././resources/images/logo.jpg" class="img"  style="margin-left:-20%;"></a></li>
         <li><a href="end_party_list.do" >종료파티방</a></li>
         <li><a href="board_list.do" >커뮤니티</a></li>
