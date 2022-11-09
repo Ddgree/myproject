@@ -27,7 +27,7 @@
 		<h2 style=padding-top:90px align=center>공지사항 목록</h2>
 		<table border=1 width=60% align="center">
 		<div style="margin-left:56%; margin-bottom:20px;">
-			<c:if test="${sessionId eq 'admin'}">
+			<c:if test="${member.member_id eq 'admin'}">
 			<input type="button" style="width:70px; height:35px; font-size:15px;" value="글 쓰기"
 					onclick="location='notice_write.do'" />
 			</c:if>
