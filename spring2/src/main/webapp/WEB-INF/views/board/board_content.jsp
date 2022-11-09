@@ -86,7 +86,7 @@ td {
 	<!-- 댓글 -->
 	<div align="center">
 		<form method="post" action="reply_write.do?page=${page}&board_no=${read.board_no}">
-		<input type="hidden" name="reboard_id" value="${read.board_id}">
+		<input type="hidden" name="reboard_id" value="${member.member_id}">
 		<p>
 			<textarea rows="3" cols="30" name="reboard_content" place-holder="댓글을 입력해주세요."></textarea>
 			&nbsp;&nbsp;&nbsp;<button type="submit" style="width:30pt; height:25pt; align:center;" class="btn btn-outline-secondary"><h4 align="center"><i class="fa-regular fa-keyboard"></i></h4></button>
