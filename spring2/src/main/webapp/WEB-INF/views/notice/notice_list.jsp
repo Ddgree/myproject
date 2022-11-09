@@ -13,9 +13,10 @@
 <c:if test="${sessionScope.member.member_id == null }">
 	<%@ include file="../member/header.jsp"%>
 </c:if>
-<c:if test="${sessionScope.member.member_id != null }">
+<c:if test="${sessionScope.member.member_id != null}">
 	<%@ include file="../member/header_login.jsp"%>
 </c:if>
+
 </head>
 
 <body>

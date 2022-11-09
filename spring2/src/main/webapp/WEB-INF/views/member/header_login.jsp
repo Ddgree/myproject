@@ -141,10 +141,26 @@ a {
 </head>
 <body>
 
+
 <div class="screen">
 		<div class="category">
 		<input type="hidden" name="member_id" value="${member.member_id}" />
+<c:choose>
+<c:when test="${member.member_id eq 'admin' }">
     <nav class="navi">
+      <ul>
+     	<li><a href="partyband.do"><img src="././resources/images/logo.jpg" class="img" style="margin-left:50px;"></a></li>
+        <li><a href="end_party_list.do" style="margin-left:100px;">종료파티방</a></li>
+        <li><a href="board_list.do" style="margin-left:100px;">커뮤니티</a></li>
+        <li><a href="notice_list.do" style="margin-left:100px;">공지사항</a></li>
+		<li><div class="hello" style="margin-left: 130px; margin-top: 9px;">${sessionScope.member.member_nickname}님! 환영합니다!</div></li>
+		<li><input type="button" value="탈퇴회원 목록" class="mypage" style=" cursor: pointer;" onclick="location='member_drop.do'" /> </li>
+		<li><input type="submit" value="로그아웃" class="mypage" style=" cursor: pointer; " onclick="location='member_logout.do'"/></li>
+      </ul>
+    </nav>  
+</c:when>
+	<c:otherwise>
+	<nav class="navi">
       <ul>
      	<li><a href="partyband.do"><img src="././resources/images/logo.jpg" class="img" style="margin-left:50px;"></a></li>
         <li><a href="end_party_list.do" style="margin-left:100px;">종료파티방</a></li>
@@ -153,12 +169,11 @@ a {
 		<li><div class="hello" style="margin-left: 130px; margin-top: 9px;">${sessionScope.member.member_nickname}님! 환영합니다!</div></li>
 		<li><input type="button" value="마이페이지" class="mypage" style=" cursor: pointer;" onclick="location='member_mypage.do'" /> </li>
 		<li><input type="submit" value="로그아웃" class="mypage" style=" cursor: pointer; " onclick="location='member_logout.do'"/></li>
-       
-
       </ul>
-    </nav>  
+    </nav>  		
+	</c:otherwise>
+</c:choose>
 		</div>
 	</div>
-			
 </body>
 </html>

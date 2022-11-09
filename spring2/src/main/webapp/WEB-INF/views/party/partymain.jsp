@@ -16,13 +16,10 @@
 <c:if test="${sessionScope.member.member_id == null }">
 	<%@ include file="../member/header.jsp"%>
 </c:if>
-<c:if test="${sessionScope.member.member_id != null && sessionScope.member.member_id != 'admin'  }">
+<c:if test="${sessionScope.member.member_id != null}">
 	<%@ include file="../member/header_login.jsp"%>
 </c:if>
 
-<c:if test="${sessionScope.member.member_id != null && sessionScope.member.member_id == 'admin' }">
-	<%@ include file="../member/header_login2.jsp"%>
-</c:if>
 
 	<%@ include file="../../../resources/include/address.jsp"%>
 
