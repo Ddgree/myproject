@@ -60,4 +60,8 @@ public class MemberServiceImpl {
 	public List<MemberBean> dropid()throws Exception {
 		return memberDao.dropid();
 	}
+	
+	public List<partybean> joinparty(String member_id)throws Exception{
+		return memberDao.joinparty(member_id);
+	}
 }

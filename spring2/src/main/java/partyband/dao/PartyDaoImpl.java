@@ -64,7 +64,8 @@ public class PartyDaoImpl
 	}
 
 	/* 파티방 총 개수 (지역별)*/
-	public int getListCount2(String address) {
+	public int getListCount2(String address) 
+	{
 		int count = ((Integer)sqlSession.selectOne("partyns.party_count2",address));
 		return count;
 	}
@@ -93,7 +94,7 @@ public class PartyDaoImpl
 		sqlSession.update("partyns.party_edit",party);
 	}
 	
-	/* 파티방 삭제(관리자)*/
+	/* 파티방 삭제(관리자) */
 	public void partydel(int party_no) 
 	{
 		sqlSession.delete("partyns.party_delete",party_no);

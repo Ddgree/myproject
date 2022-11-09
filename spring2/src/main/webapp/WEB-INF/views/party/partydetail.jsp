@@ -67,7 +67,8 @@
 			</tr>
 			<tr id="bbswrite_menu">
 
-				<td colspan=2 align="center"><c:choose>
+				<td colspan=2 align="center">
+				<c:choose>
 						<c:when test="${member.member_id eq party.party_id}">
 							<input type="button" value="목록" class="input_button"
 								onclick="location='partyband.do?page=${page}'" />

@@ -140,9 +140,10 @@ a {
 	href="<%=request.getContextPath()%>/resources/css/decoration.css" />
 </head>
 <body>
+
 <div class="screen">
 		<div class="category">
-		<input type="hidden" name="member_id" value="${member.member_id}"/>
+		<input type="hidden" name="member_id" value="${member.member_id}" />
     <nav class="navi">
       <ul>
      	<li><a href="partyband.do"><img src="././resources/images/logo.jpg" class="img" style="margin-left:50px;"></a></li>

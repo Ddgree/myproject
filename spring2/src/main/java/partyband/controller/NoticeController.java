@@ -43,14 +43,7 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("notice_list.do")	// 전체 목록, 검색 목록
-	public String list(HttpServletRequest request, String pageNum, Notice notice, Model model) {
-
-		HttpSession session = request.getSession();
-		String id = "admin";
-		String passwd = "1234";
-		
-		session.setAttribute("id", id);
-		session.setAttribute("passwd", passwd);
+	public String list(String pageNum, Notice notice, Model model) {
 		
 		System.out.println("리스트 들어옴");
 		

@@ -48,7 +48,7 @@
 		
 
 		<div id="noticecont_menu" width="70" align="center" style=margin-top:20px >
-			<c:if test="${sessionId eq 'admin'}">
+			<c:if test="${member.member_id eq 'admin'}">
 				<input type="button" value="수정" class="input_button"
 					onclick="location='notice_edit.do?notice_no=${ncont.notice_no}&pageNum=${pageNum}'" />
 				<input type="button" value="삭제" class="input_button"
