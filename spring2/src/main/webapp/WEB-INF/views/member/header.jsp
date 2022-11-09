@@ -59,6 +59,7 @@ a {
 	margin-top:-15px;
 	width:auto;
 	height:60px;
+	
 }
 
 .navi ul{
