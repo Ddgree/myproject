@@ -28,7 +28,7 @@ a {
 	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 	background-color: white;
 	color: black;
-	margin-left:1200px;
+	margin-left:80%;
 	position:absolute;
 }
 
@@ -99,9 +99,9 @@ a {
     <nav class="navi">
       <ul>
      	<li><a href="partyband.do"><img src="././resources/images/logo.jpg" class="img"  style="margin-left:50px;"></a></li>
-        <li><a href="end_party_list.do" style="margin-left:200px; position:absolute;">종료파티방ss</a></li>
-        <li><a href="board_list.do" style="margin-left:500px;position:absolute;">커뮤니티ss</a></li>
-        <li><a href="notice_list.do" style="margin-left:800px; position:absolute;">공지사항ss</a></li>
+        <li><a href="end_party_list.do" style="margin-left:18%; position:absolute;">종료파티방</a></li>
+        <li><a href="board_list.do" style="margin-left:36.5%;position:absolute;">커뮤니티</a></li>
+        <li><a href="notice_list.do" style="margin-left:55%; position:absolute;">공지사항</a></li>
       	<li><input type="button" value="로그인" class="w-btn" style="cursor: pointer; float:right;" onclick="location='member_login.do'"></li>
       </ul>
     </nav>  
