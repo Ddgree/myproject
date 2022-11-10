@@ -117,7 +117,7 @@ create sequence notice_no_seq
 
 select * from tab;
 
-select * from party;
+select * from party where party_address='서울';
 select * from party where party_subject='안녕하세요';
 select count(*) from party;
 
@@ -158,7 +158,7 @@ delete from party where party_count > 5;
 
 ALTER TABLE party ADD delok VARCHAR(20);
 select * from party;
-select * from party where party_address = '대전';
+select * from party where ;
 
 delete from party where party_enddate = '12312';
 

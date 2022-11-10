@@ -38,14 +38,16 @@ public class PartyDaoImpl
 	public List<partybean> getPartyList(int page) 
 	{
 		List<partybean> list = sqlSession.selectList("partyns.party_list", page);
+		System.out.println("DAO list"+list);
 		return list;
 	}
+	
+	/* 파티방 목록(지역별)  */
 	public List<partybean> getPartyList2(int page, String address) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("page", page);
 		map.put("address", address);
 		List<partybean> list = sqlSession.selectList("partyns.party_list2", map);
-		
 		return list;
 	}
 	

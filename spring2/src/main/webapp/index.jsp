@@ -8,7 +8,6 @@
 </head>
 <body>
 	<script>
-
 //	location.href = "notice_list.do";
 	location.href = "refresh.do";
 //	location.href = "joinlist.do";

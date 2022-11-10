@@ -62,10 +62,16 @@
 				<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page }&member_id=${member.member_id}&join=${join}'">
 				</c:if>
 				<c:if test="${p.party_age ge 20 and member.member_age lt 20 }">
-				<button type="button" class=push-child" onClick="location='warn.do'">
+					<c:if test="!${member.member_id eq 'admin' }">
+					<button type="button" class=push-child onClick="location='warn.do'">
+					</c:if>
+					<c:if test="${member.member_id eq 'admin' }">
+					<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page}&member_id=${member.member_id}'">
+					</c:if>
 				</c:if>
-				<c:if test="${sessionId eq 'admin' or member.member_id eq null or member.member_age ge 20 }">
-				<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page}&member_id=${member.member_id}&join=${join}'">
+
+				<c:if test="${member.member_id eq null or member.member_age ge 20 }">
+				<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page}&member_id=${member.member_id}'">
 				</c:if>
 				<c:if test="${p.party_age ge 20}">
 				<div class=type>[${p.party_address}] ${p.party_subject}</div>
@@ -106,6 +112,7 @@
 	
 		<hr/>
 	<div align="center">
+	<c:if test="${address eq null }">
 		<c:if test="${page == 1 }"> <div class=blackbutton-inactive> << </div>&nbsp; </c:if>
 		<c:if test="${page != 1 }">
 			<a href="partyband.do?page=1"><div class=blackbutton-active> << </div>&nbsp;</a>
@@ -127,6 +134,31 @@
 		<c:if test="${page == maxpage }"> <div class=blackbutton-inactive> >> </div>&nbsp; </c:if>
 		<c:if test="${page != maxpage }">
 			<a href="partyband.do?page=${maxpage}"><div class=blackbutton-active> >> </div>&nbsp;</a>
+		</c:if>
+		</c:if>
+	<c:if test="${address ne null }">
+		<c:if test="${page == 1 }"> <div class=blackbutton-inactive> << </div>&nbsp; </c:if>
+		<c:if test="${page != 1 }">
+			<a href="partyband.do?page=1&address=${address }"><div class=blackbutton-active> << </div>&nbsp;</a>
+		</c:if>
+		<c:if test="${page <=1 }"> <div class=blackbutton-inactive> < </div>&nbsp; </c:if>
+		<c:if test="${page > 1 }">
+			<a href="partyband.do?page=${page-1}&address=${address }"><div class=blackbutton-active> < </div>&nbsp;</a>
+		</c:if>
+		<c:forEach var="a" begin="${startpage}" end="${endpage}">
+			<c:if test="${a == page }"> <div class=blackbutton-selected> ${a } </div> </c:if>
+			<c:if test="${a != page }">
+				<a href="partyband.do?page=${a}&address=${address }"><div class=blackbutton-active> ${a } </div></a>
+			</c:if>
+		</c:forEach>
+		<c:if test="${page >= maxpage }"> <div class=blackbutton-inactive> > </div>&nbsp; </c:if>
+		<c:if test="${page < maxpage }">
+			<a href="partyband.do?page=${page+1}&address=${address }"><div class=blackbutton-active> > </div>&nbsp;</a>
+		</c:if>
+		<c:if test="${page == maxpage }"> <div class=blackbutton-inactive> >> </div>&nbsp; </c:if>
+		<c:if test="${page != maxpage }">
+			<a href="partyband.do?page=${maxpage}&address=${address }"><div class=blackbutton-active> >> </div>&nbsp;</a>
+		</c:if>
 		</c:if>
 	</div>
 </body>

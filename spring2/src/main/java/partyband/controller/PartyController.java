@@ -94,13 +94,16 @@ public class PartyController {
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		System.out.println(address);
+		System.out.println("address:"+address);
 		if (address == null) {
 			partylist = partyservice.getPartyList(page); // 화면에 출력될 파티방 목록 저장
 			int listcount = partyservice.getListCount();
 			int maxpage = (int) ((double) listcount / limit + 0.95); // 총 페이지 수.
 			int startpage = (((int) ((double) page / 8 + 0.9)) - 1) * 8 + 1; // 메인에 보여줄 시작 페이지 수
 			int endpage = maxpage; // 메인에 보여줄 마지막 페이지 수
+			System.out.println("endpage:"+endpage);
+			System.out.println("listcount:"+listcount);
+			System.out.println("partylist: "+partylist);
 
 			if (endpage > startpage + 10 - 1)
 				endpage = startpage + 10 - 1;
@@ -118,7 +121,9 @@ public class PartyController {
 			int maxpage = (int) ((double) listcount / limit + 0.95); // 총 페이지 수.
 			int startpage = (((int) ((double) page / 8 + 0.9)) - 1) * 8 + 1; // 메인에 보여줄 시작 페이지 수
 			int endpage = maxpage; // 메인에 보여줄 마지막 페이지 수
-
+			System.out.println("endpage:"+endpage);
+			System.out.println("listcount:"+listcount);
+			System.out.println("partylist: "+partylist);
 			if (endpage > startpage + 10 - 1)
 				endpage = startpage + 10 - 1;
 			
@@ -262,7 +267,8 @@ public class PartyController {
 
 	/* 비밀 번호 확인 폼 이동 */
 	@RequestMapping("pwcheckform.do")
-	public String partyeditform(int page, String member_id, int party_no, String stat, Model model) {
+	public String partyeditform(int page, String member_id, int party_no, String stat, Model model)
+	{
 		model.addAttribute("page", page);
 		model.addAttribute("member_id", member_id);
 		model.addAttribute("party_no", party_no);
@@ -270,14 +276,18 @@ public class PartyController {
 
 		return "party/partypwcheck";
 	}
+	//  String new_content = "[수정됨] " + reboard.getReboard_content();
+	//  reboard.setReboard_content();
 
 	/* 비밀 번호 확인 */
 	@RequestMapping("partypwcheck.do")
 	public String partyedit(HttpServletResponse response, int page, String member_id, String input_member_passwd,
-			int party_no, String stat, Model model) throws Exception {
+			int party_no, String stat, Model model) throws Exception 
+	{
 		String orign_member_passwd = partyservice.pwcheck(member_id);
 
-		if (!input_member_passwd.equals(orign_member_passwd)) {
+		if(!input_member_passwd.equals(orign_member_passwd)) 
+		{
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter w = response.getWriter();
 
@@ -285,13 +295,17 @@ public class PartyController {
 			w.write("<script>alert('" + msg + "');history.back();</script>");
 			w.flush();
 			w.close();
-		} else if (stat.equals("edit")) {
+		} 
+			else if (stat.equals("edit"))
+		{
 			model.addAttribute("page", page);
 			model.addAttribute("member_id", member_id);
 			model.addAttribute("party_no", party_no);
 
 			return "party/partyedit";
-		} else if (stat.equals("del")) {
+		} 
+			else if (stat.equals("del")) 
+		{
 			partyservice.partydel(party_no);
 
 			return "redirect:partyband.do";
