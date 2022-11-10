@@ -8,12 +8,15 @@
 </head>
 <body>
 	<script>
-
 //	location.href = "notice_list.do";
 //	location.href = "start.do";
 	location.href = "refresh.do";
 //	location.href = "joinlist.do";
 //	location.href = "partyband.do";
+<<<<<<< HEAD
+=======
+//	location.href = "start.do";
+>>>>>>> origin/kyungmin
 
 	</script>
 </body>

@@ -39,7 +39,7 @@ public class MemberController {
 	// ID중복검사 ajax함수로 처리부분
 	@RequestMapping(value = "/member_idcheck.do", method = RequestMethod.POST)
 	public String member_idcheck(@RequestParam("memid") String id, Model model) throws Exception {
-		System.out.println("id:"+id);
+		//System.out.println("id:"+id);
 		
 		int result = memberService.checkMemberId(id);
 		
@@ -51,7 +51,7 @@ public class MemberController {
 	// 닉네임중복검사 ajax함수로 처리부분
 	@RequestMapping(value = "/member_nickcheck.do", method = RequestMethod.POST)
 	public String member_nickcheck(@RequestParam("memnick") String nick, Model model) throws Exception {
-		System.out.println("nick:"+nick);
+		//System.out.println("nick:"+nick);
 			
 		int result = memberService.checkMembernickname(nick);
 		model.addAttribute("result", result);
@@ -287,7 +287,7 @@ public class MemberController {
 		
 		int result=0;		
 		MemberBean member = memberService.userCheck(id);
-
+		
 		if (member == null) {	// 등록되지 않은 회원일때
 			
 			result = 1;

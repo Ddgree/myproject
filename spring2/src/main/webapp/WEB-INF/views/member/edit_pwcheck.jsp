@@ -17,13 +17,18 @@
 </script>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/find.css" />
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/kyungmin
 </head>
 <body>
 <form method="post" action="edit_pwcheck_ok.do" onsubmit="check()">
 <input type="hidden" name="member_id" value="${sessionScop.member.member_id}">
-<table>
-
+<table style="border-spacing: 0 15px;">
+	 <tr>
+	 	<th colspan=2>비밀번호 인증 완료 후 수정할 수 있습니다.</th>
+	 </tr>
 	 <tr>
      <th>비번확인</th>
      <td>
@@ -35,8 +40,8 @@
 </table>
 
    <div id="edit_menu">
-    <input type="submit" value="확인" class="input_button"/>
-    <input type="button" value="취소" class="input_button"
+    <input type="submit" value="확인" class="button"/>
+    <input type="button" value="취소" class="button"
     	onclick="window.close()" />
    </div>
 </form>
