@@ -12,6 +12,8 @@
 	location.href = "refresh.do";
 //	location.href = "joinlist.do";
 //	location.href = "partyband.do";
+//	location.href = "start.do";
+
 	</script>
 </body>
 </html>
