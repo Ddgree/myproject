@@ -151,7 +151,6 @@ a {
     <nav class="navi">
       <ul>
      	<li><a href="partyband.do"><img src="././resources/images/logo.jpg" class="img" style="margin-left:50px;"></a></li>
-
         <li><a href="end_party_list.do" style="margin-left:200px; position:absolute;">종료파티방</a></li>
         <li><a href="board_list.do" style="margin-left:500px; position:absolute;">커뮤니티</a></li>
         <li><a href="notice_list.do" style="margin-left:800px; position:absolute;">공지사항</a></li>
@@ -165,12 +164,12 @@ a {
 	<nav class="navi">
       <ul>
      	<li><a href="partyband.do"><img src="././resources/images/logo.jpg" class="img" style="margin-left:50px;"></a></li>
-        <li><a href="end_party_list.do" style="margin-left:200px; position:absolute;">종료파티방</a></li>
-        <li><a href="board_list.do" style="margin-left:500px; position:absolute;">커뮤니티</a></li>
-        <li><a href="notice_list.do" style="margin-left:800px; position:absolute;">공지사항</a></li>
-		<li><div class="hello" style="margin-left: 1300px; margin-top: -13px;  position:absolute;">${sessionScope.member.member_nickname}님! 환영합니다!</div></li>
-		<li><input type="button" value="마이페이지" class="mypage" style=" cursor: pointer;  position:absolute; margin-left: 1300px; margin-top: 15px;" onclick="location='member_mypage.do'" /> </li>
-		<li><input type="submit" value="로그아웃" class="mypage" style=" cursor: pointer;  position:absolute; margin-left: 1400px; margin-top: 15px;" onclick="location='member_logout.do'"/></li>
+        <li><a href="end_party_list.do" style="margin-left:18%; position:absolute;">종료파티방</a></li>
+        <li><a href="board_list.do" style="margin-left:36.5%; position:absolute;">커뮤니티</a></li>
+        <li><a href="notice_list.do" style="margin-left:55%; position:absolute;">공지사항</a></li>
+		<li><div class="hello" style="margin-left: 75%; margin-top: -0.7%;  position:absolute;">${sessionScope.member.member_nickname}님! 환영합니다!</div></li>
+		<li><input type="button" value="마이페이지" class="mypage" style=" cursor: pointer;  position:absolute; margin-left: 75%; margin-top: 0.9%;" onclick="location='member_mypage.do'" /> </li>
+		<li><input type="submit" value="로그아웃" class="mypage" style=" cursor: pointer;  position:absolute; margin-left: 81%; margin-top: 0.9%;" onclick="location='member_logout.do'"/></li>
       </ul>
     </nav>  		
 	</c:otherwise>

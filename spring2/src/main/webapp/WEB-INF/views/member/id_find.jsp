@@ -7,8 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
-<<<<<<< HEAD
-
 <script>
 function check(){
 	 if($.trim($("#member_name").val())==""){
@@ -30,7 +28,6 @@ function parentMove() {
 }
   </script>
 <script src="./././js/jquery.js"></script>
-=======
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 h2{
@@ -66,7 +63,6 @@ function id_find(){
 	return true;
 }
 </script>
->>>>>>> origin/sun
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/find.css" />
 </head>
@@ -120,7 +116,6 @@ function id_find(){
     <input type="button" value="확인" class="button" onclick="parentMove()" />
     </div>
   </c:if> 
-  
  </div>
 </body>
 </html>

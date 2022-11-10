@@ -117,7 +117,7 @@ create sequence notice_no_seq
 
 select * from tab;
 
-select * from party;
+select * from party where party_address='서울';
 select * from party where party_subject='안녕하세요';
 select count(*) from party;
 
@@ -158,7 +158,7 @@ delete from party where party_count > 5;
 
 ALTER TABLE party ADD delok VARCHAR(20);
 select * from party;
-select * from party where party_address = '대전';
+select * from party where ;
 
 delete from party where party_enddate = '12312';
 
@@ -205,6 +205,7 @@ FOREIGN KEY(member_id) REFERENCES member(member_id);
 
 delete from party
 delete from PARTYMANAGER
+select * from member where member_id = 'admin'
 
 select * from partymanager
 
@@ -218,6 +219,7 @@ select  from party where party_no = ()
 delete from party where party_count = 5
 delete from party where party_count > 5
 select party_count from party where party_no = 792
-select * from party
+select * from party where party_count < 0
+delete from party where party_count < 0
 select * from partymanager where member_id='test2'
 select * from party order by party_no desc
