@@ -219,6 +219,7 @@ select  from party where party_no = ()
 delete from party where party_count = 5
 delete from party where party_count > 5
 select party_count from party where party_no = 792
-select * from party
+select * from party where party_count < 0
+delete from party where party_count < 0
 select * from partymanager where member_id='test2'
 select * from party order by party_no desc
