@@ -30,8 +30,13 @@ public class ReplyServiceImpl implements ReplyService{
 	}
 
 	@Override
-	public void delete(ReBoardBean reboard) throws Exception {
-		dao.delete(reboard);
+	public void delete(int reboard_rno) throws Exception {
+		dao.delete(reboard_rno);
+	}
+
+	@Override
+	public List<ReBoardBean> reboardlist(int board_no) {
+		return dao.reboardlist(board_no);
 	}
 
 }

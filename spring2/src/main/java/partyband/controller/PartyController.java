@@ -93,7 +93,6 @@ public class PartyController {
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		System.out.println(address);
 		if (address == null) {
 			partylist = partyservice.getPartyList(page); // 화면에 출력될 파티방 목록 저장
 			int listcount = partyservice.getListCount();
