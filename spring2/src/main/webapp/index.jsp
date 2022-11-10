@@ -13,10 +13,7 @@
 	location.href = "refresh.do";
 //	location.href = "joinlist.do";
 //	location.href = "partyband.do";
-<<<<<<< HEAD
-=======
-//	location.href = "start.do";
->>>>>>> origin/kyungmin
+
 
 	</script>
 </body>

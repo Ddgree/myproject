@@ -17,10 +17,7 @@
 </script>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/find.css" />
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/kyungmin
 </head>
 <body>
 <form method="post" action="edit_pwcheck_ok.do" onsubmit="check()">

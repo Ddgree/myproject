@@ -6,8 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>회원탈퇴</title>
-<link rel="stylesheet" type="text/css" href="./css/admin.css" />
-<link rel="stylesheet" type="text/css" href="./css/member.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/find.css" />
+
 <script src="./js/jquery.js"></script>
 </head>
 <body>
@@ -37,8 +38,8 @@
      
     </table>
     <div id="del_menu">
-     <input type="submit" value="탈퇴" class="input_button" />
-     <input type="reset" value="취소" class="input_button"
+     <input type="submit" value="탈퇴" class="button" />
+     <input type="reset" value="취소" class="button"
      	onclick="$('#delete_passwd').focus();" />
     </div>
   </form>

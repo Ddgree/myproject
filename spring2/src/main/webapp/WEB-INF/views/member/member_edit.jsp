@@ -249,8 +249,8 @@ input[type=file]::file-selector-button {
    </table>
    
    <div id="join_menu">
-    <input type="submit" value="회원수정" class="input_button" />
-    <input type="button" value="취소" class="input_button"
+    <input type="submit" value="회원수정" class="button" style="margin-left:690px" />
+    <input type="button" value="취소" class="button"
     	onclick="location='member_mypage.do'" />
    </div>
   </form>
