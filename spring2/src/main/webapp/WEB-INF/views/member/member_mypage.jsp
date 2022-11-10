@@ -4,50 +4,12 @@
 
 <!DOCTYPE html>
 <html>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
-body{
-	font-family: 'Gowun Dodum', sans-serif;
-}
-
-.join {
-	margin-left: 680px;
-	border-spacing: 40px 25px;
-	font-size:20px;
-}
-td{
-	text-align: center;
-	border-radius: 10px;
-}
-th{
-	border-radius: 10px;
-}
-tr:nth-child(odd) { background-color: #f3d49e; }
-tr:nth-child(even) { background-color: #eb934b; }
-
-.button {
-	background-color: black;
-	color: white;
-	text-align: center;
-	font-size: 20px;
-	width: 150px;
-	height: 50px;	
-	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
-	cursor: pointer;
-	font-family: 'Gowun Dodum', sans-serif;
-}
-
-.button:hover {
-	background: #61443a;
-	color: white;
-	border: 0;
-}
-</style>
-
 
 <head>
 <meta charset="UTF-8">	
 <title>회원정보 마이페이지</title>
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/mypage.css" />
 <c:if test="${sessionScope.member.member_id == null }">
 <%@ include file="../member/header.jsp" %>
 </c:if>
