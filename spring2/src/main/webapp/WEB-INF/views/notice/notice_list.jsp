@@ -23,6 +23,7 @@
 </head>
 
 <body>
+<div class="wrapper">
 	<div class="container" align="center">
 		<h2 style=padding-top:90px align=center>공지사항 목록</h2>
 		<table border=1 width=60% align="center">
@@ -168,6 +169,7 @@
 				</c:if> --%>
 			</c:if>
 		</div>
+	</div>
 	</div>
 </body>
 <%@ include file="../member/footer.jsp" %>

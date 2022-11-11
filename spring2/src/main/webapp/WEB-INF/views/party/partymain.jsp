@@ -6,24 +6,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>메인 페이지</title>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/partymain.css" />
 <script src="https://kit.fontawesome.com/f82eca20b8.js"
 	crossorigin="anonymous"></script>
 
 </head>
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/partymain.css" />
+<body>
+
 <c:if test="${sessionScope.member.member_id == null }">
 	<%@ include file="../member/header.jsp"%>
 </c:if>
 <c:if test="${sessionScope.member.member_id != null}">
 	<%@ include file="../member/header_login.jsp"%>
 </c:if>
+<div class=wrapper>
 
 
 	<%@ include file="../../../resources/include/address.jsp"%>
 
-<body>
 <div id="options">
 <div id="optionsheader">드래그해서이동</div>
 	sessionid <br>${member.member_id}<br>
@@ -106,19 +109,17 @@
 				</div>
 			</button>
 		</c:forEach>
-		</div>
-	</div>
-	
+		
 		<hr/>
 	<div align="center">
 	<c:if test="${address eq null }">
-		<c:if test="${page == 1 }"> <div class=blackbutton-inactive> << </div>&nbsp; </c:if>
+		<c:if test="${page == 1 }"> <div class=blackbutton-inactive> << </div> </c:if>
 		<c:if test="${page != 1 }">
-			<a href="partyband.do?page=1"><div class=blackbutton-active> << </div>&nbsp;</a>
+			<a href="partyband.do?page=1"><div class=blackbutton-active> << </div></a>
 		</c:if>
-		<c:if test="${page <=1 }"> <div class=blackbutton-inactive> < </div>&nbsp; </c:if>
+		<c:if test="${page <=1 }"> <div class=blackbutton-inactive> < </div> </c:if>
 		<c:if test="${page > 1 }">
-			<a href="partyband.do?page=${page-1}"><div class=blackbutton-active> < </div>&nbsp;</a>
+			<a href="partyband.do?page=${page-1}"><div class=blackbutton-active> < </div></a>
 		</c:if>
 		<c:forEach var="a" begin="${startpage}" end="${endpage}">
 			<c:if test="${a == page }"> <div class=blackbutton-selected> ${a } </div> </c:if>
@@ -126,23 +127,23 @@
 				<a href="partyband.do?page=${a}"><div class=blackbutton-active> ${a } </div></a>
 			</c:if>
 		</c:forEach>
-		<c:if test="${page >= maxpage }"> <div class=blackbutton-inactive> > </div>&nbsp; </c:if>
+		<c:if test="${page >= maxpage }"> <div class=blackbutton-inactive> > </div> </c:if>
 		<c:if test="${page < maxpage }">
-			<a href="partyband.do?page=${page+1}"><div class=blackbutton-active> > </div>&nbsp;</a>
+			<a href="partyband.do?page=${page+1}"><div class=blackbutton-active> > </div></a>
 		</c:if>
-		<c:if test="${page == maxpage }"> <div class=blackbutton-inactive> >> </div>&nbsp; </c:if>
+		<c:if test="${page == maxpage }"> <div class=blackbutton-inactive> >> </div> </c:if>
 		<c:if test="${page != maxpage }">
-			<a href="partyband.do?page=${maxpage}"><div class=blackbutton-active> >> </div>&nbsp;</a>
+			<a href="partyband.do?page=${maxpage}"><div class=blackbutton-active> >> </div></a>
 		</c:if>
 		</c:if>
 	<c:if test="${address ne null }">
-		<c:if test="${page == 1 }"> <div class=blackbutton-inactive> << </div>&nbsp; </c:if>
+		<c:if test="${page == 1 }"> <div class=blackbutton-inactive> << </div> </c:if>
 		<c:if test="${page != 1 }">
-			<a href="partyband.do?page=1&address=${address }"><div class=blackbutton-active> << </div>&nbsp;</a>
+			<a href="partyband.do?page=1&address=${address }"><div class=blackbutton-active> << </div></a>
 		</c:if>
-		<c:if test="${page <=1 }"> <div class=blackbutton-inactive> < </div>&nbsp; </c:if>
+		<c:if test="${page <=1 }"> <div class=blackbutton-inactive> < </div> </c:if>
 		<c:if test="${page > 1 }">
-			<a href="partyband.do?page=${page-1}&address=${address }"><div class=blackbutton-active> < </div>&nbsp;</a>
+			<a href="partyband.do?page=${page-1}&address=${address }"><div class=blackbutton-active> < </div></a>
 		</c:if>
 		<c:forEach var="a" begin="${startpage}" end="${endpage}">
 			<c:if test="${a == page }"> <div class=blackbutton-selected> ${a } </div> </c:if>
@@ -150,16 +151,19 @@
 				<a href="partyband.do?page=${a}&address=${address }"><div class=blackbutton-active> ${a } </div></a>
 			</c:if>
 		</c:forEach>
-		<c:if test="${page >= maxpage }"> <div class=blackbutton-inactive> > </div>&nbsp; </c:if>
+		<c:if test="${page >= maxpage }"> <div class=blackbutton-inactive> > </div> </c:if>
 		<c:if test="${page < maxpage }">
-			<a href="partyband.do?page=${page+1}&address=${address }"><div class=blackbutton-active> > </div>&nbsp;</a>
+			<a href="partyband.do?page=${page+1}&address=${address }"><div class=blackbutton-active> > </div></a>
 		</c:if>
-		<c:if test="${page == maxpage }"> <div class=blackbutton-inactive> >> </div>&nbsp; </c:if>
+		<c:if test="${page == maxpage }"> <div class=blackbutton-inactive> >> </div> </c:if>
 		<c:if test="${page != maxpage }">
 			<a href="partyband.do?page=${maxpage}&address=${address }"><div class=blackbutton-active> >> </div>&nbsp;</a>
 		</c:if>
 		</c:if>
 	</div>
+		</div>
+	</div>
+	</div>
 </body>
-<%@ include file="../member/footer.jsp"%>
+	<%@ include file="../member/footer.jsp"%>
 </html>

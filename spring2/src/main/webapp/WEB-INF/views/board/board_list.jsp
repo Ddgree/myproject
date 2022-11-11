@@ -19,6 +19,7 @@
 </c:if>
 
 <body>
+<div class="wrapper">
 	<div id="root">
 		<div id="container">
 			<form role="form" method="post">
@@ -184,5 +185,7 @@
 				onClick="location='board_write.do?page=${page}&board_id=${member.member_id}'" /> 
 		</div>
 	</div>
+	</div>
 </body>
+<%@ include file="../member/footer.jsp"%>
 </html>

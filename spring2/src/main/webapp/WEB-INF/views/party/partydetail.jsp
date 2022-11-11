@@ -7,8 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>파티방 상세보기</title>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/party.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://kit.fontawesome.com/f82eca20b8.js" crossorigin="anonymous"></script>
 
@@ -20,10 +18,12 @@
 	<%@ include file="../member/header_login.jsp"%>
 </c:if>
 
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/party.css" />
 <body>
-
+<div class=wrapper>
 <c:set var="join" value="1" scope="session"/>
-<c:forEach var="j" items="#{joinlist}">
+<c:forEach var="j" items="${joinlist}">
 	<c:if test="${j.party_no eq party.party_no}">
 		<c:set var="join" value="-1" scope="session"></c:set>
 	</c:if>
@@ -37,6 +37,7 @@
 <fmt:parseNumber var="day" value="${enddate.time / (1000*60*60*24)}" integerOnly="true" />
 <!-- 날짜포멧출력 -->
 <fmt:formatDate var="dday" value="${enddate }" pattern="yyyy년 MM월 dd일"/>
+
 	<div id="bbscont_wrap">
 		<h2 class="bbscont_title">파티방 상세정보</h2>
 		<input type="hidden" name=page value=${page }>
@@ -89,7 +90,7 @@
 								onclick="location='pwcheckform.do?party_no=${party.party_no}&page=${page}&member_id=${member.member_id}&stat=del'" />
 							</c:if>
 						</c:when>
-						<c:when test="${sessionId eq 'admin'}">
+						<c:when test="${member.member_id eq 'admin'}">
 							<input type="button" value="목록" class="input_button"
 								onclick="location='partyband.do?page=${page}'" />
 							<input type="button" value="삭제" class="input_button"
@@ -107,6 +108,7 @@
 					</c:choose></td>
 			</tr>
 		</table>
+	</div>
 	</div>
 </body>
 <%@ include file="../member/footer.jsp"%>

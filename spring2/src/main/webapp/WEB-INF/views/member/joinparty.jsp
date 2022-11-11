@@ -6,7 +6,9 @@
 <head>
 <title>참가파티방 목록</title>
 </head>
+<%@ include file="../member/header_login.jsp" %>
 <body>
+<div class="wrapper">
 	<div id="root">
 		<header align="center">
 			<h1>참가파티방 목록</h1>
@@ -69,5 +71,7 @@
 			</form>
 		</div>
 	</div>
+</div>
 </body>
+<%@ include file="../member/footer.jsp" %>
 </html>

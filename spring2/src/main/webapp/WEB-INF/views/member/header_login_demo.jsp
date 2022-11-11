@@ -8,9 +8,11 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/header.css" />
-
 </head>
 <body>
+
+
+<div class="screen">
 		<div class="header">
 		<input type="hidden" name="member_id" value="${member.member_id}" />
 <c:choose>
@@ -44,10 +46,10 @@
 <c:choose>
 <c:when test="${member.member_id eq 'admin' }">
       <ul class="topnavM">
-     	<li class="dropdown" style="float:right"><a class="dropbtn2">${sessionScope.member.member_nickname}님!<br>환영합니다!</a>
+     	<li style="float:right"><a class="dropbtn2">${sessionScope.member.member_nickname}님!<br>환영합니다!</a>
      	<div class="dropdown-content2" style="float:right">
-     	<a class="mypage2"><input class="header" type="button" value="마이페이지"onclick="location='member_mypage.do'" /></a>
-     	<a class="mypage2"><input class="header" type="submit" value="로그아웃" onclick="location='member_logout.do'"/></a>
+     	<a class="mypage2"><input type="button" value="마이페이지"onclick="location='member_mypage.do'" /></a>
+     	<a class="mypage2"><input type="submit" value="로그아웃" onclick="location='member_logout.do'"/></a>
      	</div>
      	<li class="dropdown"><a class="dropbtn" href="partyband.do"><img src="././resources/images/partyband.gif"></a>
      	<div class="dropdown-content">
@@ -74,5 +76,6 @@
 	</c:otherwise>
 </c:choose>
 		</div>
+	</div>
 </body>
 </html>

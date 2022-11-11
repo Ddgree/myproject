@@ -47,6 +47,9 @@ CREATE TABLE board (
     board_id VARCHAR2(20) references member(member_id) on delete cascade /* 아이디 */
 );
 
+
+
+
 /* 후기댓글 */
 CREATE TABLE reboard (
 	reboard_subject VARCHAR2(100), /* 제목 */

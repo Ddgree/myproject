@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -13,8 +12,9 @@
 <script src="<%=request.getContextPath()%>/resources/js/party_check.js"></script>
 
 </head>
-
+	<%@ include file="../member/header_login.jsp"%>
 <body>
+<div class=wrapper>
 party_no=${party_no}
 	<div id="bbswrite_wrap">
 		<h2 class="bbswrite_title">파티 수정</h2>
@@ -75,5 +75,7 @@ party_no=${party_no}
 			</table>
 		</form>
 	</div>
+	</div>
+	<%@ include file="../member/footer.jsp"%>
 </body>
 </html>

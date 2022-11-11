@@ -9,9 +9,9 @@
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="<%=request.getContextPath() %>/resources/js/board.js"></script>
 </head>
-
+	<%@ include file="../member/header_login.jsp"%>
 <body>
-
+<div class="wrapper">
  <div id="board_write_title" align="center">
   <h2 class="board_write_title">글 작성</h2>
   <form method="post" action="board_write_ok.do" onSubmit="return board_check()" enctype="multipart/form-data">
@@ -69,5 +69,7 @@
    </div>
   </form>
  </div>
+	</div>
 </body>
+<%@ include file="../member/footer.jsp"%>
 </html>

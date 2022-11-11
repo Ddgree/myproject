@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>비번확인</title>
-<<<<<<< HEAD
-=======
+
 <script>
 /* function check() {
 	var editpw = document.getElementById("editpw").value;
@@ -19,7 +18,6 @@
 </script>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/find.css" />
->>>>>>> origin/sun
 </head>
 <body>
 <form method="post" action="edit_pwcheck_ok.do" onsubmit="check()">

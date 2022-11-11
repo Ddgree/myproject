@@ -17,8 +17,10 @@
 	 	 }
   	}
 	</script>
+	<%@ include file="../member/header_login.jsp"%>
 </head>
 <body>
+<div class="wrapper">
  <div id="boarddel_wrap">
   <h2 class="boarddel_title">게시물 삭제</h2>
   <form method="post" action="board_delete_ok.do" 
@@ -42,5 +44,7 @@
    </div>
   </form>
  </div>
+ </div>
 </body>
+<%@ include file="../member/footer.jsp" %>
 </html>

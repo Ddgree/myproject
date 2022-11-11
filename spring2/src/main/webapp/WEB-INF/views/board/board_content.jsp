@@ -39,6 +39,7 @@ td {
 </c:if>
 
 <body>
+<div class="wrapper">
 	<div id="board_content_wrap" align="center">
 		<h2 style="padding-top: 90px" align=center>게시글 상세내용</h2>
 		<table id="board_content_table" border=1 width=50%
@@ -108,6 +109,7 @@ td {
 		
 
 	</tr>
-
+</div>
 </body>
+<%@ include file="../member/footer.jsp" %>
 </html>

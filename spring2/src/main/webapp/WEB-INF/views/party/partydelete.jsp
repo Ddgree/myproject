@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,10 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/party.css" /> 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
+	<%@ include file="../member/header_login.jsp"%>
+
 <body>
+<div class=wrapper>
 <form method=post action="partydelete.do">
 <input type="hidden" name=no value=${no }>
 <input type="hidden" name=page value=${page }>
@@ -25,6 +29,7 @@
 </table>
 </div>
 </form>
-
+</div>
+<%@ include file="../member/footer.jsp"%>
 </body>
 </html>
