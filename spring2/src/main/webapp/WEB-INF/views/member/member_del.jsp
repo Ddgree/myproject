@@ -11,6 +11,7 @@
 <script src="./js/jquery.js"></script>
 </head>
 <body>
+aaaa
  <div id="del_wrap">
   <h2 class="pwd_title">회원탈퇴</h2>
   <form method="post" action="member_del_ok.do" onsubmit="return delcheck()">
