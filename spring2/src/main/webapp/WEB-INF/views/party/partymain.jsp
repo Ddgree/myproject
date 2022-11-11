@@ -24,6 +24,8 @@
 	<%@ include file="../../../resources/include/address.jsp"%>
 
 <body>
+
+
 <div id="options">
 <div id="optionsheader">드래그해서이동</div>
 	sessionid <br>${member.member_id}<br>

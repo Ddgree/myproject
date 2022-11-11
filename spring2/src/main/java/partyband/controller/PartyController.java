@@ -291,6 +291,7 @@ public class PartyController
 	@RequestMapping("pwcheckform.do")
 	public String partyeditform(int page, String member_id, int party_no, String stat, Model model)
 	{
+		System.out.println("pwcheckform.do");
 		model.addAttribute("page", page);
 		model.addAttribute("member_id", member_id);
 		model.addAttribute("party_no", party_no);
@@ -301,42 +302,69 @@ public class PartyController
 	
 	/* 비밀 번호 확인 */
 	@RequestMapping("partypwcheck.do")
-	public String partyedit(HttpServletResponse response, int page, String member_id, String input_member_passwd,
+	public String partyedit(HttpServletResponse response, int page, String member_id, String delete_passwd,
 			int party_no, String stat, Model model) throws Exception 
 	{
 		String orign_member_passwd = partyservice.pwcheck(member_id);
 
-		if(!input_member_passwd.equals(orign_member_passwd)) 
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter w = response.getWriter();
+		
+		if(!delete_passwd.equals(orign_member_passwd)) 
 		{
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter w = response.getWriter();
-
 			String msg = "비밀번호가 일치하지 않습니다.";
 			w.write("<script>alert('" + msg + "');history.back();</script>");
 			w.flush();
 			w.close();
 		} 
 			else if (stat.equals("edit"))
-		{
-			model.addAttribute("page", page);
-			model.addAttribute("member_id", member_id);
-			model.addAttribute("party_no", party_no);
-
-			return "party/partyedit";
-		} 
+			{
+				String url = "party_update.do?page="+page+"&party_no="+party_no+"&member_id="+member_id;
+				String msg="수정 폼으로 이동합니다!";
+				
+				w.write("<script>alert('" + msg + "');"
+						+ "opener.location.href='"+url+"';window.close();</script>");
+				
+	
+				return null;
+			} 
 			else if (stat.equals("del")) 
-		{
-			partyservice.partydel(party_no);
+			{
+				partyservice.partydel(party_no);
+				
+				String msg="삭제 성공!";
+				w.write("<script>alert('" + msg + "');"
+						+ "opener.location.href ='partyband.do';window.close();</script>");
 
-			return "redirect:partyband.do";
-		}
+				return null;
+			}
 
 		return null;
+	}
+	@RequestMapping("party_update.do")
+	public String party_update(int page, String member_id, int party_no, Model model) throws Exception
+	{
+		partybean party = partyservice.party_cont(party_no);
+		
+		model.addAttribute("page",page);
+		model.addAttribute("member_id",member_id);
+		model.addAttribute("party",party);
+		return "party/partyedit";
+	}
+	
+	@RequestMapping("pwcheck.do")
+	public String member_del(int party_no,String stat, Model model) throws Exception
+	{
+		model.addAttribute("party_no",party_no);
+		model.addAttribute("stat",stat);
+		return "party/pwcheck";
 	}
 
 	/* 파티방 수정 */
 	@RequestMapping("partyedit.do")
-	public String partyedit(partybean p, int page, HttpServletResponse response) throws Exception {
+	public String partyedit(partybean p, int page,int party_no) throws Exception
+	{
+		System.out.println("Controller, party-age : "+ p.getParty_age());
 		partyservice.partyedit(p);
 
 		return "redirect:party_detail.do?party_no=" + p.getParty_no() + "&page=" + page;

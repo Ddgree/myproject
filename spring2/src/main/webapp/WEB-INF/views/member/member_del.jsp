@@ -8,14 +8,13 @@
 <title>회원탈퇴</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/find.css" />
-
 <script src="./js/jquery.js"></script>
 </head>
 <body>
  <div id="del_wrap">
-  <h2 class="del_title">회원탈퇴</h2>
+  <h2 class="pwd_title">회원탈퇴</h2>
   <form method="post" action="member_del_ok.do" onsubmit="return delcheck()">
-    <table id="del_t">
+    <table style="border-spacing: 20px 15px;">
      <tr>
       <th>회원아이디</th>
       <td>
@@ -38,9 +37,9 @@
      
     </table>
     <div id="del_menu">
-     <input type="submit" value="탈퇴" class="button" />
+     <input type="submit" value="탈퇴" class="button" style="margin-left:50px;"/>
      <input type="reset" value="취소" class="button"
-     	onclick="$('#delete_passwd').focus();" />
+     	onclick="window.close()" />
     </div>
   </form>
  </div>

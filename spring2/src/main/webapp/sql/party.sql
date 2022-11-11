@@ -223,3 +223,5 @@ select * from party where party_count < 0
 delete from party where party_count < 0
 select * from partymanager where member_id='test2'
 select * from party order by party_no desc
+
+select * from reboard where reboard_bno = 185 order by reboard_date desc

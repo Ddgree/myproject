@@ -5,14 +5,25 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>파티방 상세보기</title>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/party.css" />
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="https://kit.fontawesome.com/f82eca20b8.js" crossorigin="anonymous"></script>
-
+	<meta charset="UTF-8">
+	<title>파티방 상세보기</title>
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/party.css" />
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="https://kit.fontawesome.com/f82eca20b8.js" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script>
+		function party_delete() 
+		{
+			window.open("pwcheck.do?party_no=${party.party_no}&page=${page}&member_id=${member.member_id}&stat=del", "파티방 삭제", "width=500,height=350,left=700,top=200");
+		}
+		
+		function party_update() 
+		{
+			window.open("pwcheck.do?party_no=${party.party_no}&page=${page}&member_id=${member.member_id}&stat=edit", "파티방 수정", "width=500,height=350,left=700,top=200");
+		}
+	</script>
 </head>
+
 <c:if test="${sessionScope.member.member_id == null }">
 	<%@ include file="../member/header.jsp"%>
 </c:if>
@@ -21,7 +32,6 @@
 </c:if>
 
 <body>
-
 <c:set var="join" value="1" scope="session"/>
 <c:forEach var="j" items="#{joinlist}">
 	<c:if test="${j.party_no eq party.party_no}">
@@ -75,25 +85,17 @@
 				<td class=con>${party.party_content}</td>
 			</tr>
 			<tr id="bbswrite_menu">
-
 				<td colspan=2 align="center">
 				<c:choose>
 						<c:when test="${member.member_id eq party.party_id}">
-							<input type="button" value="목록" class="input_button"
-								onclick="location='partyband.do?page=${page}'" />
-								<c:if test="${party.party_count!=0}"></c:if>
-								<c:if test="${party.party_count==0}">
-							<input type="button" value="수정" class="input_button"
-								onclick="location='pwcheckform.do?party_no=${party.party_no}&page=${page}&member_id=${member.member_id}&stat=edit'" />
-							<input type="button" value="삭제 " class="input_button"
-								onclick="location='pwcheckform.do?party_no=${party.party_no}&page=${page}&member_id=${member.member_id}&stat=del'" />
-							</c:if>
+							<input type="button" value="목록" class="input_button" onclick="location='partyband.do?page=${page}'" />
+							<input type="button" value="수정" class="input_button" onclick="party_update()" />
+							<input type="button" value="삭제 " class="input_button" onclick="party_delete()" />
 						</c:when>
-						<c:when test="${sessionId eq 'admin'}">
+						<c:when test="${member.member_id eq 'admin'}">
 							<input type="button" value="목록" class="input_button"
 								onclick="location='partyband.do?page=${page}'" />
-							<input type="button" value="삭제" class="input_button"
-								onclick="location.href='partydelete.do'" />
+							<input type="button" value="삭제 " class="input_button" onclick="party_delete()" />
 						</c:when>
 						<c:when test="${join eq -1}">
 							<input type="button" value="목록" class="input_button"onclick="location='partyband.do?page=${page}'"/>
