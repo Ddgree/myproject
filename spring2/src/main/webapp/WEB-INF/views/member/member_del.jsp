@@ -40,7 +40,7 @@
     <div id="del_menu">
      <input type="submit" value="탈퇴" class="button" />
      <input type="reset" value="취소" class="button"
-     	onclick="$('#delete_passwd').focus();" />
+     	onclick="window.close()" />
     </div>
   </form>
  </div>
