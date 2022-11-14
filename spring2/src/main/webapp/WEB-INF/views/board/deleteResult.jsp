@@ -9,3 +9,10 @@
 		history.go(-1);
 	</script>
 </c:if>
+<c:if test="${result==2}">
+	<script>
+		alert("게시물 삭제가 완료되었습니다.");
+		opener.location.href="board_list.do"
+		window.close();
+	</script>
+</c:if>

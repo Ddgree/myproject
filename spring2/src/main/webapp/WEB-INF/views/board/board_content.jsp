@@ -8,17 +8,20 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 상세보기</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://kit.fontawesome.com/f82eca20b8.js"
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
 	$(function() {	// load('slist?num=${board.num}')
-		$('#reboard_list').load('${path}/reboard_list/num/${read.board_no}')
+		$('#reboard_list').load('reboard_list.do?board_no=${read.board_no}');
 		$('#reboard_button').click(function() {
 			if (!reply_text_frm.reboard_content.value) {
 				alert('댓글 입력후에 클릭하시오');
 				reply_text_frm.reboard_content.focus();
 				return false;
 			}
+		});
+	});
 </script>
 <style>
 th {
@@ -37,8 +40,19 @@ td {
 }
 
 .input_button {
-	width: 40pt;
-	height: 20pt;
+	background-color: black;
+	color: white;
+	text-align: center;
+	font-size: 20px;
+	width: 150px;
+	height: 50px;	
+	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	cursor: pointer;
+}
+.input_button:hover {
+	background: #61443a;
+	color: white;
+	border: 0;
 }
 
 :text {
@@ -49,6 +63,9 @@ td {
 	function fileDown(file) {
 		location.href = "http://3.39.24.101/spring/fileDown.do?filecol="
 				+ encodeURI(file);
+	}
+	function del_b_content() {
+		window.open("board_delete.do?board_no=${read.board_no}&page=${page}&board_id=${read.board_id}", "게시물 삭제", "width=500,height=300");
 	}
 </script>
 
@@ -99,7 +116,7 @@ td {
 				<input type="button" value="수정" class="input_button"
 					onclick="location='board_update.do?board_no=${read.board_no}&page=${page}&board_id=${read.board_id}'" />&nbsp;
 				<input type="button" value="삭제" class="input_button"
-					onclick="location='board_delete.do?board_no=${read.board_no}&page=${page}&board_id=${read.board_id}'" />&nbsp;
+					onclick="del_b_content()" />&nbsp;
 			</c:if>
 			<c:if
 				test="${sessionScope.member.member_id != read.board_id && sessionScope.member.member_id == 'admin'}">
@@ -127,27 +144,6 @@ td {
 	<h3 style="padding-top: 20px;" align=center>
 		댓글&nbsp;<i class="fa-regular fa-comment-dots"></i>
 	</h3>
-	<hr />
-	<%-- <div align="center">
-		<c:forEach items="${reply}" var="reply">
-					<p>
-						<i class="fa-regular fa-face-smile"></i>&nbsp;${reply.reboard_id}
-						/
-						<fmt:formatDate value="${reply.reboard_date}" pattern="yyyy-MM-dd" />
-					</p>
-					<p>${reply.reboard_content}<p><br>
-					<c:if test="${sessionScope.member.member_id == reply.reboard_id || sessionScope.member.member_id == 'admin'}">
-						<a href="">
-							<i class="fa-solid fa-file-pen fa-lg"></i></a>
-							&nbsp;|&nbsp; 
-						<a href="">
-							<i class="fa-regular fa-trash-can fa-lg"></i></a>
-					</c:if>
-					<c:if test="${sessionScope.member.member_id != reply.reboard_id}">
-					</c:if>
-			<hr	style="color: #FFD9CC; border: 3px; border-style: dotted; width: 20%;">
-		</c:forEach>
-	</div> --%>
 	<div id="reboard_list"></div>
 </body>
 </html>

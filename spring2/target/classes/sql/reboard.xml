@@ -5,34 +5,26 @@
 
 <!-- 댓글 조회 -->
 <select id="list" parameterType="int" resultType="reboard">
-    select
-        reboard_rno, reboard_bno, reboard_id, reboard_content, reboard_date
-    from reboard
-        where reboard_bno = #{reboard_bno} 
+    select * from reboard
+        where reboard_bno = #{board_no} 
         order by reboard_date desc
 </select>
-<!-- 댓글 목록 조회 -->
-<select id="slist" parameterType="int" resultType="reboard">
-	select * from reboard where board_no = ${board_no}
-</select>
-
 <!-- 댓글 작성 -->
 <insert id="write" parameterType="reboard">
-    insert into reboard(reboard_bno, reboard_id, reboard_content, reboard_date)
-        values (#{reboard_bno}, #{reboard_id}, #{reboard_content}, sysdate)
+    insert into reboard(reboard_rno, reboard_bno, reboard_id, reboard_content, reboard_date)
+        values (reboard_no_seq.nextval, #{reboard_bno}, #{reboard_id}, #{reboard_content}, sysdate)
 </insert>
     
 <!-- 댓글 수정  -->
 <update id="modify" parameterType="reboard">
     update reboard set
-        reboard_id = #{reboard_id},
-        reboard_content = #{reboard_content}
+        reboard_content = #{reboard_content},
+        reboard_date=sysdate
     where reboard_rno = #{reboard_rno}
-        and reboard_bno = #{reboard_bno}    
 </update>
 
 <!-- 댓글 삭제 --> 
-<delete id="delete" parameterType="reboard">
+<delete id="delete" parameterType="int">
     delete from reboard
     where reboard_rno = #{reboard_rno}
 </delete>

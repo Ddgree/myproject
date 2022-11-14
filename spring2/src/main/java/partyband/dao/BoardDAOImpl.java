@@ -48,10 +48,5 @@ public class BoardDAOImpl implements BoardDAO{
 	public void delete(int board_no) throws Exception {
 		sqlSession.delete("board.delete", board_no);
 	}
-	// 댓글 조회
-	@Override
-	public BoardBean select(int board_no) {
-		return sqlSession.selectOne("board.select", board_no);
-	}
 
 }

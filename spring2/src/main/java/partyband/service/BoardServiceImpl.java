@@ -50,10 +50,5 @@ public class BoardServiceImpl implements BoardService
 	public void delete(int board_no) throws Exception {
 		dao.delete(board_no);
 	}
-	// 댓글 조회
-	@Override
-	public BoardBean select(int board_no) {
-		return dao.select(board_no);
-	}
 	
 }
