@@ -30,7 +30,6 @@ a {
 	background-color: white;
 	color: black;
 	margin-left:80%;
-
 	position:absolute;
 }
 

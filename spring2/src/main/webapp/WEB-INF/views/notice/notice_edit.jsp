@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/notice.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath()%> /resources/js/notice.js"></script>
+
 <c:if test="${sessionScope.member.member_id == null }">
 	<%@ include file="../member/header.jsp"%>
 </c:if>

@@ -13,7 +13,11 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
 	$(function() {	// load('slist?num=${board.num}')
+<<<<<<< HEAD
 		$('#reboard_list').load('reboard_list.do?board_no=${read.board_no}');
+=======
+		$('#reboard_list').load('./reboard_list.do?board_no=${read.board_no}')
+>>>>>>> origin/sungdo
 		$('#reboard_button').click(function() {
 			if (!reply_text_frm.reboard_content.value) {
 				alert('댓글 입력후에 클릭하시오');
@@ -29,16 +33,13 @@ th {
 	border: 1px solid #cccccc;
 	text-align: cetner;
 }
-
 td {
 	padding: 20px 20px;
 	border: 1px solid #cccccc;
 }
-
 #reboard_content, #reboard_button {
 	vertical-align: middle;
 }
-
 .input_button {
 	background-color: black;
 	color: white;
@@ -54,7 +55,6 @@ td {
 	color: white;
 	border: 0;
 }
-
 :text {
 	text-align: center;
 }
@@ -68,19 +68,15 @@ td {
 		window.open("board_delete.do?board_no=${read.board_no}&page=${page}&board_id=${read.board_id}", "게시물 삭제", "width=500,height=300");
 	}
 </script>
-
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/boardnotice.css" />
-
 </head>
-
 <c:if test="${sessionScope.member.member_id == null }">
 	<%@ include file="../member/header.jsp"%>
 </c:if>
 <c:if test="${sessionScope.member.member_id != null }">
 	<%@ include file="../member/header_login.jsp"%>
 </c:if>
-
 <body>
 	<div id="board_content_wrap" align="center">
 		<h2 style="padding-top: 90px" align=center>게시글 상세내용</h2>
@@ -100,7 +96,6 @@ td {
 				<th>글내용</th>
 				<td colspan=7>&nbsp;&nbsp;${b_content}</td>
 			</tr>
-
 			<tr>
 				<th>첨부파일</th>
 				<td colspan=7><a
@@ -108,9 +103,7 @@ td {
 				</td>
 			</tr>
 		</table>
-
 		<div id="board_content_menu" style='margin-top: 20px;'>
-
 			<c:if
 				test="${sessionScope.member.member_id == read.board_id || sessionScope.member.member_id == 'admin'}">
 				<input type="button" value="수정" class="input_button"
@@ -126,7 +119,6 @@ td {
 		</div>
 	</div>
 	<hr style="margin: 30px auto; width: 50%;" />
-
 	<!-- 댓글 -->
 	<div align="center">
 		<form method="post" id="reply_text_frm"
