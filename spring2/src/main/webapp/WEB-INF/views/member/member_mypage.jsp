@@ -19,17 +19,17 @@
 function edit_pwcheck() {
 	window.open("edit_pwcheck.do", "비번인증", "width=600,height=400");
 }
+function member_delete() {
 
-function member_delete() 
-{
 	window.open("member_del.do", "회원탈퇴", "width=450,height=350");
+	//자바 스크립트에서 window객체의 open("공지창경로와 파일명","공지창이름","공지창속성")
 }
 </script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath()%>/js/member.js"></script>
 </head>
 <body>
-
+<div class="wrapper">
  <div id="mem_mypage">
   <form name="f" method="post" action="member_logout.do" 
    enctype="multipart/form-data">
@@ -108,6 +108,7 @@ function member_delete()
    </div>
   </form>
  </div> 
+ </div>
 </body>
 <%@ include file="../member/footer.jsp" %>
 </html>

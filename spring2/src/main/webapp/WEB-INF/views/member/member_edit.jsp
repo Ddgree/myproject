@@ -107,16 +107,12 @@ input[type=file]::file-selector-button {
 </style>
 <meta charset="UTF-8">
 <title>회원정보 수정폼</title>
-<c:if test="${sessionScope.member.member_id == null }">
-<%@ include file="../member/header.jsp" %>
-</c:if>
-<c:if test="${sessionScope.member.member_id != null }">
-<%@ include file="../member/header_login.jsp" %>
-</c:if>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath()%>/js/member.js"></script>
 </head>
+<%@ include file="../member/header_login.jsp" %>
 <body>
+<div class="wrapper">
  <div id="join_wrap">
   <h2 class="join_title">회원정보 수정</h2>
   <form name="f" method="post" action="member_edit_ok.do"
@@ -247,13 +243,13 @@ input[type=file]::file-selector-button {
      </td>
     </tr>
    </table>
-   
-   <div id="join_menu">
-    <input type="submit" value="회원수정" class="button" style="margin-left:690px" />
-    <input type="button" value="취소" class="button"
+   <div id="join_menu" style="text-align: center;">
+    <input type="submit" value="회원수정" class="input_button" />
+    <input type="button" value="취소" class="input_button"
     	onclick="location='member_mypage.do'" />
    </div>
   </form>
+ </div>
  </div>
 </body>
 <%@ include file="../member/footer.jsp" %>

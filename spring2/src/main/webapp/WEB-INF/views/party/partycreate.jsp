@@ -12,16 +12,16 @@
 <script src="<%=request.getContextPath() %>/resources/js/party_check.js"></script>
 <script src="https://kit.fontawesome.com/f82eca20b8.js" crossorigin="anonymous"></script>
 
+</head>
+<body>
+
 <c:if test="${sessionScope.member.member_id == null }">
 	<%@ include file="../member/header.jsp"%>
 </c:if>
 <c:if test="${sessionScope.member.member_id != null}">
 	<%@ include file="../member/header_login.jsp"%>
 </c:if>
-
-
-</head>
-<body>
+<div class=wrapper>
 <br><br><br><br>
 <%=request.getContextPath() %>
 	<div id="bbswrite_wrap">
@@ -85,6 +85,7 @@
 				</tr>
 			</table>
 		</form>
+	</div>
 	</div>
 </body>
 <%@ include file="../member/footer.jsp"%>

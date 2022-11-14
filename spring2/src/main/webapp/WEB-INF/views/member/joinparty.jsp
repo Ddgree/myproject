@@ -13,7 +13,9 @@
 	href="<%=request.getContextPath()%>/resources/css/mypage.css" />
 <title>참가파티방 목록</title>
 </head>
+<%@ include file="../member/header_login.jsp" %>
 <body>
+<div class="wrapper">
 	<div id="root">
 		<br>
 		<br>
@@ -75,6 +77,8 @@
 			</form>
 		</div>
 	</div>
+</div>
 </body>
 <%@ include file="../member/footer.jsp"%>
+
 </html>

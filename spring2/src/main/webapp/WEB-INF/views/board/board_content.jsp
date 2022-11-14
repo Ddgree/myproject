@@ -13,11 +13,8 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
 	$(function() {	// load('slist?num=${board.num}')
-<<<<<<< HEAD
 		$('#reboard_list').load('reboard_list.do?board_no=${read.board_no}');
-=======
-		$('#reboard_list').load('./reboard_list.do?board_no=${read.board_no}')
->>>>>>> origin/sungdo
+
 		$('#reboard_button').click(function() {
 			if (!reply_text_frm.reboard_content.value) {
 				alert('댓글 입력후에 클릭하시오');
@@ -78,6 +75,7 @@ td {
 	<%@ include file="../member/header_login.jsp"%>
 </c:if>
 <body>
+<div class="wrapper">
 	<div id="board_content_wrap" align="center">
 		<h2 style="padding-top: 90px" align=center>게시글 상세내용</h2>
 		<table id="board_content_table" border=1 width=50%
@@ -138,4 +136,5 @@ td {
 	</h3>
 	<div id="reboard_list"></div>
 </body>
+<%@ include file="../member/footer.jsp" %>
 </html>

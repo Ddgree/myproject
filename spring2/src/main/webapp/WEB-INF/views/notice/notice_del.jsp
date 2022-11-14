@@ -18,10 +18,19 @@
 		}
 	}
 </script>
+
+
+<c:if test="${sessionScope.member.member_id == null }">
+	<%@ include file="../member/header.jsp"%>
+</c:if>
+<c:if test="${sessionScope.member.member_id != null }">
+	<%@ include file="../member/header_login.jsp"%>
+</c:if>
 </head>
 
 <body>
-	<div id="noticedel_wrap" align="center">
+<div class="wrapper">
+	<div id="noticedel_wrap">
 		<h2 class="noticedel_title">게시물 삭제</h2>
 		<form method="post" action="notice_del_ok.do" 
 			onsubmit="return del_check()">
@@ -41,6 +50,7 @@
 					onclick="window.close()" />
 			</div>
 		</form>
+	</div>
 	</div>
 </body>
 </html>

@@ -26,6 +26,7 @@ function notice_delete()
 </head>
 
 <body>
+<div class="wrapper">
 	<div id="noticecont_wrap">
 		<h2 style=padding-top:90px align=center>공지사항 내용보기</h2>
 		<table  border=1 id="noticecont_t" width=60% align="center" style=margin-top:50px>
@@ -63,6 +64,7 @@ function notice_delete()
 			<input type="button" value="목록" class="button"
 				onclick="location='notice_list.do?pageNum=${pageNum}'" />
 		</div>
+	</div>
 	</div>
 </body>
 <%@ include file="../member/footer.jsp" %>

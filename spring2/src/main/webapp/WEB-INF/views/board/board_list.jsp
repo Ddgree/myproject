@@ -41,6 +41,7 @@ td {
 </c:if>
 
 <body>
+<div class="wrapper">
 	<div id="root">
 		<div id="container">
 			<form role="form" method="post">
@@ -196,5 +197,7 @@ td {
 			</button>
 		</div>
 	</div>
+	</div>
 </body>
+<%@ include file="../member/footer.jsp"%>
 </html>

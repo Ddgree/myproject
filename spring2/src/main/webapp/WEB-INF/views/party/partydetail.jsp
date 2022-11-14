@@ -22,6 +22,7 @@
 			window.open("pwcheck.do?party_no=${party.party_no}&page=${page}&member_id=${member.member_id}&stat=edit", "파티방 수정", "width=500,height=350,left=700,top=200");
 		}
 	</script>
+
 </head>
 
 <c:if test="${sessionScope.member.member_id == null }">
@@ -31,9 +32,13 @@
 	<%@ include file="../member/header_login.jsp"%>
 </c:if>
 
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/party.css" />
 <body>
+
+<div class=wrapper>
 <c:set var="join" value="1" scope="session"/>
-<c:forEach var="j" items="#{joinlist}">
+<c:forEach var="j" items="${joinlist}">
 	<c:if test="${j.party_no eq party.party_no}">
 		<c:set var="join" value="-1" scope="session"></c:set>
 	</c:if>
@@ -47,6 +52,7 @@
 <fmt:parseNumber var="day" value="${enddate.time / (1000*60*60*24)}" integerOnly="true" />
 <!-- 날짜포멧출력 -->
 <fmt:formatDate var="dday" value="${enddate }" pattern="yyyy년 MM월 dd일"/>
+
 	<div id="bbscont_wrap">
 		<h2 class="bbscont_title">파티방 상세정보</h2>
 		<input type="hidden" name=page value=${page }>
@@ -111,6 +117,7 @@
 					</c:choose></td>
 			</tr>
 		</table>
+	</div>
 	</div>
 </body>
 <%@ include file="../member/footer.jsp"%>
