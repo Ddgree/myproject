@@ -7,7 +7,7 @@ import partyband.model.ReBoardBean;
 public interface ReplyService {
 
 	// 댓글 조회
-	public List<ReBoardBean> list(int reboard_bno) throws Exception;
+	public List<ReBoardBean> list(int board_no) throws Exception;
 
 	// 댓글 조회
 	public void write(ReBoardBean reboard) throws Exception;
@@ -16,5 +16,6 @@ public interface ReplyService {
 	public void modify(ReBoardBean reboard) throws Exception;
 
 	// 댓글 삭제
-	public void delete(ReBoardBean reboard) throws Exception;
+	public void delete(int reboard_rno) throws Exception;
+	
 }

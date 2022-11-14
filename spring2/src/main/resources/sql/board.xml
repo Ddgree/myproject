@@ -62,7 +62,8 @@
 			<if test="keyword != null and search=='subcon'">
 				board_subject like '%'||#{keyword}||'%' or
 				board_content like '%'||#{keyword}||'%' or 
-				board_id like '%'||#{keyword}||'%'
+				board_id like '%'||#{keyword}||'%' or
+				board_division like '%'||#{keyword}||'%'
 			</if>
 		</where>
 		order by board_ref desc) a )
@@ -84,9 +85,10 @@
 	<!-- 게시물 수정 -->
 	<update id="edit" parameterType="board">
 		update board set
+		board_division=#{board_division},
 		board_subject=#{board_subject},
 		board_content=#{board_content},
-		board_file=#{board_file}
+		board_file=#{board_file, jdbcType=VARCHAR}
 		where
 		board_no=#{board_no}
 	</update>
@@ -96,5 +98,8 @@
 		delete from board where
 		board_no=#{board_no}
 	</delete>
-
+	<!-- 댓글 조회 -->
+	<select id="select" parameterType="int" resultType="board">
+		select * from board where board_no=#{board_no}
+	</select>
 </mapper>

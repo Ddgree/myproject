@@ -26,4 +26,6 @@ public interface BoardDAO {
 	
 	// 게시글 삭제
 	public void delete(int board_no) throws Exception;
+	
+	
 }

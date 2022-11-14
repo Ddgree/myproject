@@ -9,7 +9,29 @@
 	href="<%=request.getContextPath()%>/resources/css/boardnotice.css" />
 <script src="https://kit.fontawesome.com/f82eca20b8.js"
 	crossorigin="anonymous"></script>
+<style>
+#search_button, #keyword, #search {
+	vertical-align: middle;
+}
 
+table {
+	border: 1;
+	width: 60%;
+	margin-top: 10%;
+}
+
+th {
+	padding: 5px 20px;
+	border: 1px solid #cccccc;
+	font-size: 20px;
+}
+
+td {
+	padding: 30px 20px;
+	border: 1px solid #cccccc;
+	font-size: 17px;
+}
+</style>
 </head>
 <c:if test="${sessionScope.member.member_id == null }">
 	<%@ include file="../member/header.jsp"%>
@@ -22,7 +44,7 @@
 	<div id="root">
 		<div id="container">
 			<form role="form" method="post">
-				<table border=1 width=50% align=center style='margin-top:10%;'>
+				<table align="center">
 					<tr>
 						<th>번호</th>
 						<th>구분</th>
@@ -34,39 +56,50 @@
 					<c:set var="no1" value="${no}"></c:set>
 					<c:forEach items="${list}" var="list">
 						<tr>
-							<td style="text-align:center;"><c:out value="${list.board_no}" /></td>
-							<td style="text-align:center;"><c:out value="${list.board_division}" /></td>
-							<td style="text-align:center;"><c:out value="${list.board_id}" /></td>
-							<td style="text-align:left;"> 
-							&nbsp;
-							<a href="board_content.do?page=${page}&board_no=${list.board_no}&board_id=${member.member_id}">
-							<c:out value=" ${list.board_subject}" /></a>
-										<c:if test="${list.board_file != null}"><i class="fa-solid fa-image"></i></c:if>
-										<c:if test="${list.board_file == null}"></c:if></td>
-							<td style="text-align:center;"><fmt:formatDate value="${list.board_date}"
-									pattern="yyyy-MM-dd" /></td>
-							<td style="text-align:center;"><c:out value="${list.board_readcount}" /></td>
+							<td style="text-align: center;"><c:out
+									value="${list.board_no}" /></td>
+							<td style="text-align: center;"><c:out
+									value="${list.board_division}" /></td>
+							<td style="text-align: center;"><c:out
+									value="${list.board_id}" /></td>
+							<td style="text-align: left;"><a
+								href="board_content.do?page=${page}&board_no=${list.board_no}&board_id=${member.member_id}">
+									<c:out value=" ${list.board_subject}" />
+							</a> <c:if test="${list.board_file != null}">
+									<i class="fa-solid fa-image"></i>
+								</c:if> <c:if test="${list.board_file == null}"></c:if></td>
+							<td style="text-align: center;"><fmt:formatDate
+									value="${list.board_date}" pattern="yyyy-MM-dd" /></td>
+							<td style="text-align: center;"><c:out
+									value="${list.board_readcount}" /></td>
 						</tr>
 						<%-- <c:set var="no1" value="${no1 - 1}" /> --%>
 					</c:forEach>
 				</table>
 			</form>
 		</div>
-		<hr />
-		<div align="center">
+		<hr style="width: 60%; margin: 50px auto;" />
+		<div align="center" style="margin-bottom: 30px;">
 			<form action="board_list.do" align="center">
 				<input type="hidden" name="page" value="1"> <select
-					name="search">
+					name="search" id="search" style="height: 30pt;">
 					<option value="board_subject"
 						<c:if test="${search=='board_subject'}">selected="selected" </c:if>>제목</option>
 					<option value="board_content"
 						<c:if test="${search=='board_content'}">selected="selected" </c:if>>내용</option>
 					<option value="board_id"
 						<c:if test="${search=='${sessionId}'}">selected="selected" </c:if>>작성자</option>
+					<option value="board_division"
+						<c:if test="${search=='${board_division'}">selected="selected" </c:if>>구분</option>
 					<option value="subcon"
 						<c:if test="${search=='subcon'}">selected="selected" </c:if>>제목+내용</option>
-				</select> <input type="text" name="keyword"> <input type="submit"
-					value="검색">
+				</select> <input type="text" name="keyword" id="keyword"
+					style="width: 200pt; height: 30pt;" placeholder="키워드를 검색해주세요.">
+				&nbsp;
+				<button type="submit" id="search_button"
+					style="width: 50pt; height: 30pt;">
+					<i class="fa-solid fa-magnifying-glass fa-2x"></i>
+				</button>
 			</form>
 		</div>
 
@@ -113,19 +146,6 @@
 						href="board_list.do?page=${pp.totalPage}&search=${search}&keyword=${keyword}"><div
 							class=blackbutton-active>>></div>&nbsp;</a>
 				</c:if>
-				<%-- 				
-				<c:if test="${pp.startPage > pp.pagePerBlk }">
-					<a
-						href="board_list.do?pageNum=${pp.startPage - 1}&search=${search}&keyword=${keyword}">이전</a>
-				</c:if>
-				<c:forEach var="i" begin="${pp.startPage}" end="${pp.endPage}">
-					<a
-						href="board_list.do?pageNum=${i}&search=${search}&keyword=${keyword}">${i}</a>
-				</c:forEach>
-				<c:if test="${pp.endPage < pp.totalPage}">
-					<a
-						href="board_list.do?pageNum=${pp.endPage + 1}&search=${search}&keyword=${keyword}">다음</a>
-				</c:if> --%>
 			</c:if>
 
 			<!-- 전체 목록의 페이징 처리 -->
@@ -133,8 +153,8 @@
 				<c:if test="${pp.currentPage == 1 }">
 					<div class=blackbutton-inactive><<</div>&nbsp; </c:if>
 				<c:if test="${pp.currentPage != 1 }">
-					<a href="board_list.do?page=${page}"><div class=blackbutton-active>
-							<<</div>&nbsp;</a>
+					<a href="board_list.do?page=${page}"><div
+							class=blackbutton-active><<</div>&nbsp;</a>
 				</c:if>
 				<c:if test="${pp.currentPage <=1 }">
 					<div class=blackbutton-inactive><</div>&nbsp; </c:if>
@@ -165,23 +185,15 @@
 					<a href="board_list.do?page=${pp.totalPage}"><div
 							class=blackbutton-active>>></div>&nbsp;</a>
 				</c:if>
-				<%-- 				
-				<c:if test="${pp.startPage > pp.pagePerBlk }">
-					<a href="board_list.do?pageNum=${pp.startPage - 1}">이전</a>
-				</c:if>
-				<c:forEach var="i" begin="${pp.startPage}" end="${pp.endPage}">
-					<a href="board_list.do?pageNum=${i}">${i}</a>
-				</c:forEach>
-				<c:if test="${pp.endPage < pp.totalPage}">
-					<a href="board_list.do?pageNum=${pp.endPage + 1}">다음</a>
-				</c:if> --%>
 			</c:if>
 		</div>
-		<hr width=10% />
+		<hr style="width: 30%; margin: 30px auto;" />
 		<div align="center" style="margin-top: 20px">
-			<input type="button" id="writebutton" name="button" value="글쓰기"
-				style="width: 50pt; height: 30pt"
-				onClick="location='board_write.do?page=${page}&board_id=${member.member_id}'" /> 
+			<button type="submit" id="writebutton" name="button"
+				style="width: 100pt; height: 40pt"
+				onClick="location='board_write.do?page=${page}&board_id=${member.member_id}'">
+				<i class="fa-regular fa-pen-to-square fa-lg">&nbsp;글쓰기</i>
+			</button>
 		</div>
 	</div>
 </body>

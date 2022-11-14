@@ -89,8 +89,10 @@
 				<c:choose>
 						<c:when test="${member.member_id eq party.party_id}">
 							<input type="button" value="목록" class="input_button" onclick="location='partyband.do?page=${page}'" />
-							<input type="button" value="수정" class="input_button" onclick="party_update()" />
-							<input type="button" value="삭제 " class="input_button" onclick="party_delete()" />
+							<c:if test="${party.party_count eq 0}">
+								<input type="button" value="수정" class="input_button" onclick="party_update()" />
+								<input type="button" value="삭제 " class="input_button" onclick="party_delete()" />
+							</c:if>
 						</c:when>
 						<c:when test="${member.member_id eq 'admin'}">
 							<input type="button" value="목록" class="input_button"

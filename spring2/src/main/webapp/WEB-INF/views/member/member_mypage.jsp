@@ -20,7 +20,8 @@ function edit_pwcheck() {
 	window.open("edit_pwcheck.do", "비번인증", "width=600,height=400");
 }
 
-function member_delete() {
+function member_delete() 
+{
 	window.open("member_del.do", "회원탈퇴", "width=450,height=350");
 }
 </script>

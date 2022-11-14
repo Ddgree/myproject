@@ -8,21 +8,64 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 상세보기</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://kit.fontawesome.com/f82eca20b8.js"
 	crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$(function() {	// load('slist?num=${board.num}')
+		$('#reboard_list').load('reboard_list.do?board_no=${read.board_no}');
+		$('#reboard_button').click(function() {
+			if (!reply_text_frm.reboard_content.value) {
+				alert('댓글 입력후에 클릭하시오');
+				reply_text_frm.reboard_content.focus();
+				return false;
+			}
+		});
+	});
+</script>
 <style>
-:text{
-	text-align:center;
+th {
+	padding: 20px 10px;
+	border: 1px solid #cccccc;
+	text-align: cetner;
 }
 
 td {
-	text-align:center;
+	padding: 20px 20px;
+	border: 1px solid #cccccc;
+}
+
+#reboard_content, #reboard_button {
+	vertical-align: middle;
+}
+
+.input_button {
+	background-color: black;
+	color: white;
+	text-align: center;
+	font-size: 20px;
+	width: 150px;
+	height: 50px;	
+	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	cursor: pointer;
+}
+.input_button:hover {
+	background: #61443a;
+	color: white;
+	border: 0;
+}
+
+:text {
+	text-align: center;
 }
 </style>
 <script>
 	function fileDown(file) {
 		location.href = "http://3.39.24.101/spring/fileDown.do?filecol="
 				+ encodeURI(file);
+	}
+	function del_b_content() {
+		window.open("board_delete.do?board_no=${read.board_no}&page=${page}&board_id=${read.board_id}", "게시물 삭제", "width=500,height=300");
 	}
 </script>
 
@@ -43,20 +86,19 @@ td {
 		<h2 style="padding-top: 90px" align=center>게시글 상세내용</h2>
 		<table id="board_content_table" border=1 width=50%
 			style="margin-top: 50px;" enctype="multipart/form-data">
-			<tr>
+			<tr align="center">
 				<th><i class="fa-solid fa-pen"></i>&nbsp;${read.board_division}</th>
-				<td>${read.board_subject}</td>
-				<th>작성자</th>
 				<td>${read.board_id}</td>
-				<th>작성일</th>
 				<td>${read.board_date}</td>
-				<th>조회수</th>
 				<td>${read.board_readcount}</td>
 			</tr>
-			
-			<tr height=100px>
+			<tr align="center">
+				<th>제목</th>
+				<td colspan="3">${read.board_subject}</td>
+			</tr>
+			<tr height=150px>
 				<th>글내용</th>
-				<td colspan=7>${b_content}</td>
+				<td colspan=7>&nbsp;&nbsp;${b_content}</td>
 			</tr>
 
 			<tr>
@@ -69,45 +111,39 @@ td {
 
 		<div id="board_content_menu" style='margin-top: 20px;'>
 
-			<c:if test="${sessionScope.member.member_id == read.board_id || sessionScope.member.member_id == 'admin'}">
+			<c:if
+				test="${sessionScope.member.member_id == read.board_id || sessionScope.member.member_id == 'admin'}">
 				<input type="button" value="수정" class="input_button"
 					onclick="location='board_update.do?board_no=${read.board_no}&page=${page}&board_id=${read.board_id}'" />&nbsp;
 				<input type="button" value="삭제" class="input_button"
-					onclick="location='board_delete.do?board_no=${read.board_no}&page=${page}&board_id=${read.board_id}'" />&nbsp;
+					onclick="del_b_content()" />&nbsp;
 			</c:if>
-			<c:if test="${sessionScope.member.member_id != read.board_id && sessionScope.member.member_id == 'admin'}">
+			<c:if
+				test="${sessionScope.member.member_id != read.board_id && sessionScope.member.member_id == 'admin'}">
 			</c:if>
-				<input type="button" value="목록" class="input_button"
-					onclick="location='board_list.do?page=${page}'" />&nbsp;
+			<input type="button" value="목록" class="input_button"
+				onclick="location='board_list.do?page=${page}'" />&nbsp;
 		</div>
 	</div>
-	<hr style="margin:30px auto 30px auto;"/>
+	<hr style="margin: 30px auto; width: 50%;" />
 
 	<!-- 댓글 -->
 	<div align="center">
-		<form method="post" action="reply_write.do?page=${page}&board_no=${read.board_no}">
-		<input type="hidden" name="reboard_id" value="${member.member_id}">
-		<p>
-			<textarea rows="3" cols="30" name="reboard_content" place-holder="댓글을 입력해주세요."></textarea>
-			&nbsp;&nbsp;&nbsp;<button type="submit" style="width:30pt; height:25pt; align:center;" class="btn btn-outline-secondary"><h4 align="center"><i class="fa-regular fa-keyboard"></i></h4></button>
-		</p>
+		<form method="post" id="reply_text_frm"
+			action="reply_write.do?page=${page}&board_no=${read.board_no}">
+			<input type="hidden" name="reboard_id" value="${member.member_id}">
+			<textarea rows="4" cols="50" id="reboard_content"
+				name="reboard_content" placeholder="댓글을 입력해주세요."
+				style="resize: none;"></textarea>
+			<button type="submit" id="reboard_button"
+				style="width: 50pt; height: 75pt; margin-left: -5px;">
+				<i class="fa-regular fa-keyboard fa-2x"></i>
+			</button>
 		</form>
 	</div>
-	<h3 style="padding-top:20px;" align=center>댓글&nbsp;<i class="fa-regular fa-comment-dots"></i></h3>
-	<hr />
-	<tr>
-		<c:forEach items="${reply}" var="reply">
-			<td>
-				<div align="center">
-					<p><i class="fa-regular fa-face-smile"></i>&nbsp;${reply.reboard_id} / <fmt:formatDate value="${reply.reboard_date}" pattern="yyyy-MM-dd" /></p>
-					<p>${reply.reboard_content}</p>
-				</div>
-			</td>
-			<hr width=10% style="color:#f3d49e; border-style:dotted;">
-		</c:forEach>
-		
-
-	</tr>
-
+	<h3 style="padding-top: 20px;" align=center>
+		댓글&nbsp;<i class="fa-regular fa-comment-dots"></i>
+	</h3>
+	<div id="reboard_list"></div>
 </body>
 </html>
