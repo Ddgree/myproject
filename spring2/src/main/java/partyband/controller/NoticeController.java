@@ -11,6 +11,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.aspectj.weaver.MemberImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import partyband.model.MemberBean;
 import partyband.model.Notice;
+import partyband.service.MemberServiceImpl;
 import partyband.service.NoticeService;
 import partyband.service.NoticeServiceImpl;
 import partyband.service.PagingPgm;
@@ -34,6 +37,9 @@ public class NoticeController {
 	@Autowired
 //	@Inject
 	private NoticeServiceImpl noticeService;
+	
+	@Autowired
+	private MemberServiceImpl ms;
 	
 	@RequestMapping("test.do")
 	public String test(){
@@ -300,21 +306,22 @@ public class NoticeController {
 	}
 
 	
-	/* 게시판 삭제 */
+	/* 공지사항 삭제 */
 	@RequestMapping(value = "/notice_del_ok.do", method = RequestMethod.POST)
 	public String notice_del_ok(@RequestParam("notice_no") int notice_no,
 			@RequestParam("pageNum") String pageNum,
-			@RequestParam("pwd") String passwd,
+			@RequestParam("pwd") String pwd, String member_id,
 			HttpServletRequest request, HttpSession session,
 			Model model) throws Exception {
 		
 		System.out.println("공지사항 삭제");
 
 		Notice notice = noticeService.notice_cont(notice_no);
+		String passwd = ms.deleteboard(member_id);
 		
 		int result=0;
 		
-		if (!session.getAttribute("passwd").equals(passwd)) {
+		if (!pwd.equals(passwd)) {
 			result = 1;
 			model.addAttribute("result", result);
 
@@ -324,7 +331,7 @@ public class NoticeController {
 			noticeService.del_ok(notice_no);		
 		}
 		
-		return "redirect:/notice_list.do?pageNum=" + pageNum;
+		return "notice/deleteOk";
 	}
 	
 	

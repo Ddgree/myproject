@@ -26,4 +26,8 @@ public interface BoardService
 
 	// 게시글 삭제
 	public void delete(int board_no) throws Exception;
+	
+	// 댓글 조회
+	BoardBean select(int board_no);
+	
 }

@@ -16,5 +16,9 @@ public interface ReplyService {
 	public void modify(ReBoardBean reboard) throws Exception;
 
 	// 댓글 삭제
-	public void delete(ReBoardBean reboard) throws Exception;
+	public void delete(int reboard_rno) throws Exception;
+	
+	// 댓글 목록 조회 
+	public List<ReBoardBean> reboardlist(int board_no);
+
 }

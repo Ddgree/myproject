@@ -29,8 +29,14 @@ public class ReplyDaoImpl implements ReplyDao {
 	}
 
 	@Override
-	public void delete(ReBoardBean reboard) throws Exception {
-		session.delete("reply.delete", reboard);
+	public void delete(int reboard_rno) throws Exception {
+		session.delete("reply.delete", reboard_rno);
+	}
+
+	@Override
+	public List<ReBoardBean> reboardlist(int board_no) {
+		List<ReBoardBean> slist = session.selectList("reply.slist", board_no);
+		return slist;
 	}
 
 }
