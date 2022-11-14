@@ -29,11 +29,8 @@ a {
 	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 	background-color: white;
 	color: black;
-<<<<<<< HEAD
 	margin-left:80%;
-=======
-	margin-left:1200px;
->>>>>>> origin/wooil
+
 	position:absolute;
 }
 
