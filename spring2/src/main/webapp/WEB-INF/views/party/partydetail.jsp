@@ -55,7 +55,8 @@
 
 	<div id="bbscont_wrap">
 		<h2 class="bbscont_title">파티방 상세정보</h2>
-		<input type="hidden" name=page value=${page }>
+		<input type="hidden" name=joinlist value=${joinlist}>
+		<input type="hidden" name=member_id value=${member.member_id}>
 		<table id="bbscont_t">
 			<tr>
 				<th>제목</th>

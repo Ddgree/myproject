@@ -15,7 +15,7 @@ div.wrapper {
 	overflow-x: hidden;
 	height: auto;
 	min-height: 100%;
-	padding-bottom: 120px;
+	padding-bottom: 0px;
 }
 
 div.header {
@@ -145,6 +145,9 @@ footer div.img, footer div img {
 		height: 50px;
 		overflow: hidden;
 	}
+	div.wrapper {
+	padding-bottom: 22px;
+}
 	ul {
 		overflow: hidden;
 		display: block;

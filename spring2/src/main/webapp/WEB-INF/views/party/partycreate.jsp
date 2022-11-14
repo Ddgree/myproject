@@ -22,8 +22,6 @@
 	<%@ include file="../member/header_login.jsp"%>
 </c:if>
 <div class=wrapper>
-<br><br><br><br>
-<%=request.getContextPath() %>
 	<div id="bbswrite_wrap">
 		<h2 class="bbswrite_title">파티 생성</h2>
 		<form method="post"

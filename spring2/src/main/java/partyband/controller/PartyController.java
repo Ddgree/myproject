@@ -86,11 +86,18 @@ public class PartyController
 	}
 
 	@RequestMapping("partyband.do")
-	public String partyband(HttpServletRequest request, Model model) throws Exception {
+	public String partyband(HttpServletRequest request, Model model) throws Exception 
+	{
 		session = request.getSession();
 		List<partybean> partylist = new ArrayList<partybean>();
+		
 		int page = 1;
 		int limit = 8;
+		int end = 0;
+		
+		if (request.getParameter("end") != null) {
+			end = Integer.parseInt(request.getParameter("end"));
+		}
 		String address = request.getParameter("address");
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -106,6 +113,7 @@ public class PartyController
 				endpage = startpage + 10 - 1;
 
 			session.setAttribute("page", page);
+			session.setAttribute("end", end);
 			model.addAttribute("partylist", partylist);
 			model.addAttribute("startpage", startpage);
 			model.addAttribute("endpage", endpage);
@@ -134,11 +142,18 @@ public class PartyController
 	}
 
 	@RequestMapping("end_party_list.do")
-	public String end_party_list(HttpServletRequest request, Model model) throws Exception {
+	public String end_party_list(HttpServletRequest request, Model model) throws Exception 
+	{
+		session = request.getSession();
 		List<partybean> endpartylist = new ArrayList<partybean>();
 
 		int page = 1;
 		int limit = 8;
+		int end = 0;
+		
+		if (request.getParameter("end") != null) {
+			end = Integer.parseInt(request.getParameter("end"));
+		}
 
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -155,7 +170,8 @@ public class PartyController
 		if (endpage > startpage + 10 - 1)
 			endpage = startpage + 10 - 1;
 
-		model.addAttribute("page", page);
+		session.setAttribute("page", page);
+		session.setAttribute("end", end);
 		model.addAttribute("endpartylist", endpartylist);
 		model.addAttribute("startpage", startpage);
 		model.addAttribute("endpage", endpage);

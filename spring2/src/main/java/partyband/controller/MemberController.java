@@ -26,6 +26,7 @@ import partyband.model.MemberBean;
 import partyband.model.PartyManagerBean;
 import partyband.model.partybean;
 import partyband.service.MemberServiceImpl;
+import partyband.service.PartyManagerServiceImpl;
 import partyband.service.PartyServiceImpl;
 
 @Controller
@@ -35,6 +36,8 @@ public class MemberController {
 	private MemberServiceImpl memberService;
 	@Autowired
 	private PartyServiceImpl partyservice;
+	@Autowired
+	private PartyManagerServiceImpl partymanager;
 
 	// ID중복검사 ajax함수로 처리부분
 	@RequestMapping(value = "/member_idcheck.do", method = RequestMethod.POST)
@@ -280,7 +283,8 @@ public class MemberController {
 	
 	/* 로그인 인증 */
 	@RequestMapping(value = "/member_login_ok.do", method = RequestMethod.POST)
-	public String member_login_ok(@RequestParam("id") String id, 
+	public String member_login_ok(HttpServletRequest request,
+								  @RequestParam("id") String id, 
 			                      @RequestParam("pwd") String pwd,
 			                      HttpSession session, 
 			                      Model model) throws Exception {
@@ -309,7 +313,12 @@ public class MemberController {
 				{
 					joinlist.add(p);
 				}
+				int end = 0;
 				
+				if (request.getParameter("end") != null) {
+					end = Integer.parseInt(request.getParameter("end"));
+				}
+				session.setAttribute("end", end);
 				session.setAttribute("joinlist", joinlist);
 				session.setAttribute("member", member);
 
@@ -498,47 +507,73 @@ public class MemberController {
 
 	/* 회원정보 삭제 완료 */
 	@RequestMapping(value = "/member_del_ok.do", method = RequestMethod.POST)
-	public String member_del_ok(@RequestParam("delete_passwd") String delete_passwd, 
-							    HttpSession session) throws Exception {
-		
+	public String member_del_ok(@RequestParam("delete_passwd") String delete_passwd,String member_id, HttpSession session) throws Exception
+	{
 		MemberBean member = (MemberBean) session.getAttribute("member");
-		
 		partybean findparty = memberService.findparty(member.getMember_id());
-			if (findparty != null) {	// 파티방장이고 사람이 있을때
-				
-				//System.out.println("방장 사람있음");
-				return "member/findPartyResult";
-				
-			}else if(findparty == null) {
-				//System.out.println("findparty null in");
-		
-		MemberBean delete = this.memberService.userCheck(member.getMember_id());
-
-		if (!delete.getMember_passwd().equals(delete_passwd)) {
-
-			return "member/deleteResult";
-			
-		} else {				// 비번이 같은 경우
-			
-			String upload = session.getServletContext().getRealPath("upload");
-			String file = member.getMember_file();
-			//System.out.println("up:"+upload);
-			
-			// 디비에 저장된 기존 이전파일명을 가져옴
-			if (file != null) {// 기존 파일이 존재하면
-				File delFile = new File(upload +"/"+file);
-				delFile.delete();// 기존 파일을 삭제
-			}
-			MemberBean deletemember = new MemberBean();
-			deletemember.setMember_id(member.getMember_id());
-
-			memberService.deleteMember(deletemember);// 삭제 메서드 호출
-
-			session.invalidate();	// 세션만료
-
-			return "member/member_del_ok";
-		  }
+		if (findparty != null)
+		{	// 파티방장이고 사람이 있을때
+			//System.out.println("방장 사람있음");
+			return "member/findPartyResult";	
 		}
+		else if(findparty == null) 
+		{
+			//System.out.println("findparty null in");
+			MemberBean delete = this.memberService.userCheck(member.getMember_id());
+			if (!delete.getMember_passwd().equals(delete_passwd))
+			{
+				return "member/deleteResult";
+			} 
+			else 
+			{			
+				// 비번이 같은 경우
+				String upload = session.getServletContext().getRealPath("upload");
+				String file = member.getMember_file();
+				//System.out.println("up:"+upload);
+			
+				// 디비에 저장된 기존 이전파일명을 가져옴
+				if (file != null) 
+				{
+					// 기존 파일이 존재하면
+					File delFile = new File(upload +"/"+file);
+					delFile.delete();// 기존 파일을 삭제
+				}
+				
+				MemberBean deletemember = new MemberBean();
+				deletemember.setMember_id(member.getMember_id());
+				
+				memberService.deleteMember(deletemember);// 삭제 메서드 호출
+				
+				List<Integer> partynojoin = new ArrayList<Integer>(); 
+				
+				
+				List<PartyManagerBean> join = new ArrayList<PartyManagerBean>();
+				
+				join = partyservice.joinlist(member_id);
+				
+				List<PartyManagerBean> joinlist = new ArrayList<PartyManagerBean>();
+				
+				for (PartyManagerBean p: join) 
+				{
+					partynojoin.add(p.getParty_no());
+					int ishost = Integer.parseInt(p.getIshost());
+					if(ishost == 0)
+					{
+						partyservice.partyjoincancel(p.getParty_no());
+						partymanager.partyjoincancel(member_id,p.getParty_no());	
+					}
+					else
+					{
+						partyservice.partydel(p.getParty_no());
+					}
+				}
+				
+				session.invalidate();	// 세션만료
+
+				return "member/member_del_ok";
+			}
+		}
+		
 		return null;
 	}
 

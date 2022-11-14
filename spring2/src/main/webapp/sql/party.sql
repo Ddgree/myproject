@@ -119,11 +119,13 @@ create sequence party_no_seq
 create sequence notice_no_seq
                 increment by 1 start with 1 nocache;
                 
-
+select * from party where party_
 select * from tab;
 
 select * from party where party_address='서울';
 select * from party where party_subject='안녕하세요';
+select * from partymanager where member_id = 'test2' and ishost=1;
+select * from party where party_no = 1323
 select count(*) from party;
 
 select * from seq;

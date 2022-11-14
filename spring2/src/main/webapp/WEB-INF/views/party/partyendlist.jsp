@@ -7,8 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>종료된 파티방</title>
-<script src="https://kit.fontawesome.com/f82eca20b8.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/f82eca20b8.js" crossorigin="anonymous"></script>
 
 </head>
 <c:if test="${sessionScope.member.member_id == null }">

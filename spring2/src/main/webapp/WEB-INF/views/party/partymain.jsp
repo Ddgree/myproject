@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=1600, initial-scale=1.0">
 <title>메인 페이지</title>
 <script src="https://kit.fontawesome.com/f82eca20b8.js"
 	crossorigin="anonymous"></script>
@@ -33,10 +33,9 @@
 <div id="optionsheader">드래그해서이동</div>
 	<input type="button" value="파티만들기" id="option-button"
 		onclick="location='party_create.do?page=${page}&party_id=${member.member_id}'" /><br>
-	<select name="party_address" onchange="if(this.value) location.href=(this.value);">
-		<c:forEach var="a" items="${add}" begin="0" end="5">
-			<option value="partyband.do?address=${a}"<c:if test ="${address eq a}">selected="selected"</c:if>>${a}</option>
-			
+<select name="party_address" onchange="if(this.value) location.href=(this.value);else if(this.value=='') location.href='partyband.do';">
+		<c:forEach var="a" items="${add}" begin="0" end="7">
+			<option <c:if test ="${a ne '전체'}">value="partyband.do?address=${a}"</c:if><c:if test ="${a eq '전체'}">value=""</c:if><c:if test ="${address eq a}">selected="selected"</c:if>>${a}</option>
 		</c:forEach>
 	</select>
 		</div>
@@ -151,7 +150,7 @@
 		</c:if>
 		<c:if test="${page == maxpage }"> <div class=blackbutton-inactive> >> </div> </c:if>
 		<c:if test="${page != maxpage }">
-			<a href="partyband.do?page=${maxpage}&address=${address }"><div class=blackbutton-active> >> </div>&nbsp;</a>
+			<a href="partyband.do?page=${maxpage}&address=${address }"><div class=blackbutton-active> >> </div></a>
 		</c:if>
 		</c:if>
 	</div>
