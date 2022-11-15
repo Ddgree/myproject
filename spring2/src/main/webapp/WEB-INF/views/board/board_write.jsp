@@ -8,11 +8,18 @@
 	<title>글 작성</title>
 	<link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/boardnotice.css" />
+	<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/NoticeButton.css" />
 <script src="https://kit.fontawesome.com/f82eca20b8.js"	crossorigin="anonymous"></script>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="<%=request.getContextPath() %>/resources/js/board.js"></script>
 	
 <style>
+#board_write_table{
+	border: 1px solid #61443A;
+	border-radius: 15px;
+	overflow:hidden;
+}
 .division_flex_wrap {
 	display: flex;
 	gap: 10px;
@@ -23,6 +30,7 @@
 }
 
 .division_flex {
+	
 	width: 100px;
 	height: 30px;
 	border: 2px solid #eaeaea;
@@ -37,37 +45,26 @@
 	border-radius: 5px;
 	text-align: center;
 	cursor: pointer;
+	
 }
 
 .division_flex input[type="radio"]:checked+label {
 	background: #61443a;
 	color: white;
 	font-weight: 500;
+	
 }
 th {
+	width: 100px;
+	height: 50px;
 	padding: 10px 20px;
-	border: 1px solid #cccccc;
 	font-size: 20px;
 }
 
 td {
-	border: 1px solid #cccccc;
+	width: 500px;
+	height: 50px;
 	font-size: 18px;
-}
-.input_button_m {
-	background-color: black;
-	color: white;
-	text-align: center;
-	font-size: 20px;
-	width: 150px;
-	height: 50px;	
-	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
-	cursor: pointer;
-}
-.input_button_m:hover {
-	background: #61443a;
-	color: white;
-	border: 0;
 }
 </style>	
 </head>
@@ -98,7 +95,7 @@ td {
     <tr>
      <th>글제목</th>
      <td>
-      <input name="board_subject" id="board_subject" style="width:99%; height:30px;"
+      <input name="board_subject" id="board_subject"
       class="input_box" />
      </td>
     </tr>
@@ -106,8 +103,8 @@ td {
     <tr>
      <th>글내용</th>
      <td>
-      <textarea name="board_content"  id="board_content" rows="8" cols="50" style="resize: none;"
-      class="input_box"></textarea>
+      <textarea name="board_content"  id="board_content" rows="8" cols="50"
+      class="input_box_write"></textarea>
      </td>
     </tr>
      
@@ -119,8 +116,8 @@ td {
     </tr> 
    </table>
    <div id="board_write_menu" style='margin-top: 20px;'>
-    <input type="submit" value="등록" class="input_button_m" />
-    <input type="button" value="취소" class="input_button_m"
+    <input type="submit" value="등록" class="button" />
+    <input type="button" value="취소" class="button"
     onclick="history.go(-1)" />
    </div>
   </form>

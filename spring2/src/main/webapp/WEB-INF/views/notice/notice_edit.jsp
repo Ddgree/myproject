@@ -9,6 +9,8 @@
 <title>공지사항 수정폼</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/boardnotice.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/NoticeButton.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath()%> /resources/js/notice.js"></script>
 
@@ -29,21 +31,6 @@ td {
 	border: 1px solid #cccccc;
 	font-size: 18px;
 }
-.input_button_u {
-	background-color: black;
-	color: white;
-	text-align: center;
-	font-size: 20px;
-	width: 150px;
-	height: 50px;	
-	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
-	cursor: pointer;
-}
-.input_button_u:hover {
-	background: #61443a;
-	color: white;
-	border: 0;
-}
 </style>
 </head>
 
@@ -58,9 +45,9 @@ td {
 
 			<table id="noticewrite_t">
 				<tr>
-					<th>글쓴이</th>
+					<th>작성자</th>
 					<td><input name="notice_admin_id" id="notice_admin_id"
-						 class="input_box" value="관리자" style="width:99%; height:30px;" readonly /></td>
+						 class="input_box" value="관리자" readonly /></td>
 				</tr>
 
 				<tr>
@@ -72,15 +59,15 @@ td {
 				<tr>
 					<th>글내용</th>
 					<td><textarea name="notice_content" id="notice_content"
-							rows="8" cols="50" style="resize: none;" class="input_box">${ncont.notice_content}</textarea>
+							rows="8" cols="50" class="input_box_write">${ncont.notice_content}</textarea>
 					</td>
 				</tr>
 
 			</table>
 
 			<div>
-				<input type="submit" value="수정" class="input_button_u" /> 
-				<input type="button" value="취소" class="input_button_u" onclick="history.go(-1)" />
+				<input type="submit" value="수정" class="button" /> 
+				<input type="button" value="취소" class="button" onclick="history.go(-1)" />
 			</div>
 		</form>
 	</div>

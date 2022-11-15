@@ -76,7 +76,7 @@ public class BoardController {
 		file[1] = st.nextToken();		// 확장자	    jpg
 		
 		model.addAttribute("board", board);
-		if(size > 100000){				// 100KB
+		if(size > 10000000){				// 100KB
 			result=1;
 			model.addAttribute("result", result);
 			
@@ -84,7 +84,9 @@ public class BoardController {
 			
 		}else if(!file[1].equals("jpg") &&
 				 !file[1].equals("gif") &&
-				 !file[1].equals("png") ){
+				 !file[1].equals("png") &&
+				 !file[1].equals("jpeg") 
+				){
 			
 			result=2;
 			model.addAttribute("result", result);
@@ -219,7 +221,7 @@ public class BoardController {
 			file[0] = st.nextToken();		// 파일명		Koala
 			file[1] = st.nextToken();		// 확장자	    jpg
 			
-			if(size > 1000000){				// 100KB
+			if(size > 10000000){				// 100KB
 				result1=1;
 				model.addAttribute("result", result1);
 				

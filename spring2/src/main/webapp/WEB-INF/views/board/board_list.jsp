@@ -7,6 +7,7 @@
 <title>커뮤니티</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/boardnotice.css" />
+	
 <script src="https://kit.fontawesome.com/f82eca20b8.js"
 	crossorigin="anonymous"></script>
 <style>
@@ -15,22 +16,35 @@
 }
 
 table {
-	border: 1;
+	border-radius: 15px;
 	width: 60%;
 	margin-top: 10%;
+	overflow:hidden;
 }
 
 th {
 	padding: 5px 20px;
-	border: 1px solid #cccccc;
+	border-bottom: 1px solid #61443A;
+	background:#61443A;
+	color:white;
 	font-size: 20px;
 }
+th.board_no{
+	border-top-left-radius: 15px;
+	
+} 
+th.board_readcount{
+	border-top-right-radius: 15px;
+}
+ 
 
 td {
 	padding: 30px 20px;
-	border: 1px solid #cccccc;
+	background:#FFECE5;
 	font-size: 17px;
 }
+
+
 </style>
 </head>
 <c:if test="${sessionScope.member.member_id == null }">
@@ -45,14 +59,14 @@ td {
 	<div id="root">
 		<div id="container">
 			<form role="form" method="post">
-				<table align="center">
+				<table align="center" >
 					<tr>
-						<th>번호</th>
+						<th class="board_no">번호</th>
 						<th>구분</th>
 						<th>작성자</th>
 						<th>제목</th>
 						<th>작성일</th>
-						<th>조회수</th>
+						<th class="board_readcount">조회수</th>
 					</tr>
 					<c:set var="no1" value="${no}"></c:set>
 					<c:forEach items="${list}" var="list">
@@ -71,8 +85,8 @@ td {
 								</c:if> <c:if test="${list.board_file == null}"></c:if></td>
 							<td style="text-align: center;"><fmt:formatDate
 									value="${list.board_date}" pattern="yyyy-MM-dd" /></td>
-							<td style="text-align: center;"><c:out
-									value="${list.board_readcount}" /></td>
+							<td style="text-align: center;">
+							<c:out value="${list.board_readcount}" /></td>
 						</tr>
 						<%-- <c:set var="no1" value="${no1 - 1}" /> --%>
 					</c:forEach>
@@ -82,8 +96,8 @@ td {
 		<hr style="width: 60%; margin: 50px auto;" />
 		<div align="center" style="margin-bottom: 30px;">
 			<form action="board_list.do" align="center">
-				<input type="hidden" name="page" value="1"> <select
-					name="search" id="search" style="height: 30pt;">
+				<input type="hidden" name="page" value="1"> 
+				<select	name="search" id="search" style="height: 30pt;" class=input_search>
 					<option value="board_subject"
 						<c:if test="${search=='board_subject'}">selected="selected" </c:if>>제목</option>
 					<option value="board_content"
@@ -95,10 +109,10 @@ td {
 					<option value="subcon"
 						<c:if test="${search=='subcon'}">selected="selected" </c:if>>제목+내용</option>
 				</select> <input type="text" name="keyword" id="keyword"
-					style="width: 200pt; height: 30pt;" placeholder="키워드를 검색해주세요.">
+					class="input_box_keyword" placeholder="키워드를 검색해주세요.">
 				&nbsp;
 				<button type="submit" id="search_button"
-					style="width: 50pt; height: 30pt;">
+					style="width: 50pt; height: 30pt;" class="input_search">
 					<i class="fa-solid fa-magnifying-glass fa-2x"></i>
 				</button>
 			</form>
@@ -191,7 +205,7 @@ td {
 		<hr style="width: 30%; margin: 30px auto;" />
 		<div align="center" style="margin-top: 20px">
 			<button type="submit" id="writebutton" name="button"
-				style="width: 100pt; height: 40pt"
+				style="width: 100pt; height: 40pt" class="input_search"
 				onClick="location='board_write.do?page=${page}&board_id=${member.member_id}'">
 				<i class="fa-regular fa-pen-to-square fa-lg">&nbsp;글쓰기</i>
 			</button>
