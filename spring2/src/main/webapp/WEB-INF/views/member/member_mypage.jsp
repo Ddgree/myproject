@@ -4,51 +4,11 @@
 
 <!DOCTYPE html>
 <html>
-<style>
-.join {
-	margin-left: 150px;
-	border-spacing: 0 25px;
-}
-td{
-	text-align: center;
-}
-.button {
-	background-color: black;
-	color: white;
-	text-align: center;
-	font-size: 20px;
-	width: 150px;
-	height: 50px;	
-	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
-	cursor: pointer;
-}
-
-.button:hover {
-	background: #61443a;
-	color: white;
-	border: 0;
-}
-.sidebar {
-	float: right;
-	width: 200px;
-	height:550px;
-	background-color:#DFD;
-	padding-top:20px;
-	padding-left:10px;
-	padding-right:10px;
-}
-
-.sidebar img {
-	margin-bottom: 5px;
-	border: 1px solid #ccc;
-	text-align:center;
-}
-</style>
-
-
 <head>
 <meta charset="UTF-8">	
 <title>회원정보 마이페이지</title>
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/mypage.css" />
 <c:if test="${sessionScope.member.member_id == null }">
 <%@ include file="../member/header.jsp" %>
 </c:if>
@@ -58,7 +18,6 @@ td{
 <script>
 function edit_pwcheck() {
 	window.open("edit_pwcheck.do", "비번인증", "width=600,height=400");
-	//자바 스크립트에서 window객체의 open("공지창경로와 파일명","공지창이름","공지창속성")
 }
 function member_delete() {
 
@@ -139,7 +98,7 @@ function member_delete() {
    </table>
    
    <div id="mymem_menu">
-   <input type="button" value="정보수정" class="button" style="margin-left: 120px;"
+   <input type="button" value="정보수정" class="button" style="margin-left: 690px;"
     		onclick="edit_pwcheck()" />
    <input type="button" value="회원탈퇴" class="button"
      		onclick="member_delete()" />	

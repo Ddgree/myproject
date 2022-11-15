@@ -9,8 +9,14 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 내용보기</title>
-
-
+<script>
+function notice_delete() 
+{
+	window.open("notice_del.do?notice_no=${ncont.notice_no}&pageNum=${pageNum}", "공지삭제", "width=450,height=350");
+	//자바 스크립트에서 window객체의 open("공지창경로와 파일명","공지창이름","공지창속성")
+}
+</script>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/NoticeButton.css" />
 <c:if test="${sessionScope.member.member_id == null }">
 	<%@ include file="../member/header.jsp"%>
 </c:if>
@@ -50,12 +56,12 @@
 
 		<div id="noticecont_menu" width="70" align="center" style=margin-top:20px >
 			<c:if test="${member.member_id eq 'admin'}">
-				<input type="button" value="수정" class="input_button"
+				<input type="button" value="수정" class="button"
 					onclick="location='notice_edit.do?notice_no=${ncont.notice_no}&pageNum=${pageNum}'" />
-				<input type="button" value="삭제" class="input_button"
-					onclick="location='notice_del.do?notice_no=${ncont.notice_no}&pageNum=${pageNum}'" />
+				<input type="button" value="삭제" class="button"
+					onclick="notice_delete()" />
 			</c:if>
-			<input type="button" value="목록" class="input_button"
+			<input type="button" value="목록" class="button"
 				onclick="location='notice_list.do?pageNum=${pageNum}'" />
 		</div>
 	</div>

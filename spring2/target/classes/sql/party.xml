@@ -34,10 +34,10 @@
 	<select id="party_list2" parameterType="hashmap" resultType="party">
 	<![CDATA[
 				select * from 
-				(select rownum rnum, party.* from 
-				 (select * from party where party_address = #{address} and delok = 'n' order by party_no desc) party) 
+				(select rownum rnum, party.* from (select * from party where party_address=#{address,jdbcType=VARCHAR} and delok='n' order by party_no desc) party) 
 			   	where rnum >= ((#{page} - 1) * 8 + 1)  and rnum <= (#{page} * 8)
-			   	]]>
+			]]>
+
 	</select>
 	
 	<!-- 종료된 파티방 목록 -->

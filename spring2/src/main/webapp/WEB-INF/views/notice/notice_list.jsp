@@ -10,8 +10,29 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 목록</title>
+<style>
+#search_button, #keyword, #search {
+	vertical-align: middle;
+}
+table{
+	border:1; 
+	width:60%;
+}
+th {
+	padding: 5px 20px;
+	border: 1px solid #cccccc;
+	font-size: 20px;
+}
+
+td {
+	padding: 20px 20px;
+	border: 1px solid #cccccc;
+}
+</style>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/boardnotice.css" />
+<script src="https://kit.fontawesome.com/f82eca20b8.js"
+	crossorigin="anonymous"></script>
 	
 <c:if test="${sessionScope.member.member_id == null }">
 	<%@ include file="../member/header.jsp"%>
@@ -27,17 +48,20 @@
 	<div class="container" align="center">
 		<h2 style=padding-top:90px align=center>공지사항 목록</h2>
 		<table border=1 width=60% align="center">
-		<div style="margin-left:56%; margin-bottom:20px;">
+		<div style="margin-left:54%; margin-bottom:20px;">
 			<c:if test="${member.member_id eq 'admin'}">
-			<input type="button" style="width:70px; height:35px; font-size:15px;" value="글 쓰기"
-					onclick="location='notice_write.do'" />
+			<button type="submit" id="writebutton" name="button"
+				style="width: 80pt; height: 30pt"
+				onClick="location='board_write.do?page=${page}&board_id=${member.member_id}'">
+				<i class="fa-regular fa-pen-to-square fa-lg">&nbsp;글쓰기</i>
+			</button>
 			</c:if>
 		</div>
-			<tr height=50>
-				<td width=55 align=center>번호</td>
-				<td width=300 align=center>제목</td>
-				<td width=100 align=center>작성일</td>
-				<td width=70 align=center>조회수</td>
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성일</th>
+				<th>조회수</th>
 			</tr>
 			
 			<c:if test="${not empty list}">
@@ -47,7 +71,9 @@
 						<td align=center>${no1}</td>
 							<td align=center><a href="notice_cont.do?notice_no=${notice.notice_no}&pageNum=${pp.currentPage}"
 							       class="btn btn-default"> 
-								${notice.notice_subject} </a></td>
+								${notice.notice_subject} </a><c:if test="${notice.notice_file != null}">
+									<i class="fa-solid fa-image"></i>
+								</c:if> <c:if test="${notice.notice_file == null}"></c:if></td>
 							<td align=center>${notice.notice_date}</td>
 							<td align=center>${notice.notice_readcount}</td>
 					</tr>
@@ -55,17 +81,23 @@
 				</c:forEach>
 			</c:if>
 		</table>
-		
-		<form action="notice_list.do" style=margin-top:20px>
+		<div align="center" style="margin-bottom:30px; margin-top:30px;">
+		<form action="notice_list.do" align="center">
 			<input type="hidden" name="pageNum" value="1"> 
-			<select	name="search">
+			<select	name="search" id="search"style="height:30pt;">
 				<option value="notice_subject"	<c:if test="${search=='notice_subject'}">selected="selected" </c:if>>제목</option>
 				<option value="notice_content"	<c:if test="${search=='notice_content'}">selected="selected" </c:if>>내용</option>
 				<option value="subcon"	<c:if test="${search=='subcon'}">selected="selected" </c:if>>제목+내용</option>
 			</select> 
-			<input type="text" name="keyword" style="width:350px;"> 
-			<input type="submit" value="확인">
+			<input type="text" name="keyword" id="keyword"
+					style="width: 200pt; height: 26pt;" placeholder="키워드를 검색해주세요.">
+				&nbsp;
+				<button type="submit" id="search_button"
+					style="width: 50pt; height: 30pt;">
+					<i class="fa-solid fa-magnifying-glass fa-2x"></i>
+				</button>
 		</form>
+		</div>
 		
 		<div align="center">
 			<!-- 검색 했을 경우의 페이징 처리 -->

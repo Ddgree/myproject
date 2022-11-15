@@ -38,7 +38,6 @@ public class PartyDaoImpl
 	public List<partybean> getPartyList(int page) 
 	{
 		List<partybean> list = sqlSession.selectList("partyns.party_list", page);
-		System.out.println("DAO list"+list);
 		return list;
 	}
 	
@@ -47,10 +46,7 @@ public class PartyDaoImpl
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("page", page);
 		map.put("address", address);
-		System.out.println("DAO page:"+page);
-		System.out.println("DAO address:"+address);
 		List<partybean> list = sqlSession.selectList("partyns.party_list2", map);
-		System.out.println("DAO list"+list);
 		return list;
 	}
 	

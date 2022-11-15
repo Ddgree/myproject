@@ -3,15 +3,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
+<<<<<<< HEAD
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1600, initial-scale=1.0, minimum-scale=1.0">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/header.css" />
+=======
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=1600, initial-scale=1.0">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/header.css" />
+>>>>>>> origin/kyungmin
 </head>
 <body>
-
-
 	<input type="hidden" name="member_id" value="${member.member_id}" />
 
 	<ul class="topnav">
@@ -19,11 +24,16 @@
 		<li><a class="img" href="partyband.do"><img
 				src="././resources/images/partyband.gif" class="img"></a></li>
 		<li><a class="space"></a></li>
-		<li><a href="end_party_list.do">종료파티방</a></li>
+		  <c:if test="${end eq 1}">
+			<li><a href="partyband.do?end=0">진행중인 파티방</a></li>
+		</c:if>
+		<c:if test="${end eq 0}">
+			<li><a href="end_party_list.do?end=1">종료된 파티방</a></li>
+		</c:if>
 		<li><a href="board_list.do">커뮤니티</a></li>
 		<li><a href="notice_list.do">공지사항</a></li>
 		<li class="right"><input type="button" value="로그인" class="mypage"
-			onclick="location='member_login.do'"></li>
+			onclick="location='member_login.do?end=1'"></li>
 		<li style="float: right"><a class="txt">Guest님! 환영합니다!</a></li>
 	</ul>
 
@@ -34,10 +44,16 @@
 				<a class="mypage2"><input class="mini" type="button" value="로그인"
 					onclick="location='member_login.do'" /></a>
 			</div>
-		<li class="dropdown"><a class="dropbtn" href="partyband.do"><img
+		<li class="dropdown"><a class="dropbtn" href="refresh.do"><img
 				src="././resources/images/partyband.gif"></a>
 			<div class="dropdown-content">
-				<a href="end_party_list.do">종료파티방</a> <a href="board_list.do">커뮤니티</a>
+				<c:if test="${end eq 1}">
+					<a href="partyband.do?end=0">진행중인 파티방</a>
+				</c:if>
+				<c:if test="${end eq 0}">
+					<a href="end_party_list.do?end=1">종료된 파티방</a>
+				</c:if>
+				<a href="board_list.do">커뮤니티</a>
 				<a href="notice_list.do">공지사항</a>
 			</div>
 	</ul>

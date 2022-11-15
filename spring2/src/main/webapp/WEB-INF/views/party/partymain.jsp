@@ -6,7 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
 <meta name="viewport" content="width=1600, initial-scale=1.0, minimum-scale=1.0">
+=======
+<meta name="viewport" content="width=1600, initial-scale=1.0">
+>>>>>>> origin/kyungmin
 <title>메인 페이지</title>
 <script src="https://kit.fontawesome.com/f82eca20b8.js"
 	crossorigin="anonymous"></script>
@@ -26,20 +30,20 @@
 
 	<%@ include file="../../../resources/include/address.jsp"%>
 
+<body>
+
 <div id="options">
 <div id="optionsheader">드래그해서이동</div>
-	sessionid <br>${member.member_id}<br>
-	<input type="button" value="관리자 로그인" id="option-button"
-		onclick="location='admin_login.do?page=${page}'"/><br>
-	<input type="button" value="관리자 로그아웃" id="option-button"
-		onclick="location='test_logout.do'" /><br>
-	<input type="button" value="test 로그인" id="option-button"
-		onclick="location='nomal_login.do?page=${page}'" /><br>
 	<input type="button" value="파티만들기" id="option-button"
+<<<<<<< HEAD
 		onclick="location='party_create.do?page=${page}&party_id=${member.member_id}'" /><br>
 	<input type="button" value="colorpallet" id="option-button"
 		onclick="location='party_color.do?'" />
 	<select name="party_address" onchange="if(this.value) location.href=(this.value);else if(this.value=='') location.href='partyband.do';">
+=======
+		onclick="location='party_create.do?page=${page}&party_id=${member.member_id}&end=1'" /><br>
+<select name="party_address" onchange="if(this.value) location.href=(this.value);else if(this.value=='') location.href='partyband.do';">
+>>>>>>> origin/kyungmin
 		<c:forEach var="a" items="${add}" begin="0" end="7">
 			<option <c:if test ="${a ne '전체'}">value="partyband.do?address=${a}"</c:if><c:if test ="${a eq '전체'}">value=""</c:if><c:if test ="${address eq a}">selected="selected"</c:if>>${a}</option>
 		</c:forEach>
@@ -60,7 +64,7 @@
 			<fmt:formatDate var="dday" value="${enddate }" pattern="yyyy년 MM월 dd일" />
 			
 				<c:if test="${p.party_age lt 20 and member.member_age lt 20 }">
-				<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page }&member_id=${member.member_id}'">
+				<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page }&member_id=${member.member_id}&join=${join}'">
 				</c:if>
 				<c:if test="${p.party_age ge 20 and member.member_age lt 20 }">
 					<c:if test="!${member.member_id eq 'admin' }">
@@ -70,6 +74,7 @@
 					<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page}&member_id=${member.member_id}'">
 					</c:if>
 				</c:if>
+
 				<c:if test="${member.member_id eq null or member.member_age ge 20 }">
 				<button type="button" class=push onclick="location.href='party_detail.do?party_no=${p.party_no}&page=${page}&member_id=${member.member_id}'">
 				</c:if>

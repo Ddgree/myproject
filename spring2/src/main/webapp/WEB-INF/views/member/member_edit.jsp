@@ -243,7 +243,6 @@ input[type=file]::file-selector-button {
      </td>
     </tr>
    </table>
-   
    <div id="join_menu" style="text-align: center;">
     <input type="submit" value="회원수정" class="input_button" />
     <input type="button" value="취소" class="input_button"

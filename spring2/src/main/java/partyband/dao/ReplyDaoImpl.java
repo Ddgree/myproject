@@ -14,8 +14,8 @@ public class ReplyDaoImpl implements ReplyDao {
 	@Autowired
 	private SqlSession session;
 	@Override
-	public List<ReBoardBean> list(int reboard_bno) throws Exception {
-		return session.selectList("reply.list", reboard_bno);
+	public List<ReBoardBean> list(int board_no) throws Exception {
+		return session.selectList("reply.list", board_no);
 	}
 
 	@Override
@@ -29,8 +29,9 @@ public class ReplyDaoImpl implements ReplyDao {
 	}
 
 	@Override
-	public void delete(ReBoardBean reboard) throws Exception {
-		session.delete("reply.delete", reboard);
+	public void delete(int reboard_rno) throws Exception {
+		session.delete("reply.delete", reboard_rno);
 	}
+
 
 }
