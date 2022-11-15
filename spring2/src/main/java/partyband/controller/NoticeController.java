@@ -41,17 +41,10 @@ public class NoticeController {
 	@Autowired
 	private MemberServiceImpl ms;
 	
-	@RequestMapping("test.do")
-	public String test(){
-		System.out.println("컨트롤러 들어옴");
-		
-		return "notice/test";
-	}
-	
 	@RequestMapping("notice_list.do")	// 전체 목록, 검색 목록
 	public String list(String pageNum, Notice notice, Model model) {
 		
-		System.out.println("리스트 들어옴");
+		//1.System.out.println("리스트 들어옴");
 		
 		final int rowPerPage = 10;	// 화면에 출력할 데이터 갯수
 		
@@ -154,16 +147,16 @@ public class NoticeController {
 //	public String board_write_ok(@RequestParam HashMap board)
 //			throws Exception {
 		
-		System.out.println("저장 들어옴");
+		//System.out.println("저장 들어옴");
 		
 		String filename = mf.getOriginalFilename();
 		int size = (int) mf.getSize(); 	// 첨부파일의 크기 (단위:Byte) 
 
 		String path = request.getRealPath("upload");
-		System.out.println("mf=" + mf);
-		System.out.println("filename=" + filename); // filename="Koala.jpg"
-		System.out.println("size=" + size);
-		System.out.println("Path=" + path);
+		//System.out.println("mf=" + mf);
+		//System.out.println("filename=" + filename); // filename="Koala.jpg"
+		//System.out.println("size=" + size);
+		//System.out.println("Path=" + path);
 		int result=0;
 		
 		String file[] = new String[2];
@@ -178,12 +171,12 @@ public class NoticeController {
 		
 		// 파일 중복문제 해결
 		String extension = filename.substring(filename.lastIndexOf("."), filename.length());
-		System.out.println("extension:"+extension);
+		//System.out.println("extension:"+extension);
 		
 		UUID uuid = UUID.randomUUID();
 		
 		newfilename = uuid.toString() + extension;
-		System.out.println("newfilename:"+newfilename);		
+		//System.out.println("newfilename:"+newfilename);		
 		
 		StringTokenizer st = new StringTokenizer(filename, ".");
 		file[0] = st.nextToken();		// 파일명		Koala
@@ -227,7 +220,7 @@ public class NoticeController {
 			@RequestParam("pageNum") String pageNum, 
 			Model model) throws Exception {
 
-		System.out.println("상세정보 들어옴");
+		//System.out.println("상세정보 들어옴");
 		
 		noticeService.hit(notice_no); // 조회수 증가
 		
@@ -245,7 +238,7 @@ public class NoticeController {
 	@RequestMapping(value = "/notice_edit.do")
 	public String notice_edit(@RequestParam("notice_no") int notice_no,
 			@RequestParam("pageNum") String pageNum, Model model) throws Exception {
-		System.out.println("공지사항 수정 폼");
+	//	System.out.println("공지사항 수정 폼");
 		
 		Notice notice = noticeService.notice_cont(notice_no);
 		
@@ -268,7 +261,7 @@ public class NoticeController {
 								@RequestParam("pageNum") String pageNum,
 								Model model) throws Exception {
 		
-		System.out.println("공지사항 수정 저장");
+		//System.out.println("공지사항 수정 저장");
 
 		// 수정 메서드 호출
 		Notice notice = noticeService.notice_cont(n.getNotice_no());
@@ -295,7 +288,7 @@ public class NoticeController {
 	@RequestMapping(value = "/notice_del.do")
 	public String notice_del(@RequestParam("notice_no") int notice_no,
 			@RequestParam("pageNum") String pageNum, Model model) throws Exception {
-		System.out.println("공지사항 삭제 폼");
+		//System.out.println("공지사항 삭제 폼");
 		
 		Notice notice = noticeService.notice_cont(notice_no);
 		
@@ -314,7 +307,7 @@ public class NoticeController {
 			HttpServletRequest request, HttpSession session,
 			Model model) throws Exception {
 		
-		System.out.println("공지사항 삭제");
+		//System.out.println("공지사항 삭제");
 
 		Notice notice = noticeService.notice_cont(notice_no);
 		String passwd = ms.deleteboard(member_id);

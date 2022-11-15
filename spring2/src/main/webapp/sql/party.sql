@@ -4,17 +4,19 @@ select * from member;
 select * from reboard;
 select * from seq;
 select * from board;
-delete from board where board_division = '후기'; where reboard_bno =145 and reboard_rno=1;
+delete from board; where board_division = '후기'; where reboard_bno =145 and reboard_rno=1;
 select * from party;
 insert into reboard values('테스트',145,reboard_no_seq.nextval,'ㅋㅋㅋㅋ재밌네요',sysdate );
 insert into board values(board_no_seq.nextval,'zz','zz',sysdate,0,null,null,board_no_seq.nextval,'1234','일반');
+
+alter table board drop column board_passwd;
 
 select*from tab;
 select * from partymanager;
 select * from notice_subject;
 
 insert into admin values('admin','1234');
-delete from notice where notice_no=6;
+delete from reboard; where notice_no=6;
 
 
 
@@ -46,6 +48,9 @@ CREATE TABLE board (
     board_step NUMBER, /* 글순서 */
     board_id VARCHAR2(20) references member(member_id) on delete cascade /* 아이디 */
 );
+
+
+
 
 /* 후기댓글 */
 CREATE TABLE reboard (
@@ -114,11 +119,13 @@ create sequence party_no_seq
 create sequence notice_no_seq
                 increment by 1 start with 1 nocache;
                 
-
+select * from party where party_
 select * from tab;
 
 select * from party where party_address='서울';
 select * from party where party_subject='안녕하세요';
+select * from partymanager where member_id = 'test2' and ishost=1;
+select * from party where party_no = 1323
 select count(*) from party;
 
 select * from seq;
@@ -223,3 +230,7 @@ select * from party where party_count < 0
 delete from party where party_count < 0
 select * from partymanager where member_id='test2'
 select * from party order by party_no desc
+
+select * from reboard where reboard_bno = 185 order by reboard_date desc
+
+select * from (select * from member where member_delok='y') where member_id='test4' 

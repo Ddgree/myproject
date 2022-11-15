@@ -12,13 +12,13 @@ public class FileController {
 	@RequestMapping("/fileDown.do")
     public ModelAndView download(@RequestParam("filecol") String filecol){
 		
-        System.out.println("controller 파일 다운로드 시작");
+        //System.out.println("controller 파일 다운로드 시작");
 		
         String fullPath = filecol;
          
         File file = new File(fullPath);
         
-        System.out.println("controller 파일 다운로드 끝");
+        //System.out.println("controller 파일 다운로드 끝");
          
         return new ModelAndView("download", "downloadFile", file);
     }

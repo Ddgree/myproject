@@ -7,10 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>종료된 파티방</title>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/partymain.css" />
-<script src="https://kit.fontawesome.com/f82eca20b8.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/f82eca20b8.js" crossorigin="anonymous"></script>
 
 </head>
 <c:if test="${sessionScope.member.member_id == null }">
@@ -19,7 +16,10 @@
 <c:if test="${sessionScope.member.member_id != null }">
 	<%@ include file="../member/header_login.jsp"%>
 </c:if>
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/partymain.css" />
 <body>
+<div class=wrapper>
 <!-- partyroom_wrap -->
 	<div id="item" align="center">
 	<div class=party-list-wrap>
@@ -52,16 +52,16 @@
 		<hr/>
 	<div align="center">
 
-		<c:if test="${page == 1 }"> <div class=blackbutton-inactive> << </div>&nbsp; </c:if>
+		<c:if test="${page == 1 }"> <div class=blackbutton-inactive> << </div> </c:if>
 
 		<c:if test="${page != 1 }">
-			<a href="end_party_list.do?page=1"><div class=blackbutton-active> << </div>&nbsp;</a>
+			<a href="end_party_list.do?page=1"><div class=blackbutton-active> << </div></a>
 		</c:if>
 
-		<c:if test="${page <=1 }"> <div class=blackbutton-inactive> < </div>&nbsp; </c:if>
+		<c:if test="${page <=1 }"> <div class=blackbutton-inactive> < </div> </c:if>
 
 		<c:if test="${page > 1 }">
-			<a href="end_party_list.do?page=${page-1}"><div class=blackbutton-active> < </div>&nbsp;</a>
+			<a href="end_party_list.do?page=${page-1}"><div class=blackbutton-active> < </div></a>
 		</c:if>
 
 		<c:forEach var="a" begin="${startpage}" end="${endpage}">
@@ -71,16 +71,17 @@
 			</c:if>
 		</c:forEach>
 
-		<c:if test="${page >= maxpage }"> <div class=blackbutton-inactive> > </div>&nbsp; </c:if>
+		<c:if test="${page >= maxpage }"> <div class=blackbutton-inactive> > </div> </c:if>
 		<c:if test="${page < maxpage }">
-			<a href="end_party_list.do?page=${page+1}"><div class=blackbutton-active> > </div>&nbsp;</a>
+			<a href="end_party_list.do?page=${page+1}"><div class=blackbutton-active> > </div></a>
 		</c:if>
 
-		<c:if test="${page == maxpage }"> <div class=blackbutton-inactive> >> </div>&nbsp; </c:if>
+		<c:if test="${page == maxpage }"> <div class=blackbutton-inactive> >> </div> </c:if>
 
 		<c:if test="${page != maxpage }">
-			<a href="end_party_list.do?page=${maxpage}"><div class=blackbutton-active> >> </div>&nbsp;</a>
+			<a href="end_party_list.do?page=${maxpage}"><div class=blackbutton-active> >> </div></a>
 		</c:if>
+	</div>
 	</div>
 </body>
 <%@ include file="../member/footer.jsp"%>

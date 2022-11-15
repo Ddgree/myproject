@@ -85,9 +85,10 @@
 	<!-- 게시물 수정 -->
 	<update id="edit" parameterType="board">
 		update board set
+		board_division=#{board_division},
 		board_subject=#{board_subject},
 		board_content=#{board_content},
-		board_file=#{board_file}
+		board_file=#{board_file, jdbcType=VARCHAR}
 		where
 		board_no=#{board_no}
 	</update>

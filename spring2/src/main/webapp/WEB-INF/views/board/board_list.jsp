@@ -13,11 +13,13 @@
 #search_button, #keyword, #search {
 	vertical-align: middle;
 }
-table{
-	border:1; 
-	width:60%;
-	margin-top:10%;
+
+table {
+	border: 1;
+	width: 60%;
+	margin-top: 10%;
 }
+
 th {
 	padding: 5px 20px;
 	border: 1px solid #cccccc;
@@ -25,8 +27,9 @@ th {
 }
 
 td {
-	padding: 20px 20px;
+	padding: 30px 20px;
 	border: 1px solid #cccccc;
+	font-size: 17px;
 }
 </style>
 </head>
@@ -38,6 +41,7 @@ td {
 </c:if>
 
 <body>
+<div class="wrapper">
 	<div id="root">
 		<div id="container">
 			<form role="form" method="post">
@@ -76,10 +80,10 @@ td {
 			</form>
 		</div>
 		<hr style="width: 60%; margin: 50px auto;" />
-		<div align="center" style="margin-bottom:30px;">
+		<div align="center" style="margin-bottom: 30px;">
 			<form action="board_list.do" align="center">
-				<input type="hidden" name="page" value="1">
-				<select name="search" id="search"style="height:30pt;">
+				<input type="hidden" name="page" value="1"> <select
+					name="search" id="search" style="height: 30pt;">
 					<option value="board_subject"
 						<c:if test="${search=='board_subject'}">selected="selected" </c:if>>제목</option>
 					<option value="board_content"
@@ -90,8 +94,7 @@ td {
 						<c:if test="${search=='${board_division'}">selected="selected" </c:if>>구분</option>
 					<option value="subcon"
 						<c:if test="${search=='subcon'}">selected="selected" </c:if>>제목+내용</option>
-				</select> 
-				<input type="text" name="keyword" id="keyword"
+				</select> <input type="text" name="keyword" id="keyword"
 					style="width: 200pt; height: 30pt;" placeholder="키워드를 검색해주세요.">
 				&nbsp;
 				<button type="submit" id="search_button"
@@ -194,5 +197,7 @@ td {
 			</button>
 		</div>
 	</div>
+	</div>
 </body>
+<%@ include file="../member/footer.jsp"%>
 </html>

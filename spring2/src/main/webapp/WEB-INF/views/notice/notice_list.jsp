@@ -17,6 +17,7 @@
 table{
 	border:1; 
 	width:60%;
+	border-color : 
 }
 th {
 	padding: 5px 20px;
@@ -44,6 +45,7 @@ td {
 </head>
 
 <body>
+<div class="wrapper">
 	<div class="container" align="center">
 		<h2 style=padding-top:90px align=center>공지사항 목록</h2>
 		<table border=1 width=60% align="center">
@@ -51,7 +53,7 @@ td {
 			<c:if test="${member.member_id eq 'admin'}">
 			<button type="submit" id="writebutton" name="button"
 				style="width: 80pt; height: 30pt"
-				onClick="location='board_write.do?page=${page}&board_id=${member.member_id}'">
+				onClick="location='notice_write.do?page=${page}'">
 				<i class="fa-regular fa-pen-to-square fa-lg">&nbsp;글쓰기</i>
 			</button>
 			</c:if>
@@ -200,6 +202,7 @@ td {
 				</c:if> --%>
 			</c:if>
 		</div>
+	</div>
 	</div>
 </body>
 <%@ include file="../member/footer.jsp" %>

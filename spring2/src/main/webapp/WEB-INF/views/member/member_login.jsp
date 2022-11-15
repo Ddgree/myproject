@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
-<!-- <script src="./js/jquery.js"></script> -->
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/button.css" />
@@ -34,9 +34,16 @@
 		//자바 스크립트에서 window객체의 open("공지창경로와 파일명","공지창이름","공지창속성")
 	}
 </script>
-<%@ include file="../member/header.jsp"%>
 </head>
+<c:if test="${member_id == null }">
+	<%@ include file="../member/header.jsp"%>
+</c:if>
+<c:if test="${member_id != null}">
+	<%@ include file="../member/header_login.jsp"%>
+</c:if>
+
 <body>
+<div class=wrapper>
 	<div class="login_wrap" style="margin-top: 100px;">
 		<h2 class="login_title" style="background: #9a6c5c;">Login</h2>
 		<form method="post" action="member_login_ok.do"
@@ -71,6 +78,7 @@
 				</tr>
 			</table>
 		</form>
+	</div>
 	</div>
 </body>
 <%@ include file="footer.jsp"%>

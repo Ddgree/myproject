@@ -14,6 +14,8 @@
  <div id="del_wrap">
   <h2 class="pwd_title">회원탈퇴</h2>
   <form method="post" action="member_del_ok.do" onsubmit="return delcheck()">
+  <input type="hidden" name=joinlist value=${joinlist}>
+  	<input type="hidden" name=member_id value=${member.member_id}>
     <table style="border-spacing: 20px 15px;">
      <tr>
       <th>회원아이디</th>

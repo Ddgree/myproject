@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -9,17 +8,18 @@
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/party.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-
+<script src="https://kit.fontawesome.com/f82eca20b8.js" crossorigin="anonymous"></script>
 <script src="<%=request.getContextPath()%>/resources/js/party_check.js"></script>
 
 </head>
-
+	<%@ include file="../member/header_login.jsp"%>
 <body>
+<div class=wrapper>
 party_no=${party_no}
 	<div id="bbswrite_wrap">
 		<h2 class="bbswrite_title">파티 수정</h2>
 		<form method="post" action="<%=request.getContextPath()%>/partyedit.do" onSubmit="return party_check()">
-			<input type="hidden" name=party_no value="${party_no}"> 
+			<input type="hidden" name=party_no value="${party.party_no}"> 
 			<input type="hidden" name=page value="${page}">
 			<table id="bbswrite_t">
 				<tr>
@@ -42,7 +42,10 @@ party_no=${party_no}
 							</c:forEach>
 					</select></td>
 					<th>성인 제한</th>
-					<td>미성년자 가입불가<input type="checkbox" name="party_age" id="party_age"/>
+					<td><input type="radio" id="adultonly" name="party_age" value="20">
+						<label for="adultonly"><i class="fa-solid fa-o"></i></label> 
+					<input type="radio" id="withchild" name="party_age" value="19" checked="checked">
+						<label for="withchild"><i class="fa-solid fa-x"></i></label>
 				</tr>
 				
 					
@@ -75,5 +78,7 @@ party_no=${party_no}
 			</table>
 		</form>
 	</div>
+	</div>
+	<%@ include file="../member/footer.jsp"%>
 </body>
 </html>
