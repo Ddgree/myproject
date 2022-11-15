@@ -39,18 +39,18 @@
 							<div align="center">파티 종료일</div>
 						</td>
 						<td width="14%">
-							<div align="center">파티방장</div>
+							<div align="center">파티참가 현황</div>
 						</td>
 					</tr>
 
 					<c:forEach var="partymem" items="${partymem}">
-
+					
 						<tr align="center" valign="middle" bordercolor="#333333">
 
 							<td>
 								<div align="center">
 									<a href="mypageparty.do?party_no=
-					${partymem.party_no}">${partymem.party_no}</a>
+									${partymem.party_no}">${partymem.party_no}</a>
 								</div>
 							</td>
 							<td>
@@ -62,11 +62,22 @@
 							<td>
 								<div align="center">${partymem.party_enddate}</div>
 							</td>
+							<c:choose>
+							<c:when test="${member.member_id eq partymem.party_id }">
 							<td>
-								<div align="center">${partymem.party_id}</div>
+								<div align="center">파티장</div>
 							</td>
-						</tr>
+							</c:when>
+							<c:otherwise>
+							<td>
+								<div align="center">파티원</div>
+							</td>
+							</c:otherwise>
+							</c:choose>
+							</tr>
 					</c:forEach>
+					
+					
 				</table>
 				<div id="drop_menu" align="center">
 					<input type="button" value="돌아가기" class="button" style="margin-top:50px;"

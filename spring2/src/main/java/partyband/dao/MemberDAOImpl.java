@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import partyband.model.MemberBean;
+import partyband.model.PartyManagerBean;
 import partyband.model.partybean;
 
 @Repository
@@ -101,7 +102,8 @@ public class MemberDAOImpl {
 	{
 		return sqlSession.selectList("joinparty",member_id);
 	}
-
+	
+	
 	public String deleteboard(String member_id) 
 	{
 		return sqlSession.selectOne("memberns.findpasswd", member_id);

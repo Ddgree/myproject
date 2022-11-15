@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import partyband.dao.MemberDAOImpl;
 import partyband.model.MemberBean;
+import partyband.model.PartyManagerBean;
 import partyband.model.partybean;
 
 
@@ -65,6 +66,7 @@ public class MemberServiceImpl {
 	{
 		return memberDao.joinparty(member_id);
 	}
+	
 
 	public String deleteboard(String member_id) 
 	{
