@@ -85,8 +85,9 @@ a img {
 	height: 50px;
 }
 
-ul.topnav li a:hover:not (.space ):not (.txt ) {
+ul.topnav li a:hover:not(.txt):not(.space) {
 	background-color: #443029;
+
 }
 
 ul.topnav li a.space {
@@ -107,7 +108,7 @@ ul.topnav li.right {
 	font-weight: 600;
 	float: right;
 	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
-	background-color: white;
+	background-color: #FFD9CC;
 	color: black;
 	margin-top: 9px;
 	margin-left: 5px;
