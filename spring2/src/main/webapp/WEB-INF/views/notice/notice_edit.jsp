@@ -38,7 +38,7 @@ td {
 <div class="wrapper">
 	<div id="board_write" align="center">
 		<h2 style=padding-top:90px align="center">공지사항 수정폼</h2>
-		<form method="post" action="notice_edit_ok.do"  
+		<form method="post" action="notice_edit_ok.do" enctype="multipart/form-data"  
 			onSubmit="return notice_check()">
 			<input type="hidden" name="notice_no" value="${ncont.notice_no}" />
 			<input type="hidden" name="pageNum" value="${pageNum}" />
@@ -60,6 +60,12 @@ td {
 					<th>글내용</th>
 					<td><textarea name="notice_content" id="notice_content"
 							rows="8" cols="50" class="input_box_write">${ncont.notice_content}</textarea>
+					</td>
+				</tr>
+				<tr rowspan=2>
+					<th>첨부파일</th>
+					<td>${ncont.notice_file} <br><hr style="border-pattern:dotted;"/>
+					<input type=file name="notice_file1" >
 					</td>
 				</tr>
 

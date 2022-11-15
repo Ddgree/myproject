@@ -74,58 +74,7 @@ public class NoticeController {
 		model.addAttribute("keyword", notice.getKeyword());
 		
 		return "notice/notice_list";
-	}
-	
-//	/* 공지사항 목록 */
-//	@RequestMapping(value = "/notice_list.do")
-//	public String notice_list(HttpServletRequest request, Model model) throws Exception {
-//		
-//		System.out.println("리스트 들어옴");
-//		
-//		HttpSession session = request.getSession();
-//		String id = "admin";
-//		String passwd = "1234";
-//		
-//		session.setAttribute("id", id);
-//		session.setAttribute("passwd", passwd);
-//
-//		List<Notice> noticelist = new ArrayList<Notice>();
-//
-//		int page = 1;
-//		int limit = 10; // 한 화면에 출력할 레코드수
-//
-//		System.out.println("page="+page);
-//
-//		if (request.getParameter("page") != null) {
-//			page = Integer.parseInt(request.getParameter("page"));
-//		}
-//		
-//		// 총 리스트 수를 받아옴.
-//		int listcount = noticeService.getListCount();
-//
-//		// 페이지 번호(page)를 DAO클래스에게 전달한다.
-//		noticelist = noticeService.getNoticeList(page); // 리스트를 받아옴.
-//
-//		// 총 페이지 수.
-//		int maxpage = (int) ((double) listcount / limit + 0.95); // 0.95를 더해서 올림
-//																	// 처리.
-//		// 현재 페이지에 보여줄 시작 페이지 수(1, 11, 21 등...)
-//		int startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
-//		// 현재 페이지에 보여줄 마지막 페이지 수.(10, 20, 30 등...)
-//		int endpage = maxpage;
-//
-//		if (endpage > startpage + 10 - 1)
-//			endpage = startpage + 10 - 1;
-//
-//		model.addAttribute("page", page);
-//		model.addAttribute("startpage", startpage);
-//		model.addAttribute("endpage", endpage);
-//		model.addAttribute("maxpage", maxpage);
-//		model.addAttribute("listcount", listcount);
-//		model.addAttribute("noticelist", noticelist);
-//		
-//		return "notice/notice_list";
-//	}
+	}	
 	
 	/* 공지사항 글쓰기 폼 */
 	@RequestMapping(value = "/notice_write.do")
@@ -190,7 +139,8 @@ public class NoticeController {
 			
 		}else if(!file[1].equals("jpg") &&
 				 !file[1].equals("gif") &&
-				 !file[1].equals("png") ){
+				 !file[1].equals("png") &&
+				 !file[1].equals("jpeg")){
 			
 			result=2;
 			model.addAttribute("result", result);
@@ -198,13 +148,6 @@ public class NoticeController {
 			return "notice/uploadResult";
 		}
 	}	
-
-		if (size > 0) { // 첨부파일이 전송된 경우
-
-			mf.transferTo(new File(path + "/" + newfilename));
-
-		}
-	
 		notice.setNotice_file(newfilename);
 		
 		noticeService.insert(notice);// 저장 메서드 호출	
@@ -259,25 +202,70 @@ public class NoticeController {
 	@RequestMapping(value = "/notice_edit_ok.do", method = RequestMethod.POST)
 	public String notice_edit_ok(@ModelAttribute Notice n,
 								@RequestParam("pageNum") String pageNum,
+								@RequestParam("notice_file1") MultipartFile mf, HttpServletRequest request,
 								Model model) throws Exception {
 		
 		//System.out.println("공지사항 수정 저장");
 
 		// 수정 메서드 호출
 		Notice notice = noticeService.notice_cont(n.getNotice_no());
-//		int result = 0;
 		
-//		if (!notice.getAdmin_passwd().equals(n.getAdmin_passwd())) {// 비번이 같다면
-//			result = 1;
-//			model.addAttribute("result", result);
-//			
-//			return "notice/updateResult";
-//
-//		} else {
-//			// 수정 메서드 호출
-//			noticeService.edit(n);			
-//		}	
+		String filename = mf.getOriginalFilename();
+		int size = (int)mf.getSize(); //첨부파일 크기 (단위:Byte)
 		
+		String path = request.getRealPath("upload");
+		//System.out.println("mf=" + mf);
+		//System.out.println("filename=" + filename);
+		//System.out.println("size=" + size);
+		//System.out.println("Path=" + path);
+		int result1=0;
+		
+		String file[] = new String[2];
+		
+		String newfilename = "";
+	
+	if(filename != ""){	 // 첨부파일이 전송된 경우	
+		// 파일 중복문제 해결
+		String extension = filename.substring(filename.lastIndexOf("."), filename.length());
+		//System.out.println("extension:"+extension);
+		
+		UUID uuid = UUID.randomUUID();
+		
+		newfilename = uuid.toString() + extension;
+		//System.out.println("newfilename:"+newfilename);		
+		
+		StringTokenizer st = new StringTokenizer(filename, ".");
+		file[0] = st.nextToken();		// 파일명		Koala
+		file[1] = st.nextToken();		// 확장자	    jpg
+		
+		if(size > 1000000){				// 100KB
+			result1=1;
+			model.addAttribute("result", result1);
+			
+			return "notice/uploadResult";
+			
+		}else if(!file[1].equals("jpg") &&
+				 !file[1].equals("gif") &&
+				 !file[1].equals("png") &&
+				 !file[1].equals("jpeg")){
+			
+			result1=2;
+			model.addAttribute("result", result1);
+			
+			return "notice/uploadResult";
+		}
+	}	
+	
+	if (size > 0) {
+		mf.transferTo(new File(path + "/" + newfilename));
+		
+	}
+
+	if (size > 0 ) {          // 첨부 파일이 수정되면
+        n.setNotice_file(newfilename);         
+     } else {                // 첨부파일이 수정되지 않으면
+        n.setNotice_file(n.getNotice_file());
+     }	
 		noticeService.edit(n);
 		
 		return "redirect:/notice_cont.do?notice_no=" + n.getNotice_no()

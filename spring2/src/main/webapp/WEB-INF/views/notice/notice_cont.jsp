@@ -68,7 +68,7 @@ td {
 			<tr>
 				<th>파일첨부</th>
 				<td colspan=5 height=40><c:if test="${ncont.notice_file != null}">
-						<a href="filedown.do?notice_file=${ncont.notice_file}">
+						<a href="filedown.do?file_name=${ncont.notice_file}">
 							${ncont.notice_file} </a>
 					</c:if></td>
 			</tr>
