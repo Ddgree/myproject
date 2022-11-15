@@ -39,7 +39,7 @@
 			<mapping path="/member_del_ok.do" />
 			<mapping path="/board_content.do" />
 			<mapping path="/member_logout.do" />
-			<mapping path="/board_content.do" />
+			<mapping path="/board_list.do" />
 			<beans:ref bean="sessionChk" />
 		</interceptor>
 	</interceptors>
