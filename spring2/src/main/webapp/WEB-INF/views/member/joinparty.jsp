@@ -41,7 +41,7 @@
 							<div align="center">파티 종료일</div>
 						</td>
 						<td width="14%">
-							<div align="center">파티방장</div>
+							<div align="center">파티참가 현황</div>
 						</td>
 					</tr>
 
@@ -51,8 +51,7 @@
 
 							<td>
 								<div align="center">
-									<a href="mypageparty.do?party_no=
-					${partymem.party_no}">${partymem.party_no}</a>
+									<a href="mypageparty.do?party_no= ${partymem.party_no}">${partymem.party_no}</a>
 								</div>
 							</td>
 							<td>
@@ -64,9 +63,19 @@
 							<td>
 								<div align="center">${partymem.party_enddate}</div>
 							</td>
+							
+							<c:choose>
+							<c:when test="${member.member_id eq partymem.party_id}">
 							<td>
-								<div align="center">${partymem.party_id}</div>
+								<div align="center">파티장</div>
 							</td>
+							</c:when>
+							<c:otherwise>
+							<td>
+								<div align="center">파티원</div>
+							</td>
+							</c:otherwise>
+							</c:choose>
 						</tr>
 					</c:forEach>
 				</table>
