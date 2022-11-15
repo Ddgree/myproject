@@ -19,6 +19,7 @@ div.wrapper {
 }
 
 div.header {
+	z-index: 4;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -200,7 +201,6 @@ footer div.img, footer div img {
 		width: 100%;
 		min-width: 160px;
 		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-		z-index: 0;
 	}
 	.dropdown-content a {
 		text-align: center;
@@ -223,7 +223,6 @@ footer div.img, footer div img {
 		width: 160px;
 		min-width: 160px;
 		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-		z-index: 0;
 	}
 	.dropdown-content2 a {
 		text-align: center;

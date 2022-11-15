@@ -315,19 +315,6 @@ public class PartyController
 		return null;
 	}
 	
-
-	/* 비밀 번호 확인 폼 이동 */
-	@RequestMapping("pwcheckform.do")
-	public String partyeditform(int page, String member_id, int party_no, String stat, Model model)
-	{
-		model.addAttribute("page", page);
-		model.addAttribute("member_id", member_id);
-		model.addAttribute("party_no", party_no);
-		model.addAttribute("stat", stat);
-
-		return "party/partypwcheck";
-	}
-	
 	/* 비밀 번호 확인 */
 	@RequestMapping("partypwcheck.do")
 	public String partyedit(HttpServletResponse response, int page, String member_id, String delete_passwd,
