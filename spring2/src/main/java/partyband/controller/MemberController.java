@@ -42,7 +42,7 @@ public class MemberController {
 	// ID중복검사 ajax함수로 처리부분
 	@RequestMapping(value = "/member_idcheck.do", method = RequestMethod.POST)
 	public String member_idcheck(@RequestParam("memid") String id, Model model) throws Exception {
-		//System.out.println("id:"+id);
+		//1.System.out.println("id:"+id);
 		
 		int result = memberService.checkMemberId(id);
 		
@@ -109,7 +109,8 @@ public class MemberController {
 				email.setHtmlMsg("<p align = 'center'>비밀번호 찾기 결과</p><br>" + "<div align='center'> 회원님의 비밀번호는 : "
 						+ mb.getMember_passwd() + "&nbsp; 입니다.</div>");
 				email.send();
-			} catch (Exception e) {
+			} catch (Exception e) 
+			{
 				System.out.println(e);
 			}
 
@@ -176,7 +177,8 @@ public class MemberController {
 
 	/* 로그인 폼 뷰 */
 	@RequestMapping("member_login.do")
-	public String member_login() {
+	public String member_login()
+	{
 		return "member/member_login";
 	}
 
@@ -326,7 +328,7 @@ public class MemberController {
 
 				model.addAttribute("member_file", member_file);
 
-				return "redirect:partyband.do"; 
+				return "redirect:refresh.do"; 
 				
 			} else {// 비번이 다를때
 				result = 2;

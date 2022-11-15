@@ -232,3 +232,5 @@ select * from partymanager where member_id='test2'
 select * from party order by party_no desc
 
 select * from reboard where reboard_bno = 185 order by reboard_date desc
+
+select * from (select * from member where member_delok='y') where member_id='test4' 

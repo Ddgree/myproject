@@ -26,7 +26,7 @@ public class ReplyController {
 	  // 댓글 조회
 	  @RequestMapping("reboard_list.do") 
 	  public String replylist(int board_no, Model model) throws Exception { 
-		  System.out.println("댓글 컨트롤러 진입");
+		  //1.System.out.println("댓글 컨트롤러 진입");
 		  BoardBean board = bs.read(board_no); 
 		  List<ReBoardBean> rlist = service.list(board_no);
 		  model.addAttribute("rlist", rlist); 
@@ -40,7 +40,7 @@ public class ReplyController {
 	@RequestMapping("repUpdate.do")
 	public String repUpdate(ReBoardBean reboard, Model model, int reboard_bno) throws Exception {
 		String ncontent="";
-		System.out.println("댓글 수정 컨트롤러 진입"+reboard.getReboard_content().substring(0, 5));
+		//System.out.println("댓글 수정 컨트롤러 진입"+reboard.getReboard_content().substring(0, 5));
 		if(reboard.getReboard_content().substring(0, 5).equals("[수정됨]")) {
 			ncontent = reboard.getReboard_content().replace("[수정됨]", "");
 			reboard.setReboard_content(ncontent);
@@ -54,7 +54,7 @@ public class ReplyController {
 	// 댓글 삭제
 	@RequestMapping("repDelete.do")
 	public String delete(int reboard_bno, int reboard_rno, Model model) throws Exception {
-		System.out.println("댓글 삭제 컨트롤러 진입");
+		//System.out.println("댓글 삭제 컨트롤러 진입");
 		service.delete(reboard_rno);
 		return "redirect:/reboard_list.do?board_no="+reboard_bno;
 	}

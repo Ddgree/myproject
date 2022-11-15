@@ -41,7 +41,7 @@ public class PartyController
 	@RequestMapping("refresh.do")
 	public String refresh() {
 		partyservice.refresh();
-		return "redirect:partyband.do";
+		return "redirect:partyband.do?end=0";
 	}
 	
 	@RequestMapping("mypageparty.do")
@@ -95,8 +95,8 @@ public class PartyController
 		int limit = 8;
 		int end = 0;
 		
-		if (request.getParameter("end") != null) {
-			end = Integer.parseInt(request.getParameter("end"));
+		if (request.getParameter("end") == null) {
+			end = 1;
 		}
 		String address = request.getParameter("address");
 		if (request.getParameter("page") != null) {
@@ -113,7 +113,8 @@ public class PartyController
 				endpage = startpage + 10 - 1;
 
 			session.setAttribute("page", page);
-			session.setAttribute("end", end);
+			session.setAttribute("end", 1);
+			model.addAttribute("end",end);
 			model.addAttribute("partylist", partylist);
 			model.addAttribute("startpage", startpage);
 			model.addAttribute("endpage", endpage);
@@ -129,6 +130,8 @@ public class PartyController
 			if (endpage > startpage + 10 - 1)
 				endpage = startpage + 10 - 1;
 			
+			session.setAttribute("end", 1);
+			model.addAttribute("end",end);
 			model.addAttribute("address", address);
 			model.addAttribute("page", page);
 			model.addAttribute("partylist", partylist);
@@ -152,7 +155,7 @@ public class PartyController
 		int end = 0;
 		
 		if (request.getParameter("end") != null) {
-			end = Integer.parseInt(request.getParameter("end"));
+			end = 1;
 		}
 
 		if (request.getParameter("page") != null) {
@@ -171,7 +174,7 @@ public class PartyController
 			endpage = startpage + 10 - 1;
 
 		session.setAttribute("page", page);
-		session.setAttribute("end", end);
+		model.addAttribute("end", end);
 		model.addAttribute("endpartylist", endpartylist);
 		model.addAttribute("startpage", startpage);
 		model.addAttribute("endpage", endpage);
@@ -188,7 +191,7 @@ public class PartyController
 
 	/* 파티방 내용 저장 */	
 	@RequestMapping("party_create_ok.do") 
-	public String party_create_ok(partybean party, String party_id) throws Exception 
+	public String party_create_ok(HttpServletResponse response,partybean party, String party_id) throws Exception 
 	{  
 		party.setParty_id(party_id); 
 		partyservice.insert(party);
@@ -201,8 +204,18 @@ public class PartyController
 		
 		partymanager.create_insert(manager);
 		
-		return "redirect:partyband.do"; 
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter w = response.getWriter();
+		
+		String msg = "파티방 생성 완료!";
+		String url = "refresh.do";
+		w.write("<script>alert('"+msg+"');location='"+url+"';</script>");
+		w.flush();
+		w.close();
+		
+		return null; 
 	}
+	
 
 	/* 파티방 상세보기 */
 	@RequestMapping("party_detail.do")
@@ -235,7 +248,7 @@ public class PartyController
 		join = partyservice.joinlist(member_id);
 		
 		List<PartyManagerBean> joinlist = new ArrayList<PartyManagerBean>();
-		// System.out.println("partyjoincancel.Controller, id : " + id);
+		// 1.System.out.println("partyjoincancel.Controller, id : " + id);
 		for (PartyManagerBean p: join) 
 		{
 			joinlist.add(p);
@@ -307,7 +320,6 @@ public class PartyController
 	@RequestMapping("pwcheckform.do")
 	public String partyeditform(int page, String member_id, int party_no, String stat, Model model)
 	{
-		System.out.println("pwcheckform.do");
 		model.addAttribute("page", page);
 		model.addAttribute("member_id", member_id);
 		model.addAttribute("party_no", party_no);
@@ -378,11 +390,20 @@ public class PartyController
 
 	/* 파티방 수정 */
 	@RequestMapping("partyedit.do")
-	public String partyedit(partybean p, int page,int party_no) throws Exception
+	public String partyedit(HttpServletResponse response,partybean p, int page,int party_no) throws Exception
 	{
-		System.out.println("Controller, party-age : "+ p.getParty_age());
 		partyservice.partyedit(p);
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter w = response.getWriter();
+		
+		String msg = "파티방 수정 완료!";
+		String url = "party_detail.do?page="+page+"&party_no="+party_no;
+		
+		w.write("<script>alert('"+msg+"');location='"+url+"';</script>");
+		w.flush();
+		w.close();
 
-		return "redirect:party_detail.do?party_no=" + p.getParty_no() + "&page=" + page;
+		return null;
 	}
 }
