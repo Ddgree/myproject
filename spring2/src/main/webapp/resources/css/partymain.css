@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 body{
-	font-family: 나눔고딕,NanumGothic,돋움,Dotum;
+	font-family: 'Gowun Dodum', sans-serif;
 }
+
 button{
 	position: static;
 	width: 400px;
@@ -31,12 +33,12 @@ button{
 	}
 	
 #item{
+	margin-top:104px;
 	}
 #item .party-list-wrap{
-	margin-top: 80px; 
-	margin-bottom:20px; 
+	margin: auto; 
 	width:900px; 
-	min-height: 524px;
+	height: 524px;
 	}
 #item .type{
 	font-size: 20px;
@@ -112,4 +114,17 @@ hr{
 }
 .blackbutton-inactive:hover {
 	background-color: #FFECE5;
+}
+
+@media screen and (max-width: 870px) {
+body{
+	position: unset;
+}
+#item{
+	margin-top:6px;
+	}
+#item .party-list-wrap{
+	width:unset; 
+	height: auto;
+	}
 }

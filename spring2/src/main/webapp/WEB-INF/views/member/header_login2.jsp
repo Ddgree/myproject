@@ -10,7 +10,7 @@
 	href="<%=request.getContextPath()%>/resources/css/decoration.css" />
 </head>
 <body>
-
+<li><input type="button" value="로그인" class="w-btn" style="cursor: pointer; float:right;" onclick="location='member_login.do'"></li>
 <div class="screen">
 		<div class="category">
 		<input type="hidden" name="member_id" value="${member.member_id}" />

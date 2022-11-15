@@ -20,6 +20,7 @@
 </head>
 
 <body>
+<div class="wrapper">
 	<div id="noticewrite_wrap">
 		<h2 class="noticewrite_title" align="center">공지사항 작성</h2>
 		<form method="post"
@@ -60,6 +61,7 @@
 					onclick="location='notice_list.do?page=${page}'" />
 			</div>
 		</form>
+	</div>
 	</div>
 </body>
 <%@ include file="../member/footer.jsp" %>

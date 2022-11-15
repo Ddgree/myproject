@@ -8,14 +8,15 @@
 <title>회원탈퇴</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/find.css" />
-
 <script src="./js/jquery.js"></script>
 </head>
 <body>
  <div id="del_wrap">
-  <h2 class="del_title">회원탈퇴</h2>
+  <h2 class="pwd_title">회원탈퇴</h2>
   <form method="post" action="member_del_ok.do" onsubmit="return delcheck()">
-    <table id="del_t">
+  <input type="hidden" name=joinlist value=${joinlist}>
+  	<input type="hidden" name=member_id value=${member.member_id}>
+    <table style="border-spacing: 20px 15px;">
      <tr>
       <th>회원아이디</th>
       <td>
@@ -38,7 +39,7 @@
      
     </table>
     <div id="del_menu">
-     <input type="submit" value="탈퇴" class="button" />
+     <input type="submit" value="탈퇴" class="button" style="margin-left:50px;"/>
      <input type="reset" value="취소" class="button"
      	onclick="window.close()" />
     </div>

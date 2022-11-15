@@ -29,6 +29,7 @@ public class MemberDAOImpl {
 		}else if(mb == null){
 			re = -1;	// 사용 가능한 ID	
 		}
+		System.out.println("memberdao, re = " + re);
 		return re;
 	}
 	

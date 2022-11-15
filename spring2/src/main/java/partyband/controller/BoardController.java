@@ -1,14 +1,11 @@
 package partyband.controller;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,16 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ibatis.sqlmap.engine.scope.SessionScope;
-
 import partyband.service.PagingPgm;
-import partyband.service.ReplyService;
 import partyband.model.BoardBean;
-import partyband.model.ReBoardBean;
-import partyband.model.partybean;
 import partyband.service.BoardService;
 import partyband.service.MemberServiceImpl;
 
@@ -36,15 +27,12 @@ public class BoardController {
 	BoardService service;
 
 	@Autowired
-	private ReplyService replyservice;
-	
-	@Autowired
 	private MemberServiceImpl memberservice;
 	
 	// 게시판 글 작성
 	@RequestMapping("board_write.do")
 	public String write(BoardBean board, Model model, String board_id) throws Exception {
-		System.out.println("controller 게시판 글 작성");
+		//1.System.out.println("controller 게시판 글 작성");
 		board.setBoard_id(board_id);
 		model.addAttribute("board", board);
 		return "board/board_write";
@@ -58,10 +46,10 @@ public class BoardController {
 		int size = (int)mf.getSize(); //첨부파일 크기 (단위:Byte)
 		
 		String path = request.getRealPath("upload");
-		System.out.println("mf=" + mf);
-		System.out.println("filename=" + filename);
-		System.out.println("size=" + size);
-		System.out.println("Path=" + path);
+		//System.out.println("mf=" + mf);
+		//System.out.println("filename=" + filename);
+		//System.out.println("size=" + size);
+		//System.out.println("Path=" + path);
 		int result=0;
 		
 		String file[] = new String[2];
@@ -76,12 +64,12 @@ public class BoardController {
 		
 		// 파일 중복문제 해결
 		String extension = filename.substring(filename.lastIndexOf("."), filename.length());
-		System.out.println("extension:"+extension);
+		//System.out.println("extension:"+extension);
 		
 		UUID uuid = UUID.randomUUID();
 		
 		newfilename = uuid.toString() + extension;
-		System.out.println("newfilename:"+newfilename);		
+		//System.out.println("newfilename:"+newfilename);		
 		
 		StringTokenizer st = new StringTokenizer(filename, ".");
 		file[0] = st.nextToken();		// 파일명		Koala
@@ -160,21 +148,16 @@ public class BoardController {
 	// 게시글 조회
 	@RequestMapping("board_content.do")
 	public String read(@RequestParam("board_no") int board_no, @RequestParam("page") String page, Model model, 
-			String board_id)
-			throws Exception {
-
+			String board_id) throws Exception {
 		service.hit(board_no);
 		
 		BoardBean board = service.read(board_no);
+		//System.out.println("board입니다="+board);
 		String b_content = board.getBoard_content().replace("\n", "<br/>");
 		
 		model.addAttribute("b_content", b_content);
 		model.addAttribute("read", board);
 		model.addAttribute("page", page);
-		
-		// 댓글 조회
-		List<ReBoardBean> reply = replyservice.list(board_no);
-		model.addAttribute("reply", reply);
 		
 		return "board/board_content";
 	}
@@ -183,7 +166,7 @@ public class BoardController {
 	@RequestMapping("board_update.do")
 	public String board_update(@RequestParam("board_no") int board_no, Model model, 
 			@RequestParam("page") String page) throws Exception {
-		System.out.println("controller 게시판 수정폼 이동");
+		//System.out.println("controller 게시판 수정폼 이동");
 		
 		model.addAttribute("read", service.read(board_no));
 		model.addAttribute("page", page);
@@ -191,16 +174,17 @@ public class BoardController {
 	}
 	
 	// 게시판 수정 
-	@RequestMapping(value="/board_update_ok.do", method = RequestMethod.POST)
-	public String board_edit_ok(@RequestParam("page") String page, Model model, @ModelAttribute BoardBean board,
-			@RequestParam("board_file1") MultipartFile mf, HttpServletRequest request)
-			throws Exception {
-		System.out.println("controller 게시판 수정");
+	@RequestMapping("board_update_ok.do")
+	public String board_edit_ok(BoardBean board, String page, Model model, int board_no, String member_id, String board_passwd,
+			@RequestParam("board_file1") MultipartFile mf, HttpServletRequest request) throws Exception {
+		//System.out.println("controller 게시판 수정");
 		// 수정 메서드 호출
 		int result = 0;
-		BoardBean read = service.read(board.getBoard_no());
+		String passwd = memberservice.deleteboard(member_id);
+		board.setBoard_id(member_id);
+		BoardBean b = service.read(board.getBoard_no());
 		
-		if (!board.getBoard_passwd().equals(read.getBoard_passwd())) {// 비번이 다르다면
+		if (!board_passwd.equals(passwd)) {// 비번이 다르다면
 			result = 1;
 			model.addAttribute("result", result);
 			return "board/updateResult";
@@ -211,36 +195,31 @@ public class BoardController {
 			int size = (int)mf.getSize(); //첨부파일 크기 (단위:Byte)
 			
 			String path = request.getRealPath("upload");
-			System.out.println("mf=" + mf);
-			System.out.println("filename=" + filename);
-			System.out.println("size=" + size);
-			System.out.println("Path=" + path);
+			//System.out.println("mf=" + mf);
+			//System.out.println("filename=" + filename);
+			//System.out.println("size=" + size);
+			//System.out.println("Path=" + path);
 			int result1=0;
 			
 			String file[] = new String[2];
-//			file = filename.split(".");
-//			System.out.println(file.length);
-//			System.out.println("file0="+file[0]);
-//			System.out.println("file1="+file[1]);
 			
 			String newfilename = "";
 		
 		if(filename != ""){	 // 첨부파일이 전송된 경우	
-			System.out.println("첨부파일");
 			// 파일 중복문제 해결
 			String extension = filename.substring(filename.lastIndexOf("."), filename.length());
-			System.out.println("extension:"+extension);
+			//System.out.println("extension:"+extension);
 			
 			UUID uuid = UUID.randomUUID();
 			
 			newfilename = uuid.toString() + extension;
-			System.out.println("newfilename:"+newfilename);		
+			//System.out.println("newfilename:"+newfilename);		
 			
 			StringTokenizer st = new StringTokenizer(filename, ".");
 			file[0] = st.nextToken();		// 파일명		Koala
 			file[1] = st.nextToken();		// 확장자	    jpg
 			
-			if(size > 100000){				// 100KB
+			if(size > 1000000){				// 100KB
 				result1=1;
 				model.addAttribute("result", result1);
 				
@@ -248,7 +227,8 @@ public class BoardController {
 				
 			}else if(!file[1].equals("jpg") &&
 					 !file[1].equals("gif") &&
-					 !file[1].equals("png") ){
+					 !file[1].equals("png") &&
+					 !file[1].equals("jpeg")){
 				
 				result1=2;
 				model.addAttribute("result", result1);
@@ -265,31 +245,28 @@ public class BoardController {
 		if (size > 0 ) {          // 첨부 파일이 수정되면
 	        board.setBoard_file(newfilename);         
 	     } else {                // 첨부파일이 수정되지 않으면
-	        board.setBoard_file(read.getBoard_file());
+	        board.setBoard_file(board.getBoard_file());
 	     }
-			
-			// 수정 메서드 호출
-//		model.addAttribute("board", board);
-			service.edit(board);
+		service.edit(board);
 		}
 
-		return "redirect:/board_content.do?board_no=" + read.getBoard_no() + "&page=" + page;
+		return "redirect:/board_content.do?board_no=" + board.getBoard_no() + "&page=" + page;
 	}
 
 	// 게시판 삭제 폼 이동
 	@RequestMapping("board_delete.do")
 	public String board_delete(@RequestParam("board_no") int board_no, Model model, @RequestParam("page") String page
 			) throws Exception{
-		System.out.println("controller 게시판 삭제 폼 이동");
+		//System.out.println("controller 게시판 삭제 폼 이동");
 		
 		model.addAttribute("read", service.read(board_no));
 		model.addAttribute("page", page);
 		return "board/board_delete";
 	}
 	// 게시판 삭제
-	@RequestMapping(value="/board_delete_ok.do", method = RequestMethod.POST)
-	public String board_del_ok(@RequestParam("board_no") int board_no, @RequestParam("page") String page,
-			String member_id, @RequestParam("board_passwd") String board_passwd, Model model) throws Exception {
+	@RequestMapping("board_delete_ok.do")
+	public String board_del_ok(int board_no, String page,
+			String member_id, String board_passwd, Model model) throws Exception {
 		
 		String passwd = memberservice.deleteboard(member_id);
 		
@@ -302,10 +279,12 @@ public class BoardController {
 			return "board/deleteResult";
 
 		} else {
+			result = 2;
 			service.delete(board_no);
+			model.addAttribute("result", result);
 		}
-
-		return "redirect:/board_list.do?page=" + page;
+			
+		return "board/deleteResult";
 	}
 	 
 

@@ -13,7 +13,9 @@
 	href="<%=request.getContextPath()%>/resources/css/mypage.css" />
 <title>참가파티방 목록</title>
 </head>
+<%@ include file="../member/header_login.jsp" %>
 <body>
+<div class="wrapper">
 	<div id="root">
 		<br>
 		<br>
@@ -49,8 +51,8 @@
 
 							<td>
 								<div align="center">
-									<a href="mypageparty.do?party_no=
-									${partymem.party_no}">${partymem.party_no}</a>
+
+									<a href="mypageparty.do?party_no= ${partymem.party_no}">${partymem.party_no}</a>
 								</div>
 							</td>
 							<td>
@@ -62,8 +64,9 @@
 							<td>
 								<div align="center">${partymem.party_enddate}</div>
 							</td>
+							
 							<c:choose>
-							<c:when test="${member.member_id eq partymem.party_id }">
+							<c:when test="${member.member_id eq partymem.party_id}">
 							<td>
 								<div align="center">파티장</div>
 							</td>
@@ -74,7 +77,8 @@
 							</td>
 							</c:otherwise>
 							</c:choose>
-							</tr>
+
+						</tr>
 					</c:forEach>
 					
 					
@@ -86,6 +90,8 @@
 			</form>
 		</div>
 	</div>
+</div>
 </body>
 <%@ include file="../member/footer.jsp"%>
+
 </html>

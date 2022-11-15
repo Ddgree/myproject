@@ -17,7 +17,6 @@
 </script>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/find.css" />
-
 </head>
 <body>
 <form method="post" action="edit_pwcheck_ok.do" onsubmit="check()">

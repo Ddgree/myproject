@@ -50,4 +50,5 @@ public class BoardServiceImpl implements BoardService
 	public void delete(int board_no) throws Exception {
 		dao.delete(board_no);
 	}
+	
 }
