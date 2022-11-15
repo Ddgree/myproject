@@ -6,11 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<<<<<<< HEAD
 <meta name="viewport" content="width=1600, initial-scale=1.0, minimum-scale=1.0">
-=======
-<meta name="viewport" content="width=1600, initial-scale=1.0">
->>>>>>> origin/kyungmin
 <title>메인 페이지</title>
 <script src="https://kit.fontawesome.com/f82eca20b8.js"
 	crossorigin="anonymous"></script>
@@ -35,15 +31,8 @@
 <div id="options">
 <div id="optionsheader">드래그해서이동</div>
 	<input type="button" value="파티만들기" id="option-button"
-<<<<<<< HEAD
-		onclick="location='party_create.do?page=${page}&party_id=${member.member_id}'" /><br>
-	<input type="button" value="colorpallet" id="option-button"
-		onclick="location='party_color.do?'" />
-	<select name="party_address" onchange="if(this.value) location.href=(this.value);else if(this.value=='') location.href='partyband.do';">
-=======
 		onclick="location='party_create.do?page=${page}&party_id=${member.member_id}&end=1'" /><br>
 <select name="party_address" onchange="if(this.value) location.href=(this.value);else if(this.value=='') location.href='partyband.do';">
->>>>>>> origin/kyungmin
 		<c:forEach var="a" items="${add}" begin="0" end="7">
 			<option <c:if test ="${a ne '전체'}">value="partyband.do?address=${a}"</c:if><c:if test ="${a eq '전체'}">value=""</c:if><c:if test ="${address eq a}">selected="selected"</c:if>>${a}</option>
 		</c:forEach>
