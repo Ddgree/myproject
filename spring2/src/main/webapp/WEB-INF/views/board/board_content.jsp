@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 상세보기</title>
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/boardnotice.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://kit.fontawesome.com/f82eca20b8.js"
 	crossorigin="anonymous"></script>
@@ -37,21 +39,7 @@ td {
 #reboard_content, #reboard_button {
 	vertical-align: middle;
 }
-.input_button {
-	background-color: black;
-	color: white;
-	text-align: center;
-	font-size: 20px;
-	width: 150px;
-	height: 50px;	
-	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
-	cursor: pointer;
-}
-.input_button:hover {
-	background: #61443a;
-	color: white;
-	border: 0;
-}
+
 :text {
 	text-align: center;
 }
@@ -67,6 +55,8 @@ td {
 </script>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/boardnotice.css" />
+	<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/NoticeButton.css" />
 </head>
 <c:if test="${sessionScope.member.member_id == null }">
 	<%@ include file="../member/header.jsp"%>
@@ -78,7 +68,7 @@ td {
 <div class="wrapper">
 	<div id="board_content_wrap" align="center">
 		<h2 style="padding-top: 90px" align=center>게시글 상세내용</h2>
-		<table id="board_content_table" border=1 width=50%
+		<table id="board_content_table" width=50%
 			style="margin-top: 50px;" enctype="multipart/form-data">
 			<tr align="center">
 				<th><i class="fa-solid fa-pen"></i>&nbsp;${read.board_division}</th>
@@ -86,7 +76,7 @@ td {
 				<td>${read.board_date}</td>
 				<td>${read.board_readcount}</td>
 			</tr>
-			<tr align="center">
+			<tr>
 				<th>제목</th>
 				<td colspan="3">${read.board_subject}</td>
 			</tr>
@@ -101,18 +91,18 @@ td {
 				</td>
 			</tr>
 		</table>
-		<div id="board_content_menu" style='margin-top: 20px;'>
+		<div style='margin-top: 20px;'>
 			<c:if
 				test="${sessionScope.member.member_id == read.board_id || sessionScope.member.member_id == 'admin'}">
-				<input type="button" value="수정" class="input_button"
+				<input type="button" value="수정" class="button"
 					onclick="location='board_update.do?board_no=${read.board_no}&page=${page}&board_id=${read.board_id}'" />&nbsp;
-				<input type="button" value="삭제" class="input_button"
+				<input type="button" value="삭제" class="button"
 					onclick="del_b_content()" />&nbsp;
 			</c:if>
 			<c:if
 				test="${sessionScope.member.member_id != read.board_id && sessionScope.member.member_id == 'admin'}">
 			</c:if>
-			<input type="button" value="목록" class="input_button"
+			<input type="button" value="목록" class="button"
 				onclick="location='board_list.do?page=${page}'" />&nbsp;
 		</div>
 	</div>

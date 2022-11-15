@@ -1,5 +1,9 @@
-body{
-	font-family: 나눔고딕,NanumGothic,돋움,Dotum;
+@import
+	url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap')
+	;
+
+html, body {
+	font-family: 'Gowun Dodum', sans-serif;
 }
 a{
 	text-decoration-line: none;
@@ -60,3 +64,120 @@ hr{
 .blackbutton-inactive:hover {
 	background-color: #e7e7e7;
 }
+
+.input_box{
+	width:99%;
+	height:30pt;
+	border:none solid black;
+	background:transparent;
+	border-radius:3px;
+	margin: 8px 0;
+	outline: none;
+	padding:5px;
+	box-sizing: border-box;
+	transition:.3s;
+	
+}
+.input_box_keyword{
+	width:300px;
+	height:30pt;
+	border:none solid black;
+	background:transparent;
+	border-radius:3px;
+	margin: 8px 0;
+	outline: none;
+	padding:5px;
+	box-sizing: border-box;
+	transition:.3s;
+	
+}
+.input_box_delete{
+	width:99%;
+	height:30pt;
+	border:none solid black;
+	background:transparent;
+	border-radius:3px;	outline: none;
+	box-sizing: border-box;
+	transition:.3s;
+	
+}
+.input_box_write{
+	width:500pt;
+	height:150pt;
+	border:none solid black;
+	background:transparent;
+	border-radius:3px;
+	margin: 8px 0;
+	outline: none;
+	padding:5px;
+	box-sizing: border-box;
+	transition:.3s;
+	resize: none;
+}
+.input_box:focus{
+	border-color:#61443a;
+	box-shadow:0 0 8px 0 #785447;
+}
+
+.input_box_write:focus{
+	border-color:#61443a;
+	box-shadow:0 0 8px 0 #785447;
+}
+.input_search{
+	background:#61443A;
+	border-radius:10px;
+	color:white;
+}
+input[type=file]::file-selector-button {
+ 	 width: 100px;
+ 	 height: 30px;
+ 	 background: #fff;
+ 	 background-color: #61443a;
+   	color: white;
+   	border: 0;
+  	border-radius: 10px;
+  	cursor: pointer;
+  &:hover {
+    background: rgb(77,77,77);
+    color: #fff;
+  }
+}
+th {
+	padding: 5px 20px;
+	border-bottom: 1px solid #61443A;
+	background:#61443A;
+	color:white;
+	font-size: 20px;
+}
+th.delete{
+	padding: 5px 5px;
+	width:160.5px;
+}
+th.board_no{
+	border-top-left-radius: 15px;
+	
+} 
+th.board_readcount{
+	border-top-right-radius: 15px;
+}
+ 
+
+td {
+	padding: 5px 5px;
+	font-size: 17px;
+}
+.td_delete{
+	width:70%;
+	padding: 5px 5px;
+	font-size: 17px;
+}
+td #board_passwd{
+	width: 300px;
+}
+.board_content_table{
+	border-radius: 15px;
+	width: 60%;
+	margin-top: 10%;
+	overflow:hidden;
+}
+
