@@ -10,7 +10,7 @@ insert into reboard values('테스트',145,reboard_no_seq.nextval,'ㅋㅋㅋㅋ�
 insert into board values(board_no_seq.nextval,'zz','zz',sysdate,0,null,null,board_no_seq.nextval,'1234','일반');
 
 alter table board drop column board_passwd;
-
+delete from party where party_enddate='20221131'
 select*from tab;
 select * from partymanager;
 select * from notice_subject;

@@ -20,7 +20,7 @@
 
 				<ul class="topnav">
 					<li><a class="space"></a></li>
-					<li><a class="img" href="partyband.do"><img
+					<li><a class="img" href="partyband.do?end=0"><img
 							src="././resources/images/partyband.gif" class="img"></a></li>
 					<li><a class="space"></a></li>
 					<c:if test="${end eq 1}">
@@ -41,14 +41,14 @@
 			<c:otherwise>
 				<ul class="topnav">
 					<li><a class="space"></a></li>
-					<li><a class="img" href="partyband.do"><img
+					<li><a class="img" href="partyband.do?end=0"><img
 							src="././resources/images/partyband.gif" class="img"></a></li>
 					<li><a class="space"></a></li>
 					<c:if test="${end eq 0}">
-						<li><a href="partyband.do?end=1">종료된 파티방</a></li>
+						<li><a href="end_party_list.do?end=1">종료된 파티방</a></li>
 					</c:if>
 					<c:if test="${end eq 1}">
-						<li><a href="end_party_list.do?end=0">진행중인 파티방</a></li>
+						<li><a href="partyband.do?end=0">진행중인 파티방</a></li>
 					</c:if>
 					<li><a href="board_list.do">커뮤니티</a></li>
 					<li><a href="notice_list.do">공지사항</a></li>
@@ -95,7 +95,7 @@
 								class="mypage2"><input class="mini" type="submit"
 								value="로그아웃" onclick="location='member_logout.do'" /></a>
 						</div>
-					<li class="dropdown"><a class="dropbtn" href="partyband.do"><img
+					<li class="dropdown"><a class="dropbtn" href="partyband.do?end=0"><img
 							src="././resources/images/partyband.gif"></a>
 						<div class="dropdown-content">
 							<c:if test="${end eq 1}">

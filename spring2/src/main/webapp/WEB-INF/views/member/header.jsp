@@ -16,7 +16,7 @@
 
 		<ul class="topnav">
 			<li><a class="space"></a></li>
-			<li><a class="img" href="partyband.do"><img
+			<li><a class="img" href="partyband.do?end=0"><img
 					src="././resources/images/partyband.gif" class="img"></a></li>
 			<li><a class="space"></a></li>
 			<c:if test="${end eq 1}">
