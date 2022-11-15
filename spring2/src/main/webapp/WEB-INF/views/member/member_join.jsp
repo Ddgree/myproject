@@ -111,6 +111,7 @@ input[type=file]::file-selector-button {
 <%@ include file="../member/header.jsp"%>
 </head>
 <body>
+<div class="wrapper">
 	<div id="join_wrap">
 	<br><br><br>
 		<form name="f" method="post" action="member_join_ok.do"
@@ -226,13 +227,14 @@ input[type=file]::file-selector-button {
 				</tr>
 			</table>
 
-			<div>
+			<div style="text-align: center;">
 				<input type="submit" value="회원가입" class="button"
-					style="margin-left: 600px; cursor: pointer;" /> 
+					style="cursor: pointer;" /> 
 					<input type="reset" value="가입취소" class="button" style="cursor: pointer;"
 					onclick='location="partyband.do"' />
 			</div>
 		</form>
+	</div>
 	</div>
 </body>
 <%@ include file="footer.jsp"%>

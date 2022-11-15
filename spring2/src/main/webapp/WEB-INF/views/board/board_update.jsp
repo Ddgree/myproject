@@ -80,8 +80,9 @@ td {
 }
 </style>
 </head>
-
+	<%@ include file="../member/header_login.jsp"%>
 <body>
+<div class="wrapper">
 	<div id="board_write" align="center">
 		<h2 class="board_write_title">글 수정</h2>
 		<form method="post" action="board_update_ok.do" enctype="multipart/form-data" onSubmit="return board_check()">
@@ -141,5 +142,7 @@ td {
 			</div>
 		</form>
 	</div>
+	</div>
 </body>
+<%@ include file="../member/footer.jsp"%>
 </html>

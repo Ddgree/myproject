@@ -49,6 +49,9 @@ CREATE TABLE board (
     board_id VARCHAR2(20) references member(member_id) on delete cascade /* 아이디 */
 );
 
+
+
+
 /* 후기댓글 */
 CREATE TABLE reboard (
 	reboard_subject VARCHAR2(100), /* 제목 */
@@ -116,11 +119,13 @@ create sequence party_no_seq
 create sequence notice_no_seq
                 increment by 1 start with 1 nocache;
                 
-
+select * from party where party_
 select * from tab;
 
-select * from party;
+select * from party where party_address='서울';
 select * from party where party_subject='안녕하세요';
+select * from partymanager where member_id = 'test2' and ishost=1;
+select * from party where party_no = 1323
 select count(*) from party;
 
 select * from seq;
@@ -160,14 +165,12 @@ delete from party where party_count > 5;
 
 ALTER TABLE party ADD delok VARCHAR(20);
 select * from party;
-select * from party where party_address = '대전';
+select * from party where ;
 
 delete from party where party_enddate = '12312';
 
-insert into party values(party_no_seq.nextval,'진행중인 파티방','지역', '파티방 내용', '무관', '20', sysdate,
+insert into party values(party_no_seq.nextval,'삭제 된 파티방','광주', '파티방 내용', '성별', '20', sysdate,
 '20221227',0, 5, 'test','n')
-insert into party values(party_no_seq.nextval,'삭제 된 파티방','지역', '파티방 내용', '성별', '20', sysdate,
-'20221101',0, 5, 'test','n')
 select * from party where party_enddate < TO_CHAR(SYSDATE, 'YYYYMMDD');
 
 update party set delok = 'y' where delok = 'n' and party_enddate < TO_CHAR(SYSDATE, 'YYYYMMDD');
@@ -209,6 +212,7 @@ FOREIGN KEY(member_id) REFERENCES member(member_id);
 
 delete from party
 delete from PARTYMANAGER
+select * from member where member_id = 'admin'
 
 select * from partymanager
 
@@ -222,6 +226,11 @@ select  from party where party_no = ()
 delete from party where party_count = 5
 delete from party where party_count > 5
 select party_count from party where party_no = 792
-select * from party
+select * from party where party_count < 0
+delete from party where party_count < 0
 select * from partymanager where member_id='test2'
 select * from party order by party_no desc
+
+select * from reboard where reboard_bno = 185 order by reboard_date desc
+
+select * from (select * from member where member_delok='y') where member_id='test4' 

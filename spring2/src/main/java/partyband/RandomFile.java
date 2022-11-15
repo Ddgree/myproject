@@ -9,13 +9,13 @@ public class RandomFile {
 
 		String filename = "clock.jpg";
 		String extension = filename.substring(filename.lastIndexOf("."), filename.length());
-		System.out.println("extension:"+extension);
+		//System.out.println("extension:"+extension);
 		
 		UUID uuid = UUID.randomUUID();
-		System.out.println("uuid:"+uuid);
+		//System.out.println("uuid:"+uuid);
 		
 		String newfilename = uuid.toString() + extension;
-		System.out.println("newfilename:"+newfilename);
+		//System.out.println("newfilename:"+newfilename);
 		
 	}
 

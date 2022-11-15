@@ -1,115 +1,56 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
-body{
-	font-family: 'Gowun Dodum', sans-serif;
-}
-.category {
-	list-style: none;
-	background-color: black;
-	color: #f3d49e;
-	height: 60px;
-	position: relative;
-}
-
-a {
-	text-decoration-line: none;
-}
-
-.w-btn {
-	border: 3px solid #9a6c5c;
-	padding: 10px 20px;
-	border-radius: 15px;
-	font-family: "paybooc-Light", sans-serif;
-	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-	text-decoration: none;
-	font-weight: 600;
-	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
-	background-color: white;
-	color: black;
-	margin-left:1200px;
-	position:absolute;
-}
-
-.w-btn:hover {
-	background: #9a6c5c;
-	color: white;
-}
-
-.screen {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	
-}
-
-.img {
-	margin-left: -110px;
-	margin-top: -10px;
-	cursor: pointer;
-	width: 60px;
-	height: 60px;
-}
-.navi{
-	position:relative;
-	background:#f3d49e;
-	margin-top:-15px;
-	width:auto;
-	height:60px;
-	
-}
-
-.navi ul{
-	list-style: none; 
-	height:40px;
-	padding-top:10px;
-	padding-bottom:5px;
-}
-.navi ul li {
-	display:inline;
-	float: left;
-	font-size:25px;
-}
-.navi a, .navi a:visited {
-	transition: color 0.5s ease-in-out;
-	display: block;
-	color:black;
-	width: 150px; 
-	text-decoration: none;
-	font-family: 'Gowun Dodum', sans-serif;
-	font-weight: 600;
-	
-}
-.navi a:hover, .navi a:active, .navi a:focus {
-		color:white;
-}
-</style>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport"
+	content="width=1600, initial-scale=1.0, minimum-scale=1.0">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/decoration.css" />
+	href="<%=request.getContextPath()%>/resources/css/header.css" />
 </head>
 <body>
-	<div class="screen">
-		<div class="category">
+	<div class="header">
+		<input type="hidden" name="member_id" value="${member.member_id}" />
 
-    <nav class="navi">
-      <ul>
-     	<li><a href="partyband.do"><img src="././resources/images/logo.jpg" class="img"  style="margin-left:50px;"></a></li>
-        <li><a href="end_party_list.do" style="margin-left:200px; position:absolute;">종료파티방</a></li>
-        <li><a href="board_list.do" style="margin-left:500px;position:absolute;">커뮤니티</a></li>
-        <li><a href="notice_list.do" style="margin-left:800px; position:absolute;">공지사항</a></li>
-      	<li><input type="button" value="로그인" class="w-btn" style="cursor: pointer; float:right;" onclick="location='member_login.do'"></li>
-      </ul>
-    </nav>  
+		<ul class="topnav">
+			<li><a class="space"></a></li>
+			<li><a class="img" href="partyband.do"><img
+					src="././resources/images/partyband.gif" class="img"></a></li>
+			<li><a class="space"></a></li>
+			<c:if test="${end eq 1}">
+				<li><a href="partyband.do?end=0">진행중인 파티방</a></li>
+			</c:if>
+			<c:if test="${end eq 0}">
+				<li><a href="end_party_list.do?end=1">종료된 파티방</a></li>
+			</c:if>
+			<li><a href="board_list.do">커뮤니티</a></li>
+			<li><a href="notice_list.do">공지사항</a></li>
+			<li class="right"><input type="button" value="로그인"
+				class="mypage" onclick="location='member_login.do?end=1'"></li>
+			<li style="float: right"><a class="txt">Guest님! 환영합니다!</a></li>
+		</ul>
 
-		</div>
+		<ul class="topnavM">
+			<li class="dropdown" style="float: right"><a class="dropbtn2">Guest님!<br>환영합니다!
+			</a>
+				<div class="dropdown-content2">
+					<a class="mypage2"><input class="mini" type="button"
+						value="로그인" onclick="location='member_login.do'" /></a>
+				</div>
+			<li class="dropdown"><a class="dropbtn" href="refresh.do"><img
+					src="././resources/images/partyband.gif"></a>
+				<div class="dropdown-content">
+					<c:if test="${end eq 1}">
+						<a href="partyband.do?end=0">진행중인 파티방</a>
+					</c:if>
+					<c:if test="${end eq 0}">
+						<a href="end_party_list.do?end=1">종료된 파티방</a>
+					</c:if>
+					<a href="board_list.do">커뮤니티</a> <a href="notice_list.do">공지사항</a>
+				</div>
+		</ul>
 	</div>
 </body>
 </html>

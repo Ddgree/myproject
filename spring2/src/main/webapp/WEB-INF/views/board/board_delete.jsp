@@ -13,27 +13,20 @@
 	<script src="<%=request.getContextPath() %>/resources/js/board.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	
-<style>
-.input_button {
-	background-color: black;
-	color: white;
-	text-align: center;
-	font-size: 20px;
-	width: 150px;
-	height: 50px;	
-	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
-	cursor: pointer;
-	margin-top:70px;
-}
-.input_button:hover {
-	background: #61443a;
-	color: white;
-	border: 0;
-}
-</style>
+	<script>
+ 	 function delete_check(){
+		  if($.trim($("#board_passwd").val())==""){
+			  alert("삭제 비밀번호을 입력하세요!");
+			  $("#board_passwd").val("").focus();
+			  return false;
+	 	 }
+  	}
+	</script>
+	<%@ include file="../member/header_login.jsp"%>
 </head>
 <body>
- <div id="boarddel_wrap" align="center">
+<div class="wrapper">
+ <div id="boarddel_wrap">
   <h2 class="boarddel_title">게시물 삭제</h2>
   <form method="post" action="board_delete_ok.do" 
   onsubmit="return delete_check()">
@@ -56,5 +49,7 @@
    </div>
   </form>
  </div>
+ </div>
 </body>
+<%@ include file="../member/footer.jsp" %>
 </html>

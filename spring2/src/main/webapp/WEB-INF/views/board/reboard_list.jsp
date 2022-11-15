@@ -67,6 +67,7 @@ $(function() {
 						<div style="width:20%; text-align:left;" id="td_${rlist.reboard_rno}">&nbsp;&nbsp;${rlist.reboard_content}</div>
 						<div id="btn_${rlist.reboard_rno}"></div>
 			<hr	style="color: #FFD9CC; border: 3px; border-style: dotted; width: 20%; margin: 20px auto;">
+
 		</c:forEach>
 	</div>
 </body>

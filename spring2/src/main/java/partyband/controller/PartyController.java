@@ -27,7 +27,8 @@ import partyband.service.PartyServiceImpl;
 
 
 @Controller
-public class PartyController {
+public class PartyController 
+{
 	@Autowired
 	private PartyServiceImpl partyservice;
 	@Autowired
@@ -40,7 +41,7 @@ public class PartyController {
 	@RequestMapping("refresh.do")
 	public String refresh() {
 		partyservice.refresh();
-		return "redirect:partyband.do";
+		return "redirect:partyband.do?end=0";
 	}
 	
 	@RequestMapping("mypageparty.do")
@@ -71,7 +72,8 @@ public class PartyController {
 	}
 
 	@RequestMapping("warn.do")
-	public String warn(HttpServletResponse response) throws IOException {
+	public String warn(HttpServletResponse response) throws IOException
+	{
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter w = response.getWriter();
 
@@ -84,11 +86,18 @@ public class PartyController {
 	}
 
 	@RequestMapping("partyband.do")
-	public String partyband(HttpServletRequest request, Model model) throws Exception {
+	public String partyband(HttpServletRequest request, Model model) throws Exception 
+	{
 		session = request.getSession();
 		List<partybean> partylist = new ArrayList<partybean>();
+		
 		int page = 1;
 		int limit = 8;
+		int end = 0;
+		
+		if (request.getParameter("end") == null) {
+			end = 1;
+		}
 		String address = request.getParameter("address");
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -104,6 +113,8 @@ public class PartyController {
 				endpage = startpage + 10 - 1;
 
 			session.setAttribute("page", page);
+			session.setAttribute("end", 1);
+			model.addAttribute("end",end);
 			model.addAttribute("partylist", partylist);
 			model.addAttribute("startpage", startpage);
 			model.addAttribute("endpage", endpage);
@@ -116,10 +127,11 @@ public class PartyController {
 			int maxpage = (int) ((double) listcount / limit + 0.95); // 총 페이지 수.
 			int startpage = (((int) ((double) page / 8 + 0.9)) - 1) * 8 + 1; // 메인에 보여줄 시작 페이지 수
 			int endpage = maxpage; // 메인에 보여줄 마지막 페이지 수
-
 			if (endpage > startpage + 10 - 1)
 				endpage = startpage + 10 - 1;
 			
+			session.setAttribute("end", 1);
+			model.addAttribute("end",end);
 			model.addAttribute("address", address);
 			model.addAttribute("page", page);
 			model.addAttribute("partylist", partylist);
@@ -133,11 +145,18 @@ public class PartyController {
 	}
 
 	@RequestMapping("end_party_list.do")
-	public String end_party_list(HttpServletRequest request, Model model) throws Exception {
+	public String end_party_list(HttpServletRequest request, Model model) throws Exception 
+	{
+		session = request.getSession();
 		List<partybean> endpartylist = new ArrayList<partybean>();
 
 		int page = 1;
 		int limit = 8;
+		int end = 0;
+		
+		if (request.getParameter("end") != null) {
+			end = 1;
+		}
 
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -154,7 +173,8 @@ public class PartyController {
 		if (endpage > startpage + 10 - 1)
 			endpage = startpage + 10 - 1;
 
-		model.addAttribute("page", page);
+		session.setAttribute("page", page);
+		model.addAttribute("end", end);
 		model.addAttribute("endpartylist", endpartylist);
 		model.addAttribute("startpage", startpage);
 		model.addAttribute("endpage", endpage);
@@ -171,7 +191,7 @@ public class PartyController {
 
 	/* 파티방 내용 저장 */	
 	@RequestMapping("party_create_ok.do") 
-	public String party_create_ok(partybean party, String party_id) throws Exception 
+	public String party_create_ok(HttpServletResponse response,partybean party, String party_id) throws Exception 
 	{  
 		party.setParty_id(party_id); 
 		partyservice.insert(party);
@@ -184,8 +204,18 @@ public class PartyController {
 		
 		partymanager.create_insert(manager);
 		
-		return "redirect:partyband.do"; 
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter w = response.getWriter();
+		
+		String msg = "파티방 생성 완료!";
+		String url = "refresh.do";
+		w.write("<script>alert('"+msg+"');location='"+url+"';</script>");
+		w.flush();
+		w.close();
+		
+		return null; 
 	}
+	
 
 	/* 파티방 상세보기 */
 	@RequestMapping("party_detail.do")
@@ -218,18 +248,32 @@ public class PartyController {
 		join = partyservice.joinlist(member_id);
 		
 		List<PartyManagerBean> joinlist = new ArrayList<PartyManagerBean>();
-		// System.out.println("partyjoincancel.Controller, id : " + id);
+		// 1.System.out.println("partyjoincancel.Controller, id : " + id);
 		for (PartyManagerBean p: join) 
 		{
 			joinlist.add(p);
-			System.out.println(p.getParty_no());
 		}
 		
 		session.setAttribute("joinlist", joinlist);
 		model.addAttribute("page", page);
 		model.addAttribute("party_no", party_no);
 
-		return "redirect:party_detail.do";
+		return "redirect:joinok.do?page="+page+"&party_no="+party_no;
+	}
+	
+	@RequestMapping("joinok.do")
+	public String joinok(HttpServletResponse response, int page, int party_no) throws IOException
+	{
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter w = response.getWriter();
+
+		String msg = "참가 신청 완료!";
+		String url = "party_detail.do?page="+page+"&party_no="+party_no;
+		w.write("<script>alert('"+msg+"');location='"+url+"';</script>");
+		w.flush();
+		w.close();
+
+		return null;
 	}
 	
 	@RequestMapping("partyjoincancel.do")
@@ -247,110 +291,106 @@ public class PartyController {
 		for (PartyManagerBean p: join) 
 		{
 			joinlist.add(p);
-			System.out.println(p.getParty_no());
 		}
 		
 		session.setAttribute("joinlist", joinlist);
 		model.addAttribute("page", page);
 		model.addAttribute("party_no", party_no);
 		
-		return "redirect:party_detail.do";
+		return "redirect:joincancelok.do?page="+page+"&party_no="+party_no;
 	}
 	
+	@RequestMapping("joincancelok.do")
+	public String joincancel(HttpServletResponse response, int page, int party_no) throws IOException
+	{
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter w = response.getWriter();
 
-	/* 비밀 번호 확인 폼 이동 */
-	@RequestMapping("pwcheckform.do")
-	public String partyeditform(int page, String member_id, int party_no, String stat, Model model) {
-		model.addAttribute("page", page);
-		model.addAttribute("member_id", member_id);
-		model.addAttribute("party_no", party_no);
-		model.addAttribute("stat", stat);
+		String msg = "참가 신청 취소 완료!";
+		String url = "party_detail.do?page="+page+"&party_no="+party_no;
+		w.write("<script>alert('"+msg+"');location='"+url+"';</script>");
+		w.flush();
+		w.close();
 
-		return "party/partypwcheck";
+		return null;
 	}
-
+	
 	/* 비밀 번호 확인 */
 	@RequestMapping("partypwcheck.do")
-	public String partyedit(HttpServletResponse response, int page, String member_id, String input_member_passwd,
-			int party_no, String stat, Model model) throws Exception {
+	public String partyedit(HttpServletResponse response, int page, String member_id, String delete_passwd,
+			int party_no, String stat, Model model) throws Exception 
+	{
 		String orign_member_passwd = partyservice.pwcheck(member_id);
 
-		if (!input_member_passwd.equals(orign_member_passwd)) {
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter w = response.getWriter();
-
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter w = response.getWriter();
+		
+		if(!delete_passwd.equals(orign_member_passwd)) 
+		{
 			String msg = "비밀번호가 일치하지 않습니다.";
 			w.write("<script>alert('" + msg + "');history.back();</script>");
 			w.flush();
 			w.close();
-		} else if (stat.equals("edit")) {
-			model.addAttribute("page", page);
-			model.addAttribute("member_id", member_id);
-			model.addAttribute("party_no", party_no);
+		} 
+			else if (stat.equals("edit"))
+			{
+				String url = "party_update.do?page="+page+"&party_no="+party_no+"&member_id="+member_id;
+				String msg="수정 폼으로 이동합니다!";
+				
+				w.write("<script>alert('" + msg + "');"
+						+ "opener.location.href='"+url+"';window.close();</script>");
+				
+	
+				return null;
+			} 
+			else if (stat.equals("del")) 
+			{
+				partyservice.partydel(party_no);
+				
+				String msg="삭제 성공!";
+				w.write("<script>alert('" + msg + "');"
+						+ "opener.location.href ='partyband.do';window.close();</script>");
 
-			return "party/partyedit";
-		} else if (stat.equals("del")) {
-			partyservice.partydel(party_no);
-
-			return "redirect:partyband.do";
-		}
+				return null;
+			}
 
 		return null;
+	}
+	@RequestMapping("party_update.do")
+	public String party_update(int page, String member_id, int party_no, Model model) throws Exception
+	{
+		partybean party = partyservice.party_cont(party_no);
+		
+		model.addAttribute("page",page);
+		model.addAttribute("member_id",member_id);
+		model.addAttribute("party",party);
+		return "party/partyedit";
+	}
+	
+	@RequestMapping("pwcheck.do")
+	public String member_del(int party_no,String stat, Model model) throws Exception
+	{
+		model.addAttribute("party_no",party_no);
+		model.addAttribute("stat",stat);
+		return "party/pwcheck";
 	}
 
 	/* 파티방 수정 */
 	@RequestMapping("partyedit.do")
-	public String partyedit(partybean p, int page, HttpServletResponse response) throws Exception {
-		partyservice.partyedit(p);
-
-		return "redirect:party_detail.do?party_no=" + p.getParty_no() + "&page=" + page;
-	}
-
-	@RequestMapping("nomal_login.do")
-	public String nomal_login(HttpServletRequest request) throws Exception {
-		session = request.getSession();
-
-		MemberBean test_member = memberservice.userCheck("test");
-		session.setAttribute("member", test_member);
-		return "redirect:partyband.do";
-	}
-
-	@RequestMapping("admin_login.do")
-	public String admin_login(HttpServletRequest request) throws Exception {
-		session = request.getSession();
-
-		String id = "admin";
-		session.setAttribute("sessionId", id);
-
-		return "redirect:partyband.do";
-	}
-
-	@RequestMapping("test_logout.do")
-	public String test_logout(HttpServletRequest request) throws Exception {
-		session = request.getSession();
-
-		session.invalidate();
-
-		return "redirect:partyband.do";
-	}
-
-	@RequestMapping("party_color.do")
-	public String party_color() {
-		return "party/partycolor";
-	}
-	@RequestMapping("joinlist.do")
-	public String joinlist(String member_id,HttpServletRequest request)
+	public String partyedit(HttpServletResponse response,partybean p, int page,int party_no) throws Exception
 	{
-		List<PartyManagerBean> joinlist = new ArrayList<PartyManagerBean>();
+		partyservice.partyedit(p);
 		
-		joinlist = partyservice.joinlist(member_id);
-		HashSet joinset = new HashSet();
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter w = response.getWriter();
 		
-		for (PartyManagerBean partyManagerBean : joinlist) 
-		{
-			joinset.add(partyManagerBean.getParty_no());
-		}
-		System.out.println(joinset);
-		return "party/partymain";
+		String msg = "파티방 수정 완료!";
+		String url = "party_detail.do?page="+page+"&party_no="+party_no;
+		
+		w.write("<script>alert('"+msg+"');location='"+url+"';</script>");
+		w.flush();
+		w.close();
+
+		return null;
 	}
 }
