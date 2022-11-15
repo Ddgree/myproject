@@ -45,8 +45,11 @@ button{
 	}
 
 #options {
+  border-radius:5px;
   position: absolute;
-  z-index: 9;
+  top: 100px;
+  left:15px;
+  z-index: 2;
   background-color: #FFECE5;
   text-align: center;
   border: 1px solid #FFD9CC;
@@ -54,7 +57,7 @@ button{
 #optionsheader {
   padding: 10px;
   cursor: move;
-  z-index: 10;
+  z-index: 2;
   background-color: #FFD9CC;
   color: #443029;
 }
@@ -121,7 +124,7 @@ body{
 	position: unset;
 }
 #item{
-	margin-top:6px;
+	margin-top:80px;
 	}
 #item .party-list-wrap{
 	width:unset; 

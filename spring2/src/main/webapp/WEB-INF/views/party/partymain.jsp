@@ -6,11 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1600, initial-scale=1.0">
+<meta name="viewport" content="width=1600, initial-scale=1.0, minimum-scale=1.0">
 <title>메인 페이지</title>
 <script src="https://kit.fontawesome.com/f82eca20b8.js"
 	crossorigin="anonymous"></script>
-
 </head>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/partymain.css" />
@@ -27,7 +26,6 @@
 
 	<%@ include file="../../../resources/include/address.jsp"%>
 
-<body>
 
 <div id="options">
 <div id="optionsheader">드래그해서이동</div>
