@@ -33,8 +33,8 @@ function member_delete()
 <body>
 <div class="wrapper">
  <div id="mem_mypage">
-  <form name="f" method="post" action="member_logout.do" 
-   enctype="multipart/form-data">
+  <form class="mypage2" name="f" method="post" action="member_logout.do" 
+   enctype="multipart/form-data" >
    <table class="join">
    <br><br><br><br><br>
     <tr>
@@ -100,7 +100,7 @@ function member_delete()
    </table>
    
    <div id="mymem_menu">
-   <input type="button" value="정보수정" class="button" style="margin-left: 690px;"
+   <input type="button" value="정보수정" class="button"
     		onclick="edit_pwcheck()" />
    <input type="button" value="회원탈퇴" class="button"
      		onclick="member_delete()" />	

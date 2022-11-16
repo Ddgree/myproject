@@ -4,8 +4,13 @@ body{
 	font-family: 'Gowun Dodum', sans-serif;
 }
 
+
+form.mypage2{
+	text-align: center;
+}
+
 .join {
-	margin-left: 680px;
+	display:inline-block;
 	border-spacing: 40px 25px;
 	font-size:20px;
 }

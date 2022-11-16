@@ -148,8 +148,7 @@ input[type=file]::file-selector-button {
     <tr>
      <th>회원이름</th>
      <td>
-      <input name="member_name" id="member_name" size="14" class="input_box"
-      value="${upmem.member_name}" />
+	 ${upmem.member_name}
      </td>
     </tr>
     
