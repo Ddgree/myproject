@@ -16,11 +16,13 @@
 <%@ include file="../member/header_login.jsp" %>
 </c:if>
 <script>
-function edit_pwcheck() {
+function edit_pwcheck()
+{
 	window.open("edit_pwcheck.do", "비번인증", "width=600,height=400");
 }
-function member_delete() {
 
+function member_delete()
+{
 	window.open("member_del.do", "회원탈퇴", "width=450,height=350");
 	//자바 스크립트에서 window객체의 open("공지창경로와 파일명","공지창이름","공지창속성")
 }

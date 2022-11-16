@@ -48,6 +48,7 @@ ul.topnav {
 
 ul.topnav li {
 	float: left;
+	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 
 ul.topnav li a {
@@ -58,6 +59,7 @@ ul.topnav li a {
 	margin-left: 30px;
 	padding: 14px 16px;
 	text-decoration: none;
+	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 
 ul.topnav li a.txt {
@@ -85,8 +87,9 @@ a img {
 	height: 50px;
 }
 
-ul.topnav li a:hover:not (.space ):not (.txt ) {
+ul.topnav li a:hover:not(.txt):not(.space) {
 	background-color: #443029;
+
 }
 
 ul.topnav li a.space {
@@ -107,7 +110,7 @@ ul.topnav li.right {
 	font-weight: 600;
 	float: right;
 	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
-	background-color: white;
+	background-color: #FFD9CC;
 	color: black;
 	margin-top: 9px;
 	margin-left: 5px;
@@ -184,6 +187,7 @@ footer div.img, footer div img {
 		color: #FFECE5;
 		padding: 14px 16px;
 		text-decoration: none;
+		transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 	}
 	li a:hover, .dropdown:hover .dropbtn, .dropdown:hover .dropbtn2 {
 		background-color: #443029;
@@ -193,14 +197,17 @@ footer div.img, footer div img {
 		display: block;
 		height: 50px;
 		overflow: hidden;
+		
 	}
+	
 	.dropdown-content {
 		display: none;
 		position: absolute;
 		background-color: #FFECE5;
 		width: 100%;
 		min-width: 160px;
-		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+		animation: growDown 300ms ease-in-out forwards;
+		transform-origin: top center
 	}
 	.dropdown-content a {
 		text-align: center;
@@ -209,6 +216,17 @@ footer div.img, footer div img {
 		text-decoration: none;
 		display: block;
 	}
+	@keyframes growDown {
+    0% {
+        transform: scaleY(0)
+    }
+    80% {
+        transform: scaleY(1.1)
+    }
+    100% {
+        transform: scaleY(1)
+    }
+    }
 	.dropdown-content a:hover {
 		text-align: center;
 		background-color: #FFD9CC;
@@ -223,6 +241,8 @@ footer div.img, footer div img {
 		width: 160px;
 		min-width: 160px;
 		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+		animation: growDown 300ms ease-in-out forwards;
+		transform-origin: top center
 	}
 	.dropdown-content2 a {
 		text-align: center;

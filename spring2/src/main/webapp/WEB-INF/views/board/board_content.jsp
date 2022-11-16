@@ -38,10 +38,12 @@ td {
 	vertical-align: middle;
 }
 .input_button {
-	background-color: black;
-	color: white;
+	background-color: #FFECE5;
+	color: #443029;
 	text-align: center;
 	font-size: 20px;
+	border-radius:15px;
+	border:solid 3px #443029;
 	width: 150px;
 	height: 50px;	
 	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
