@@ -6,6 +6,8 @@ import java.util.StringTokenizer;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -154,7 +156,6 @@ public class BoardController {
 		service.hit(board_no);
 		
 		BoardBean board = service.read(board_no);
-		//System.out.println("board입니다="+board);
 		String b_content = board.getBoard_content().replace("\n", "<br/>");
 		
 		model.addAttribute("b_content", b_content);
@@ -163,13 +164,10 @@ public class BoardController {
 		
 		return "board/board_content";
 	}
-
 	// 게시판 수정폼 이동
 	@RequestMapping("board_update.do")
 	public String board_update(@RequestParam("board_no") int board_no, Model model, 
 			@RequestParam("page") String page) throws Exception {
-		//System.out.println("controller 게시판 수정폼 이동");
-		
 		model.addAttribute("read", service.read(board_no));
 		model.addAttribute("page", page);
 		return "board/board_update";
@@ -179,7 +177,6 @@ public class BoardController {
 	@RequestMapping("board_update_ok.do")
 	public String board_edit_ok(BoardBean board, String page, Model model, int board_no, String member_id, String board_passwd,
 			@RequestParam("board_file1") MultipartFile mf, HttpServletRequest request) throws Exception {
-		//System.out.println("controller 게시판 수정");
 		// 수정 메서드 호출
 		int result = 0;
 		String passwd = memberservice.deleteboard(member_id);
@@ -247,7 +244,7 @@ public class BoardController {
 		if (size > 0 ) {          // 첨부 파일이 수정되면
 	        board.setBoard_file(newfilename);         
 	     } else {                // 첨부파일이 수정되지 않으면
-	        board.setBoard_file(board.getBoard_file());
+	        board.setBoard_file(b.getBoard_file());
 	     }
 		service.edit(board);
 		}
@@ -288,6 +285,4 @@ public class BoardController {
 			
 		return "board/deleteResult";
 	}
-	 
-
 }

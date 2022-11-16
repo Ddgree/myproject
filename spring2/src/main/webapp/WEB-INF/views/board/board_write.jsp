@@ -76,7 +76,7 @@ td {
   <h2 class="board_write_title">글 작성</h2>
   <form method="post" action="board_write_ok.do" onSubmit="return board_wcheck()" enctype="multipart/form-data">
    <input type="hidden" name="board_id" value="${board.board_id}">
-   <table id="board_write_table" border=1>
+   <table id="board_write_table">
     <tr>
      <th>구분</th>
      <td>

@@ -143,11 +143,12 @@ input[type=file]::file-selector-button {
   }
 }
 th {
-	padding: 5px 20px;
+	padding: 5px 10px;
 	border-bottom: 1px solid #61443A;
 	background:#61443A;
 	color:white;
 	font-size: 20px;
+	text-align: cetner;
 }
 th.delete{
 	padding: 5px 5px;
@@ -160,7 +161,6 @@ th.board_no{
 th.board_readcount{
 	border-top-right-radius: 15px;
 }
- 
 
 td {
 	padding: 5px 5px;
@@ -174,10 +174,14 @@ td {
 td #board_passwd{
 	width: 300px;
 }
-.board_content_table{
-	border-radius: 15px;
-	width: 60%;
-	margin-top: 10%;
-	overflow:hidden;
+#board_content_table{
+	table-layout: fixed;
+	width:800pt;
+	height:400pt;
 }
-
+.edit1, .del1{
+float:right;
+margin:0px 0px 0px 10px;
+background:#000000;
+color:white;
+}

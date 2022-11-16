@@ -4,8 +4,12 @@ select * from member;
 select * from reboard;
 select * from seq;
 select * from board;
+<<<<<<< HEAD
 select * from notice;
 delete from board where board_no=199; where reboard_bno =145 and reboard_rno=1;
+=======
+delete from board; where board_no=199; where reboard_bno =145 and reboard_rno=1;
+>>>>>>> origin/wooil
 select * from party;
 insert into reboard values('테스트',145,reboard_no_seq.nextval,'ㅋㅋㅋㅋ재밌네요',sysdate );
 insert into board values(board_no_seq.nextval,'zz','zz',sysdate,0,null,null,board_no_seq.nextval,'1234','일반');

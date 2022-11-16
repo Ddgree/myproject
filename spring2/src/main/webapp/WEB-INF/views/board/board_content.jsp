@@ -28,12 +28,11 @@
 </script>
 <style>
 th {
-	padding: 20px 10px;
+	
 	border: 1px solid #cccccc;
-	text-align: cetner;
+	
 }
 td {
-	padding: 20px 20px;
 	border: 1px solid #cccccc;
 }
 #reboard_content, #reboard_button {
@@ -68,8 +67,7 @@ td {
 <div class="wrapper">
 	<div id="board_content_wrap" align="center">
 		<h2 style="padding-top: 90px" align=center>게시글 상세내용</h2>
-		<table id="board_content_table" width=50%
-			style="margin-top: 50px;" enctype="multipart/form-data">
+		<table id="board_content_table" enctype="multipart/form-data">
 			<tr align="center">
 				<th><i class="fa-solid fa-pen"></i>&nbsp;${read.board_division}</th>
 				<td>${read.board_id}</td>
@@ -80,30 +78,46 @@ td {
 				<th>제목</th>
 				<td colspan="3">${read.board_subject}</td>
 			</tr>
-			<tr height=150px>
+			<tr>
 				<th>글내용</th>
-				<td colspan=7>&nbsp;&nbsp;${b_content}</td>
+				<td colspan=3>
+				<c:if test="${read.board_file eq null}">
+				<img src="<%=request.getContextPath()%>/upload/pepe.jpg" width=40%/><p>
+				</c:if>
+				<c:if test="${read.board_file ne null}">
+				<img src="<%=request.getContextPath()%>/upload/${read.board_file}" width=50%/><p>
+				</c:if>
+				${b_content}</td>
 			</tr>
 			<tr>
 				<th>첨부파일</th>
-				<td colspan=7><a
-					href="file_down.do?file_name=${read.board_file}">${read.board_file}</a>
+				<td colspan=3>
+				<a href="file_down.do?file_name=${read.board_file}">${read.board_file}</a>
 				</td>
 			</tr>
 		</table>
 		<div style='margin-top: 20px;'>
 			<c:if
-				test="${sessionScope.member.member_id == read.board_id || sessionScope.member.member_id == 'admin'}">
+				test="${sessionScope.member.member_id eq read.board_id}">
 				<input type="button" value="수정" class="button"
 					onclick="location='board_update.do?board_no=${read.board_no}&page=${page}&board_id=${read.board_id}'" />&nbsp;
 				<input type="button" value="삭제" class="button"
 					onclick="del_b_content()" />&nbsp;
+				<input type="button" value="목록" class="button"
+					onclick="location='board_list.do?page=${page}'" />&nbsp;
 			</c:if>
 			<c:if
-				test="${sessionScope.member.member_id != read.board_id && sessionScope.member.member_id == 'admin'}">
+				test="${sessionScope.member.member_id ne read.board_id && sessionScope.member.member_id ne 'admin'}">
+				<input type="button" value="목록" class="button"
+					onclick="location='board_list.do?page=${page}'" />&nbsp;
 			</c:if>
-			<input type="button" value="목록" class="button"
-				onclick="location='board_list.do?page=${page}'" />&nbsp;
+			<c:if
+				test="${sessionScope.member.member_id ne read.board_id && sessionScope.member.member_id eq 'admin'}">
+				<input type="button" value="삭제" class="button"
+					onclick="del_b_content()" />&nbsp;
+				<input type="button" value="목록" class="button"
+					onclick="location='board_list.do?page=${page}'" />&nbsp;
+			</c:if>
 		</div>
 	</div>
 	<hr style="margin: 30px auto; width: 50%;" />
