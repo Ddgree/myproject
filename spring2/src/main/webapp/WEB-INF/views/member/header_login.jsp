@@ -33,7 +33,7 @@
 					<li><a href="notice_list.do">공지사항</a></li>
 					<li class="right"><input type="submit" value="로그아웃"
 						class="mypage" onclick="location='member_logout.do'" /></li>
-					<li class="right"><input type="button" value="탈퇴회원 목록"
+					<li class="right2"><input type="button" value="탈퇴회원 목록"
 						class="mypage" onclick="location='member_drop.do'" /></li>
 					<li style="float: right"><a class="txt">관리자 로그인 됨</a></li>
 				</ul>
@@ -54,7 +54,7 @@
 					<li><a href="notice_list.do">공지사항</a></li>
 					<li class="right"><input type="submit" value="로그아웃"
 						class="mypage" onclick="location='member_logout.do'" /></li>
-					<li class="right"><input type="button" value="마이페이지"
+					<li class="right2"><input type="button" value="마이페이지"
 						class="mypage" onclick="location='member_mypage.do'" /></li>
 					<li style="float: right"><a class="txt">${sessionScope.member.member_nickname}님!
 							환영합니다!</a></li>
