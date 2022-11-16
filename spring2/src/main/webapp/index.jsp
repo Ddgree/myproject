@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>0
+</head>
 <body>
 	<script>
 		location.href = "refresh.do";
