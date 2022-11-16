@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import partyband.dao.NoticeDao;
+import partyband.dao.NoticeDaoImpl;
 import partyband.model.MemberBean;
 import partyband.model.Notice;
 import partyband.service.MemberServiceImpl;
@@ -202,7 +204,8 @@ public class NoticeController {
 	@RequestMapping(value = "/notice_edit_ok.do", method = RequestMethod.POST)
 	public String notice_edit_ok(@ModelAttribute Notice n,
 								@RequestParam("pageNum") String pageNum,
-								@RequestParam("notice_file1") MultipartFile mf, HttpServletRequest request,
+								@RequestParam("notice_file1") MultipartFile mf, 
+								HttpServletRequest request,
 								Model model) throws Exception {
 		
 		//System.out.println("공지사항 수정 저장");
@@ -255,6 +258,7 @@ public class NoticeController {
 			return "notice/uploadResult";
 		}
 	}	
+	 
 	
 	if (size > 0) {
 		mf.transferTo(new File(path + "/" + newfilename));
@@ -264,7 +268,7 @@ public class NoticeController {
 	if (size > 0 ) {          // 첨부 파일이 수정되면
         n.setNotice_file(newfilename);         
      } else {                // 첨부파일이 수정되지 않으면
-        n.setNotice_file(n.getNotice_file());
+        n.setNotice_file(notice.getNotice_file());
      }	
 		noticeService.edit(n);
 		

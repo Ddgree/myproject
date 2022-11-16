@@ -55,7 +55,7 @@
 		notice_no=#{notice_no},
 		notice_subject=#{notice_subject},
 		notice_content=#{notice_content},
-		notice_file=#{notice_file,jdbcType=VARCHAR}
+		notice_file=#{notice_file, jdbcType=VARCHAR}
 		where notice_no=#{notice_no}
 	</update>
 
