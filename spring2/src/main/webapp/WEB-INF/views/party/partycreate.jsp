@@ -78,8 +78,8 @@
 
 				<tr id="bbswrite_menu">
 					<td colspan=6 align="center"><input type="submit" value="등록"
-						class="input_button" /> <input type="reset" value="취소"
-						class="input_button" onclick="location='history.back()'" /></td>
+						class="input button" /> <input type="reset" value="취소"
+						class="input button" onclick="location='history.back()'" /></td>
 				</tr>
 			</table>
 		</form>

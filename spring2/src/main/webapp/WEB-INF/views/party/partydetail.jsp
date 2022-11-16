@@ -95,25 +95,25 @@
 				<td colspan=2 align="center">
 				<c:choose>
 						<c:when test="${member.member_id eq party.party_id}">
-							<input type="button" value="목록" class="input_button" onclick="location='partyband.do?page=${page}'" />
+							<input type="button" value="목록" class="input button" onclick="location='partyband.do?page=${page}'" />
 							<c:if test="${party.party_count eq 0}">
-								<input type="button" value="수정" class="input_button" onclick="party_update()" />
-								<input type="button" value="삭제 " class="input_button" onclick="party_delete()" />
+								<input type="button" value="수정" class="input button" onclick="party_update()" />
+								<input type="button" value="삭제 " class="input button" onclick="party_delete()" />
 							</c:if>
 						</c:when>
 						<c:when test="${member.member_id eq 'admin'}">
-							<input type="button" value="목록" class="input_button"
+							<input type="button" value="목록" class="input button"
 								onclick="location='partyband.do?page=${page}'" />
-							<input type="button" value="삭제 " class="input_button" onclick="party_delete()" />
+							<input type="button" value="삭제 " class="input button" onclick="party_delete()" />
 						</c:when>
 						<c:when test="${join eq -1}">
-							<input type="button" value="목록" class="input_button"onclick="location='partyband.do?page=${page}'"/>
-							<input type="button" value="참가취소" class="input_button"
+							<input type="button" value="목록" class="input button"onclick="location='partyband.do?page=${page}'"/>
+							<input type="button" value="참가취소" class="input button"
 								onclick="location='partyjoincancel.do?page=${page}&party_no=${party.party_no}&member_id=${member.member_id}'" />
 						</c:when>
 						<c:otherwise>
-							<input type="button" value="목록" class="input_button" onclick="location='partyband.do?page=${page}'"/>
-							<input type="button" value="참가" class="input_button" onclick="location='partyjoin.do?page=${page}&party_no=${party.party_no}&member_id=${member.member_id}'" />
+							<input type="button" value="목록" class="input button" onclick="location='partyband.do?page=${page}'"/>
+							<input type="button" value="참가" class="input button" onclick="location='partyjoin.do?page=${page}&party_no=${party.party_no}&member_id=${member.member_id}'" />
 						</c:otherwise>
 					</c:choose></td>
 			</tr>

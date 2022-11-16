@@ -22,8 +22,8 @@
 		<td><input type=password name="party_passwd" id="party_password" required="required"></td>
 	</tr>
 	<tr><td colspan=2 align=center>
-			<input type=submit value="글삭제">
-			<input type=reset value="취소">
+			<input type=submit class="input button" value="글삭제">
+			<input type=reset class="input button" value="취소">
 		</td>
 	</tr>
 </table>

@@ -15,6 +15,42 @@
 #bbswrite_wrap th{background:#9a6c5c; border-radius:15px;}
 #bbswrite_menu{margin:20px 0 0 220px;}
 
+.input {
+  width: 60px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 18px;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+}
+
+.button {
+  background: #443029;
+  background: linear-gradient(0deg, #61443A 0%, #61443A 90%,#FFECE5 100%);
+  border: none;
+}
+
+.button:before {
+  height: 0%;
+  width: 2px;
+}
+
+.button:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+
 /*자료실 목록*/
 #bbslist_wrap{
 	width:560px; height:550px; margin-top:70px;

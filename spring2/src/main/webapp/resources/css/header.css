@@ -98,6 +98,10 @@ ul.topnav li a.space {
 
 ul.topnav li.right {
 	float: right;
+	margin-right: 30px;
+}
+ul.topnav li.right2 {
+	float: right;
 }
 
 .mypage {

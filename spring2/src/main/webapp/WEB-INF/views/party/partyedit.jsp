@@ -72,8 +72,8 @@ party_no=${party_no}
 
 
 				<tr id="bbswrite_menu">
-					<td colspan=6 align="center"><input type="submit" value="수정" class="input_button" /> 
-					<input type="button" value="목록" class="input_button" onclick="location='partyband.do?page=${page}'" /></td>
+					<td colspan=6 align="center"><input type="submit" value="수정" class="input button" /> 
+					<input type="button" value="목록" class="input button" onclick="location='partyband.do?page=${page}'" /></td>
 				</tr>
 			</table>
 		</form>
