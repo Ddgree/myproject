@@ -47,7 +47,7 @@
     
     <!-- 회원수정 -->
     <update id="member_edit" parameterType="member">
-     update member set member_passwd=#{member_passwd},member_name=#{member_name},
+     update member set member_passwd=#{member_passwd},
      member_phone=#{member_phone},member_age=#{member_age},member_email=#{member_email},
      member_address=#{member_address},member_file=#{member_file,jdbcType=VARCHAR} 
      where member_id=#{member_id}
