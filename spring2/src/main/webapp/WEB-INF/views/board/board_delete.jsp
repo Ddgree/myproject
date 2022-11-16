@@ -8,6 +8,8 @@
 	<title>게시물 삭제</title>
 	<link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/boardnotice.css" />
+	<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/NoticeButton.css" />
 <script src="https://kit.fontawesome.com/f82eca20b8.js"
 	crossorigin="anonymous"></script>
 	<script src="<%=request.getContextPath() %>/resources/js/board.js"></script>
@@ -22,12 +24,10 @@
 	 	 }
   	}
 	</script>
-	<%@ include file="../member/header_login.jsp"%>
 </head>
 <body>
 <div class="wrapper">
  <div id="boarddel_wrap">
-  <h2 class="boarddel_title">게시물 삭제</h2>
   <form method="post" action="board_delete_ok.do" 
   onsubmit="return delete_check()">
   <input type="hidden" name="member_id" value="${member.member_id}" />
@@ -35,21 +35,20 @@
   <input type="hidden" name="page" value="${page}" />
    <table id="board_delete_table" style="margin-top:50px;">
     <tr>
-     <th>삭제 비밀번호&nbsp;&nbsp;</th>
-     <td>
-      <input type="password" name="board_passwd" id="board_passwd" size="20" style="width:200px; height:30px"
-      class="input_box" />
+     <th class="delete">삭제 비밀번호</th>
+     <td class="td_delete">
+      <input type="password" name="board_passwd" id="board_passwd"
+      class="input_box_delete" />
      </td>
     </tr>
    </table>
-   <div id="boarddel_menu" align="center">
-    <input type="submit" value="삭제" class="input_button" />
-    <input type="button" value="취소" class="input_button" 
+   <div id="boarddel_menu" align="center" style="margin-top:70px;">
+    <input type="submit" value="삭제" class="button" />
+    <input type="button" value="취소" class="button" 
     onclick="window.close()" />
    </div>
   </form>
  </div>
  </div>
 </body>
-<%@ include file="../member/footer.jsp" %>
 </html>

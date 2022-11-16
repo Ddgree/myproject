@@ -54,7 +54,8 @@
 		update notice set
 		notice_no=#{notice_no},
 		notice_subject=#{notice_subject},
-		notice_content=#{notice_content}
+		notice_content=#{notice_content},
+		notice_file=#{notice_file}
 		where notice_no=#{notice_no}
 	</update>
 

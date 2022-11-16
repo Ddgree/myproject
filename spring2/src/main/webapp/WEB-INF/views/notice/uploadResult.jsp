@@ -12,7 +12,7 @@
 
 <c:if test="${result == 2 }">
 	<script>
-		alert("첨부파일은 jpg, gif, png파일만 업로드 가능합니다.");
+		alert("첨부파일은 jpg, gif, png, jpeg파일만 업로드 가능합니다.");
 		history.go(-1);
 	</script>
 </c:if>

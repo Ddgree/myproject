@@ -8,6 +8,8 @@
 <title>게시글 수정</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/boardnotice.css" />
+	<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/NoticeButton.css" />
 <script src="https://kit.fontawesome.com/f82eca20b8.js"
 	crossorigin="anonymous"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -63,21 +65,6 @@ td {
 	border: 1px solid #cccccc;
 	font-size: 18px;
 }
-.input_button_u {
-	background-color: black;
-	color: white;
-	text-align: center;
-	font-size: 20px;
-	width: 150px;
-	height: 50px;	
-	transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
-	cursor: pointer;
-}
-.input_button_u:hover {
-	background: #61443a;
-	color: white;
-	border: 0;
-}
 </style>
 </head>
 	<%@ include file="../member/header_login.jsp"%>
@@ -125,7 +112,7 @@ td {
 				<tr>
 					<th>글내용</th>
 					<td><textarea name="board_content" id="board_content" rows="8"
-							cols="50" class="input_box">${read.board_content}</textarea></td>
+							cols="50" class="input_box_write">${read.board_content}</textarea></td>
 				</tr>
 				<tr rowspan=2>
 					<th>첨부파일</th>
@@ -137,8 +124,8 @@ td {
 			</table>
 
 			<div id="board_write_menu" style='margin-top: 20px;'>
-				<input type="submit" value="수정" class="input_button_u" /> 
-				<input type="reset" value="취소" class="input_button_u" onclick="history.go(-1)" />
+				<input type="submit" value="수정" class="button" /> 
+				<input type="reset" value="취소" class="button" onclick="history.go(-1)" />
 			</div>
 		</form>
 	</div>

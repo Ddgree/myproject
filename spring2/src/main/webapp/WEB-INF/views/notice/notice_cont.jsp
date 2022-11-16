@@ -12,31 +12,52 @@
 <script>
 function notice_delete() 
 {
-	window.open("notice_del.do?notice_no=${ncont.notice_no}&pageNum=${pageNum}", "공지삭제", "width=450,height=350");
+	window.open("notice_del.do?notice_no=${ncont.notice_no}&pageNum=${pageNum}", "공지삭제", "width=450,height=300");
 	//자바 스크립트에서 window객체의 open("공지창경로와 파일명","공지창이름","공지창속성")
 }
 </script>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/NoticeButton.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/boardnotice.css" />
 <c:if test="${sessionScope.member.member_id == null }">
 	<%@ include file="../member/header.jsp"%>
 </c:if>
 <c:if test="${sessionScope.member.member_id != null }">
 	<%@ include file="../member/header_login.jsp"%>
 </c:if>
+<style>
+th {
+	padding: 20px 10px;
+	border: 1px solid #cccccc;
+	text-align: cetner;
+}
+td {
+	padding: 20px 20px;
+	border: 1px solid #cccccc;
+}
+#reboard_content, #reboard_button {
+	vertical-align: middle;
+}
+
+:text {
+	text-align: center;
+}
+</style>
 </head>
 
 <body>
 <div class="wrapper">
 	<div id="noticecont_wrap">
 		<h2 style=padding-top:90px align=center>공지사항 내용보기</h2>
-		<table  border=1 id="noticecont_t" width=60% align="center" style=margin-top:50px>
+		<table id="noticecont_t" width=50% align="center" 
+			style=margin-top:50px; enctype="multipart/form-data">
 			<tr>
-				<th height=50>제목</th>
-				<td width=60%>${ncont.notice_subject}</td>
+				<th>제목</th>
+				<td width=400px>${ncont.notice_subject}</td>
 				<th>작성일</th>
 				<td align=center>${ncont.notice_date}</td>
 				<th>조회수</th>
-				<td width=50 align=center>${ncont.notice_readcount}</td>
+				<td align=center>${ncont.notice_readcount}</td>
 			</tr>
 			<tr>
 				<th>글내용</th>
@@ -47,7 +68,7 @@ function notice_delete()
 			<tr>
 				<th>파일첨부</th>
 				<td colspan=5 height=40><c:if test="${ncont.notice_file != null}">
-						<a href="filedown.do?notice_file=${ncont.notice_file}">
+						<a href="filedown.do?file_name=${ncont.notice_file}">
 							${ncont.notice_file} </a>
 					</c:if></td>
 			</tr>
