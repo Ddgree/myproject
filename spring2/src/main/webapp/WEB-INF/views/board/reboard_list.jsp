@@ -2,18 +2,33 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-    
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/boardnotice.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/css/NoticeButton.css" />
 <script src="https://kit.fontawesome.com/f82eca20b8.js"
 	crossorigin="anonymous"></script>
+
 <style>
-.edit1, .del1{
-float:right;
-margin:0px 0px 0px 10px;
+
+.reply_update_textarea{
+	width:auto;
+	height:auto;
+	border:none solid black;
+	background:transparent;
+	border-radius:3px;
+	margin: 8px 0;
+	outline: none;
+	padding:5px;
+	box-sizing: border-box;
+	transition:.3s;
+	resize: none;
 }
 </style>
 <script type="text/javascript">
@@ -21,11 +36,11 @@ $(function() {
 		$('.edit1').click(function() {
 			var id  = $(this).attr('id');  // rno
 			var txt = $('#td_'+id).text(); // replytext
-			$('#td_'+id).html("<textarea rows='2' cols='50' id='tt_"+id+"'>"+txt
+			$('#td_'+id).html("<textarea rows='2' cols='50' class='reply_update_textarea' id='tt_"+id+"'>"+txt
 				+"</textarea>");
 			$('#btn_'+id).html(
-			   "<input type='button' value='확인' onclick='up("+id+")'> "
-			  +"<input type='button' value='취소' onclick='lst()'>");
+			   "<input type='button' value='확인' class='button' onclick='up("+id+")'> "
+			  +"<input type='button' value='취소' class='button' onclick='lst()'>");
 		});
 	});
 	 function up(id) {

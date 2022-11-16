@@ -76,7 +76,7 @@ td {
 			<input type="hidden" name="member_id" value="${read.board_id}" />
 			<input type="hidden" name="board_no" value="${read.board_no}" /> 
 			<input type="hidden" name="page" value="${page}" />
-			<table id="board_write_table" border=1 >
+			<table id="board_write_table">
 				<tr>
 					<th>구분</th>
 					<td>
@@ -117,7 +117,7 @@ td {
 				<tr rowspan=2>
 					<th>첨부파일</th>
 					<td>${read.board_file} <br><hr style="border-pattern:dotted;"/>
-					<input type=file name="board_file1" >
+					<input type=file name="board_file1">
 					</td>
 				</tr>
 
