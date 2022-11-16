@@ -127,10 +127,20 @@ footer {
 	height: 120px;
 	position: relative;
 }
-
-footer div {
+footer div{
 	float: left;
 }
+footer div.intro{
+	font-weight:bold;
+	margin-left:10px;
+	margin-top:10px;
+	float: left;
+}
+footer div.intro a.content{
+	font-weight:normal;
+	text-decoration: none;
+	color:black;
+	}
 
 footer div.img, footer div img {
 	width: 120px;
